@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-begin
-  require_relative "tasks/dependencies"
-  require_relative "tasks/announce"
-rescue LoadError
-  puts "Additional rake tasks not found. If you require these rake tasks run Rake from the git repo not the installation files!"
-end
 
 namespace :style do
   begin

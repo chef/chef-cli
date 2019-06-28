@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "chef-dk/version"
 
 Gem::Specification.new do |gem|
-  gem.name          = "chef-dk"
+  gem.name          = "chef-cli"
   gem.version       = ChefDK::VERSION
   gem.authors       = [ "Daniel DeLeo", "Lamont Granquist", "Serdar Sutay" ]
   gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]

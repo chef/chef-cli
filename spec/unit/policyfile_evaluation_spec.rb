@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_compiler"
+require "chef-cli/policyfile_compiler"
 
 describe ChefDK::PolicyfileCompiler do
 

@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/install"
+require "chef-cli/command/install"
 
 describe ChefDK::Command::Install do
 

@@ -37,20 +37,20 @@ module ChefDK
 
       def run(params)
         info = {}
-        info["#{ChefDK::Dist::PRODUCT}"] = Hash.new.tap do |chefdk_env|
-          chefdk_env["ChefDK"] = chefdk_info
-          chefdk_env["Ruby"] = ruby_info
-          chefdk_env["Path"] = paths
+        info["#{ChefDK::Dist::PRODUCT}"] = Hash.new.tap do |chefcli_env|
+          chefcli_env["ChefDK"] = chefcli_info
+          chefcli_env["Ruby"] = ruby_info
+          chefcli_env["Path"] = paths
         end
         ui.msg info.to_yaml
       end
 
-      def chefdk_info
-        Hash.new.tap do |chefdk|
-          chefdk["ChefDK Version"] = ChefDK::VERSION
-          chefdk["ChefDK Home"] = chefdk_home
-          chefdk["ChefDK Install Directory"] = omnibus_root
-          chefdk["Policyfile Config"] = policyfile_config
+      def chefcli_info
+        Hash.new.tap do |chefcli|
+          chefcli["ChefDK Version"] = ChefDK::VERSION
+          chefcli["ChefDK Home"] = chefcli_home
+          chefcli["ChefDK Install Directory"] = omnibus_root
+          chefcli["Policyfile Config"] = policyfile_config
         end
       end
 

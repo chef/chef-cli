@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/storage_config"
+require "chef-cli/policyfile/storage_config"
 
 describe ChefDK::Policyfile::StorageConfig do
 

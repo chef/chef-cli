@@ -41,11 +41,11 @@ module ChefDK
   #
   #   ChefDK.commands do |c|
   #     # assigns `chef my-command` to the class ChefDK::Command::MyCommand.
-  #     # The "require path" is inferred to be "chef-dk/command/my_command"
+  #     # The "require path" is inferred to be "chef-cli/command/my_command"
   #     c.builtin("my-command", :MyCommand)
   #
   #     # Set the require path explicitly:
-  #     c.builtin("weird-command", :WeirdoClass, require_path: "chef-dk/command/this_is_cray")
+  #     c.builtin("weird-command", :WeirdoClass, require_path: "chef-cli/command/this_is_cray")
   #
   #     # You can add a description that will show up in `chef -h` output (recommended):
   #     c.builtin("documented-cmd", :DocumentedCmd, desc: "A short description")
@@ -75,7 +75,7 @@ module ChefDK
     def builtin(name, constant_name, require_path: NULL_ARG, desc: "", hidden: false)
       if null?(require_path)
         snake_case_path = name.tr("-", "_")
-        require_path = "chef-dk/command/#{snake_case_path}"
+        require_path = "chef-cli/command/#{snake_case_path}"
       end
       command_specs[name] = CommandSpec.new(name, constant_name, require_path, desc, hidden)
     end

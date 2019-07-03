@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/local_lock_fetcher"
+require "chef-cli/policyfile/local_lock_fetcher"
 
 describe ChefDK::Policyfile::LocalLockFetcher do
 

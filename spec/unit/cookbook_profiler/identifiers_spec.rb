@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/cookbook_profiler/identifiers"
-require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
+require "chef-cli/cookbook_profiler/identifiers"
+require "chef-cli/policyfile/read_cookbook_for_compat_mode_upload"
 
 describe ChefDK::CookbookProfiler::Identifiers do
 

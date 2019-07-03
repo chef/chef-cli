@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/helpers"
+require "chef-cli/helpers"
 
 RSpec.shared_context "setup git cookbooks" do
 

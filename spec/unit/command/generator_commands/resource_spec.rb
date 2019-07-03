@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/a_file_generator"
-require "chef-dk/command/generator_commands/resource"
+require "chef-cli/command/generator_commands/resource"
 
 describe ChefDK::Command::GeneratorCommands::Resource do
 

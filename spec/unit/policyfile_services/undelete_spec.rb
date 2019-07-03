@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/undelete"
+require "chef-cli/policyfile_services/undelete"
 
 describe ChefDK::PolicyfileServices::Undelete do
 

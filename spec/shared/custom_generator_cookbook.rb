@@ -7,7 +7,7 @@ shared_examples_for "custom generator cookbook" do
 
   context "when given a generator-cookbook path" do
 
-    let(:default_generator_cookbook_path) { File.expand_path("lib/chef-dk/skeletons/code_generator", project_root) }
+    let(:default_generator_cookbook_path) { File.expand_path("lib/chef-cli/skeletons/code_generator", project_root) }
 
     let(:generator_cookbook_path) { File.join(tempdir, "a_generator_cookbook") }
     let(:generator_copyright_holder) { "Chef" }
@@ -48,14 +48,14 @@ shared_examples_for "custom generator cookbook" do
           email: generator_email)
       end
 
-      let(:chefdk_config) do
+      let(:chefcli_config) do
         double("Mixlib::Config context for ChefDK",
           generator_cookbook: generator_cookbook_path,
           generator: generator_config)
       end
 
       before do
-        allow(code_generator).to receive(:chefdk_config).and_return(chefdk_config)
+        allow(code_generator).to receive(:chefcli_config).and_return(chefcli_config)
       end
 
       it "configures the generator context" do

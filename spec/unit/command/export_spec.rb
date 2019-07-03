@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/export"
+require "chef-cli/command/export"
 
 describe ChefDK::Command::Export do
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/cookbook_locks"
+require "chef-cli/policyfile/cookbook_locks"
 
 shared_examples_for "Cookbook Lock" do
 

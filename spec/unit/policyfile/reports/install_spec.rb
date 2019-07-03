@@ -16,11 +16,11 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/reports/install"
+require "chef-cli/policyfile/reports/install"
 
 # Used for verifying doubles
-require "chef-dk/policyfile_compiler"
-require "chef-dk/policyfile/cookbook_location_specification"
+require "chef-cli/policyfile_compiler"
+require "chef-cli/policyfile/cookbook_location_specification"
 
 describe ChefDK::Policyfile::Reports::Install do
 

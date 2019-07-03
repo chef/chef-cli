@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/chef_server_api_multi"
+require "chef-cli/chef_server_api_multi"
 
 describe ChefDK::ChefServerAPIMulti do
 

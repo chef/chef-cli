@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/command/verify"
+require "chef-cli/command/verify"
 
 module Gem
 
@@ -41,7 +41,7 @@ describe ChefDK::Command::Verify do
       "test-kitchen",
       "tk-policyfile-provisioner",
       "chef-client",
-      "chef-dk",
+      "chef-cli",
       "chef-apply",
       "chefspec",
       "generated-cookbooks-pass-chefspec",
@@ -62,7 +62,7 @@ describe ChefDK::Command::Verify do
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
   end
 
-  it "defines berks, tk, chef and chef-dk components by default" do
+  it "defines berks, tk, chef and chef-cli components by default" do
     expected_components = default_components
     expect(command_instance.components).not_to be_empty
     expect(command_instance.components.map(&:name)).to match_array(expected_components)

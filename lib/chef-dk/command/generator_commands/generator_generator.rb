@@ -51,7 +51,7 @@ module ChefDK
           update_metadata_rb
           ui.msg("Copied built-in generator cookbook to #{created_cookbook_path}")
           ui.msg("Add the following to your config file to enable it:")
-          ui.msg("  chefdk.generator_cookbook \"#{created_cookbook_path}\"")
+          ui.msg("  chefcli.generator_cookbook \"#{created_cookbook_path}\"")
           0
         end
 
@@ -82,7 +82,7 @@ module ChefDK
         # @api private
         def source
           # Hard-coded to the built-in generator, because otherwise setting
-          # chefdk.generator_cookbook would make this command copy the custom
+          # chefcli.generator_cookbook would make this command copy the custom
           # generator, but that doesn't make sense because the user can easily
           # do that anyway.
           File.expand_path("../../../skeletons/code_generator", __FILE__)

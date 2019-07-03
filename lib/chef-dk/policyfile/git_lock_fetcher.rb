@@ -164,7 +164,7 @@ module ChefDK
 
       # COPYPASTA from CookbookOmnifetch::GitLocation and Berkshelf::GitLocation
       # then munged since we do not have Policyfile validation in scope.
-      # Install into the chefdk cookbook store. This method leverages a cached
+      # Install into the chefcli cookbook store. This method leverages a cached
       # git copy.
       def install
         if cached?
@@ -245,7 +245,7 @@ module ChefDK
       #
       # @return [Pathname]
       def cache_path
-        Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefdk_home, "cache")))
+        Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefcli_home, "cache")))
           .join(".cache", "git", Digest::SHA1.hexdigest(uri))
       end
 

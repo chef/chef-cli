@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "stringio"
-require "chef-dk/command/generate"
+require "chef-cli/command/generate"
 
 class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCommands::Base
 

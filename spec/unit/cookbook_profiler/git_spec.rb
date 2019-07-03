@@ -18,8 +18,8 @@
 require "spec_helper"
 require "shared/setup_git_cookbooks"
 require "fileutils"
-require "chef-dk/helpers"
-require "chef-dk/cookbook_profiler/git"
+require "chef-cli/helpers"
+require "chef-cli/cookbook_profiler/git"
 
 describe ChefDK::CookbookProfiler::Git do
 

@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/helpers"
-require "chef-dk/policyfile_services/update_attributes"
+require "chef-cli/helpers"
+require "chef-cli/policyfile_services/update_attributes"
 
 describe ChefDK::PolicyfileServices::UpdateAttributes do
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/delivery_supermarket_source"
+require "chef-cli/policyfile/delivery_supermarket_source"
 
 describe ChefDK::Policyfile::DeliverySupermarketSource do
 

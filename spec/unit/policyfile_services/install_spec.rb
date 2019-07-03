@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/install"
+require "chef-cli/policyfile_services/install"
 
 describe ChefDK::PolicyfileServices::Install do
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/clean_policy_cookbooks"
+require "chef-cli/policyfile_services/clean_policy_cookbooks"
 
 describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
 

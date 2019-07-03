@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_compiler"
-require "chef-dk/exceptions"
+require "chef-cli/policyfile_compiler"
+require "chef-cli/exceptions"
 
 describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 

@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/clean_policy_cookbooks"
+require "chef-cli/command/clean_policy_cookbooks"
 
 describe ChefDK::Command::CleanPolicyCookbooks do
 

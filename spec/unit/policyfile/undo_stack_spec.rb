@@ -16,11 +16,11 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/undo_stack"
+require "chef-cli/policyfile/undo_stack"
 
 describe ChefDK::Policyfile::UndoStack do
 
-  let(:chefdk_home) { File.join(tempdir, "chefdk_home", ".chefdk") }
+  let(:chefcli_home) { File.join(tempdir, "chefcli_home", ".chefcli") }
 
   let(:policy_revision) do
     {
@@ -39,7 +39,7 @@ describe ChefDK::Policyfile::UndoStack do
   # Probably takes a Chef::Config as an arg?
   subject(:undo_stack) { described_class.new }
 
-  let(:expected_undo_dir) { File.join(chefdk_home, "undo") }
+  let(:expected_undo_dir) { File.join(chefcli_home, "undo") }
 
   def undo_stack_files
     Dir[File.join(expected_undo_dir, "*")]
@@ -47,14 +47,14 @@ describe ChefDK::Policyfile::UndoStack do
 
   before do
     clear_tempdir
-    allow(ChefDK::Helpers).to receive(:chefdk_home).and_return(chefdk_home)
+    allow(ChefDK::Helpers).to receive(:chefcli_home).and_return(chefcli_home)
   end
 
   after(:all) do
     clear_tempdir
   end
 
-  it "uses chefdk_home to infer the location of the undo directory" do
+  it "uses chefcli_home to infer the location of the undo directory" do
     expect(undo_stack.undo_dir).to eq(expected_undo_dir)
   end
 
@@ -83,14 +83,14 @@ describe ChefDK::Policyfile::UndoStack do
     describe "pushing an undo record" do
 
       before do
-        expect(File.exist?(chefdk_home)).to be(false)
+        expect(File.exist?(chefcli_home)).to be(false)
         expect(File.exist?(expected_undo_dir)).to be(false)
 
         undo_stack.push(undo_record)
       end
 
       it "creates the undo directory" do
-        expect(File.exist?(chefdk_home)).to be(true)
+        expect(File.exist?(chefcli_home)).to be(true)
         expect(File.exist?(expected_undo_dir)).to be(true)
       end
 

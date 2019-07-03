@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/a_file_generator"
-require "chef-dk/command/generator_commands/policyfile"
+require "chef-cli/command/generator_commands/policyfile"
 
 describe ChefDK::Command::GeneratorCommands::Policyfile do
 

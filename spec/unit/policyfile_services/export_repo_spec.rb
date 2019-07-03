@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/export_repo"
+require "chef-cli/policyfile_services/export_repo"
 
 describe ChefDK::PolicyfileServices::ExportRepo do
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/comparison_base"
+require "chef-cli/policyfile/comparison_base"
 
 describe "Policyfile Comparison Bases" do
 

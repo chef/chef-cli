@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/show_policy"
+require "chef-cli/policyfile_services/show_policy"
 
 describe ChefDK::PolicyfileServices::ShowPolicy do
 

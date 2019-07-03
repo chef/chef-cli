@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/cookbook_metadata"
+require "chef-cli/cookbook_metadata"
 
 describe ChefDK::CookbookMetadata do
 

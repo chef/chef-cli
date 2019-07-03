@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/community_cookbook_source"
+require "chef-cli/policyfile/community_cookbook_source"
 
 describe ChefDK::Policyfile::CommunityCookbookSource do
 

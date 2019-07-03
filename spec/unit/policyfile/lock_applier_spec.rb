@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/lock_applier"
-require "chef-dk/policyfile_compiler"
-require "chef-dk/policyfile_lock"
+require "chef-cli/policyfile/lock_applier"
+require "chef-cli/policyfile_compiler"
+require "chef-cli/policyfile_lock"
 
 describe ChefDK::Policyfile::LockApplier do
   let(:lock) { instance_double("ChefDK::Policyfile::PolicyfileLock") }

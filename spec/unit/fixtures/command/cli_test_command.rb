@@ -1,4 +1,4 @@
-require "chef-dk/command/base"
+require "chef-cli/command/base"
 
 module ChefDK
   module Command

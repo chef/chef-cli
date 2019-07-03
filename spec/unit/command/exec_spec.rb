@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/command/exec"
+require "chef-cli/command/exec"
 
 describe ChefDK::Command::Exec do
   let(:command_instance) { ChefDK::Command::Exec.new() }

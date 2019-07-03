@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/lock_fetcher_mixin"
+require "chef-cli/policyfile/lock_fetcher_mixin"
 
 describe ChefDK::Policyfile::LockFetcherMixin do
   include ChefDK::Policyfile::LockFetcherMixin

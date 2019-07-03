@@ -17,7 +17,7 @@
 
 require "spec_helper"
 
-require "chef-dk/policyfile/source_uri"
+require "chef-cli/policyfile/source_uri"
 
 describe ChefDK::Policyfile::SourceURI do
   subject { described_class.parse(source_uri) }

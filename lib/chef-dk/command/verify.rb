@@ -120,7 +120,7 @@ module ChefDK
 
       add_component "tk-policyfile-provisioner" do |c|
 
-        c.gem_base_dir = "chef-dk"
+        c.gem_base_dir = "chef-cli"
 
         c.smoke_test do
           tmpdir do |cwd|
@@ -174,8 +174,8 @@ module ChefDK
         end
       end
 
-      add_component "chef-dk" do |c|
-        c.gem_base_dir = "chef-dk"
+      add_component "chef-cli" do |c|
+        c.gem_base_dir = "chef-cli"
         c.unit_test do
           bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
           sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")}")
@@ -227,7 +227,7 @@ module ChefDK
 
       add_component "generated-cookbooks-pass-chefspec" do |c|
 
-        c.gem_base_dir = "chef-dk"
+        c.gem_base_dir = "chef-cli"
         c.smoke_test do
           tmpdir do |cwd|
             sh("#{bin("chef")} generate cookbook example", cwd: cwd)
@@ -255,7 +255,7 @@ module ChefDK
 
       add_component "package installation" do |c|
 
-        c.gem_base_dir = "chef-dk"
+        c.gem_base_dir = "chef-cli"
 
         c.smoke_test do
 
@@ -272,7 +272,7 @@ module ChefDK
             # `knife exec` forces command loading to happen and this command
             # exits 0, which runs most of the code.
             #
-            # See also: https://github.com/chef/chef-dk/issues/227
+            # See also: https://github.com/chef/chef-cli/issues/227
             sh!("#{usr_bin_path("knife")} exec -E true")
 
             tmpdir do |dir|
@@ -293,7 +293,7 @@ module ChefDK
       end
 
       add_component "openssl" do |c|
-        # https://github.com/chef/chef-dk/issues/420
+        # https://github.com/chef/chef-cli/issues/420
         c.gem_base_dir = "chef"
 
         test = <<-EOF.gsub(/^\s+/, "")
@@ -381,11 +381,11 @@ module ChefDK
               # If /usr/bin/git is a symlink, fail the test.
               # Note that this test cannot go last because it does not return a
               # Mixlib::Shellout object in the windows case, which will break the tests.
-              failure_str = "#{nix_platform_native_bin_dir}/git contains a symlink which might mean we accidentally overwrote system git via chefdk."
+              failure_str = "#{nix_platform_native_bin_dir}/git contains a symlink which might mean we accidentally overwrote system git via chefcli."
               result = sh("readlink #{nix_platform_native_bin_dir}/git")
-              # if a symlink was found, test to see if it is in a chefdk install
+              # if a symlink was found, test to see if it is in a chefcli install
               if result.status.exitstatus == 0
-                raise failure_str if result.stdout =~ /chefdk/
+                raise failure_str if result.stdout =~ /chefcli/
               end
 
               # <chef_dk>/bin/ should not contain a git binary.

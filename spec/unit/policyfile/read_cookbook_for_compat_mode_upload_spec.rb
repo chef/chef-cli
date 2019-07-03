@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
-require "chef-dk/helpers"
+require "chef-cli/policyfile/read_cookbook_for_compat_mode_upload"
+require "chef-cli/helpers"
 
 describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
 

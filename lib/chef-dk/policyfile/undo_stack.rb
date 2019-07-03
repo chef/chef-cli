@@ -32,7 +32,7 @@ module ChefDK
       include Helpers
 
       def undo_dir
-        File.join(Helpers.chefdk_home, "undo")
+        File.join(Helpers.chefcli_home, "undo")
       end
 
       def size

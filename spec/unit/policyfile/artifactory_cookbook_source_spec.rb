@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/source_uri"
-require "chef-dk/policyfile/artifactory_cookbook_source"
+require "chef-cli/policyfile/source_uri"
+require "chef-cli/policyfile/artifactory_cookbook_source"
 
 describe ChefDK::Policyfile::ArtifactoryCookbookSource do
   subject { described_class.new(cookbook_source) }

@@ -19,8 +19,8 @@
 require "spec_helper"
 require "shared/setup_git_cookbooks"
 require "shared/fixture_cookbook_checksums"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile_lock.rb"
+require "chef-cli/policyfile/storage_config"
+require "chef-cli/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "building a lockfile" do
 

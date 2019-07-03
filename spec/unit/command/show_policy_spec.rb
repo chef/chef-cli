@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/show_policy"
+require "chef-cli/command/show_policy"
 
 describe ChefDK::Command::ShowPolicy do
 

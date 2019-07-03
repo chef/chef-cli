@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/generator"
+require "chef-cli/generator"
 
 describe ChefDK::Generator do
 

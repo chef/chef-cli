@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/pager"
+require "chef-cli/pager"
 
 describe ChefDK::Pager do
 

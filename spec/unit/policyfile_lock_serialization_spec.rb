@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_lock"
+require "chef-cli/policyfile_lock"
 
 describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
 

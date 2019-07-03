@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/chef_server_cookbook_source"
+require "chef-cli/policyfile/chef_server_cookbook_source"
 
 describe ChefDK::Policyfile::ChefServerCookbookSource do
   subject { described_class.new(cookbook_source) }

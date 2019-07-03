@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/cookbook_location_specification"
+require "chef-cli/policyfile/cookbook_location_specification"
 
 describe ChefDK::Policyfile::CookbookLocationSpecification do
 
@@ -30,7 +30,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   let(:cached_cookbook) { double("ChefDK::CookbookMetadata") }
 
-  let(:install_path) { Pathname.new("~/.chefdk/cache/cookbooks/my_cookbook-1.0.0") }
+  let(:install_path) { Pathname.new("~/.chefcli/cache/cookbooks/my_cookbook-1.0.0") }
 
   let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook, install_path: install_path) }
 

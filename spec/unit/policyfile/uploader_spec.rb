@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/uploader"
+require "chef-cli/policyfile/uploader"
 
 # We load this here to ensure we get the "verifying doubles" behavior from
 # RSpec. It's not used by Policyfile::Uploader, but it's a collaborator.

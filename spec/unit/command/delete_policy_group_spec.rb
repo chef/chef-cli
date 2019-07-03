@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/delete_policy_group"
+require "chef-cli/command/delete_policy_group"
 
 describe ChefDK::Command::DeletePolicyGroup do
 

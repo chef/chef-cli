@@ -18,10 +18,10 @@
 
 require "kitchen/provisioner/chef_base"
 
-# TODO: chef-dk and kitchen can only co-exist if kitchen and chef-dk agree on
+# TODO: chef-cli and kitchen can only co-exist if kitchen and chef-cli agree on
 # the version of mixlib-shellout to use. Kitchen currently locked at 1.4,
-# chef-dk is on 2.x
-require_relative "../../chef-dk/policyfile_services/export_repo"
+# chef-cli is on 2.x
+require_relative "../../chef-cli/policyfile_services/export_repo"
 
 module Kitchen
 

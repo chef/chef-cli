@@ -53,7 +53,7 @@ module TestHelpers
   end
 
   def tempdir
-    @tmpdir ||= Dir.mktmpdir("chef-dk")
+    @tmpdir ||= Dir.mktmpdir("chef-cli")
     File.realpath(@tmpdir)
   end
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/lister"
+require "chef-cli/policyfile/lister"
 
 describe ChefDK::Policyfile::Lister do
 

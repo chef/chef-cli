@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/service_exception_inspectors/base"
+require "chef-cli/service_exception_inspectors/base"
 
 describe ChefDK::ServiceExceptionInspectors::Base do
 

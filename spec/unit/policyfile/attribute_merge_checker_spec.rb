@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/attribute_merge_checker"
+require "chef-cli/policyfile/attribute_merge_checker"
 
 describe ChefDK::Policyfile::AttributeMergeChecker do
   let(:checker) { ChefDK::Policyfile::AttributeMergeChecker.new }

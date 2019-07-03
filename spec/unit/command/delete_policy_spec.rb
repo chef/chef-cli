@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/delete_policy"
+require "chef-cli/command/delete_policy"
 
 describe ChefDK::Command::DeletePolicy do
 

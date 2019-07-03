@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/undelete"
+require "chef-cli/command/undelete"
 
 describe ChefDK::Command::Undelete do
 

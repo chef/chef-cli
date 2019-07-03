@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/command/shell_init"
+require "chef-cli/command/shell_init"
 
 describe ChefDK::Command::ShellInit do
 

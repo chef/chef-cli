@@ -18,7 +18,7 @@
 require "spec_helper"
 require "net/http"
 require "chef/monkey_patches/net_http"
-require "chef-dk/service_exception_inspectors/http"
+require "chef-cli/service_exception_inspectors/http"
 
 describe ChefDK::ServiceExceptionInspectors::HTTP do
 

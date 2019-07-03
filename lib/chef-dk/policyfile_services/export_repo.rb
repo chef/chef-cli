@@ -119,7 +119,7 @@ module ChefDK
       def with_staging_dir
         p = Process.pid
         t = Time.new.utc.strftime("%Y%m%d%H%M%S")
-        Dir.mktmpdir("chefdk-export-#{p}-#{t}") do |d|
+        Dir.mktmpdir("chefcli-export-#{p}-#{t}") do |d|
           begin
             @staging_dir = d
             yield

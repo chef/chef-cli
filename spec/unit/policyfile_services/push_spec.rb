@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/push"
+require "chef-cli/policyfile_services/push"
 
 describe ChefDK::PolicyfileServices::Push do
 

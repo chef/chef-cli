@@ -31,8 +31,8 @@ require "chef/cookbook_loader"
 
 require "ohai/system"
 
-require "chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext"
-require "chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter"
+require "chef-cli/command/generator_commands/chef_exts/recipe_dsl_ext"
+require "chef-cli/command/generator_commands/chef_exts/quieter_doc_formatter"
 
 describe ChefDK::RecipeDSLExt do
 
@@ -43,7 +43,7 @@ describe ChefDK::RecipeDSLExt do
   let(:stderr) { StringIO.new }
 
   let(:doc_formatter) do
-    Chef::Formatters.new(:chefdk_doc, stdout, stderr)
+    Chef::Formatters.new(:chefcli_doc, stdout, stderr)
   end
 
   let(:event_dispatcher) do
@@ -61,7 +61,7 @@ describe ChefDK::RecipeDSLExt do
   end
 
   let(:policy_builder) do
-    Chef::PolicyBuilder::Dynamic.new("chef-dk", ohai.data, {}, nil, event_dispatcher).tap do |b|
+    Chef::PolicyBuilder::Dynamic.new("chef-cli", ohai.data, {}, nil, event_dispatcher).tap do |b|
       b.load_node
       b.build_node
       b.node.run_list(*run_list)

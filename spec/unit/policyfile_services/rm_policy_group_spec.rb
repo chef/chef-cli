@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/rm_policy_group"
+require "chef-cli/policyfile_services/rm_policy_group"
 
 describe ChefDK::PolicyfileServices::RmPolicyGroup do
 

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/git_lock_fetcher"
+require "chef-cli/policyfile/git_lock_fetcher"
 
 describe ChefDK::Policyfile::GitLockFetcher do
 

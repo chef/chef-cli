@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "yaml"
-require "chef-dk/command/env"
+require "chef-cli/command/env"
 
 describe ChefDK::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }

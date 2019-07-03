@@ -17,8 +17,8 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/diff"
-require "chef-dk/service_exceptions"
+require "chef-cli/command/diff"
+require "chef-cli/service_exceptions"
 
 describe ChefDK::Command::Diff do
 

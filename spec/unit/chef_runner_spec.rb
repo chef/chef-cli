@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "stringio"
-require "chef-dk/chef_runner"
+require "chef-cli/chef_runner"
 
 describe ChefDK::ChefRunner do
 

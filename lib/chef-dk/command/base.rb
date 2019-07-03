@@ -80,7 +80,7 @@ module ChefDK
       end
 
       def check_license_acceptance
-        LicenseAcceptance::Acceptor.check_and_persist!("chef-dk", ChefDK::VERSION.to_s)
+        LicenseAcceptance::Acceptor.check_and_persist!("chef-cli", ChefDK::VERSION.to_s)
       end
 
     end

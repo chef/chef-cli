@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/differ"
+require "chef-cli/policyfile/differ"
 
 describe ChefDK::Policyfile::Differ do
 

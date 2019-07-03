@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/component_test"
+require "chef-cli/component_test"
 require "pathname"
 
 describe ChefDK::ComponentTest do

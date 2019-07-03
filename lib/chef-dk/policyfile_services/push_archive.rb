@@ -125,7 +125,7 @@ module ChefDK
       def stage_unpacked_archive
         p = Process.pid
         t = Time.new.utc.strftime("%Y%m%d%H%M%S")
-        Dir.mktmpdir("chefdk-push-archive-#{p}-#{t}") do |staging_dir|
+        Dir.mktmpdir("chefcli-push-archive-#{p}-#{t}") do |staging_dir|
           unpack_to(staging_dir)
           yield staging_dir
         end

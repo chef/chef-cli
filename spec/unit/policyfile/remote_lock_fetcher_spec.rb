@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/remote_lock_fetcher"
+require "chef-cli/policyfile/remote_lock_fetcher"
 
 describe ChefDK::Policyfile::RemoteLockFetcher do
 

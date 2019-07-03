@@ -26,11 +26,11 @@ class Chef::Config
 
   default(:policy_document_native_api, true)
 
-  config_context(:chefdk) do
+  config_context(:chefcli) do
 
     # Error when we encounter unknown keys. This makes it clear to the user if
-    # they get the name of the config key wrong (e.g., `chefdk.generator`
-    # instead of `chefdk.generator_cookbook`).
+    # they get the name of the config key wrong (e.g., `chefcli.generator`
+    # instead of `chefcli.generator_cookbook`).
     config_strict_mode(true)
 
     default(:generator_cookbook, File.expand_path("../skeletons/code_generator", __FILE__))
@@ -55,8 +55,8 @@ module ChefDK
       @chef_config
     end
 
-    def chefdk_config
-      chef_config.chefdk
+    def chefcli_config
+      chef_config.chefcli
     end
 
     def config_loader
@@ -64,7 +64,7 @@ module ChefDK
     end
 
     def generator_config
-      chefdk_config.generator
+      chefcli_config.generator
     end
 
     def knife_config

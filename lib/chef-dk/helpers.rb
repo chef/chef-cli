@@ -52,7 +52,7 @@ module ChefDK
     #
 
     def omnibus_install?
-      File.exist?(omnibus_chefdk_location)
+      File.exist?(omnibus_chefcli_location)
     end
 
     def omnibus_root
@@ -71,17 +71,17 @@ module ChefDK
       @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
     end
 
-    def omnibus_chefdk_location
-      @omnibus_chefdk_location ||= File.expand_path("embedded/apps/chef-dk", expected_omnibus_root)
+    def omnibus_chefcli_location
+      @omnibus_chefcli_location ||= File.expand_path("embedded/apps/chef-cli", expected_omnibus_root)
     end
 
-    def chefdk_home
-      @chefdk_home ||= begin
-                         chefdk_home_set = !([nil, ""].include? ENV["CHEFDK_HOME"])
-                         if chefdk_home_set
+    def chefcli_home
+      @chefcli_home ||= begin
+                         chefcli_home_set = !([nil, ""].include? ENV["CHEFDK_HOME"])
+                         if chefcli_home_set
                            ENV["CHEFDK_HOME"]
                          else
-                           default_chefdk_home
+                           default_chefcli_home
                          end
                        end
     end
@@ -101,7 +101,7 @@ module ChefDK
     # Unix users do not want git on their path if they already have it installed.
     # Because we put `embedded/bin` on the path we must move the git binaries
     # somewhere else that we can append to the end of the path.
-    # This is only a temporary solution - see https://github.com/chef/chef-dk/issues/854
+    # This is only a temporary solution - see https://github.com/chef/chef-cli/issues/854
     # for a better proposed solution.
     def git_bin_dir
       @git_bin_dir ||= File.expand_path(File.join(omnibus_root, "gitbin"))
@@ -144,11 +144,11 @@ module ChefDK
       File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
     end
 
-    def default_chefdk_home
+    def default_chefcli_home
       if Chef::Platform.windows?
-        File.join(ENV["LOCALAPPDATA"], "chefdk")
+        File.join(ENV["LOCALAPPDATA"], "chefcli")
       else
-        File.expand_path("~/.chefdk")
+        File.expand_path("~/.chefcli")
       end
     end
 

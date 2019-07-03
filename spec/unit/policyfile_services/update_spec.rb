@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/install"
-require "chef-dk/policyfile/cookbook_sources"
+require "chef-cli/policyfile_services/install"
+require "chef-cli/policyfile/cookbook_sources"
 
 describe ChefDK::PolicyfileServices::Install do
 

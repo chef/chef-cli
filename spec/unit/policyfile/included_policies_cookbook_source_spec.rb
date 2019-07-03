@@ -16,8 +16,8 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/included_policies_cookbook_source"
-require "chef-dk/policyfile/policyfile_location_specification"
+require "chef-cli/policyfile/included_policies_cookbook_source"
+require "chef-cli/policyfile/policyfile_location_specification"
 
 describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 

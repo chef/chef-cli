@@ -35,18 +35,18 @@ RSpec.shared_context("setup_git_committer_config") do
 
   before(:all) do
     unless _have_git_config_key?("user.name")
-      _git_config("user.name \"chefdk_rspec_user\"")
+      _git_config("user.name \"chefcli_rspec_user\"")
     end
     unless _have_git_config_key?("user.email")
-      _git_config("user.email \"chefdk_rspec_user@example.com\"")
+      _git_config("user.email \"chefcli_rspec_user@example.com\"")
     end
   end
 
   after(:all) do
-    if _git_config("user.name").stdout.include?("chefdk_rspec_user")
+    if _git_config("user.name").stdout.include?("chefcli_rspec_user")
       _git_config("--unset user.name")
     end
-    if _git_config("user.email").stdout.include?("chefdk_rspec_user")
+    if _git_config("user.email").stdout.include?("chefcli_rspec_user")
       _git_config("--unset user.email")
     end
   end

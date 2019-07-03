@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/push"
+require "chef-cli/command/push"
 
 describe ChefDK::Command::Push do
 

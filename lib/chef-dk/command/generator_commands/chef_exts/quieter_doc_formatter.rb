@@ -25,7 +25,7 @@ module ChefDK
   # generator cookbook.
   class QuieterDocFormatter < Chef::Formatters::Doc
 
-    cli_name(:chefdk_doc)
+    cli_name(:chefcli_doc)
 
     # Called when starting to collect gems from the cookbooks
     def cookbook_gem_start(gems)

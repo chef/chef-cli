@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/commands_map"
+require "chef-cli/commands_map"
 require "stringio"
 
 describe ChefDK::CommandsMap do
@@ -35,11 +35,11 @@ describe ChefDK::CommandsMap do
   end
 
   it "infers a non-hypenated command's require path" do
-    expect(mapping.spec_for("example").require_path).to eq("chef-dk/command/example")
+    expect(mapping.spec_for("example").require_path).to eq("chef-cli/command/example")
   end
 
   it "infers a hyphenated command's require path" do
-    expect(mapping.spec_for("hypenated-example").require_path).to eq("chef-dk/command/hypenated_example")
+    expect(mapping.spec_for("hypenated-example").require_path).to eq("chef-cli/command/hypenated_example")
   end
 
   it "lists the available commands" do

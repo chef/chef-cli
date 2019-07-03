@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/configurable"
+require "chef-cli/configurable"
 require "unit/fixtures/configurable/test_configurable"
 
 describe ChefDK::Configurable do
@@ -29,8 +29,8 @@ describe ChefDK::Configurable do
     expect(includer.chef_config).to eq Chef::Config
   end
 
-  it "provides chefdk_config" do
-    expect(includer.chefdk_config).to eq Chef::Config.chefdk
+  it "provides chefcli_config" do
+    expect(includer.chefcli_config).to eq Chef::Config.chefcli
   end
 
   it "provides knife_config" do
@@ -38,7 +38,7 @@ describe ChefDK::Configurable do
   end
 
   it "provides generator_config" do
-    expect(includer.generator_config).to eq Chef::Config.chefdk.generator
+    expect(includer.generator_config).to eq Chef::Config.chefcli.generator
   end
 
   describe "loading Chef Config" do

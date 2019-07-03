@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/update"
+require "chef-cli/command/update"
 
 describe ChefDK::Command::Update do
 

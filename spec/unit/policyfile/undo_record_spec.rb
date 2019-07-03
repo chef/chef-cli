@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/undo_record"
+require "chef-cli/policyfile/undo_record"
 
 describe ChefDK::Policyfile::UndoRecord do
 

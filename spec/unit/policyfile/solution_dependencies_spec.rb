@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/solution_dependencies"
+require "chef-cli/policyfile/solution_dependencies"
 
 describe ChefDK::Policyfile::SolutionDependencies do
 

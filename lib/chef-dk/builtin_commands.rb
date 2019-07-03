@@ -18,13 +18,13 @@
 require_relative "dist"
 
 ChefDK.commands do |c|
-  c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
+  c.builtin "exec", :Exec, require_path: "chef-cli/command/exec",
                            desc: "Runs the command in context of the embedded ruby"
 
-  c.builtin "env", :Env, require_path: "chef-dk/command/env",
+  c.builtin "env", :Env, require_path: "chef-cli/command/env",
                          desc: "Prints environment variables used by #{ChefDK::Dist::PRODUCT}"
 
-  c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
+  c.builtin "gem", :GemForwarder, require_path: "chef-cli/command/gem",
                                   desc: "Runs the `gem` command in context of the embedded Ruby"
 
   c.builtin "generate", :Generate, desc: "Generate a new repository, cookbook, or other component"
@@ -55,7 +55,7 @@ ChefDK.commands do |c|
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
 
-  c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-dk/command/describe_cookbook",
+  c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-cli/command/describe_cookbook",
                                                     desc: "Prints cookbook checksum information used for cookbook identifier"
 
   c.builtin "verify", :Verify, desc: "Test the embedded #{ChefDK::Dist::PRODUCT} applications", hidden: true

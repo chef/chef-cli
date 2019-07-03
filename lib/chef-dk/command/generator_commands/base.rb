@@ -32,7 +32,7 @@ module ChefDK
       #
       # The behavior of the generators is largely delegated to a chef cookbook.
       # The default implementation is the `code_generator` cookbook in
-      # chef-dk/skeletons/code_generator.
+      # chef-cli/skeletons/code_generator.
       class Base < Command::Base
 
         include Configurable
@@ -122,7 +122,7 @@ module ChefDK
         end
 
         def generator_cookbook_option
-          config[:generator_cookbook] || chefdk_config.generator_cookbook
+          config[:generator_cookbook] || chefcli_config.generator_cookbook
         end
 
         # Load any values that were not defined via cli switches from Chef

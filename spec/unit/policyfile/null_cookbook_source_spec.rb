@@ -17,7 +17,7 @@
 
 require "spec_helper"
 
-require "chef-dk/policyfile/null_cookbook_source"
+require "chef-cli/policyfile/null_cookbook_source"
 
 describe ChefDK::Policyfile::NullCookbookSource do
 

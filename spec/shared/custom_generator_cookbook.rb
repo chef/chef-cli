@@ -49,7 +49,7 @@ shared_examples_for "custom generator cookbook" do
       end
 
       let(:chefcli_config) do
-        double("Mixlib::Config context for ChefDK",
+        double("Mixlib::Config context for ChefCLI",
           generator_cookbook: generator_cookbook_path,
           generator: generator_config)
       end

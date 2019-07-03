@@ -19,9 +19,9 @@ require "spec_helper"
 require "chef-cli/policyfile/read_cookbook_for_compat_mode_upload"
 require "chef-cli/helpers"
 
-describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
+describe ChefCLI::Policyfile::ReadCookbookForCompatModeUpload do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:cookbook_name) { "noignore" }
 

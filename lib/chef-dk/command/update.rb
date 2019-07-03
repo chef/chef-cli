@@ -22,7 +22,7 @@ require_relative "../policyfile_services/update_attributes"
 require_relative "../configurable"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Update < Base
@@ -30,9 +30,9 @@ module ChefDK
       include Configurable
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} update [ POLICY_FILE ] [options] [cookbook_1] [...]
+        Usage: #{ChefCLI::Dist::EXEC} update [ POLICY_FILE ] [options] [cookbook_1] [...]
 
-        `#{ChefDK::Dist::EXEC} update` reads your `Policyfile.rb`, applies any changes, re-solves the
+        `#{ChefCLI::Dist::EXEC} update` reads your `Policyfile.rb`, applies any changes, re-solves the
         dependencies and emits an updated `Policyfile.lock.json`. The new locked policy
         will reflect any changes to the `run_list` and pull in any cookbook updates
         that are compatible with the version constraints stated in your `Policyfile.rb`.

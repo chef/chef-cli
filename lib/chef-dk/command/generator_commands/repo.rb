@@ -18,7 +18,7 @@
 require_relative "base"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
 
@@ -28,7 +28,7 @@ module ChefDK
       # Generates a full "chef-repo" directory structure.
       class Repo < Base
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate repo NAME [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate repo NAME [options]"
 
         attr_reader :errors
         attr_reader :repo_name_or_path

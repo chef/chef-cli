@@ -19,7 +19,7 @@ require "spec_helper"
 require "pathname"
 require "chef-cli/command/generator_commands/generator_generator"
 
-describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
+describe ChefCLI::Command::GeneratorCommands::GeneratorGenerator do
 
   let(:argv) { raise "define let(:argv)" }
 

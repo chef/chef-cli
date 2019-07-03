@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 template_dir = File.join(cookbook_dir, 'templates')
 template_filename = context.new_file_basename
@@ -25,7 +25,7 @@ else
 
   template template_path do
     source 'template.erb'
-    helpers(ChefDK::Generator::TemplateHelper)
+    helpers(ChefCLI::Generator::TemplateHelper)
   end
 
 end

@@ -21,7 +21,7 @@ require_relative "../policyfile_services/push_archive"
 require_relative "../configurable"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class PushArchive < Base
@@ -29,9 +29,9 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: #{ChefDK::Dist::EXEC} push-archive POLICY_GROUP ARCHIVE_FILE [options]
+        Usage: #{ChefCLI::Dist::EXEC} push-archive POLICY_GROUP ARCHIVE_FILE [options]
 
-        `#{ChefDK::Dist::EXEC} push-archive` publishes a policy archive to a #{ChefDK::Dist::SERVER_PRODUCT}. Policy
+        `#{ChefCLI::Dist::EXEC} push-archive` publishes a policy archive to a #{ChefCLI::Dist::SERVER_PRODUCT}. Policy
         archives can be created with `chef export -a`. The policy will be applied to
         the given POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.
@@ -93,7 +93,7 @@ module ChefDK
       # @api private
       def push_archive_service
         @push_archive_service ||=
-          ChefDK::PolicyfileServices::PushArchive.new(
+          ChefCLI::PolicyfileServices::PushArchive.new(
             archive_file: archive_file,
             policy_group: policy_group,
             ui: ui,

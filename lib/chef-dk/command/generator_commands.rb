@@ -22,7 +22,7 @@ require_relative "base"
 require_relative "../chef_runner"
 require_relative "../generator"
 
-module ChefDK
+module ChefCLI
   module Command
 
     # ## SharedGeneratorOptions

@@ -17,7 +17,7 @@
 
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     module LockFetcherMixin
       def validate_revision_id(included_id, source_options)
@@ -28,7 +28,7 @@ module ChefDK
           elsif included_id[0, 10].eql?(expected_id) # did they use the 10 char substring
             return
           else
-            raise ChefDK::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
+            raise ChefCLI::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
           end
         end
       end

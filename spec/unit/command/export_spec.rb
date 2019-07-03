@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/export"
 
-describe ChefDK::Command::Export do
+describe ChefCLI::Command::Export do
 
   it_behaves_like "a command with a UI object"
 
@@ -30,11 +30,11 @@ describe ChefDK::Command::Export do
   end
 
   let(:policyfile_lock) do
-    instance_double(ChefDK::PolicyfileLock, name: "example-policy")
+    instance_double(ChefCLI::PolicyfileLock, name: "example-policy")
   end
 
   let(:export_service) do
-    instance_double(ChefDK::PolicyfileServices::ExportRepo,
+    instance_double(ChefCLI::PolicyfileServices::ExportRepo,
                     policyfile_lock: policyfile_lock)
   end
 
@@ -152,7 +152,7 @@ describe ChefDK::Command::Export do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileExportRepoError.new("export failed", cause)
+        ChefCLI::PolicyfileExportRepoError.new("export failed", cause)
       end
 
       before do

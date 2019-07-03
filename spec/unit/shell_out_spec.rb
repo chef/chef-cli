@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/shell_out"
 
-describe ChefDK::ShellOut do
+describe ChefCLI::ShellOut do
 
   describe "providing the API expected by CookbookOmnifetch" do
 

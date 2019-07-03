@@ -17,7 +17,7 @@
 
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class NullCookbookSource
 

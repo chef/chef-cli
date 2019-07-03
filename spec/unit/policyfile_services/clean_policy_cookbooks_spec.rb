@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile_services/clean_policy_cookbooks"
 
-describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
+describe ChefCLI::PolicyfileServices::CleanPolicyCookbooks do
 
   let(:cookbook_artifacts_list) do
     {
@@ -117,7 +117,7 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
     end
 
     it "raises a standardized nested exception" do
-      expect { clean_policy_cookbooks_service.run }.to raise_error(ChefDK::PolicyCookbookCleanError)
+      expect { clean_policy_cookbooks_service.run }.to raise_error(ChefCLI::PolicyCookbookCleanError)
     end
 
   end

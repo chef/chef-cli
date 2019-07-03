@@ -18,8 +18,8 @@
 require "spec_helper"
 require "chef-cli/command/exec"
 
-describe ChefDK::Command::Exec do
-  let(:command_instance) { ChefDK::Command::Exec.new() }
+describe ChefCLI::Command::Exec do
+  let(:command_instance) { ChefCLI::Command::Exec.new() }
 
   let(:command_options) { [] }
 
@@ -44,12 +44,12 @@ describe ChefDK::Command::Exec do
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
-      expect { command_instance.omnibus_bin_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
+      expect { command_instance.omnibus_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
-      expect { command_instance.omnibus_embedded_bin_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
+      expect { command_instance.omnibus_embedded_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
   end
 

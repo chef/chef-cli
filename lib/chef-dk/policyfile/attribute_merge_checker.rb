@@ -17,7 +17,7 @@
 
 require "chef/mash"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class AttributeMergeChecker
       # A ConflictError is used to specify a conflict has occurred

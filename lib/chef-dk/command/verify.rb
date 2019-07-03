@@ -20,13 +20,13 @@ require_relative "../exceptions"
 require_relative "../component_test"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
-    class Verify < ChefDK::Command::Base
+    class Verify < ChefCLI::Command::Base
 
-      include ChefDK::Helpers
+      include ChefCLI::Helpers
 
-      banner "Usage: #{ChefDK::Dist::EXEC} verify [component, ...] [options]"
+      banner "Usage: #{ChefCLI::Dist::EXEC} verify [component, ...] [options]"
 
       option :omnibus_dir,
         long: "--omnibus-dir OMNIBUS_DIR",
@@ -441,7 +441,7 @@ module ChefDK
       end
 
       def run(params = [ ])
-        err("[WARN] This is an internal command used by the ChefDK development team. If you are a ChefDK user, please do not run it.")
+        err("[WARN] This is an internal command used by the ChefCLI development team. If you are a ChefCLI user, please do not run it.")
         @components_filter = parse_options(params)
 
         validate_components!

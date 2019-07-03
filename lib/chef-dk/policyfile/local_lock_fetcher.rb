@@ -19,7 +19,7 @@ require_relative "../policyfile_lock"
 require_relative "lock_fetcher_mixin"
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # A policyfile lock fetcher that can read a lock from a local disk
@@ -111,12 +111,12 @@ module ChefDK
           if path.directory?
             path = path.join("#{name}.lock.json")
             if !path.file?
-              raise ChefDK::LocalPolicyfileLockNotFound.new(
+              raise ChefCLI::LocalPolicyfileLockNotFound.new(
                 "Expected to find file #{name}.lock.json inside #{source_options[:path]}. If the file name is different than this, provide the file name as part of the path.")
             end
           else
             if !path.file?
-              raise ChefDK::LocalPolicyfileLockNotFound.new(
+              raise ChefCLI::LocalPolicyfileLockNotFound.new(
                 "The provided path #{source_options[:path]} does not exist.")
             end
           end

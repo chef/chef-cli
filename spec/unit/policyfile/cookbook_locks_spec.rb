@@ -152,11 +152,11 @@ shared_examples_for "Cookbook Lock" do
 
 end
 
-describe ChefDK::Policyfile::CachedCookbook do
+describe ChefCLI::Policyfile::CachedCookbook do
 
   let(:cookbook_name) { "nginx" }
 
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new }
 
   let(:cookbook_lock) do
     described_class.new(cookbook_name, storage_config)
@@ -175,7 +175,7 @@ describe ChefDK::Policyfile::CachedCookbook do
   end
 
   it "errors locating the cookbook when the cache key is not set" do
-    expect { cookbook_lock.cookbook_path }.to raise_error(ChefDK::MissingCookbookLockData)
+    expect { cookbook_lock.cookbook_path }.to raise_error(ChefCLI::MissingCookbookLockData)
   end
 
   it "ignores calls to #refresh!" do
@@ -202,13 +202,13 @@ describe ChefDK::Policyfile::CachedCookbook do
 
 end
 
-describe ChefDK::Policyfile::LocalCookbook do
+describe ChefCLI::Policyfile::LocalCookbook do
 
   let(:cookbook_name) { "nginx" }
 
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new }
 
-  let(:scm_profiler) { instance_double("ChefDK::CookbookProfiler::Git", profile_data: {}) }
+  let(:scm_profiler) { instance_double("ChefCLI::CookbookProfiler::Git", profile_data: {}) }
 
   let(:cookbook_lock) do
     lock = described_class.new(cookbook_name, storage_config)
@@ -220,7 +220,7 @@ describe ChefDK::Policyfile::LocalCookbook do
 
   describe "gathering identifier info" do
     let(:identifiers) do
-      instance_double("ChefDK::CookbookProfiler::Identifiers",
+      instance_double("ChefCLI::CookbookProfiler::Identifiers",
                      content_identifier: "abc123",
                      dotted_decimal_identifier: "111.222.333",
                      semver_version: "1.2.3")
@@ -279,7 +279,7 @@ describe ChefDK::Policyfile::LocalCookbook do
         let(:git_dir_path) { File.join(cookbook_source_path, ".git") }
 
         it "selects the git profiler" do
-          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
+          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefCLI::CookbookProfiler::Git)
         end
 
       end
@@ -291,7 +291,7 @@ describe ChefDK::Policyfile::LocalCookbook do
         let(:git_dir_path) { File.join(tempdir, "cookbook_repo/.git") }
 
         it "selects the git profiler" do
-          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
+          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefCLI::CookbookProfiler::Git)
         end
 
       end
@@ -301,7 +301,7 @@ describe ChefDK::Policyfile::LocalCookbook do
     context "when the cookbook is not in a git repo" do
 
       it "selects the null profiler" do
-        expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::NullSCM)
+        expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefCLI::CookbookProfiler::NullSCM)
       end
 
     end
@@ -363,7 +363,7 @@ describe ChefDK::Policyfile::LocalCookbook do
       context "and the underlying hasn't been mutated" do
 
         let(:identifiers) do
-          instance_double("ChefDK::CookbookProfiler::Identifiers",
+          instance_double("ChefCLI::CookbookProfiler::Identifiers",
                          content_identifier: "abc123",
                          dotted_decimal_identifier: "111.222.333",
                          semver_version: "1.2.3")
@@ -398,7 +398,7 @@ describe ChefDK::Policyfile::LocalCookbook do
       context "and the underlying data has been mutated" do
         # represents the updated state of the cookbook
         let(:identifiers) do
-          instance_double("ChefDK::CookbookProfiler::Identifiers",
+          instance_double("ChefCLI::CookbookProfiler::Identifiers",
                          content_identifier: "def456",
                          dotted_decimal_identifier: "777.888.999",
                          semver_version: "7.8.9")
@@ -433,11 +433,11 @@ describe ChefDK::Policyfile::LocalCookbook do
 
 end
 
-describe ChefDK::Policyfile::ArchivedCookbook do
+describe ChefCLI::Policyfile::ArchivedCookbook do
 
   let(:cookbook_name) { "nginx" }
 
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new }
 
   let(:wrapped_cookbook_lock_data) do
     {
@@ -457,7 +457,7 @@ describe ChefDK::Policyfile::ArchivedCookbook do
   end
 
   let(:wrapped_cookbook_lock) do
-    lock = ChefDK::Policyfile::LocalCookbook.new(cookbook_name, storage_config)
+    lock = ChefCLI::Policyfile::LocalCookbook.new(cookbook_name, storage_config)
     allow(lock).to receive(:scm_info).and_return({})
     lock.build_from_lock_data(wrapped_cookbook_lock_data)
     lock

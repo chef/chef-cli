@@ -21,16 +21,16 @@ require_relative "base"
 require_relative "../chef_runner"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
 
   module Command
 
     class Provision < Base
 
-      banner("DEPRECATED: Chef provisioning has been removed from #{ChefDK::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!")
+      banner("DEPRECATED: Chef provisioning has been removed from #{ChefCLI::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!")
 
       def run(params = [])
-        raise "Chef provisioning has been removed from #{ChefDK::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!"
+        raise "Chef provisioning has been removed from #{ChefCLI::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!"
       end
 
     end

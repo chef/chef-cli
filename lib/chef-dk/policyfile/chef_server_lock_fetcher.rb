@@ -18,7 +18,7 @@
 require_relative "../policyfile_lock"
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # A policyfile lock fetcher that can read a lock from a chef server
@@ -101,7 +101,7 @@ module ChefDK
           acc
         end
         source_options.merge!(options)
-        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
+        raise ChefCLI::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
       end
 
       # @return [String] of the policyfile lock data
@@ -124,14 +124,14 @@ module ChefDK
         elsif policy_group
           http_client.get("policy_groups/#{policy_group}/policies/#{policy_name}")
         else
-          raise ChefDK::BUG.new("The source_options should have been validated: #{source_options.inspect}")
+          raise ChefCLI::BUG.new("The source_options should have been validated: #{source_options.inspect}")
         end
       rescue Net::ProtocolError => e
         if e.respond_to?(:response) && e.response.code.to_s == "404"
-          raise ChefDK::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with revision '#{revision}' at #{http_client.url}") if revision
-          raise ChefDK::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with policy group '#{policy_group}' at #{http_client.url}") if policy_group
+          raise ChefCLI::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with revision '#{revision}' at #{http_client.url}") if revision
+          raise ChefCLI::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with policy group '#{policy_group}' at #{http_client.url}") if policy_group
         else
-          raise ChefDK::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
+          raise ChefCLI::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
         end
       rescue => e
         raise e

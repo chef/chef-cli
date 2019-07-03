@@ -17,7 +17,7 @@
 
 require "chef/resource"
 
-module ChefDK
+module ChefCLI
   module ChefResource
 
     # GeneratorDesc is similar to Chef's built-in log resource, but instead of

@@ -18,11 +18,11 @@
 require "spec_helper"
 require "chef-cli/pager"
 
-describe ChefDK::Pager do
+describe ChefCLI::Pager do
 
   context "with default options" do
 
-    subject(:pager) { ChefDK::Pager.new }
+    subject(:pager) { ChefCLI::Pager.new }
 
     it "gives ENV for env" do
       expect(pager.env).to eq(ENV)
@@ -43,7 +43,7 @@ describe ChefDK::Pager do
   context "with paging enabled" do
 
     subject(:pager) do
-      ChefDK::Pager.new(enable_pager: true).tap do |p|
+      ChefCLI::Pager.new(enable_pager: true).tap do |p|
         allow(p).to receive(:env).and_return({ "PAGER" => "less" })
         allow(p).to receive(:have_tty?).and_return(true)
       end
@@ -84,7 +84,7 @@ describe ChefDK::Pager do
   context "with paging disabled" do
 
     subject(:pager) do
-      ChefDK::Pager.new(enable_pager: false).tap do |p|
+      ChefCLI::Pager.new(enable_pager: false).tap do |p|
         allow(p).to receive(:env).and_return({ "PAGER" => "less" })
         allow(p).to receive(:have_tty?).and_return(true)
       end

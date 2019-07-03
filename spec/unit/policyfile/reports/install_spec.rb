@@ -22,11 +22,11 @@ require "chef-cli/policyfile/reports/install"
 require "chef-cli/policyfile_compiler"
 require "chef-cli/policyfile/cookbook_location_specification"
 
-describe ChefDK::Policyfile::Reports::Install do
+describe ChefCLI::Policyfile::Reports::Install do
 
   let(:ui) { TestHelpers::TestUI.new }
 
-  let(:policyfile_compiler) { instance_double("ChefDK::PolicyfileCompiler") }
+  let(:policyfile_compiler) { instance_double("ChefCLI::PolicyfileCompiler") }
 
   subject(:install_report) { described_class.new(ui: ui, policyfile_compiler: policyfile_compiler ) }
 
@@ -41,7 +41,7 @@ describe ChefDK::Policyfile::Reports::Install do
   describe "when printing an installation report for fixed version cookbooks" do
 
     let(:fixed_version_cookbook_one) do
-      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+      instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       installed?: false,
                       name: "short-name",
                       version_constraint: ">= 0.0.0",
@@ -49,7 +49,7 @@ describe ChefDK::Policyfile::Reports::Install do
     end
 
     let(:fixed_version_cookbook_two) do
-      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+      instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       installed?: true,
                       name: "this-name-is-longer",
                       version_constraint: "~> 10.0.0",
@@ -79,14 +79,14 @@ describe ChefDK::Policyfile::Reports::Install do
   describe "when printing an installation report for normal dependencies" do
 
     let(:cookbook_one) do
-      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+      instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       installed?: false,
                       name: "short-name",
                       version_constraint: Semverse::Constraint.new("= 10.0.4"))
     end
 
     let(:cookbook_two) do
-      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+      instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       installed?: true,
                       name: "this-name-is-longer",
                       version_constraint: Semverse::Constraint.new("= 1.2.3"))

@@ -20,7 +20,7 @@ require_relative "../exceptions"
 require_relative "source_uri"
 require_relative "../chef_server_api_multi"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class ChefServerCookbookSource
       attr_reader :uri

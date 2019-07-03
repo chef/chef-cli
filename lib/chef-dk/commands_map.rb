@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
 
   # CommandsMap maintains a mapping of subcommand names to the files where
   # those commands are defined and the classes that implement the commands.
@@ -35,12 +35,12 @@ module ChefDK
   #
   # ## Adding new commands globally:
   #
-  # A "singleton-ish" instance of this class is stored as ChefDK.commands_map.
+  # A "singleton-ish" instance of this class is stored as ChefCLI.commands_map.
   # You can configure a multiple commands at once in a block using
-  # ChefDK.commands, like so:
+  # ChefCLI.commands, like so:
   #
-  #   ChefDK.commands do |c|
-  #     # assigns `chef my-command` to the class ChefDK::Command::MyCommand.
+  #   ChefCLI.commands do |c|
+  #     # assigns `chef my-command` to the class ChefCLI::Command::MyCommand.
   #     # The "require path" is inferred to be "chef-cli/command/my_command"
   #     c.builtin("my-command", :MyCommand)
   #
@@ -60,7 +60,7 @@ module ChefDK
 
       def instantiate
         require require_path
-        command_class = ChefDK::Command.const_get(constant_name)
+        command_class = ChefCLI::Command.const_get(constant_name)
         command_class.new
       end
 

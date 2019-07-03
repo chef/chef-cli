@@ -22,15 +22,15 @@ require_relative "../policyfile/lister"
 require_relative "../policyfile_services/show_policy"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class ShowPolicy < Base
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} show-policy [POLICY_NAME [POLICY_GROUP]] [options]
+        Usage: #{ChefCLI::Dist::EXEC} show-policy [POLICY_NAME [POLICY_GROUP]] [options]
 
-        `#{ChefDK::Dist::EXEC} show-policy` Displays the revisions of policyfiles on the server. By
+        `#{ChefCLI::Dist::EXEC} show-policy` Displays the revisions of policyfiles on the server. By
         default, only active policy revisions are shown. Use the `--orphans` options to
         show policy revisions that are not assigned to any policy group.
 

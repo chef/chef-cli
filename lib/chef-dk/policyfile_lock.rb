@@ -23,7 +23,7 @@ require_relative "policyfile/cookbook_locks"
 require_relative "policyfile/solution_dependencies"
 require_relative "ui"
 
-module ChefDK
+module ChefCLI
 
   class PolicyfileLock
 

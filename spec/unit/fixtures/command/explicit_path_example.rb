@@ -1,4 +1,4 @@
-module ChefDK
+module ChefCLI
   module Command
     class ExplicitPathExample
 

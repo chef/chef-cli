@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/fixture_cookbook_checksums"
 require "chef-cli/policyfile_lock.rb"
 
-describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
+describe ChefCLI::PolicyfileLock, "installing cookbooks from a lockfile" do
 
   include_context "fixture cookbooks checksums"
 
@@ -36,11 +36,11 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
   let(:run_list) { [ "recipe[erlang::default]", "recipe[erchef::prereqs]", "recipe[erchef::app]" ] }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
   end
 
   let(:lock_generator) do
-    ChefDK::PolicyfileLock.build(storage_config) do |policy|
+    ChefCLI::PolicyfileLock.build(storage_config) do |policy|
 
       policy.name = name
 
@@ -65,7 +65,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
   end
 
   let(:policyfile_lock) do
-    ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
+    ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end
 
   describe "Populating a PolicyfileLock from a lockfile data structure" do
@@ -113,14 +113,14 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
     it "configures the cookbook location spec for a remote cookbook" do
       location_spec = remote_cookbook_lock.cookbook_location_spec
-      expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
+      expect(location_spec).to be_an_instance_of(ChefCLI::Policyfile::CookbookLocationSpecification)
       expect(location_spec.uri).to eq("https://artifact-server.example/foo/1.0.0")
       expect(location_spec.source_options[:version]).to eq("1.0.0")
     end
 
     it "configures the installer for a local cookbook" do
       location_spec = local_cookbook_lock.cookbook_location_spec
-      expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
+      expect(location_spec).to be_an_instance_of(ChefCLI::Policyfile::CookbookLocationSpecification)
 
       expect(location_spec.relative_path).to eq("local-cookbook")
     end

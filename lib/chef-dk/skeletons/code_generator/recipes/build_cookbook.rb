@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 workflow_project_dir = context.workflow_project_dir
 pipeline = context.pipeline
 dot_delivery_dir = File.join(workflow_project_dir, '.delivery')
@@ -30,7 +30,7 @@ directory build_cookbook_dir
 # metadata.rb
 template "#{build_cookbook_dir}/metadata.rb" do
   source 'build_cookbook/metadata.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -43,7 +43,7 @@ end
 # LICENSE
 template "#{build_cookbook_dir}/LICENSE" do
   source "LICENSE.#{context.license}.erb"
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -53,7 +53,7 @@ cookbook_file "#{build_cookbook_dir}/chefignore"
 # Berksfile
 template "#{build_cookbook_dir}/Berksfile" do
   source 'build_cookbook/Berksfile.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -63,7 +63,7 @@ directory "#{build_cookbook_dir}/recipes"
 %w(default deploy functional lint provision publish quality security smoke syntax unit).each do |phase|
   template "#{build_cookbook_dir}/recipes/#{phase}.rb" do
     source 'build_cookbook/recipe.rb.erb'
-    helpers(ChefDK::Generator::TemplateHelper)
+    helpers(ChefCLI::Generator::TemplateHelper)
     variables phase: phase
     action :create_if_missing
   end

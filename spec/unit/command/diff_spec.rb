@@ -20,7 +20,7 @@ require "shared/command_with_ui_object"
 require "chef-cli/command/diff"
 require "chef-cli/service_exceptions"
 
-describe ChefDK::Command::Diff do
+describe ChefCLI::Command::Diff do
 
   it_behaves_like "a command with a UI object"
 
@@ -47,12 +47,12 @@ describe ChefDK::Command::Diff do
 
     let(:http_client) { instance_double("Chef::ServerAPI") }
 
-    let(:differ) { instance_double("ChefDK::Policyfile::Differ", run_report: nil) }
+    let(:differ) { instance_double("ChefCLI::Policyfile::Differ", run_report: nil) }
 
-    let(:pager) { instance_double("ChefDK::Pager", ui: ui) }
+    let(:pager) { instance_double("ChefCLI::Pager", ui: ui) }
 
     before do
-      allow(ChefDK::Pager).to receive(:new).and_return(pager)
+      allow(ChefCLI::Pager).to receive(:new).and_return(pager)
       allow(pager).to receive(:with_pager).and_yield(pager)
       allow(command).to receive(:materialize_locks).and_return(nil)
       allow(command).to receive(:differ).and_return(differ)
@@ -76,16 +76,16 @@ describe ChefDK::Command::Diff do
       context "without a reason" do
 
         it "prints the exception successfully" do
-          expect(command).to receive(:print_diff).and_raise(ChefDK::PolicyfileServiceError)
+          expect(command).to receive(:print_diff).and_raise(ChefCLI::PolicyfileServiceError)
           expect(command.run(params)).to eq(1)
-          expect(ui.output).to include("Error: ChefDK::PolicyfileServiceError")
+          expect(ui.output).to include("Error: ChefCLI::PolicyfileServiceError")
         end
 
       end
 
       context "with a reason" do
 
-        let(:err) { ChefDK::PolicyfileNestedException.new("msg", RuntimeError.new) }
+        let(:err) { ChefCLI::PolicyfileNestedException.new("msg", RuntimeError.new) }
 
         it "prints the exception and reason successfully" do
           expect(command).to receive(:print_diff).and_raise(err)
@@ -164,9 +164,9 @@ describe ChefDK::Command::Diff do
 
         it "compares the local lock to the commit" do
           expect(command.run(params)).to eq(0)
-          expect(command.old_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Git)
+          expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
           expect(command.old_base.ref).to eq("master")
-          expect(command.new_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Local)
+          expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Local)
           expect(command.new_base.policyfile_lock_relpath).to eq("Policyfile.lock.json")
         end
 
@@ -178,9 +178,9 @@ describe ChefDK::Command::Diff do
 
         it "compares the two commits" do
           expect(command.run(params)).to eq(0)
-          expect(command.old_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Git)
+          expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
           expect(command.old_base.ref).to eq("master")
-          expect(command.new_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Git)
+          expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
           expect(command.new_base.ref).to eq("dev-branch")
         end
 
@@ -203,9 +203,9 @@ describe ChefDK::Command::Diff do
 
         it "compares the local lock to git HEAD" do
           expect(command.run(params)).to eq(0)
-          expect(command.old_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Git)
+          expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
           expect(command.old_base.ref).to eq("HEAD")
-          expect(command.new_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Local)
+          expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Local)
           expect(command.new_base.policyfile_lock_relpath).to eq("Policyfile.lock.json")
         end
 
@@ -216,7 +216,7 @@ describe ChefDK::Command::Diff do
     describe "selecting policy group comparison bases" do
 
       let(:local_lock_comparison_base) do
-        instance_double("ChefDK::Policyfile::ComparisonBase::Local")
+        instance_double("ChefCLI::Policyfile::ComparisonBase::Local")
       end
 
       before do
@@ -228,7 +228,7 @@ describe ChefDK::Command::Diff do
         let(:params) { %w{ dev-group } }
 
         before do
-          allow(local_lock_comparison_base).to receive(:lock).and_raise(ChefDK::LockfileNotFound)
+          allow(local_lock_comparison_base).to receive(:lock).and_raise(ChefCLI::LockfileNotFound)
         end
 
         it "prints an error and exits" do
@@ -272,9 +272,9 @@ describe ChefDK::Command::Diff do
 
           it "compares the policy group's lock to the local lock" do
             expect(command.run(params)).to eq(0)
-            expect(command.old_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::PolicyGroup)
+            expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::PolicyGroup)
             expect(command.old_base.group).to eq("dev-group")
-            expect(command.new_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::Local)
+            expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Local)
             expect(command.new_base.policyfile_lock_relpath).to eq("Policyfile.lock.json")
           end
 
@@ -286,9 +286,9 @@ describe ChefDK::Command::Diff do
 
           it "compares the two locks" do
             expect(command.run(params)).to eq(0)
-            expect(command.old_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::PolicyGroup)
+            expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::PolicyGroup)
             expect(command.old_base.group).to eq("prod-group")
-            expect(command.new_base).to be_a_kind_of(ChefDK::Policyfile::ComparisonBase::PolicyGroup)
+            expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::PolicyGroup)
             expect(command.new_base.group).to eq("stage-group")
           end
 

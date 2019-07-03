@@ -21,16 +21,16 @@ require_relative "../configurable"
 require_relative "../policyfile_services/rm_policy_group"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class DeletePolicyGroup < Base
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} delete-policy-group POLICY_GROUP [options]
+        Usage: #{ChefCLI::Dist::EXEC} delete-policy-group POLICY_GROUP [options]
 
-        `#{ChefDK::Dist::EXEC} delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
-        the configured #{ChefDK::Dist::SERVER_PRODUCT}. Policy Revisions associated to the policy group are
+        `#{ChefCLI::Dist::EXEC} delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
+        the configured #{ChefCLI::Dist::SERVER_PRODUCT}. Policy Revisions associated to the policy group are
         not deleted. The state of the policy group will be backed up locally, allowing
         you to undo this operation via the `chef undelete` command.
 
@@ -69,7 +69,7 @@ module ChefDK
       def run(params)
         return 1 unless apply_params!(params)
         rm_policy_group_service.run
-        ui.msg("This operation can be reversed by running `#{ChefDK::Dist::EXEC} undelete --last`.")
+        ui.msg("This operation can be reversed by running `#{ChefCLI::Dist::EXEC} undelete --last`.")
         0
       rescue PolicyfileServiceError => e
         handle_error(e)

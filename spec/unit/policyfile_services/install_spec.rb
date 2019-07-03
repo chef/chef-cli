@@ -18,9 +18,9 @@
 require "spec_helper"
 require "chef-cli/policyfile_services/install"
 
-describe ChefDK::PolicyfileServices::Install do
+describe ChefCLI::PolicyfileServices::Install do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
@@ -59,20 +59,20 @@ describe ChefDK::PolicyfileServices::Install do
   let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: overwrite) }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
   end
 
   def result_policyfile_lock
     expect(File).to exist(policyfile_lock_path)
     content = IO.read(policyfile_lock_path)
     lock_data = FFI_Yajl::Parser.parse(content)
-    ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
+    ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end
 
   context "when no Policyfile is present or specified" do
 
     it "errors out" do
-      expect { install_service.run }.to raise_error(ChefDK::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
+      expect { install_service.run }.to raise_error(ChefCLI::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
     end
 
   end
@@ -96,7 +96,7 @@ describe ChefDK::PolicyfileServices::Install do
       let(:policyfile_content) { 'raise "borkbork"' }
 
       it "errors out and creates no lockfile" do
-        expect { install_service.run }.to raise_error(ChefDK::PolicyfileInstallError)
+        expect { install_service.run }.to raise_error(ChefCLI::PolicyfileInstallError)
         expect(File).to_not exist(policyfile_lock_path)
       end
 
@@ -158,7 +158,7 @@ describe ChefDK::PolicyfileServices::Install do
 
       it "reads the policyfile lock from disk" do
         lock = install_service.policyfile_lock
-        expect(lock).to be_an_instance_of(ChefDK::PolicyfileLock)
+        expect(lock).to be_an_instance_of(ChefCLI::PolicyfileLock)
         expect(lock.name).to eq("install-example")
         expect(lock.cookbook_locks).to have_key("local-cookbook")
       end
@@ -175,7 +175,7 @@ describe ChefDK::PolicyfileServices::Install do
         end
 
         it "raises a PolicyfileInstallError" do
-          expect { install_service.run }.to raise_error(ChefDK::PolicyfileInstallError)
+          expect { install_service.run }.to raise_error(ChefCLI::PolicyfileInstallError)
         end
 
       end

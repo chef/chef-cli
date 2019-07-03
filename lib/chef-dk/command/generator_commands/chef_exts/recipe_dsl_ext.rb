@@ -17,7 +17,7 @@
 
 require "chef/dsl/recipe"
 
-module ChefDK
+module ChefCLI
 
   # Methods here are mixed in to the Chef recipe DSL to provide extra
   # functionality for generator cookbooks.
@@ -36,4 +36,4 @@ module ChefDK
   end
 end
 
-Chef::DSL::Recipe.send(:include, ChefDK::RecipeDSLExt)
+Chef::DSL::Recipe.send(:include, ChefCLI::RecipeDSLExt)

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
   class UI
 
     class NullStream

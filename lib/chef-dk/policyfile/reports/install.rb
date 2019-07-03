@@ -17,7 +17,7 @@
 
 require_relative "table_printer"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     module Reports
 

@@ -19,16 +19,16 @@ require "spec_helper"
 
 require "chef-cli/policyfile/null_cookbook_source"
 
-describe ChefDK::Policyfile::NullCookbookSource do
+describe ChefCLI::Policyfile::NullCookbookSource do
 
-  let(:cookbook_source) { ChefDK::Policyfile::NullCookbookSource.new }
+  let(:cookbook_source) { ChefCLI::Policyfile::NullCookbookSource.new }
 
   it "emits an empty graph" do
     expect(cookbook_source.universe_graph).to eq({})
   end
 
   it "emits a not supported error when attempting to get source options for a cookbook" do
-    expect { cookbook_source.source_options_for("foo", "1.2.3") }.to raise_error(ChefDK::UnsupportedFeature)
+    expect { cookbook_source.source_options_for("foo", "1.2.3") }.to raise_error(ChefCLI::UnsupportedFeature)
   end
 
 end

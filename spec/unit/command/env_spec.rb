@@ -19,9 +19,9 @@ require "spec_helper"
 require "yaml"
 require "chef-cli/command/env"
 
-describe ChefDK::Command::Env do
+describe ChefCLI::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }
-  let(:command_instance) { ChefDK::Command::Env.new() }
+  let(:command_instance) { ChefCLI::Command::Env.new() }
 
   let(:command_options) { [] }
 

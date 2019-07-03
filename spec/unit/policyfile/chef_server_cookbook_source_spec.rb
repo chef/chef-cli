@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile/chef_server_cookbook_source"
 
-describe ChefDK::Policyfile::ChefServerCookbookSource do
+describe ChefCLI::Policyfile::ChefServerCookbookSource do
   subject { described_class.new(cookbook_source) }
 
   let(:cookbook_source) { "https://chef.example.com/organizations/example" }

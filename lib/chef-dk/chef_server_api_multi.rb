@@ -17,7 +17,7 @@
 
 require "chef/server_api"
 
-module ChefDK
+module ChefCLI
 
   # A wrapper for `Chef::ServerAPI` that supports multi-threading by creating a
   # `Chef::ServerAPI` object per-thread.

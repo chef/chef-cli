@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/push_archive"
 
-describe ChefDK::Command::PushArchive do
+describe ChefCLI::Command::PushArchive do
 
   subject(:command) { described_class.new }
 
@@ -108,7 +108,7 @@ describe ChefDK::Command::PushArchive do
 
   describe "running the push operation" do
 
-    let(:push_archive_service) { instance_double("ChefDK::PolicyfileServices::PushArchive") }
+    let(:push_archive_service) { instance_double("ChefCLI::PolicyfileServices::PushArchive") }
 
     let(:params) { [ policy_group, archive_path ] }
 
@@ -137,7 +137,7 @@ describe ChefDK::Command::PushArchive do
       end
 
       let(:exception) do
-        ChefDK::PolicyfilePushArchiveError.new("push failed", cause)
+        ChefCLI::PolicyfilePushArchiveError.new("push failed", cause)
       end
 
       before do

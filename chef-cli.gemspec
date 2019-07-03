@@ -17,11 +17,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "chef-dk/version"
+require "chef-cli/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "chef-cli"
-  gem.version       = ChefDK::VERSION
+  gem.version       = ChefCLI::VERSION
   gem.authors       = [ "Daniel DeLeo", "Lamont Granquist", "Serdar Sutay" ]
   gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."

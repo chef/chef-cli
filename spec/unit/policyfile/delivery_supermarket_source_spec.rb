@@ -18,11 +18,11 @@
 require "spec_helper"
 require "chef-cli/policyfile/delivery_supermarket_source"
 
-describe ChefDK::Policyfile::DeliverySupermarketSource do
+describe ChefCLI::Policyfile::DeliverySupermarketSource do
 
   let(:supermarket_uri) { "https://delivery-supermarket.example" }
 
-  subject(:cookbook_source) { ChefDK::Policyfile::DeliverySupermarketSource.new(supermarket_uri) }
+  subject(:cookbook_source) { ChefCLI::Policyfile::DeliverySupermarketSource.new(supermarket_uri) }
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
 

@@ -18,7 +18,7 @@
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require_relative "exceptions"
 
-module ChefDK
+module ChefCLI
   module Helpers
     extend self
 
@@ -107,7 +107,7 @@ module ChefDK
       @git_bin_dir ||= File.expand_path(File.join(omnibus_root, "gitbin"))
     end
 
-    # In our Windows ChefDK omnibus package we include Git For Windows, which
+    # In our Windows ChefCLI omnibus package we include Git For Windows, which
     # has a bunch of helpful unix utilties (like ssh, scp, etc.) bundled with it
     def git_windows_bin_dir
       @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))

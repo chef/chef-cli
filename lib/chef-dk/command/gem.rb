@@ -22,12 +22,12 @@ require "rubygems/gem_runner"
 require "rubygems/exceptions"
 require "pp" unless defined?(PP)
 
-module ChefDK
+module ChefCLI
   module Command
 
     # Forwards all commands to rubygems.
-    class GemForwarder < ChefDK::Command::Base
-      banner "Usage: #{ChefDK::Dist::EXEC} gem GEM_COMMANDS_AND_OPTIONS"
+    class GemForwarder < ChefCLI::Command::Base
+      banner "Usage: #{ChefCLI::Dist::EXEC} gem GEM_COMMANDS_AND_OPTIONS"
 
       def run(params)
         retval = Gem::GemRunner.new.run( params.clone )
@@ -36,7 +36,7 @@ module ChefDK
         exit( e.exit_code )
       end
 
-      # Lazy solution: By automatically returning false, we force ChefDK::Base to
+      # Lazy solution: By automatically returning false, we force ChefCLI::Base to
       # call this class' run method, so that Gem::GemRunner can handle the -v flag
       # appropriately (showing the gem version, or installing a specific version
       # of a gem).

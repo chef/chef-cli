@@ -21,7 +21,7 @@ require_relative "source_uri"
 require_relative "../exceptions"
 require "chef/http/simple"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class ArtifactoryCookbookSource
 

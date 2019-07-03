@@ -26,10 +26,10 @@ require "chef/util/path_helper"
 require "chef/mixin/shell_out"
 require "bundler"
 
-module ChefDK
+module ChefCLI
   class CLI
     include Mixlib::CLI
-    include ChefDK::Helpers
+    include ChefCLI::Helpers
     include Chef::Mixin::ShellOut
 
     banner(<<~BANNER)
@@ -42,7 +42,7 @@ module ChefDK
     option :version,
       short: "-v",
       long: "--version",
-      description: "Show #{ChefDK::Dist::PRODUCT} version",
+      description: "Show #{ChefCLI::Dist::PRODUCT} version",
       boolean: true
 
     option :help,
@@ -96,9 +96,9 @@ module ChefDK
     end
 
     def show_version
-      msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
-      { "#{ChefDK::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefDK::Dist::INFRA_CLIENT_CLI}",
-        "#{ChefDK::Dist::INSPEC_PRODUCT}": "#{ChefDK::Dist::INSPEC_CLI}",
+      msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_CLI}",
+        "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
         "Test Kitchen": "kitchen",
         "Foodcritic": "foodcritic",
         "Cookstyle": "cookstyle",
@@ -129,7 +129,7 @@ module ChefDK
     end
 
     def commands_map
-      ChefDK.commands_map
+      ChefCLI.commands_map
     end
 
     def have_command?(name)
@@ -194,11 +194,11 @@ module ChefDK
         if bin_index
           if embed_index < bin_index
             err("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
-            err("WARN: consider using the correct `#{ChefDK::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
+            err("WARN: consider using the correct `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
           end
         else
           err("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
-          err("WARN: consider using the correct `#{ChefDK::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
+          err("WARN: consider using the correct `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
         end
       end
     end

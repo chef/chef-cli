@@ -17,7 +17,7 @@
 
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 
-module ChefDK
+module ChefCLI
 
   # A subclass of Mixlib::ShellOut that conforms to the API expected by
   # CookbookOmnifetch

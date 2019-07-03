@@ -17,7 +17,7 @@
 
 require_relative "../ui"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class IncludedPoliciesCookbookSource
 

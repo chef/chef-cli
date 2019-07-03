@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/a_file_generator"
 require "chef-cli/command/generator_commands/policyfile"
 
-describe ChefDK::Command::GeneratorCommands::Policyfile do
+describe ChefCLI::Command::GeneratorCommands::Policyfile do
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
@@ -40,17 +40,17 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
   end
 
   def generator_context
-    ChefDK::Generator.context
+    ChefCLI::Generator.context
   end
 
   before do
     allow(generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-    ChefDK::Generator.reset
+    ChefCLI::Generator.reset
     reset_tempdir
   end
 
   after(:each) do
-    ChefDK::Generator::Context.reset
+    ChefCLI::Generator::Context.reset
   end
 
   shared_examples_for "it creates a Policyfile" do

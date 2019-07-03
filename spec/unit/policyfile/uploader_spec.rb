@@ -22,7 +22,7 @@ require "chef-cli/policyfile/uploader"
 # RSpec. It's not used by Policyfile::Uploader, but it's a collaborator.
 require "chef/server_api"
 
-describe ChefDK::Policyfile::Uploader do
+describe ChefCLI::Policyfile::Uploader do
 
   let(:policyfile_lock_data) do
     {
@@ -47,7 +47,7 @@ describe ChefDK::Policyfile::Uploader do
   end
 
   let(:policyfile_lock) do
-    instance_double("ChefDK::PolicyfileLock", name: "example",
+    instance_double("ChefCLI::PolicyfileLock", name: "example",
                                               to_lock: policyfile_lock_data) end
 
   let(:policy_group) { "unit-test" }
@@ -100,7 +100,7 @@ describe ChefDK::Policyfile::Uploader do
     def lock_double(name, identifier, dotted_decimal_id)
       cache_path = "/home/user/cache_path/#{name}"
 
-      lock = instance_double("ChefDK::Policyfile::CookbookLock",
+      lock = instance_double("ChefCLI::Policyfile::CookbookLock",
                              name: name,
                              version: "1.0.0",
                              identifier: identifier,
@@ -114,12 +114,12 @@ describe ChefDK::Policyfile::Uploader do
 
       allow(cookbook_version).to receive(:identifier=).with(lock.identifier)
 
-      allow(ChefDK::Policyfile::ReadCookbookForCompatModeUpload)
+      allow(ChefCLI::Policyfile::ReadCookbookForCompatModeUpload)
         .to receive(:load)
         .with(name, dotted_decimal_id, cache_path)
         .and_return(cookbook_version)
 
-      allow(ChefDK::Policyfile::CookbookLoaderWithChefignore)
+      allow(ChefCLI::Policyfile::CookbookLoaderWithChefignore)
         .to receive(:load)
         .with(name, cache_path)
         .and_return(cookbook_version)
@@ -168,7 +168,7 @@ describe ChefDK::Policyfile::Uploader do
             expected_versions_for_policy = cookbook_versions.keys.map do |cb_name|
               cb = cookbook_versions[cb_name]
               lock = cookbook_locks[cb_name]
-              ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(cb, lock)
+              ChefCLI::Policyfile::Uploader::LockedCookbookForUpload.new(cb, lock)
             end
 
             expect(uploader.cookbook_versions_for_policy).to eq(expected_versions_for_policy)

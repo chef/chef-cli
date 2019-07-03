@@ -18,13 +18,13 @@
 require_relative "base"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
 
       class Policyfile < Base
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate policyfile [NAME] [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate policyfile [NAME] [options]"
 
         options.merge!(SharedGeneratorOptions.options)
 

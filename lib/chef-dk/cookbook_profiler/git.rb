@@ -17,7 +17,7 @@
 
 require_relative "../helpers"
 
-module ChefDK
+module ChefCLI
   module CookbookProfiler
     class Git
 

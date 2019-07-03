@@ -23,7 +23,7 @@ require_relative "policyfile_location_specification"
 require "chef/node/attribute"
 require "chef/run_list/run_list_item"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class DSL
 

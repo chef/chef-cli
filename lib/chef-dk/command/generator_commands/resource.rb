@@ -18,13 +18,13 @@
 require_relative "cookbook_code_file"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
       # chef generate resource [path/to/cookbook_root] NAME
       class Resource < CookbookCodeFile
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate resource [path/to/cookbook] NAME [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate resource [path/to/cookbook] NAME [options]"
 
         options.merge!(SharedGeneratorOptions.options)
 

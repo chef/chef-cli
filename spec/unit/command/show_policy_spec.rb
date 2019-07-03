@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/show_policy"
 
-describe ChefDK::Command::ShowPolicy do
+describe ChefCLI::Command::ShowPolicy do
 
   it_behaves_like "a command with a UI object"
 
@@ -178,7 +178,7 @@ describe ChefDK::Command::ShowPolicy do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileListError.new("Failed to list policies", cause)
+        ChefCLI::PolicyfileListError.new("Failed to list policies", cause)
       end
 
       before do

@@ -17,7 +17,7 @@
 
 require "chef/formatters/doc"
 
-module ChefDK
+module ChefCLI
 
   # Subclass of Chef's standard 'doc' formatter that mutes messages that occur
   # prior to convergence. This gives us cleaner output in general, but is

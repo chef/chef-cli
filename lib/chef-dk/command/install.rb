@@ -21,7 +21,7 @@ require_relative "../policyfile_services/install"
 require_relative "../configurable"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Install < Base
@@ -29,13 +29,13 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: #{ChefDK::Dist::EXEC} install [ POLICY_FILE ] [options]
+        Usage: #{ChefCLI::Dist::EXEC} install [ POLICY_FILE ] [options]
 
-        `#{ChefDK::Dist::EXEC} install` evaluates a `Policyfile.rb` to find a compatible set of
+        `#{ChefCLI::Dist::EXEC} install` evaluates a `Policyfile.rb` to find a compatible set of
         cookbooks for the policy's run_list and caches them locally. It emits a
         Policyfile.lock.json describing the locked cookbook set. You can use the
         lockfile to install the locked cookbooks on another machine. You can also push
-        the lockfile to a "policy group" on a #{ChefDK::Dist::SERVER_PRODUCT} and apply that exact set of
+        the lockfile to a "policy group" on a #{ChefCLI::Dist::SERVER_PRODUCT} and apply that exact set of
         cookbooks to nodes in your infrastructure.
 
         See our detailed README for more information:

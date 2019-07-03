@@ -20,7 +20,7 @@ require "diff/lcs/hunk"
 require "paint"
 require "ffi_yajl" unless defined?(FFI_Yajl)
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class Differ
 

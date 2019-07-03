@@ -25,7 +25,7 @@ require_relative "../configurable"
 require_relative "../dist"
 require "chef/server_api"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Diff < Base
@@ -34,36 +34,36 @@ module ChefDK
       include Policyfile::StorageConfigDelegation
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
+        Usage: #{ChefCLI::Dist::EXEC} diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
 
-        `#{ChefDK::Dist::EXEC} diff` displays an itemized diff comparing two revisions of a
+        `#{ChefCLI::Dist::EXEC} diff` displays an itemized diff comparing two revisions of a
         Policyfile lock.
 
-        When the `--git` option is given, `#{ChefDK::Dist::EXEC} diff` either compares a given
+        When the `--git` option is given, `#{ChefCLI::Dist::EXEC} diff` either compares a given
         git reference against the current lockfile revision on disk or compares
         between two git references. Examples:
 
-        * `#{ChefDK::Dist::EXEC} diff --git HEAD`: compares the current lock with the latest
+        * `#{ChefCLI::Dist::EXEC} diff --git HEAD`: compares the current lock with the latest
           commit on the current branch.
-        * `#{ChefDK::Dist::EXEC} diff --git master`: compares the current lock with the latest
+        * `#{ChefCLI::Dist::EXEC} diff --git master`: compares the current lock with the latest
           commit to master.
-        * `#{ChefDK::Dist::EXEC} diff --git v1.0.0`: compares the current lock with the revision
+        * `#{ChefCLI::Dist::EXEC} diff --git v1.0.0`: compares the current lock with the revision
           as of the `v1.0.0` tag.
-        * `#{ChefDK::Dist::EXEC} diff --git master...dev-branch`: compares the Policyfile lock on
+        * `#{ChefCLI::Dist::EXEC} diff --git master...dev-branch`: compares the Policyfile lock on
           master with the revision on the `dev-branch` branch.
-        * `#{ChefDK::Dist::EXEC} diff --git v1.0.0...master`: compares the Policyfile lock at the
+        * `#{ChefCLI::Dist::EXEC} diff --git v1.0.0...master`: compares the Policyfile lock at the
           `v1.0.0` tag with the lastest revision on the master branch.
 
-        `#{ChefDK::Dist::EXEC} diff --head` is a shortcut for `#{ChefDK::Dist::EXEC} diff --git HEAD`.
+        `#{ChefCLI::Dist::EXEC} diff --head` is a shortcut for `#{ChefCLI::Dist::EXEC} diff --git HEAD`.
 
-        When no git-specific flag is given, `#{ChefDK::Dist::EXEC} diff` either compares the
-        current lockfile revision on disk to one on the #{ChefDK::Dist::SERVER_PRODUCT} or compares
-        two lockfiles on the #{ChefDK::Dist::SERVER_PRODUCT}. Lockfiles on the #{ChefDK::Dist::SERVER_PRODUCT}
+        When no git-specific flag is given, `#{ChefCLI::Dist::EXEC} diff` either compares the
+        current lockfile revision on disk to one on the #{ChefCLI::Dist::SERVER_PRODUCT} or compares
+        two lockfiles on the #{ChefCLI::Dist::SERVER_PRODUCT}. Lockfiles on the #{ChefCLI::Dist::SERVER_PRODUCT}
         are specified by Policy Group. Examples:
 
-        * `#{ChefDK::Dist::EXEC} diff staging`: compares the current lock with the one currently
+        * `#{ChefCLI::Dist::EXEC} diff staging`: compares the current lock with the one currently
           assigned to the `staging` Policy Group.
-        * `#{ChefDK::Dist::EXEC} diff production...staging`: compares the lock currently assigned
+        * `#{ChefCLI::Dist::EXEC} diff production...staging`: compares the lock currently assigned
           to the `production` Policy Group to the lock currently assigned to the
           `staging` Policy Group.
 

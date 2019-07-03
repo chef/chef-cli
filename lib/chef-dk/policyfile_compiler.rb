@@ -30,7 +30,7 @@ require_relative "ui"
 require_relative "policyfile/reports/install"
 require_relative "exceptions"
 
-module ChefDK
+module ChefCLI
 
   class PolicyfileCompiler
 

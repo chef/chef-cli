@@ -18,7 +18,7 @@
 require_relative "service_exception_inspectors/base"
 require_relative "service_exception_inspectors/http"
 
-module ChefDK
+module ChefCLI
   module ServiceExceptionInspectors
   end
 end

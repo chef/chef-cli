@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile_compiler"
 
-describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph demands" do
+describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph demands" do
 
   let(:run_list) { [] }
 
@@ -27,7 +27,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
   let(:external_cookbook_universe) { {} }
 
   let(:policyfile) do
-    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
+    policyfile = ChefCLI::PolicyfileCompiler.new.build do |p|
 
       p.default_source(*default_source) if default_source
       p.run_list(*run_list)
@@ -199,7 +199,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     let(:default_source_obj) do
-      instance_double("ChefDK::Policyfile::CommunityCookbookSource")
+      instance_double("ChefCLI::Policyfile::CommunityCookbookSource")
     end
 
     let(:cb_location_spec) do
@@ -207,7 +207,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       s << " = 1.1.1"
       s << " #{remote_cb_source_opts}"
 
-      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+      instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       name: "remote-cb",
                       version_constraint: Semverse::Constraint.new("= 1.1.1"),
                       ensure_cached: nil,
@@ -228,7 +228,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         .with("remote-cb", "1.1.1")
         .and_return(remote_cb_source_opts)
 
-      allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new)
+      allow(ChefCLI::Policyfile::CookbookLocationSpecification).to receive(:new)
         .with("remote-cb", "= 1.1.1", remote_cb_source_opts, policyfile.storage_config)
         .and_return(cb_location_spec)
 
@@ -310,7 +310,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
-            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e).to be_a(ChefCLI::CookbookDoesNotContainRequiredRecipe)
             expect(e.message).to eq(message)
           end
         end
@@ -341,7 +341,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
-            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e).to be_a(ChefCLI::CookbookDoesNotContainRequiredRecipe)
             expect(e.message).to eq(message)
           end
         end
@@ -374,7 +374,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
-            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e).to be_a(ChefCLI::CookbookDoesNotContainRequiredRecipe)
             expect(e.message).to eq(message)
           end
         end
@@ -947,7 +947,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
         expected_source_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
 
-        expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
+        expect(community_source).to be_a(ChefCLI::Policyfile::CommunityCookbookSource)
         expect(community_source).to receive(:source_options_for)
           .with("remote-cb", "1.1.1")
           .and_return(expected_source_options)
@@ -967,7 +967,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
         expected_repo_options = { path: "path/to/cookbook", version: "1.0.0" }
         repo_source = policyfile.default_source.last
-        expect(repo_source).to be_a(ChefDK::Policyfile::ChefRepoCookbookSource)
+        expect(repo_source).to be_a(ChefCLI::Policyfile::ChefRepoCookbookSource)
         expect(repo_source).to receive(:source_options_for)
           .with("repo-cookbook-one", "1.0.0")
           .and_return(expected_repo_options)
@@ -977,7 +977,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
         expected_server_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
         community_source = policyfile.default_source.first
-        expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
+        expect(community_source).to be_a(ChefCLI::Policyfile::CommunityCookbookSource)
         expect(community_source).to receive(:source_options_for)
           .with("remote-cb-two", "1.1.1")
           .and_return(expected_server_options)
@@ -1066,7 +1066,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
             ERROR
 
             expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
-              expect(error).to be_a(ChefDK::CookbookSourceConflict)
+              expect(error).to be_a(ChefCLI::CookbookSourceConflict)
               expect(error.message).to eq(expected_err)
             end
           end
@@ -1168,7 +1168,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           ERROR
 
           expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
-            expect(error).to be_a(ChefDK::CookbookSourceConflict)
+            expect(error).to be_a(ChefCLI::CookbookSourceConflict)
             expect(error.message).to eq(expected_err)
           end
         end

@@ -21,20 +21,20 @@ require_relative "../configurable"
 require_relative "../policyfile_services/undelete"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Undelete < Base
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} undelete [--list | --id ID] [options]
+        Usage: #{ChefCLI::Dist::EXEC} undelete [--list | --id ID] [options]
 
-        `#{ChefDK::Dist::EXEC} undelete` helps you recover quickly if you've deleted a policy or policy
+        `#{ChefCLI::Dist::EXEC} undelete` helps you recover quickly if you've deleted a policy or policy
         group in error. When run with no arguements, it lists the available undo
         operations. To undo the last delete operation, use `chef undelete --last`.
 
         CAVEATS:
-        `#{ChefDK::Dist::EXEC} undelete` doesn't detect conflicts. If a deleted item has been recreated,
+        `#{ChefCLI::Dist::EXEC} undelete` doesn't detect conflicts. If a deleted item has been recreated,
         running `chef undelete` will overwrite it.
 
         Undo information does not include cookbooks that might be referenced by

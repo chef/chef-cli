@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 repo_dir = File.join(context.repo_root, context.repo_name)
 
 silence_chef_formatter unless context.verbose
@@ -11,7 +11,7 @@ directory repo_dir
 # Top level files
 template "#{repo_dir}/LICENSE" do
   source "LICENSE.#{context.license}.erb"
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -65,7 +65,7 @@ if context.have_git
   end
   template "#{repo_dir}/.gitignore" do
     source 'repo/gitignore.erb'
-    helpers(ChefDK::Generator::TemplateHelper)
+    helpers(ChefCLI::Generator::TemplateHelper)
     action :create_if_missing
   end
 end

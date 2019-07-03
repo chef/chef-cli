@@ -20,7 +20,7 @@ require "chef/server_api"
 require_relative "../policyfile/undo_stack"
 require_relative "../policyfile/undo_record"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
 
     class RmPolicyGroup

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
 
   class CachedCookbookNotFound < StandardError
   end
@@ -54,7 +54,7 @@ module ChefDK
     require_relative "dist"
 
     def initialize
-      super("Can not find omnibus installation directory for #{ChefDK::Dist::PRODUCT}.")
+      super("Can not find omnibus installation directory for #{ChefCLI::Dist::PRODUCT}.")
     end
   end
 

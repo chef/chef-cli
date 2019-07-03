@@ -19,10 +19,10 @@ require_relative "base"
 require_relative "../dist"
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 
-module ChefDK
+module ChefCLI
   module Command
-    class Exec < ChefDK::Command::Base
-      banner "Usage: #{ChefDK::Dist::EXEC} exec SYSTEM_COMMAND"
+    class Exec < ChefCLI::Command::Base
+      banner "Usage: #{ChefCLI::Dist::EXEC} exec SYSTEM_COMMAND"
 
       def run(params)
         # Set ENV directly on the "parent" process (us) before running #exec to

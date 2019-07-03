@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/a_file_generator"
 require "chef-cli/command/generator_commands/cookbook_file"
 
-describe ChefDK::Command::GeneratorCommands::CookbookFile do
+describe ChefCLI::Command::GeneratorCommands::CookbookFile do
 
   include_examples "a file generator" do
 

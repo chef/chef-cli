@@ -18,9 +18,9 @@
 require "spec_helper"
 require "chef-cli/policyfile_services/push"
 
-describe ChefDK::PolicyfileServices::Push do
+describe ChefCLI::PolicyfileServices::Push do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
@@ -106,7 +106,7 @@ describe ChefDK::PolicyfileServices::Push do
   context "when no lockfile is present" do
 
     it "errors out" do
-      expect { push_service.run }.to raise_error(ChefDK::LockfileNotFound)
+      expect { push_service.run }.to raise_error(ChefCLI::LockfileNotFound)
     end
 
   end
@@ -122,7 +122,7 @@ describe ChefDK::PolicyfileServices::Push do
       let(:lockfile_content) { ":::" }
 
       it "errors out" do
-        expect { push_service.run }.to raise_error(ChefDK::PolicyfilePushError)
+        expect { push_service.run }.to raise_error(ChefCLI::PolicyfilePushError)
       end
 
     end
@@ -132,7 +132,7 @@ describe ChefDK::PolicyfileServices::Push do
       let(:lockfile_content) { "{ }" }
 
       it "errors out" do
-        expect { push_service.run }.to raise_error(ChefDK::PolicyfilePushError)
+        expect { push_service.run }.to raise_error(ChefCLI::PolicyfilePushError)
       end
 
     end
@@ -184,12 +184,12 @@ describe ChefDK::PolicyfileServices::Push do
 
       let(:updated_lockfile_io) { StringIO.new }
 
-      let(:uploader) { instance_double(ChefDK::Policyfile::Uploader) }
+      let(:uploader) { instance_double(ChefCLI::Policyfile::Uploader) }
 
       before do
         expect(push_service).to receive(:http_client).and_return(http_client)
 
-        expect(ChefDK::Policyfile::Uploader).to receive(:new)
+        expect(ChefCLI::Policyfile::Uploader).to receive(:new)
                .with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api)
                .and_return(uploader)
       end
@@ -237,7 +237,7 @@ describe ChefDK::PolicyfileServices::Push do
         end
 
         it "raises an error" do
-          expect { push_service.run }.to raise_error(ChefDK::PolicyfilePushError)
+          expect { push_service.run }.to raise_error(ChefCLI::PolicyfilePushError)
         end
 
       end

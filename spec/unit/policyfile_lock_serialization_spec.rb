@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile_lock"
 
-describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
+describe ChefCLI::PolicyfileLock, "when reading a Policyfile.lock" do
 
   let(:valid_lock_data) do
     {
@@ -39,9 +39,9 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
     }
   end
 
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new }
 
-  let(:lockfile) { ChefDK::PolicyfileLock.new(storage_config) }
+  let(:lockfile) { ChefCLI::PolicyfileLock.new(storage_config) }
 
   describe "populating the deserialized lock" do
 
@@ -78,33 +78,33 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       missing_name = valid_lock_data.dup
       missing_name.delete("name")
 
-      expect { lockfile.build_from_lock_data(missing_name) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(missing_name) }.to raise_error(ChefCLI::InvalidLockfile)
 
       blank_name = valid_lock_data.dup
       blank_name["name"] = ""
-      expect { lockfile.build_from_lock_data(blank_name) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(blank_name) }.to raise_error(ChefCLI::InvalidLockfile)
 
       invalid_name = valid_lock_data.dup
       invalid_name["name"] = {}
-      expect { lockfile.build_from_lock_data(invalid_name) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(invalid_name) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the run_list to be present" do
       no_run_list = valid_lock_data.dup
       no_run_list.delete("run_list")
 
-      expect { lockfile.build_from_lock_data(no_run_list) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(no_run_list) }.to raise_error(ChefCLI::InvalidLockfile)
 
       bad_run_list = valid_lock_data.dup
       bad_run_list["run_list"] = "bad data"
-      expect { lockfile.build_from_lock_data(bad_run_list) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_run_list) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "validates the format of run_list items" do
       bad_run_list = valid_lock_data.dup
       bad_run_list["run_list"] = [ "bad data" ]
 
-      expect { lockfile.build_from_lock_data(bad_run_list) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_run_list) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "allows the named_run_lists field to be absent" do
@@ -118,62 +118,62 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       bad_named_run_lists = valid_lock_data.dup
       bad_named_run_lists["named_run_lists"] = false
 
-      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the keys in named_run_lists to be strings" do
       bad_named_run_lists = valid_lock_data.dup
       bad_named_run_lists["named_run_lists"] = { 42 => [] }
 
-      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the values in named_run_lists to be arrays" do
       bad_named_run_lists = valid_lock_data.dup
       bad_named_run_lists["named_run_lists"] = { "bad" => 42 }
 
-      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the values in named_run_lists to be valid run lists" do
       bad_named_run_lists = valid_lock_data.dup
       bad_named_run_lists["named_run_lists"] = { "bad" => [ 42 ] }
 
-      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefCLI::InvalidLockfile)
     end
     it "requires the `cookbook_locks` section be present and its value is a Hash" do
       missing_locks = valid_lock_data.dup
       missing_locks.delete("cookbook_locks")
 
-      expect { lockfile.build_from_lock_data(missing_locks) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(missing_locks) }.to raise_error(ChefCLI::InvalidLockfile)
 
       invalid_locks = valid_lock_data.dup
       invalid_locks["cookbook_locks"] = []
-      expect { lockfile.build_from_lock_data(invalid_locks) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(invalid_locks) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the `default_attributes` section be present and its value is a Hash" do
       missing_attrs = valid_lock_data.dup
       missing_attrs.delete("default_attributes")
 
-      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefCLI::InvalidLockfile)
 
       invalid_attrs = valid_lock_data.dup
       invalid_attrs["default_attributes"] = []
 
-      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     it "requires the `override_attributes` section be present and its value is a Hash" do
       missing_attrs = valid_lock_data.dup
       missing_attrs.delete("override_attributes")
 
-      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefCLI::InvalidLockfile)
 
       invalid_attrs = valid_lock_data.dup
       invalid_attrs["override_attributes"] = []
 
-      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefCLI::InvalidLockfile)
     end
 
     describe "validating solution_dependencies" do
@@ -182,75 +182,75 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         missing_soln_deps = valid_lock_data.dup
         missing_soln_deps.delete("solution_dependencies")
 
-        expect { lockfile.build_from_lock_data(missing_soln_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(missing_soln_deps) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires the solution_dependencies object be a Hash" do
         invalid_soln_deps = valid_lock_data.dup
         invalid_soln_deps["solution_dependencies"] = []
-        expect { lockfile.build_from_lock_data(invalid_soln_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_soln_deps) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires the solution_dependencies object have a 'Policyfile' and 'dependencies' key" do
         missing_keys_soln_deps = valid_lock_data.dup
         missing_keys_soln_deps["solution_dependencies"] = {}
-        expect { lockfile.build_from_lock_data(missing_keys_soln_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(missing_keys_soln_deps) }.to raise_error(ChefCLI::InvalidLockfile)
 
         missing_policyfile_key = valid_lock_data.dup
         missing_policyfile_key["solution_dependencies"] = { "dependencies" => {} }
-        expect { lockfile.build_from_lock_data(missing_policyfile_key) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(missing_policyfile_key) }.to raise_error(ChefCLI::InvalidLockfile)
 
         missing_dependencies_key = valid_lock_data.dup
         missing_dependencies_key["solution_dependencies"] = { "Policyfile" => [] }
-        expect { lockfile.build_from_lock_data(missing_dependencies_key) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(missing_dependencies_key) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires the Policyfile dependencies be an Array" do
         invalid_policyfile_deps = valid_lock_data.dup
         invalid_policyfile_deps["solution_dependencies"] = { "Policyfile" => 42, "dependencies" => {} }
-        expect { lockfile.build_from_lock_data(invalid_policyfile_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_policyfile_deps) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it %q{requires the Policyfile dependencies be formatted like [ "COOKBOOK_NAME", "CONSTRAINT" ]} do
         invalid_policyfile_deps_content = valid_lock_data.dup
         invalid_policyfile_deps_content["solution_dependencies"] = { "Policyfile" => [ "bad" ], "dependencies" => {} }
-        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content) }.to raise_error(ChefCLI::InvalidLockfile)
 
         invalid_policyfile_deps_content2 = valid_lock_data.dup
         invalid_policyfile_deps_content2["solution_dependencies"] = { "Policyfile" => [ [42, "~> 2.0"] ], "dependencies" => {} }
-        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content2) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content2) }.to raise_error(ChefCLI::InvalidLockfile)
 
         invalid_policyfile_deps_content3 = valid_lock_data.dup
         invalid_policyfile_deps_content3["solution_dependencies"] = { "Policyfile" => [ %w{cookbook_name bad} ], "dependencies" => {} }
-        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content3) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content3) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires the cookbook dependencies be a Hash" do
         invalid_cookbook_deps = valid_lock_data.dup
         invalid_cookbook_deps["solution_dependencies"] = { "Policyfile" => [], "dependencies" => 42 }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_deps) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires the cookbook dependencies entries be in the correct format" do
         invalid_cookbook_deps = valid_lock_data.dup
         bad_deps = { 42 => 42 }
         invalid_cookbook_deps["solution_dependencies"] = { "Policyfile" => [], "dependencies" => bad_deps }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_deps) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_deps) }.to raise_error(ChefCLI::InvalidLockfile)
 
         invalid_cookbook_deps2 = valid_lock_data.dup
         bad_deps2 = { "bad-format" => [] }
         invalid_cookbook_deps2["solution_dependencies"] = { "Policyfile" => [], "dependencies" => bad_deps2 }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_deps2) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_deps2) }.to raise_error(ChefCLI::InvalidLockfile)
 
         invalid_cookbook_deps3 = valid_lock_data.dup
         bad_deps3 = { "cookbook (1.0.0)" => 42 }
         invalid_cookbook_deps3["solution_dependencies"] = { "Policyfile" => [], "dependencies" => bad_deps3 }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_deps3) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_deps3) }.to raise_error(ChefCLI::InvalidLockfile)
 
         invalid_cookbook_deps4 = valid_lock_data.dup
         bad_deps4 = { "cookbook (1.0.0)" => [ 42 ] }
         invalid_cookbook_deps4["solution_dependencies"] = { "Policyfile" => [], "dependencies" => bad_deps4 }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_deps4) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_deps4) }.to raise_error(ChefCLI::InvalidLockfile)
       end
     end
 
@@ -270,13 +270,13 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       it "requires that each cookbook lock be a Hash" do
         invalid_cookbook_lock = valid_lock_data.dup
         invalid_cookbook_lock["cookbook_locks"] = { "foo" => 42 }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_lock) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_lock) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that cookbook locks not be empty" do
         invalid_cookbook_lock = valid_lock_data.dup
         invalid_cookbook_lock["cookbook_locks"] = { "foo" => {} }
-        expect { lockfile.build_from_lock_data(invalid_cookbook_lock) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_cookbook_lock) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that each cookbook lock have a version" do
@@ -284,7 +284,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock.delete("version")
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that the version be a string" do
@@ -292,7 +292,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock["version"] = 42
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that each cookbook lock have an identifier" do
@@ -300,7 +300,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock.delete("identifier")
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that the identifier be a string" do
@@ -308,7 +308,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock["identifier"] = 42
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that a cookbook lock have a key named `cache_key'" do
@@ -316,7 +316,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock.delete("cache_key")
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that the cache_key be a string or null" do
@@ -324,7 +324,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock["cache_key"] = 42
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that a cookbook lock have a source_options attribute" do
@@ -332,7 +332,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock.delete("source_options")
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that source options be a Hash" do
@@ -340,7 +340,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cookbook_lock = valid_cookbook_lock.dup
         invalid_cookbook_lock["source_options"] = 42
         invalid_lockfile["cookbook_locks"] = { "foo" => invalid_cookbook_lock }
-        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lockfile) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that a cookbook lock be a valid local cookbook if `cache_key' is null/nil" do
@@ -356,7 +356,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_local_cookbook["cache_key"] = nil
         invalid_local_cookbook["source"] = 42
         invalid_lock_with_local_cookbook["cookbook_locks"] = { "foo" => invalid_local_cookbook }
-        expect { lockfile.build_from_lock_data(invalid_lock_with_local_cookbook) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lock_with_local_cookbook) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
       it "requires that a cookbook lock w/ a key named `cache_key' be a valid cached cookbook structure" do
@@ -371,7 +371,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         invalid_cached_cookbook = valid_cookbook_lock.dup
         invalid_cached_cookbook["cache_key"] = 42
         invalid_lock_with_cached_cookbook["cookbook_locks"] = { "foo" => invalid_cached_cookbook }
-        expect { lockfile.build_from_lock_data(invalid_lock_with_cached_cookbook) }.to raise_error(ChefDK::InvalidLockfile)
+        expect { lockfile.build_from_lock_data(invalid_lock_with_cached_cookbook) }.to raise_error(ChefCLI::InvalidLockfile)
       end
 
     end
@@ -410,7 +410,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       expect(locks).to have_key("foo")
 
       cb_foo = locks["foo"]
-      expect(cb_foo).to be_a(ChefDK::Policyfile::ArchivedCookbook)
+      expect(cb_foo).to be_a(ChefCLI::Policyfile::ArchivedCookbook)
 
       expected_path = File.join(storage_config.relative_paths_root, "cookbook_artifacts", "foo-68c13b136a49b4e66cfe9d8aa2b5a85167b5bf9b")
 

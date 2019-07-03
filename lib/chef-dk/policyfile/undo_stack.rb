@@ -22,7 +22,7 @@ require "ffi_yajl" unless defined?(FFI_Yajl)
 require_relative "../helpers"
 require_relative "undo_record"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     class UndoStack

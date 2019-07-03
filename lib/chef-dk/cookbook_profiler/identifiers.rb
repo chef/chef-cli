@@ -24,7 +24,7 @@ require "chef/digester"
 
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module CookbookProfiler
     class Identifiers
 

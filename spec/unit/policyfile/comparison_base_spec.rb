@@ -62,7 +62,7 @@ describe "Policyfile Comparison Bases" do
 
   let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }
 
-  describe ChefDK::Policyfile::ComparisonBase::Local do
+  describe ChefCLI::Policyfile::ComparisonBase::Local do
 
     let(:policyfile_lock_relpath) { "Policyfile.lock.json" }
 
@@ -88,7 +88,7 @@ describe "Policyfile Comparison Bases" do
 
       it "raises an exception when reading the lockfile" do
         Dir.chdir(tempdir) do
-          expect { comparison_base.lock }.to raise_error(ChefDK::LockfileNotFound)
+          expect { comparison_base.lock }.to raise_error(ChefCLI::LockfileNotFound)
         end
       end
 
@@ -105,7 +105,7 @@ describe "Policyfile Comparison Bases" do
 
       it "raises an exception" do
         Dir.chdir(tempdir) do
-          expect { comparison_base.lock }.to raise_error(ChefDK::LockfileNotFound)
+          expect { comparison_base.lock }.to raise_error(ChefCLI::LockfileNotFound)
         end
       end
 
@@ -121,7 +121,7 @@ describe "Policyfile Comparison Bases" do
 
       it "raises an exception" do
         Dir.chdir(tempdir) do
-          expect { comparison_base.lock }.to raise_error(ChefDK::MalformedLockfile)
+          expect { comparison_base.lock }.to raise_error(ChefCLI::MalformedLockfile)
         end
       end
 
@@ -145,7 +145,7 @@ describe "Policyfile Comparison Bases" do
 
   end
 
-  describe ChefDK::Policyfile::ComparisonBase::Git do
+  describe ChefCLI::Policyfile::ComparisonBase::Git do
 
     let(:ref) { "master" }
 
@@ -179,7 +179,7 @@ describe "Policyfile Comparison Bases" do
       end
 
       it "raises an exception when reading the lockfile" do
-        expect { comparison_base.lock }.to raise_error(ChefDK::GitError)
+        expect { comparison_base.lock }.to raise_error(ChefCLI::GitError)
       end
 
     end
@@ -198,7 +198,7 @@ describe "Policyfile Comparison Bases" do
         end
 
         it "raises an exception" do
-          expect { comparison_base.lock }.to raise_error(ChefDK::MalformedLockfile)
+          expect { comparison_base.lock }.to raise_error(ChefCLI::MalformedLockfile)
         end
 
       end
@@ -218,7 +218,7 @@ describe "Policyfile Comparison Bases" do
 
   end
 
-  describe ChefDK::Policyfile::ComparisonBase::PolicyGroup do
+  describe ChefCLI::Policyfile::ComparisonBase::PolicyGroup do
 
     let(:group) { "acceptance" }
     let(:policy_name) { "chatserver" }
@@ -267,7 +267,7 @@ describe "Policyfile Comparison Bases" do
         begin
           comparison_base.lock
         rescue => exception
-          expect(exception).to be_a_kind_of(ChefDK::PolicyfileDownloadError)
+          expect(exception).to be_a_kind_of(ChefCLI::PolicyfileDownloadError)
           expect(exception.message).to eq("HTTP error attempting to fetch Policyfile lock from https://chef.example/organizations/monkeynews")
           expect(exception.cause).to eq(http_exception)
         end
@@ -301,7 +301,7 @@ describe "Policyfile Comparison Bases" do
         begin
           comparison_base.lock
         rescue => exception
-          expect(exception).to be_a_kind_of(ChefDK::PolicyfileDownloadError)
+          expect(exception).to be_a_kind_of(ChefCLI::PolicyfileDownloadError)
           expect(exception.message).to eq("No Policyfile lock named 'chatserver' found in policy_group 'acceptance' at https://chef.example/organizations/monkeynews")
           expect(exception.cause).to eq(http_exception)
         end
@@ -317,7 +317,7 @@ describe "Policyfile Comparison Bases" do
       end
 
       it "raises an exception" do
-        expect { comparison_base.lock }.to raise_error(ChefDK::PolicyfileDownloadError)
+        expect { comparison_base.lock }.to raise_error(ChefCLI::PolicyfileDownloadError)
       end
 
     end

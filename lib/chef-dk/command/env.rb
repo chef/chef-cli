@@ -23,10 +23,10 @@ require_relative "../dist"
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require "yaml"
 
-module ChefDK
+module ChefCLI
   module Command
-    class Env < ChefDK::Command::Base
-      banner "Usage: #{ChefDK::Dist::EXEC} env"
+    class Env < ChefCLI::Command::Base
+      banner "Usage: #{ChefCLI::Dist::EXEC} env"
 
       attr_accessor :ui
 
@@ -37,8 +37,8 @@ module ChefDK
 
       def run(params)
         info = {}
-        info["#{ChefDK::Dist::PRODUCT}"] = Hash.new.tap do |chefcli_env|
-          chefcli_env["ChefDK"] = chefcli_info
+        info["#{ChefCLI::Dist::PRODUCT}"] = Hash.new.tap do |chefcli_env|
+          chefcli_env["ChefCLI"] = chefcli_info
           chefcli_env["Ruby"] = ruby_info
           chefcli_env["Path"] = paths
         end
@@ -47,9 +47,9 @@ module ChefDK
 
       def chefcli_info
         Hash.new.tap do |chefcli|
-          chefcli["ChefDK Version"] = ChefDK::VERSION
-          chefcli["ChefDK Home"] = chefcli_home
-          chefcli["ChefDK Install Directory"] = omnibus_root
+          chefcli["ChefCLI Version"] = ChefCLI::VERSION
+          chefcli["ChefCLI Home"] = chefcli_home
+          chefcli["ChefCLI Install Directory"] = omnibus_root
           chefcli["Policyfile Config"] = policyfile_config
         end
       end

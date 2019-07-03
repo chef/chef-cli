@@ -19,7 +19,7 @@ require "semverse"
 require_relative "../cookbook_omnifetch"
 require_relative "storage_config"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     class CookbookLocationSpecification

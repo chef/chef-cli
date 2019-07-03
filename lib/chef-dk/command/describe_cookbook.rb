@@ -3,7 +3,7 @@ require_relative "../ui"
 require_relative "../cookbook_profiler/identifiers"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   class IdDumper
 
     attr_reader :cb_path
@@ -15,7 +15,7 @@ module ChefDK
     end
 
     def run
-      id = ChefDK::CookbookProfiler::Identifiers.new(cookbook_version)
+      id = ChefCLI::CookbookProfiler::Identifiers.new(cookbook_version)
       ui.msg "Path: #{cookbook_path}"
       ui.msg "SemVer version: #{id.semver_version}"
       ui.msg "Identifier: #{id.content_identifier}"
@@ -47,9 +47,9 @@ module ChefDK
 
   module Command
 
-    class DescribeCookbook < ChefDK::Command::Base
+    class DescribeCookbook < ChefCLI::Command::Base
 
-      banner "Usage: #{ChefDK::Dist::EXEC} describe-cookbook <path/to/cookbook>"
+      banner "Usage: #{ChefCLI::Dist::EXEC} describe-cookbook <path/to/cookbook>"
 
       attr_reader :cookbook_path
       attr_reader :ui

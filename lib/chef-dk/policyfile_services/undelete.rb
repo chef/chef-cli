@@ -19,7 +19,7 @@ require "chef/server_api"
 require_relative "../service_exceptions"
 require_relative "../policyfile/undo_stack"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
     class Undelete
 

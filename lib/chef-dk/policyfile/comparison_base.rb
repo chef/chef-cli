@@ -19,7 +19,7 @@ require "ffi_yajl" unless defined?(FFI_Yajl)
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require_relative "../service_exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     module ComparisonBase
 

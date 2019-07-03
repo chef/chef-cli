@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
 resource_dir = File.join(cookbook_dir, 'resources')
@@ -8,5 +8,5 @@ directory resource_dir
 
 template resource_path do
   source 'resource.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
 end

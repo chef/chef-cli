@@ -20,7 +20,7 @@ require "singleton" unless defined?(Singleton)
 require "chef/cookbook/cookbook_version_loader"
 require "chef/cookbook/chefignore"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     class CookbookLoaderWithChefignore

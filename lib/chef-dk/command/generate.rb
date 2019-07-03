@@ -32,7 +32,7 @@ require_relative "generator_commands/generator_generator"
 require_relative "generator_commands/build_cookbook"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     class Generate < Base
 
@@ -53,14 +53,14 @@ module ChefDK
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
       generator(:resource, :Resource, "Generate a custom resource")
-      generator(:repo, :Repo, "Generate a #{ChefDK::Dist::INFRA_PRODUCT} code repository")
+      generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
-      generator(:generator, :GeneratorGenerator, "Copy #{ChefDK::Dist::PRODUCT}'s generator cookbook so you can customize it")
-      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with #{ChefDK::Dist::WORKFLOW}")
+      generator(:generator, :GeneratorGenerator, "Copy #{ChefCLI::Dist::PRODUCT}'s generator cookbook so you can customize it")
+      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with #{ChefCLI::Dist::WORKFLOW}")
 
       def self.banner_headline
         <<~E
-          Usage: #{ChefDK::Dist::EXEC} generate GENERATOR [options]
+          Usage: #{ChefCLI::Dist::EXEC} generate GENERATOR [options]
 
           Available generators:
         E
@@ -92,7 +92,7 @@ module ChefDK
           1
         end
       rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
-        # ChefDK::Command::Base also handles this error in the same way, but it
+        # ChefCLI::Command::Base also handles this error in the same way, but it
         # does not have access to the correct option parser, so it cannot print
         # the usage correctly. Therefore, invalid CLI usage needs to be handled
         # here.

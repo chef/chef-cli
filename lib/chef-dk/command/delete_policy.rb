@@ -21,16 +21,16 @@ require_relative "../configurable"
 require_relative "../policyfile_services/rm_policy"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class DeletePolicy < Base
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} delete-policy POLICY_NAME [options]
+        Usage: #{ChefCLI::Dist::EXEC} delete-policy POLICY_NAME [options]
 
-        `#{ChefDK::Dist::EXEC} delete-policy POLICY_NAME` deletes all revisions of the policy
-        `POLICY_NAME` on the configured #{ChefDK::Dist::SERVER_PRODUCT}. All policy revisions will be
+        `#{ChefCLI::Dist::EXEC} delete-policy POLICY_NAME` deletes all revisions of the policy
+        `POLICY_NAME` on the configured #{ChefCLI::Dist::SERVER_PRODUCT}. All policy revisions will be
         backed up locally, allowing you to undo this operation via the `chef undelete`
         command.
 
@@ -69,7 +69,7 @@ module ChefDK
       def run(params)
         return 1 unless apply_params!(params)
         rm_policy_service.run
-        ui.msg("This operation can be reversed by running `#{ChefDK::Dist::EXEC} undelete --last`.")
+        ui.msg("This operation can be reversed by running `#{ChefCLI::Dist::EXEC} undelete --last`.")
         0
       rescue PolicyfileServiceError => e
         handle_error(e)

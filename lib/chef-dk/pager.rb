@@ -17,7 +17,7 @@
 
 require_relative "ui"
 
-module ChefDK
+module ChefCLI
   class Pager
 
     attr_reader :pager_pid

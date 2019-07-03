@@ -21,13 +21,13 @@ require_relative "../policyfile/lock_applier"
 require_relative "../service_exceptions"
 require_relative "../policyfile_compiler"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
 
     class UpdateAttributes
 
       include Policyfile::StorageConfigDelegation
-      include ChefDK::Helpers
+      include ChefCLI::Helpers
 
       attr_reader :ui
       attr_reader :storage_config
@@ -78,7 +78,7 @@ module ChefDK
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
+        @policyfile_compiler ||= ChefCLI::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
       end
 
       def policyfile_lock_content

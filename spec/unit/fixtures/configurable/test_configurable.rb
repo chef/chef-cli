@@ -1,7 +1,7 @@
 require "unit/fixtures/configurable/test_config_loader"
 
 class TestConfigurable
-  include ChefDK::Configurable
+  include ChefCLI::Configurable
 
   # don't use the workstation config loader
   def config_loader

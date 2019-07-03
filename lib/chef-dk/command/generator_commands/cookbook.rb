@@ -18,7 +18,7 @@
 require_relative "base"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
 
@@ -30,7 +30,7 @@ module ChefDK
       # the relevant generators.
       class Cookbook < Base
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate cookbook NAME [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate cookbook NAME [options]"
 
         attr_reader :errors
 
@@ -58,7 +58,7 @@ module ChefDK
         option :workflow,
           short:        "-w",
           long:         "--workflow",
-          description:  "Generate a cookbook with a full #{ChefDK::Dist::WORKFLOW} build cookbook.",
+          description:  "Generate a cookbook with a full #{ChefCLI::Dist::WORKFLOW} build cookbook.",
           boolean:      true,
           default:      false
 
@@ -71,7 +71,7 @@ module ChefDK
 
         option :pipeline,
           long:         "--pipeline PIPELINE",
-          description:  "Use PIPELINE to set target branch to something other than master for the #{ChefDK::Dist::WORKFLOW} build_cookbook",
+          description:  "Use PIPELINE to set target branch to something other than master for the #{ChefCLI::Dist::WORKFLOW} build_cookbook",
           default:      "master"
 
         options.merge!(SharedGeneratorOptions.options)
@@ -97,7 +97,7 @@ module ChefDK
             err(opt_parser)
             1
           end
-        rescue ChefDK::ChefRunnerError => e
+        rescue ChefCLI::ChefRunnerError => e
           err("ERROR: #{e}")
           1
         end

@@ -21,7 +21,7 @@ require_relative "../helpers"
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require "tmpdir" unless defined?(Dir.mktmpdir)
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # A Policyfile lock fetcher that can read a lock file from a git repository.
@@ -98,7 +98,7 @@ module ChefDK
           acc
         end
         source_options.merge!(options)
-        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
+        raise ChefCLI::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
       end
 
       # @return [Hash] of the policyfile lock data
@@ -245,7 +245,7 @@ module ChefDK
       #
       # @return [Pathname]
       def cache_path
-        Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefcli_home, "cache")))
+        Pathname.new(File.expand_path(File.join(ChefCLI::Helpers.chefcli_home, "cache")))
           .join(".cache", "git", Digest::SHA1.hexdigest(uri))
       end
 

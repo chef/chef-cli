@@ -18,7 +18,7 @@
 require_relative "exceptions"
 require "chef/cookbook/metadata"
 
-module ChefDK
+module ChefCLI
 
   # Subclass of Chef's Cookbook::Metadata class that provides the API expected
   # by CookbookOmnifetch

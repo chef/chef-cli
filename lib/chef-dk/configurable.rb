@@ -21,7 +21,7 @@ require "chef/workstation_config_loader"
 require_relative "cookbook_omnifetch"
 require_relative "chef_server_api_multi"
 
-# Define a config context for ChefDK
+# Define a config context for ChefCLI
 class Chef::Config
 
   default(:policy_document_native_api, true)
@@ -44,7 +44,7 @@ class Chef::Config
   end
 end
 
-module ChefDK
+module ChefCLI
   module Configurable
 
     def chef_config

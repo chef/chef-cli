@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
 
   module Generator
 
@@ -51,8 +51,8 @@ module ChefDK
 
     def self.add_attr_to_context(name, value = nil)
       sym_name = name.to_sym
-      ChefDK::Generator::Context.add_attr(sym_name)
-      ChefDK::Generator::TemplateHelper.delegate_to_app_context(sym_name)
+      ChefCLI::Generator::Context.add_attr(sym_name)
+      ChefCLI::Generator::TemplateHelper.delegate_to_app_context(sym_name)
       context.public_send("#{sym_name}=", value)
     end
 
@@ -60,7 +60,7 @@ module ChefDK
 
       def self.delegate_to_app_context(name)
         define_method(name) do
-          ChefDK::Generator.context.public_send(name)
+          ChefCLI::Generator.context.public_send(name)
         end
       end
 

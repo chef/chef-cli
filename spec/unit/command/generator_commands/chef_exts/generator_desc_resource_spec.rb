@@ -28,7 +28,7 @@ require "ohai/system"
 
 require "chef-cli/command/generator_commands/chef_exts/generator_desc_resource"
 
-describe ChefDK::ChefResource::GeneratorDesc do
+describe ChefCLI::ChefResource::GeneratorDesc do
 
   let(:node) { Chef::Node.new }
 

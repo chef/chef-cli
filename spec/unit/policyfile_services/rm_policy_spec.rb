@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile_services/rm_policy"
 
-describe ChefDK::PolicyfileServices::RmPolicy do
+describe ChefCLI::PolicyfileServices::RmPolicy do
 
   let(:policy_name) { "appserver" }
 
@@ -90,7 +90,7 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       end
 
       it "re-raises the error with a standardized exception class" do
-        expect { rm_policy_service.run }.to raise_error(ChefDK::DeletePolicyError)
+        expect { rm_policy_service.run }.to raise_error(ChefCLI::DeletePolicyError)
       end
 
     end

@@ -23,7 +23,7 @@ require "chef"
 require_relative "command/generator_commands/chef_exts/quieter_doc_formatter"
 require_relative "command/generator_commands/chef_exts/recipe_dsl_ext"
 
-module ChefDK
+module ChefCLI
 
   # An adapter to chef's APIs to kick off a chef-client run.
   class ChefRunner
@@ -45,7 +45,7 @@ module ChefDK
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
-      raise ChefConvergeError.new("#{ChefDK::Dist::INFRA_PRODUCT} failed to converge: #{e} from file #{e.backtrace.first}", e)
+      raise ChefConvergeError.new("#{ChefCLI::Dist::INFRA_PRODUCT} failed to converge: #{e} from file #{e.backtrace.first}", e)
     end
 
     def run_context

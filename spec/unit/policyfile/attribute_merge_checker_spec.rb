@@ -18,8 +18,8 @@
 require "spec_helper"
 require "chef-cli/policyfile/attribute_merge_checker"
 
-describe ChefDK::Policyfile::AttributeMergeChecker do
-  let(:checker) { ChefDK::Policyfile::AttributeMergeChecker.new }
+describe ChefCLI::Policyfile::AttributeMergeChecker do
+  let(:checker) { ChefCLI::Policyfile::AttributeMergeChecker.new }
 
   describe "when the same attribute is provided multiple times with the same value" do
     describe "at the top level" do
@@ -54,7 +54,7 @@ describe ChefDK::Policyfile::AttributeMergeChecker do
 
       it "raises an error" do
         expect { checker.check! }.to raise_error(
-          ChefDK::Policyfile::AttributeMergeChecker::ConflictError) do |e|
+          ChefCLI::Policyfile::AttributeMergeChecker::ConflictError) do |e|
             expect(e.attribute_path).to eq("[a]")
             expect(e.provided_by).to include("foo", "bar")
           end
@@ -69,7 +69,7 @@ describe ChefDK::Policyfile::AttributeMergeChecker do
 
       it "raises an error" do
         expect { checker.check! }.to raise_error(
-          ChefDK::Policyfile::AttributeMergeChecker::ConflictError) do |e|
+          ChefCLI::Policyfile::AttributeMergeChecker::ConflictError) do |e|
             expect(e.attribute_path).to eq("[a][b]")
             expect(e.provided_by).to include("foo", "bar")
           end

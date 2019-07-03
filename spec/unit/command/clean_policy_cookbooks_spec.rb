@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/clean_policy_cookbooks"
 
-describe ChefDK::Command::CleanPolicyCookbooks do
+describe ChefCLI::Command::CleanPolicyCookbooks do
 
   it_behaves_like "a command with a UI object"
 
@@ -124,7 +124,7 @@ describe ChefDK::Command::CleanPolicyCookbooks do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileCleanError.new("Failed to delete some policy revisions.", cause)
+        ChefCLI::PolicyfileCleanError.new("Failed to delete some policy revisions.", cause)
       end
 
       before do

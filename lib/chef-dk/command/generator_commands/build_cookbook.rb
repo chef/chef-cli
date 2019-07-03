@@ -18,13 +18,13 @@
 require_relative "base"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
 
       class BuildCookbook < Base
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate build-cookbook NAME [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate build-cookbook NAME [options]"
 
         attr_reader :errors
 
@@ -53,7 +53,7 @@ module ChefDK
             err(opt_parser)
             1
           end
-        rescue ChefDK::ChefRunnerError => e
+        rescue ChefCLI::ChefRunnerError => e
           err("ERROR: #{e}")
           1
         end

@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/a_generated_file"
 require "chef-cli/command/generator_commands/repo"
 
-describe ChefDK::Command::GeneratorCommands::Repo do
+describe ChefCLI::Command::GeneratorCommands::Repo do
 
   let(:argv) { %w{new_repo} }
 
@@ -46,11 +46,11 @@ describe ChefDK::Command::GeneratorCommands::Repo do
   subject(:generator) { described_class.new(argv) }
 
   def generator_context
-    ChefDK::Generator.context
+    ChefCLI::Generator.context
   end
 
   before do
-    ChefDK::Generator.reset
+    ChefCLI::Generator.reset
   end
 
   describe "when given invalid arguments" do

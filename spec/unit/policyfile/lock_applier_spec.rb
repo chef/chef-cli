@@ -20,18 +20,18 @@ require "chef-cli/policyfile/lock_applier"
 require "chef-cli/policyfile_compiler"
 require "chef-cli/policyfile_lock"
 
-describe ChefDK::Policyfile::LockApplier do
-  let(:lock) { instance_double("ChefDK::Policyfile::PolicyfileLock") }
-  let(:compiler) { instance_double("ChefDK::Policyfile::PolicyfileCompiler") }
-  let(:lock_applier) { ChefDK::Policyfile::LockApplier.new(lock, compiler) }
+describe ChefCLI::Policyfile::LockApplier do
+  let(:lock) { instance_double("ChefCLI::Policyfile::PolicyfileLock") }
+  let(:compiler) { instance_double("ChefCLI::Policyfile::PolicyfileCompiler") }
+  let(:lock_applier) { ChefCLI::Policyfile::LockApplier.new(lock, compiler) }
 
   let(:included_policy_1) do
-    instance_double("ChefDK::Policyfile::PolicyfileLocationSpec",
+    instance_double("ChefCLI::Policyfile::PolicyfileLocationSpec",
                     name: "policy1")
   end
 
   let(:included_policy_2) do
-    instance_double("ChefDK::Policyfile::PolicyfileLocationSpec",
+    instance_double("ChefCLI::Policyfile::PolicyfileLocationSpec",
                     name: "policy2")
   end
 

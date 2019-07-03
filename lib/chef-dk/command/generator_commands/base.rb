@@ -21,7 +21,7 @@ require_relative "../generator_commands"
 require_relative "chef_exts/recipe_dsl_ext"
 require_relative "chef_exts/generator_desc_resource"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
       # ## Base

@@ -20,7 +20,7 @@ require_relative "../cookbook_omnifetch"
 require_relative "../exceptions"
 require "chef/http/simple"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     class CommunityCookbookSource

@@ -17,7 +17,7 @@
 
 require_relative "base"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
       # ## CookbookCodeFile

@@ -21,12 +21,12 @@ require "fileutils"
 require "chef-cli/helpers"
 require "chef-cli/cookbook_profiler/git"
 
-describe ChefDK::CookbookProfiler::Git do
+describe ChefCLI::CookbookProfiler::Git do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:git_profiler) do
-    ChefDK::CookbookProfiler::Git.new(cookbook_path)
+    ChefCLI::CookbookProfiler::Git.new(cookbook_path)
   end
 
   context "with cookbooks in a valid git repo" do

@@ -1,4 +1,4 @@
-module ChefDK
+module ChefCLI
   class Dist
     # This class is not fully implemented, depending on it is not recommended!
 

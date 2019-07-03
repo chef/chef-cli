@@ -19,14 +19,14 @@ require "stringio"
 require "chef-cli/cli"
 require "unit/fixtures/command/cli_test_command"
 
-describe ChefDK::CLI do
+describe ChefCLI::CLI do
 
   let(:argv) { [] }
 
   # Setup a new commands map so we control what subcommands exist. Otherwise
   # we'd have to update this test for every new subcommand we add or code the
   # tests defensively.
-  let(:commands_map) { ChefDK::CommandsMap.new }
+  let(:commands_map) { ChefCLI::CommandsMap.new }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
@@ -48,13 +48,13 @@ describe ChefDK::CLI do
 
 
       Available Commands:
-          verify   Test the embedded ChefDK applications
+          verify   Test the embedded ChefCLI applications
           gem      Runs the `gem` command in context of the embedded ruby
           example  Example subcommand for testing
     E
   end
 
-  let(:version_message) { "Chef Development Kit version: #{ChefDK::VERSION}\n" }
+  let(:version_message) { "Chef Development Kit version: #{ChefCLI::VERSION}\n" }
 
   def run_cli(expected_exit_code)
     expect(cli).to receive(:exit).with(expected_exit_code)
@@ -86,7 +86,7 @@ describe ChefDK::CLI do
   end
 
   subject(:cli) do
-    ChefDK::CLI.new(argv).tap do |c|
+    ChefCLI::CLI.new(argv).tap do |c|
       allow(c).to receive(:commands_map).and_return(commands_map)
       allow(c).to receive(:stdout).and_return(stdout_io)
       allow(c).to receive(:stderr).and_return(stderr_io)
@@ -94,7 +94,7 @@ describe ChefDK::CLI do
   end
 
   before do
-    commands_map.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
+    commands_map.builtin "verify", :Verify, desc: "Test the embedded ChefCLI applications"
 
     commands_map.builtin "gem", :GemForwarder, require_path: "chef-cli/command/gem",
                                                desc: "Runs the `gem` command in context of the embedded ruby"
@@ -204,11 +204,11 @@ describe ChefDK::CLI do
     let(:argv) { %w{example with some args --and-an-option} }
 
     def test_result
-      ChefDK::Command::TestCommand.test_result
+      ChefCLI::Command::TestCommand.test_result
     end
 
     before do
-      ChefDK::Command::TestCommand.reset!
+      ChefCLI::Command::TestCommand.reset!
     end
 
     it "runs the subcommand" do
@@ -360,7 +360,7 @@ describe ChefDK::CLI do
           :omnibus_bin_dir,
           :omnibus_embedded_bin_dir,
         ].each do |method_name|
-          allow(cli).to receive(method_name).and_raise(ChefDK::OmnibusInstallNotFound.new)
+          allow(cli).to receive(method_name).and_raise(ChefCLI::OmnibusInstallNotFound.new)
         end
       end
 

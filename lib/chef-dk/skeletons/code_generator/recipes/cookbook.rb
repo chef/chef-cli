@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
 silence_chef_formatter unless context.verbose
@@ -23,7 +23,7 @@ spdx_license =  case context.license
                 end
 
 template "#{cookbook_dir}/metadata.rb" do
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   variables(
     spdx_license: spdx_license
   )
@@ -32,13 +32,13 @@ end
 
 # README
 template "#{cookbook_dir}/README.md" do
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
 # CHANGELOG
 template "#{cookbook_dir}/CHANGELOG.md" do
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -49,7 +49,7 @@ if context.use_policyfile
   # Policyfile
   template "#{cookbook_dir}/Policyfile.rb" do
     source 'Policyfile.rb.erb'
-    helpers(ChefDK::Generator::TemplateHelper)
+    helpers(ChefCLI::Generator::TemplateHelper)
   end
 else
   # Berks
@@ -60,7 +60,7 @@ end
 
 # LICENSE
 template "#{cookbook_dir}/LICENSE" do
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   source "LICENSE.#{context.license}.erb"
   action :create_if_missing
 end
@@ -76,7 +76,7 @@ template "#{cookbook_dir}/kitchen.yml" do
     source 'kitchen.yml.erb'
   end
 
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -87,7 +87,7 @@ end
 
 template "#{cookbook_dir}/test/integration/default/default_test.rb" do
   source 'inspec_default_test.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -108,7 +108,7 @@ end
 
 template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
   source 'recipe_spec.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -118,7 +118,7 @@ directory "#{cookbook_dir}/recipes"
 
 template "#{cookbook_dir}/recipes/default.rb" do
   source 'recipe.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 

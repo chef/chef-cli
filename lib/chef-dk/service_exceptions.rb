@@ -22,7 +22,7 @@
 
 require_relative "service_exception_inspectors"
 
-module ChefDK
+module ChefCLI
 
   module NestedExceptionWithInspector
 
@@ -64,7 +64,7 @@ module ChefDK
 
   end
 
-  # Base class for errors raised by ChefDK::PolicyfileServices objects. Don't
+  # Base class for errors raised by ChefCLI::PolicyfileServices objects. Don't
   # raise this directly, create a descriptively-named subclass. You can rescue
   # this to catch all errors from PolicyfileServices objects though.
   class PolicyfileServiceError < StandardError

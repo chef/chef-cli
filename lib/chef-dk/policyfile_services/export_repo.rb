@@ -28,7 +28,7 @@ require_relative "../service_exceptions"
 require_relative "../policyfile_lock"
 require_relative "../policyfile/storage_config"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
 
     class ExportRepo
@@ -320,7 +320,7 @@ module ChefDK
 
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
-        @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
+        @policyfile_lock = ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
         # TODO: enumerate any cookbook that have been updated
         @policyfile_lock.validate_cookbooks!
         @policyfile_lock

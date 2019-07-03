@@ -22,7 +22,7 @@ require_relative "../../ui"
 require_relative "base"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
 
@@ -33,7 +33,7 @@ module ChefDK
       # `GeneratorGenerator` to avoid causing a conflict.
       class GeneratorGenerator < Base
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate generator [ PATH ] [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate generator [ PATH ] [options]"
 
         attr_reader :destination_dir
         attr_accessor :ui
@@ -109,8 +109,8 @@ module ChefDK
         def metadata_rb
           <<~METADATA
             name             '#{cookbook_name}'
-            description      'Custom code generator cookbook for use with #{ChefDK::Dist::PRODUCT}'
-            long_description 'Custom code generator cookbook for use with #{ChefDK::Dist::PRODUCT}'
+            description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
+            long_description 'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
             version          '0.1.0'
 
           METADATA

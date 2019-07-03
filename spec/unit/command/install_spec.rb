@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/install"
 
-describe ChefDK::Command::Install do
+describe ChefCLI::Command::Install do
 
   it_behaves_like "a command with a UI object"
 
@@ -31,7 +31,7 @@ describe ChefDK::Command::Install do
     c
   end
 
-  let(:install_service) { instance_double(ChefDK::PolicyfileServices::Install) }
+  let(:install_service) { instance_double(ChefCLI::PolicyfileServices::Install) }
 
   it "disables debug by default" do
     expect(command.debug?).to be(false)
@@ -77,7 +77,7 @@ describe ChefDK::Command::Install do
     end
 
     it "creates the installer service with a `nil` policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+      expect(ChefCLI::PolicyfileServices::Install).to receive(:new)
         .with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config))
         .and_return(install_service)
       expect(command.installer).to eq(install_service)
@@ -94,7 +94,7 @@ describe ChefDK::Command::Install do
     end
 
     it "creates the installer service with the specified policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+      expect(ChefCLI::PolicyfileServices::Install).to receive(:new)
         .with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config))
         .and_return(install_service)
       expect(command.installer).to eq(install_service)
@@ -132,7 +132,7 @@ describe ChefDK::Command::Install do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileInstallError.new("install failed", cause)
+        ChefCLI::PolicyfileInstallError.new("install failed", cause)
       end
 
       before do

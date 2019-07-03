@@ -19,7 +19,7 @@ require "spec_helper"
 require "chef-cli/cookbook_profiler/identifiers"
 require "chef-cli/policyfile/read_cookbook_for_compat_mode_upload"
 
-describe ChefDK::CookbookProfiler::Identifiers do
+describe ChefCLI::CookbookProfiler::Identifiers do
 
   let(:cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
@@ -37,7 +37,7 @@ describe ChefDK::CookbookProfiler::Identifiers do
   end
 
   let(:identifiers) do
-    ChefDK::CookbookProfiler::Identifiers.new(cookbook_version)
+    ChefCLI::CookbookProfiler::Identifiers.new(cookbook_version)
   end
 
   let(:cookbook_files_with_cksums) do

@@ -27,9 +27,9 @@ module Gem
   end
 end
 
-describe ChefDK::Command::Verify do
+describe ChefCLI::Command::Verify do
 
-  let(:command_instance) { ChefDK::Command::Verify.new() }
+  let(:command_instance) { ChefCLI::Command::Verify.new() }
 
   let(:command_options) { [] }
 
@@ -80,25 +80,25 @@ describe ChefDK::Command::Verify do
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
-      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
+      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
-      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
+      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
 
     context "and a component's gem is not installed" do
       before do
-        component_map = ChefDK::Command::Verify.component_map.dup
-        component_map["cucumber"] = ChefDK::ComponentTest.new("cucumber")
+        component_map = ChefCLI::Command::Verify.component_map.dup
+        component_map["cucumber"] = ChefCLI::ComponentTest.new("cucumber")
         component_map["cucumber"].gem_base_dir = "cucumber"
-        allow(ChefDK::Command::Verify).to receive(:component_map).and_return(component_map)
+        allow(ChefCLI::Command::Verify).to receive(:component_map).and_return(component_map)
       end
 
       it "raises MissingComponentError when a component doesn't exist" do
         allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/missing_component/embedded/bin/ruby"))
-        expect { command_instance.validate_components! }.to raise_error(ChefDK::MissingComponentError)
+        expect { command_instance.validate_components! }.to raise_error(ChefCLI::MissingComponentError)
       end
     end
   end
@@ -119,7 +119,7 @@ describe ChefDK::Command::Verify do
     end
 
     let(:all_tests_ok) do
-      ChefDK::ComponentTest.new("successful_comp").tap do |c|
+      ChefCLI::ComponentTest.new("successful_comp").tap do |c|
         c.base_dir = "embedded/apps/berkshelf"
         c.unit_test(&run_unit_test)
         c.integration_test(&run_integration_test)
@@ -128,7 +128,7 @@ describe ChefDK::Command::Verify do
     end
 
     let(:all_tests_ok_2) do
-      ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
+      ChefCLI::ComponentTest.new("successful_comp_2").tap do |c|
         c.base_dir = "embedded/apps/test-kitchen"
         c.unit_test(&run_unit_test)
         c.smoke_test { sh("exit 0") }
@@ -136,7 +136,7 @@ describe ChefDK::Command::Verify do
     end
 
     let(:failing_unit_test) do
-      ChefDK::ComponentTest.new("failing_comp").tap do |c|
+      ChefCLI::ComponentTest.new("failing_comp").tap do |c|
         c.base_dir = "embedded/apps/chef"
         c.unit_test(&run_unit_test)
         c.smoke_test { sh("exit 0") }
@@ -156,7 +156,7 @@ describe ChefDK::Command::Verify do
     end
 
     let(:component_without_integration_tests) do
-      ChefDK::ComponentTest.new("successful_comp").tap do |c|
+      ChefCLI::ComponentTest.new("successful_comp").tap do |c|
         c.base_dir = "embedded/apps/berkshelf"
         c.unit_test { sh("./verify_me") }
         c.smoke_test { sh("exit 0") }

@@ -39,7 +39,7 @@ if Object.const_defined?(:Bundler) &&
 
 end
 
-module ChefDK
+module ChefCLI
   class ComponentTest
 
     class NullTestResult
@@ -121,7 +121,7 @@ module ChefDK
     # unexpected exit code.
     #
     # Most verification steps just run a single command, then
-    # ChefDK::Command::Verify#invoke_tests handles the results by inspecting
+    # ChefCLI::Command::Verify#invoke_tests handles the results by inspecting
     # the return value of the test block. For tests that run a lot of commands,
     # this is inconvenient so you can use #sh! instead.
     def sh!(*args)

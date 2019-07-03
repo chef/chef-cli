@@ -19,7 +19,7 @@ require "spec_helper"
 require "chef-cli/configurable"
 require "unit/fixtures/configurable/test_configurable"
 
-describe ChefDK::Configurable do
+describe ChefCLI::Configurable do
 
   let(:includer) { TestConfigurable.new }
 
@@ -58,7 +58,7 @@ describe ChefDK::Configurable do
 
     it "creates a default chef server HTTP client for Omnifetch" do
       client = CookbookOmnifetch.default_chef_server_http_client
-      expect(client).to be_a_kind_of(ChefDK::ChefServerAPIMulti)
+      expect(client).to be_a_kind_of(ChefCLI::ChefServerAPIMulti)
       expect(client.url).to eq(url)
       expect(client.opts[:signing_key_filename]).to eq(key_path)
       expect(client.opts[:client_name]).to eq(username)

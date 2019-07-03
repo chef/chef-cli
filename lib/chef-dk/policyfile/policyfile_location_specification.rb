@@ -22,7 +22,7 @@ require_relative "chef_server_lock_fetcher"
 require_relative "git_lock_fetcher"
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     # A PolicyfileLocationSpecification specifies where a policyfile lock is to be fetched from.
     # Using this information, it provides a fetcher that is capable loading the policyfile
@@ -72,7 +72,7 @@ module ChefDK
                        elsif source_options[:git]
                          Policyfile::GitLockFetcher.new(name, source_options, storage_config)
                        else
-                         raise ChefDK::InvalidPolicyfileLocation.new(
+                         raise ChefCLI::InvalidPolicyfileLocation.new(
                            "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}"
                          )
                        end

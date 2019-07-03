@@ -19,7 +19,7 @@ require "pry"
 require "spec_helper"
 require "chef-cli/command/generator_commands/base"
 
-describe ChefDK::Command::GeneratorCommands::Base do
+describe ChefCLI::Command::GeneratorCommands::Base do
   describe "parsing Chef configuration" do
     let(:cli_args) do
       [
@@ -42,7 +42,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
       end
 
       it "uses the defined values" do
-        cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+        cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
@@ -60,7 +60,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
         end
 
         it "uses the cli args" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config
@@ -83,7 +83,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
         end
 
         it "uses the generator configuration" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
           cmd.parse_options
           cmd.setup_context
           cfg = cmd.config
@@ -103,7 +103,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
       end
 
       it "uses the defined values" do
-        cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+        cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
@@ -122,7 +122,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
         end
 
         it "uses the cli args" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config

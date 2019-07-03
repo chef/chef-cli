@@ -23,11 +23,11 @@ require "license_acceptance/acceptor"
 require "license_acceptance/cli_flags/mixlib_cli"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     class Base
       include Mixlib::CLI
-      include ChefDK::Helpers
+      include ChefCLI::Helpers
       include LicenseAcceptance::CLIFlags::MixlibCLI
 
       option :help,
@@ -39,7 +39,7 @@ module ChefDK
       option :version,
         short: "-v",
         long: "--version",
-        description: "Show #{ChefDK::Dist::PRODUCT} version",
+        description: "Show #{ChefCLI::Dist::PRODUCT} version",
         boolean: true
 
       def initialize
@@ -56,7 +56,7 @@ module ChefDK
           msg(opt_parser.to_s)
           0
         elsif needs_version?(params)
-          msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
+          msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
           0
         else
           check_license_acceptance if enforce_license
@@ -80,7 +80,7 @@ module ChefDK
       end
 
       def check_license_acceptance
-        LicenseAcceptance::Acceptor.check_and_persist!("chef-cli", ChefDK::VERSION.to_s)
+        LicenseAcceptance::Acceptor.check_and_persist!("chef-cli", ChefCLI::VERSION.to_s)
       end
 
     end

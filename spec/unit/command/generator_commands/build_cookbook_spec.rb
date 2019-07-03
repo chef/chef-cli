@@ -21,7 +21,7 @@ require "shared/setup_git_committer_config"
 require "chef-cli/command/generator_commands/build_cookbook"
 require "mixlib/shellout"
 
-describe ChefDK::Command::GeneratorCommands::BuildCookbook do
+describe ChefCLI::Command::GeneratorCommands::BuildCookbook do
 
   include_context("setup_git_committer_config")
 
@@ -76,15 +76,15 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
   end
 
   def generator_context
-    ChefDK::Generator.context
+    ChefCLI::Generator.context
   end
 
   before do
-    ChefDK::Generator.reset
+    ChefCLI::Generator.reset
   end
 
   it "configures the chef runner" do
-    expect(cookbook_generator.chef_runner).to be_a(ChefDK::ChefRunner)
+    expect(cookbook_generator.chef_runner).to be_a(ChefCLI::ChefRunner)
     expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-cli/skeletons", project_root))
   end
 

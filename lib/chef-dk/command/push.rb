@@ -21,7 +21,7 @@ require_relative "../policyfile_services/push"
 require_relative "../configurable"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Push < Base
@@ -29,9 +29,9 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: #{ChefDK::Dist::EXEC} push POLICY_GROUP [ POLICY_FILE ] [options]
+        Usage: #{ChefCLI::Dist::EXEC} push POLICY_GROUP [ POLICY_FILE ] [options]
 
-        `#{ChefDK::Dist::EXEC} push` Uploads an existing Policyfile.lock.json to a #{ChefDK::Dist::SERVER_PRODUCT}, along
+        `#{ChefCLI::Dist::EXEC} push` Uploads an existing Policyfile.lock.json to a #{ChefCLI::Dist::SERVER_PRODUCT}, along
         with all the cookbooks contained in the policy lock. The policy lock is applied
         to a specific POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.

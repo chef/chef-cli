@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/policyfile_services/show_policy"
 
-describe ChefDK::PolicyfileServices::ShowPolicy do
+describe ChefCLI::PolicyfileServices::ShowPolicy do
 
   let(:chef_config) { double("Chef::Config") }
 
@@ -87,7 +87,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
         end
 
         it "raises an error" do
-          expect { show_policy_service.run }.to raise_error(ChefDK::PolicyfileListError)
+          expect { show_policy_service.run }.to raise_error(ChefCLI::PolicyfileListError)
         end
       end
 
@@ -836,7 +836,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
       it "prints a message saying there is no policy assigned" do
         message = "No Policyfile lock named 'appserver' found in policy_group 'dev' at https://chef.example/organizations/monkeynews"
-        expect { show_policy_service.run }.to raise_error(ChefDK::PolicyfileDownloadError, message)
+        expect { show_policy_service.run }.to raise_error(ChefCLI::PolicyfileDownloadError, message)
       end
 
     end
@@ -867,10 +867,10 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
       let(:policyfile_lock_json) { FFI_Yajl::Encoder.encode(policyfile_lock_data, pretty: true) }
 
-      let(:pager) { instance_double("ChefDK::Pager", ui: ui) }
+      let(:pager) { instance_double("ChefCLI::Pager", ui: ui) }
 
       before do
-        allow(ChefDK::Pager).to receive(:new).and_return(pager)
+        allow(ChefCLI::Pager).to receive(:new).and_return(pager)
         allow(pager).to receive(:with_pager).and_yield(pager)
         allow(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_return(policyfile_lock_data)
       end

@@ -19,7 +19,7 @@ require "spec_helper"
 require "shared/command_with_ui_object"
 require "chef-cli/command/delete_policy_group"
 
-describe ChefDK::Command::DeletePolicyGroup do
+describe ChefCLI::Command::DeletePolicyGroup do
 
   it_behaves_like "a command with a UI object"
 
@@ -58,7 +58,7 @@ describe ChefDK::Command::DeletePolicyGroup do
       it "configures the rm_policy_group service" do
         expect(chef_config_loader).to receive(:load)
         service = command.rm_policy_group_service
-        expect(service).to be_a(ChefDK::PolicyfileServices::RmPolicyGroup)
+        expect(service).to be_a(ChefCLI::PolicyfileServices::RmPolicyGroup)
         expect(service.chef_config).to eq(chef_config)
         expect(service.ui).to eq(command.ui)
         expect(service.policy_group).to eq("example-policy-group")
@@ -151,7 +151,7 @@ describe ChefDK::Command::DeletePolicyGroup do
       end
 
       let(:exception) do
-        ChefDK::DeletePolicyGroupError.new("Failed to delete policy group", cause)
+        ChefCLI::DeletePolicyGroupError.new("Failed to delete policy group", cause)
       end
 
       before do

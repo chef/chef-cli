@@ -18,7 +18,7 @@
 require_relative "cookbook_code_file"
 require_relative "../../dist"
 
-module ChefDK
+module ChefCLI
   module Command
     module GeneratorCommands
       # chef generate template [path/to/cookbook_root] name --source=source_file
@@ -29,7 +29,7 @@ module ChefDK
           long: "--source SOURCE_FILE",
           description: "Copy content from SOURCE_FILE"
 
-        banner "Usage: #{ChefDK::Dist::EXEC} generate template [path/to/cookbook] NAME [options]"
+        banner "Usage: #{ChefCLI::Dist::EXEC} generate template [path/to/cookbook] NAME [options]"
 
         options.merge!(SharedGeneratorOptions.options)
 

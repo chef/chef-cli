@@ -20,7 +20,7 @@ require "spec_helper"
 require "chef-cli/policyfile_compiler"
 require "chef-cli/exceptions"
 
-describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
+describe ChefCLI::PolicyfileCompiler, "including upstream policy locks" do
 
   def expand_run_list(r)
     r.map do |item|
@@ -118,7 +118,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
   let(:included_policy_lock_name) { "included" }
   let(:included_policy_fetcher) do
-    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+    instance_double("ChefCLI::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
       allow(double).to receive(:valid?).and_return(true)
       allow(double).to receive(:errors).and_return([])
@@ -127,7 +127,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
   let(:lock_source_options) { { path: "somelocation" } }
   let(:included_policy_lock_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
+    ChefCLI::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
       allow(spec).to receive(:source_options_for_lock).and_return(lock_source_options)
@@ -137,7 +137,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
   let(:included_policies) { [] }
 
   let(:policyfile) do
-    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
+    policyfile = ChefCLI::PolicyfileCompiler.new.build do |p|
       if default_source
         p.default_source.replace([default_source])
       else
@@ -272,7 +272,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
       context "and the including policy specifies a source that is equivalent to the included policy" do
         let(:run_list) { [] }
-        let(:default_source) { instance_double("ChefDK::Policyfile::NullCookbookSource") }
+        let(:default_source) { instance_double("ChefCLI::Policyfile::NullCookbookSource") }
 
         before do
           allow(default_source).to receive(:preferred_cookbooks).and_return(["cookbookC"])
@@ -289,7 +289,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
       context "and the including policy specifies a source that is not equivalent to the included policy" do
         let(:run_list) { [] }
-        let(:default_source) { instance_double("ChefDK::Policyfile::NullCookbookSource") }
+        let(:default_source) { instance_double("ChefCLI::Policyfile::NullCookbookSource") }
 
         before do
           allow(default_source).to receive(:preferred_cookbooks).and_return(["cookbookC"])
@@ -300,7 +300,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         end
 
         it "it raises an error" do
-          expect { policyfile_lock.to_lock }.to raise_error(ChefDK::IncludePolicyCookbookSourceConflict)
+          expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::IncludePolicyCookbookSourceConflict)
         end
       end
 
@@ -374,7 +374,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "raises an error describing all attribute conflicts" do
           expect { policyfile_lock.to_lock }.to raise_error(
-            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            ChefCLI::Policyfile::AttributeMergeChecker::ConflictError,
             "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]")
         end
       end
@@ -424,7 +424,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "raises an error describing all attribute conflicts" do
           expect { policyfile_lock.to_lock }.to raise_error(
-            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            ChefCLI::Policyfile::AttributeMergeChecker::ConflictError,
             "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]")
         end
       end
@@ -485,7 +485,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
     let(:included_policy_2_lock_name) { "included2" }
     let(:included_policy_2_fetcher) do
-      instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+      instance_double("ChefCLI::Policyfile::LocalLockFetcher").tap do |double|
         allow(double).to receive(:lock_data).and_return(included_policy_2_lock_data)
         allow(double).to receive(:valid?).and_return(true)
         allow(double).to receive(:errors).and_return([])
@@ -493,7 +493,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
     let(:included_policy_2_lock_spec) do
-      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_2_lock_name, lock_source_options, nil).tap do |spec|
+      ChefCLI::Policyfile::PolicyfileLocationSpecification.new(included_policy_2_lock_name, lock_source_options, nil).tap do |spec|
         allow(spec).to receive(:valid?).and_return(true)
         allow(spec).to receive(:fetcher).and_return(included_policy_2_fetcher)
         allow(spec).to receive(:source_options_for_lock).and_return(lock_source_options)
@@ -591,7 +591,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "raises an error describing the conflict" do
           expect { policyfile_lock }.to raise_error(
-            ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions,
+            ChefCLI::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions,
             /Multiple versions provided for cookbook cookbookC/
           )
         end
@@ -651,7 +651,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "raises an error describing the conflict" do
           expect { policyfile_lock }.to raise_error(
-            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            ChefCLI::Policyfile::AttributeMergeChecker::ConflictError,
             "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
         end
       end
@@ -710,7 +710,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "raises an error describing the conflict" do
           expect { policyfile_lock }.to raise_error(
-            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            ChefCLI::Policyfile::AttributeMergeChecker::ConflictError,
             "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
         end
       end

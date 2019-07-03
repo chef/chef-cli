@@ -18,13 +18,13 @@
 require "spec_helper"
 require "chef-cli/policyfile/chef_repo_cookbook_source"
 
-describe ChefDK::Policyfile::ChefRepoCookbookSource do
+describe ChefCLI::Policyfile::ChefRepoCookbookSource do
 
   let(:repo_path) do
     File.expand_path("spec/unit/fixtures/local_path_cookbooks", project_root)
   end
 
-  let(:cookbook_source) { ChefDK::Policyfile::ChefRepoCookbookSource.new(repo_path) }
+  let(:cookbook_source) { ChefCLI::Policyfile::ChefRepoCookbookSource.new(repo_path) }
 
   let(:local_repo_universe) do
     {

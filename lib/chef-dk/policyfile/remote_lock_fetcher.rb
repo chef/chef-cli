@@ -21,7 +21,7 @@ require_relative "../exceptions"
 require "chef/http"
 require "tempfile" unless defined?(Tempfile)
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # A policyfile lock fetcher that can read a lock from a remote location.
@@ -80,7 +80,7 @@ module ChefDK
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
             if !cookbook_path.nil?
-              raise ChefDK::InvalidLockfile, "Invalid cookbook path: #{cookbook_path}. Remote Policyfiles should only use remote cookbooks."
+              raise ChefCLI::InvalidLockfile, "Invalid cookbook path: #{cookbook_path}. Remote Policyfiles should only use remote cookbooks."
             end
           end
         end
@@ -92,9 +92,9 @@ module ChefDK
         FFI_Yajl::Parser.parse(http_client.get(""))
       rescue Net::ProtocolError => e
         if e.respond_to?(:response) && e.response.code.to_s == "404"
-          raise ChefDK::PolicyfileLockDownloadError.new("No remote policyfile lock '#{name}' found at #{http_client.url}")
+          raise ChefCLI::PolicyfileLockDownloadError.new("No remote policyfile lock '#{name}' found at #{http_client.url}")
         else
-          raise ChefDK::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
+          raise ChefCLI::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
         end
       rescue => e
         raise e

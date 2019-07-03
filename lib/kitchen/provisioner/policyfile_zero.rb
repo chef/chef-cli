@@ -146,15 +146,15 @@ module Kitchen
         end
       end
 
-      # An instance of ChefDK::PolicyfileServices::ExportRepo, configured with
+      # An instance of ChefCLI::PolicyfileServices::ExportRepo, configured with
       # the sandbox path. Calling `#run` on this copies the cookbooks to the
       # sandbox. Calling `#policy_name` returns the policy's name.
       #
       # @api private
       def policy_exporter
         # Must force this because TK by default copies the current cookbook to the sandbox
-        # See ChefDK::PolicyfileServices::ExportRepo#assert_export_dir_clean!
-        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
+        # See ChefCLI::PolicyfileServices::ExportRepo#assert_export_dir_clean!
+        @policy_exporter ||= ChefCLI::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
                                                                         export_dir: sandbox_path,
                                                                         force: true)
       end

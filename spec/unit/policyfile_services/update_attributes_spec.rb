@@ -19,9 +19,9 @@ require "spec_helper"
 require "chef-cli/helpers"
 require "chef-cli/policyfile_services/update_attributes"
 
-describe ChefDK::PolicyfileServices::UpdateAttributes do
+describe ChefCLI::PolicyfileServices::UpdateAttributes do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
@@ -64,7 +64,7 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: working_dir )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: working_dir )
   end
 
   subject(:update_attrs_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir) }
@@ -81,8 +81,8 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
     end
 
     it "creates a storage config from the given policyfile path and root dir" do
-      new_storage_config = instance_double("ChefDK::Policyfile::StorageConfig")
-      expect(ChefDK::Policyfile::StorageConfig).to receive(:new).with(no_args).and_return(new_storage_config)
+      new_storage_config = instance_double("ChefCLI::Policyfile::StorageConfig")
+      expect(ChefCLI::Policyfile::StorageConfig).to receive(:new).with(no_args).and_return(new_storage_config)
       expect(new_storage_config).to receive(:use_policyfile).with(policyfile_rb_path).and_return(new_storage_config)
       expect(update_attrs_service.storage_config).to eq(new_storage_config)
     end
@@ -92,8 +92,8 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
   context "when no Policyfile is present or specified" do
 
     it "errors out" do
-      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefDK::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
-      expect { update_attrs_service.run }.to raise_error(ChefDK::PolicyfileUpdateError)
+      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefCLI::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
+      expect { update_attrs_service.run }.to raise_error(ChefCLI::PolicyfileUpdateError)
     end
 
   end
@@ -102,8 +102,8 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
 
     it "errors out" do
       with_file(policyfile_rb_path) { |f| f.print(policyfile_content) }
-      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefDK::LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_path}")
-      expect { update_attrs_service.run }.to raise_error(ChefDK::PolicyfileUpdateError)
+      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefCLI::LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_path}")
+      expect { update_attrs_service.run }.to raise_error(ChefCLI::PolicyfileUpdateError)
     end
 
   end
@@ -170,10 +170,10 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
       end
 
       context "when a policyfile is included" do
-        let(:lock_applier) { instance_double("ChefDK::Policyfile::LockApplier") }
+        let(:lock_applier) { instance_double("ChefCLI::Policyfile::LockApplier") }
 
         it "locks the included policyfile" do
-          expect(ChefDK::Policyfile::LockApplier).to receive(:new).with(
+          expect(ChefCLI::Policyfile::LockApplier).to receive(:new).with(
             update_attrs_service.policyfile_lock, update_attrs_service.policyfile_compiler).and_return(lock_applier)
           expect(lock_applier).not_to receive(:with_unlocked_policies)
           expect(lock_applier).to receive(:apply!)

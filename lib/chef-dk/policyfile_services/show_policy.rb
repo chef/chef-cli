@@ -19,7 +19,7 @@ require_relative "../policyfile/comparison_base"
 require_relative "../policyfile/lister"
 require_relative "../pager"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
     class ShowPolicy
       class ReportPrinter

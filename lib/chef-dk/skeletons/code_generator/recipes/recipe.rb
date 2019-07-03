@@ -1,4 +1,4 @@
-context = ChefDK::Generator.context
+context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 recipe_path = File.join(cookbook_dir, 'recipes', "#{context.new_file_basename}.rb")
 spec_helper_path = File.join(cookbook_dir, 'spec', 'spec_helper.rb')
@@ -28,7 +28,7 @@ end
 
 template spec_path do
   source 'recipe_spec.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
@@ -39,12 +39,12 @@ end
 
 template inspec_path do
   source 'inspec_default_test.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
   action :create_if_missing
 end
 
 # Recipe
 template recipe_path do
   source 'recipe.rb.erb'
-  helpers(ChefDK::Generator::TemplateHelper)
+  helpers(ChefCLI::Generator::TemplateHelper)
 end

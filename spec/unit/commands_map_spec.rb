@@ -19,9 +19,9 @@ require "spec_helper"
 require "chef-cli/commands_map"
 require "stringio"
 
-describe ChefDK::CommandsMap do
+describe ChefCLI::CommandsMap do
 
-  subject(:mapping) { ChefDK::CommandsMap.new }
+  subject(:mapping) { ChefCLI::CommandsMap.new }
 
   before do
     mapping.builtin("example", :Example)
@@ -51,7 +51,7 @@ describe ChefDK::CommandsMap do
   end
 
   it "creates an instance of a command" do
-    expect(mapping.instantiate("explicit-path-example")).to be_an_instance_of(ChefDK::Command::ExplicitPathExample)
+    expect(mapping.instantiate("explicit-path-example")).to be_an_instance_of(ChefCLI::Command::ExplicitPathExample)
   end
 
 end

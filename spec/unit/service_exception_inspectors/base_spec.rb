@@ -18,7 +18,7 @@
 require "spec_helper"
 require "chef-cli/service_exception_inspectors/base"
 
-describe ChefDK::ServiceExceptionInspectors::Base do
+describe ChefCLI::ServiceExceptionInspectors::Base do
 
   let(:message) { "something went wrong, oops" }
 

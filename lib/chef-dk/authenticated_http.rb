@@ -17,6 +17,6 @@
 
 require "chef/server_api"
 
-module ChefDK
+module ChefCLI
   AuthenticatedHTTP = Chef::ServerAPI
 end

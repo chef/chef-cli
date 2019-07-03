@@ -17,7 +17,7 @@
 
 require "ffi_yajl" unless defined?(FFI_Yajl)
 
-module ChefDK
+module ChefCLI
   module ServiceExceptionInspectors
     class HTTP
 

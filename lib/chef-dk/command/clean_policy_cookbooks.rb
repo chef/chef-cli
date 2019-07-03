@@ -21,17 +21,17 @@ require_relative "../configurable"
 require_relative "../policyfile_services/clean_policy_cookbooks"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class CleanPolicyCookbooks < Base
 
       banner(<<~BANNER)
-        Usage: #{ChefDK::Dist::EXEC} clean-policy-cookbooks [options]
+        Usage: #{ChefCLI::Dist::EXEC} clean-policy-cookbooks [options]
 
-        `#{ChefDK::Dist::EXEC} clean-policy-cookbooks` deletes unused Policyfile cookbooks. Cookbooks
+        `#{ChefCLI::Dist::EXEC} clean-policy-cookbooks` deletes unused Policyfile cookbooks. Cookbooks
         are considered unused when they are not referenced by any Policyfile revision
-        on the #{ChefDK::Dist::SERVER_PRODUCT}. Note that cookbooks which are referenced by "orphaned" policy
+        on the #{ChefCLI::Dist::SERVER_PRODUCT}. Note that cookbooks which are referenced by "orphaned" policy
         revisions are not removed, so you may wish to run `chef clean-policy-revisions`
         to remove orphaned policies before running this command.
 

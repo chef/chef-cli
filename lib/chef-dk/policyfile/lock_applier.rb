@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # A class that can apply constraints from a lock to a compiler

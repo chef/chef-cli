@@ -21,7 +21,7 @@ require_relative "../policyfile_services/export_repo"
 require_relative "../configurable"
 require_relative "../dist"
 
-module ChefDK
+module ChefCLI
   module Command
 
     class Export < Base
@@ -29,15 +29,15 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: #{ChefDK::Dist::EXEC} export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
+        Usage: #{ChefCLI::Dist::EXEC} export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
-        `#{ChefDK::Dist::EXEC} export` creates a #{ChefDK::Dist::ZERO_PRODUCT} compatible #{ChefDK::Dist::INFRA_PRODUCT} repository containing the
+        `#{ChefCLI::Dist::EXEC} export` creates a #{ChefCLI::Dist::ZERO_PRODUCT} compatible #{ChefCLI::Dist::INFRA_PRODUCT} repository containing the
         cookbooks described in a Policyfile.lock.json. The exported repository also contains
-        a .chef/config.rb which configures #{ChefDK::Dist::INFRA_CLIENT_PRODUCT} to apply your policy. Once the
+        a .chef/config.rb which configures #{ChefCLI::Dist::INFRA_CLIENT_PRODUCT} to apply your policy. Once the
         exported repo is copied to the target machine, you can apply the policy to the
         machine with:
 
-        `#{ChefDK::Dist::INFRA_CLIENT_CLI} -z`.
+        `#{ChefCLI::Dist::INFRA_CLIENT_CLI} -z`.
 
         See our detailed README for more information:
 
@@ -90,7 +90,7 @@ module ChefDK
           ui.msg("")
           ui.msg("To converge this system with the exported policy, run:")
           ui.msg("  cd #{export_dir}")
-          ui.msg("  #{ChefDK::Dist::INFRA_CLIENT_CLI} -z")
+          ui.msg("  #{ChefCLI::Dist::INFRA_CLIENT_CLI} -z")
         end
         0
       rescue ExportDirNotEmpty => e

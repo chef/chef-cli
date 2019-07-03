@@ -34,7 +34,7 @@ require "ohai/system"
 require "chef-cli/command/generator_commands/chef_exts/recipe_dsl_ext"
 require "chef-cli/command/generator_commands/chef_exts/quieter_doc_formatter"
 
-describe ChefDK::RecipeDSLExt do
+describe ChefCLI::RecipeDSLExt do
 
   before(:all) { Chef.reset! }
 

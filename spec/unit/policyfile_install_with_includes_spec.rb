@@ -20,7 +20,7 @@ require "spec_helper"
 require "chef-cli/policyfile_compiler"
 require "chef-cli/policyfile_lock.rb"
 
-describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" do
+describe ChefCLI::PolicyfileLock, "installing cookbooks from included policies" do
 
   let(:run_list) { ["local::default"] }
 
@@ -123,7 +123,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
   let(:included_policy_lock_name) { "included" }
 
   let(:included_policy_fetcher) do
-    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+    instance_double("ChefCLI::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
       allow(double).to receive(:valid?).and_return(true)
       allow(double).to receive(:errors).and_return([])
@@ -131,11 +131,11 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
   end
 
   let(:default_source_obj) do
-    instance_double("ChefDK::Policyfile::CommunityCookbookSource")
+    instance_double("ChefCLI::Policyfile::CommunityCookbookSource")
   end
 
   let(:policyfile) do
-    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
+    policyfile = ChefCLI::PolicyfileCompiler.new.build do |p|
       p.run_list(*run_list)
     end
 
@@ -160,8 +160,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       { artifactserver: "https://supermarket.example/c/#{cookbook_name}/#{version}/download", version: version }
     end
 
-    allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new) do |cookbook_name, version_constraint, source_opts, storage_config|
-      double = instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+    allow(ChefCLI::Policyfile::CookbookLocationSpecification).to receive(:new) do |cookbook_name, version_constraint, source_opts, storage_config|
+      double = instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
                       name: cookbook_name,
                       version_constraint: Semverse::Constraint.new(version_constraint),
                       ensure_cached: nil,
@@ -178,7 +178,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   context "when a policy is included" do
     let(:included_policy_lock_spec) do
-      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
+      ChefCLI::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
         allow(spec).to receive(:valid?).and_return(true)
         allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
         allow(spec).to receive(:source_options_for_lock).and_return(lock_source_options)
@@ -200,8 +200,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
     end
 
     it "maintains identifiers for remote cookbooks" do
-      allow(ChefDK::Policyfile::CachedCookbook).to receive(:new) do |name, storage_config|
-        mock = ChefDK::Policyfile::CachedCookbook.allocate
+      allow(ChefCLI::Policyfile::CachedCookbook).to receive(:new) do |name, storage_config|
+        mock = ChefCLI::Policyfile::CachedCookbook.allocate
         mock.send(:initialize, name, storage_config)
         allow(mock).to receive(:installed?).and_return(true)
         allow(mock).to receive(:validate!)

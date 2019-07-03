@@ -21,7 +21,7 @@ require_relative "read_cookbook_for_compat_mode_upload"
 require_relative "../ui"
 require_relative "reports/upload"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class Uploader
 

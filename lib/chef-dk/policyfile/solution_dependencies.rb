@@ -19,7 +19,7 @@ require "semverse"
 require "set" unless defined?(Set)
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     class SolutionDependencies

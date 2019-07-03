@@ -15,5 +15,5 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
 end

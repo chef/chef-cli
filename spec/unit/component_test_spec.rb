@@ -19,10 +19,10 @@ require "spec_helper"
 require "chef-cli/component_test"
 require "pathname"
 
-describe ChefDK::ComponentTest do
+describe ChefCLI::ComponentTest do
 
   let(:component) do
-    ChefDK::ComponentTest.new("berkshelf").tap do |c|
+    ChefCLI::ComponentTest.new("berkshelf").tap do |c|
       c.base_dir = "berkshelf"
     end
   end

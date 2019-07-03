@@ -18,45 +18,45 @@
 require "spec_helper"
 require "chef-cli/generator"
 
-describe ChefDK::Generator do
+describe ChefCLI::Generator do
 
   before(:each) do
-    ChefDK::Generator.reset
+    ChefCLI::Generator.reset
   end
 
   describe "self.add_attr_to_context" do
     it "adds an accessor for the symbol to the context object" do
-      ChefDK::Generator.add_attr_to_context(:snakes)
-      expect(ChefDK::Generator.context.snakes = 5).to be_eql(5)
-      expect(ChefDK::Generator.context.snakes).to be_eql(5)
+      ChefCLI::Generator.add_attr_to_context(:snakes)
+      expect(ChefCLI::Generator.context.snakes = 5).to be_eql(5)
+      expect(ChefCLI::Generator.context.snakes).to be_eql(5)
     end
 
     it "delegates the accessor from the template helper" do
-      ChefDK::Generator.add_attr_to_context(:snakes)
-      ChefDK::Generator.context.snakes = 5
-      expect(ChefDK::Generator::TemplateHelper.instance_methods).to include(:snakes)
+      ChefCLI::Generator.add_attr_to_context(:snakes)
+      ChefCLI::Generator.context.snakes = 5
+      expect(ChefCLI::Generator::TemplateHelper.instance_methods).to include(:snakes)
     end
 
     it "sets a value" do
-      ChefDK::Generator.add_attr_to_context(:snakes, 5)
-      expect(ChefDK::Generator.context.snakes).to be_eql(5)
+      ChefCLI::Generator.add_attr_to_context(:snakes, 5)
+      expect(ChefCLI::Generator.context.snakes).to be_eql(5)
     end
   end
 end
 
 class TmplTest
-  include ChefDK::Generator::TemplateHelper
+  include ChefCLI::Generator::TemplateHelper
 end
 
-describe ChefDK::Generator::TemplateHelper do
+describe ChefCLI::Generator::TemplateHelper do
   let(:license) { "all_rights" }
   let(:copyright_holder) { "Adam Jacob" }
   let(:helper) { TmplTest.new }
 
   before(:each) do
-    ChefDK::Generator.reset
-    ChefDK::Generator.add_attr_to_context(:license, license)
-    ChefDK::Generator.add_attr_to_context(:copyright_holder, "Adam Jacob")
+    ChefCLI::Generator.reset
+    ChefCLI::Generator.add_attr_to_context(:license, license)
+    ChefCLI::Generator.add_attr_to_context(:copyright_holder, "Adam Jacob")
   end
 
   describe "license_description" do

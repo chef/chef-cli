@@ -18,7 +18,7 @@
 require_relative "../cookbook_omnifetch"
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # Provides handling of relative paths, such as on disk cookbooks which

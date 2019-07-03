@@ -19,7 +19,7 @@ require "spec_helper"
 require "stringio"
 require "chef-cli/command/generate"
 
-class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCommands::Base
+class ChefCLI::Command::GeneratorCommands::Example < ChefCLI::Command::GeneratorCommands::Base
 
   option :one,
     long:         "--option-one",
@@ -45,10 +45,10 @@ class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCo
   end
 end
 
-describe ChefDK::Command::Generate do
+describe ChefCLI::Command::Generate do
 
   # Use a subclass so we have a clean slate of defined generators
-  let(:generator_class) { Class.new(ChefDK::Command::Generate) }
+  let(:generator_class) { Class.new(ChefCLI::Command::Generate) }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }

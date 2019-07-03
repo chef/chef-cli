@@ -21,7 +21,7 @@ require "semverse"
 
 require_relative "community_cookbook_source"
 
-module ChefDK
+module ChefCLI
   module Policyfile
 
     # Fetches cookbooks from a supermarket, similar to CommunityCookbookSource

@@ -27,7 +27,7 @@ require_relative "storage_config"
 
 require_relative "cookbook_location_specification"
 
-module ChefDK
+module ChefCLI
 
   module Policyfile
 

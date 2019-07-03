@@ -18,7 +18,7 @@
 require "addressable/uri" unless defined?(Addressable::URI)
 require_relative "../exceptions"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class SourceURI < Addressable::URI
       class << self
@@ -28,21 +28,21 @@ module ChefDK
         # string to parse.  No parsing is performed if the object
         # is already an <code>Addressable::URI</code>.
         #
-        # @raise [ChefDK::InvalidPolicyfileSourceURI]
+        # @raise [ChefCLI::InvalidPolicyfileSourceURI]
         #
-        # @return [ChefDK::Policyfile::SourceURI]
+        # @return [ChefCLI::Policyfile::SourceURI]
         def parse(uri)
           parsed_uri = super(uri)
           parsed_uri.send(:validate)
           parsed_uri
         rescue TypeError, ArgumentError => ex
-          raise ChefDK::InvalidPolicyfileSourceURI.new(uri, ex)
+          raise ChefCLI::InvalidPolicyfileSourceURI.new(uri, ex)
         end
       end
 
       VALID_SCHEMES = %w{ https http }.freeze
 
-      # @raise [ChefDK::InvalidPolicyfileSourceURI]
+      # @raise [ChefCLI::InvalidPolicyfileSourceURI]
       def validate
         super
 

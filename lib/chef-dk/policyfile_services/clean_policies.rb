@@ -19,7 +19,7 @@ require_relative "../exceptions"
 require_relative "../service_exceptions"
 require_relative "../policyfile/lister"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
     class CleanPolicies
 

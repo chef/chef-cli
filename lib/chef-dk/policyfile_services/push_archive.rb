@@ -23,7 +23,7 @@ require_relative "../policyfile_lock"
 require "chef/server_api"
 require_relative "../policyfile/uploader"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
     class PushArchive
 
@@ -67,7 +67,7 @@ module ChefDK
 
       # @api private
       def uploader
-        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group,
+        ChefCLI::Policyfile::Uploader.new(policyfile_lock, policy_group,
                                          ui: ui,
                                          http_client: http_client,
                                          policy_document_native_api: config.policy_document_native_api)
@@ -89,9 +89,9 @@ module ChefDK
           raise InvalidPolicyArchive, <<~MESSAGE
             This archive is in an unsupported format.
 
-            This archive was created with an older version of ChefDK. This version of
-            ChefDK does not support archives in the older format. Please Re-create the
-            archive with a newer version of ChefDK or Workstation.
+            This archive was created with an older version of ChefCLI. This version of
+            ChefCLI does not support archives in the older format. Please Re-create the
+            archive with a newer version of ChefCLI or Workstation.
           MESSAGE
         end
 
@@ -105,7 +105,7 @@ module ChefDK
 
         policy_data = load_policy_data(policyfile_lock_path)
         storage_config = Policyfile::StorageConfig.new.use_policyfile_lock(policyfile_lock_path)
-        @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_archive(policy_data)
+        @policyfile_lock = ChefCLI::PolicyfileLock.new(storage_config).build_from_archive(policy_data)
 
         missing_cookbooks = policyfile_lock.cookbook_locks.select do |name, lock|
           !lock.installed?

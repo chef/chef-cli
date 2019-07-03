@@ -20,7 +20,7 @@ require "set" unless defined?(Set)
 require "chef/server_api"
 require_relative "../service_exceptions"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
 
     class CleanPolicyCookbooks

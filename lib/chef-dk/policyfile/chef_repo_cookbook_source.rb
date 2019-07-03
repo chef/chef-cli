@@ -20,7 +20,7 @@ require "chef/cookbook_loader"
 require "chef/cookbook/file_system_file_vendor"
 require_relative "../ui"
 
-module ChefDK
+module ChefCLI
   module Policyfile
     class ChefRepoCookbookSource
 

@@ -23,12 +23,12 @@ require_relative "../policyfile_compiler"
 require_relative "../policyfile/uploader"
 require_relative "../policyfile/storage_config"
 
-module ChefDK
+module ChefCLI
   module PolicyfileServices
     class Push
 
       include Policyfile::StorageConfigDelegation
-      include ChefDK::Helpers
+      include ChefCLI::Helpers
 
       attr_reader :root_dir
       attr_reader :config
@@ -63,7 +63,7 @@ module ChefDK
       end
 
       def uploader
-        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group,
+        ChefCLI::Policyfile::Uploader.new(policyfile_lock, policy_group,
                                          ui: ui,
                                          http_client: http_client,
                                          policy_document_native_api: config.policy_document_native_api)
@@ -99,7 +99,7 @@ module ChefDK
 
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
-        @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
+        @policyfile_lock = ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
         # TODO: enumerate any cookbook that have been updated
         @policyfile_lock.validate_cookbooks!
         @policyfile_lock

@@ -15,6 +15,6 @@
 # limitations under the License.
 #
 
-module ChefDK
+module ChefCLI
   VERSION = "4.0.82".freeze
 end

@@ -23,12 +23,12 @@ require_relative "base"
 require_relative "../dist"
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 
-module ChefDK
+module ChefCLI
 
   class ShellCompletionTemplateContext
 
     def commands
-      ChefDK.commands_map.command_specs.inject({}) do |cmd_info, (_key, cmd_spec)|
+      ChefCLI.commands_map.command_specs.inject({}) do |cmd_info, (_key, cmd_spec)|
         cmd_info[cmd_spec.name] = cmd_spec.description
         cmd_info
       end
@@ -40,33 +40,33 @@ module ChefDK
   end
 
   module Command
-    class ShellInit < ChefDK::Command::Base
+    class ShellInit < ChefCLI::Command::Base
 
       SUPPORTED_SHELLS = %w{ bash fish zsh sh powershell posh}.map(&:freeze).freeze
 
       banner(<<~HELP)
-        Usage: #{ChefDK::Dist::EXEC} shell-init
+        Usage: #{ChefCLI::Dist::EXEC} shell-init
 
-        `#{ChefDK::Dist::EXEC} shell-init` modifies your shell environment to make ChefDK or Workstation your
+        `#{ChefCLI::Dist::EXEC} shell-init` modifies your shell environment to make ChefCLI or Workstation your
         default Ruby.
 
           To enable for just the current shell session:
 
             In sh, bash, and zsh:
-              eval "$(#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)"
+              eval "$(#{ChefCLI::Dist::EXEC} shell-init SHELL_NAME)"
             In fish:
-              eval (#{ChefDK::Dist::EXEC} shell-init fish)
+              eval (#{ChefCLI::Dist::EXEC} shell-init fish)
             In Powershell:
-              #{ChefDK::Dist::EXEC} shell-init powershell | Invoke-Expression
+              #{ChefCLI::Dist::EXEC} shell-init powershell | Invoke-Expression
 
           To permanently enable:
 
             In sh, bash, and zsh:
-              echo 'eval "$(#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+              echo 'eval "$(#{ChefCLI::Dist::EXEC} shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
             In fish:
-              echo 'eval (#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
+              echo 'eval (#{ChefCLI::Dist::EXEC} shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
             In Powershell
-              "#{ChefDK::Dist::EXEC} shell-init powershell | Invoke-Expression" >> $PROFILE
+              "#{ChefCLI::Dist::EXEC} shell-init powershell | Invoke-Expression" >> $PROFILE
 
         OPTIONS:
 

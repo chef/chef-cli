@@ -52,15 +52,11 @@ module ChefCLI
     #
 
     def omnibus_install?
-      File.exist?(omnibus_chefcli_location)
+      File.exist?(expected_omnibus_root)
     end
 
     def omnibus_root
       @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
-    end
-
-    def omnibus_apps_dir
-      @ominbus_apps_dir ||= omnibus_expand_path(omnibus_root, "embedded", "apps")
     end
 
     def omnibus_bin_dir
@@ -71,17 +67,13 @@ module ChefCLI
       @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
     end
 
-    def omnibus_chefcli_location
-      @omnibus_chefcli_location ||= File.expand_path("embedded/apps/chef-cli", expected_omnibus_root)
-    end
-
-    def chefcli_home
-      @chefcli_home ||= begin
-                         chefcli_home_set = !([nil, ""].include? ENV["CHEFDK_HOME"])
-                         if chefcli_home_set
-                           ENV["CHEFDK_HOME"]
+    def package_home
+      @package_home ||= begin
+                         package_home_set = !([nil, ""].include? ENV["CHEF_WORKSTATION_HOME"])
+                         if package_home_set
+                           ENV["CHEF_WORKSTATION_HOME"]
                          else
-                           default_chefcli_home
+                           default_package_home
                          end
                        end
     end
@@ -144,11 +136,11 @@ module ChefCLI
       File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
     end
 
-    def default_chefcli_home
+    def default_package_home
       if Chef::Platform.windows?
-        File.join(ENV["LOCALAPPDATA"], "chefcli")
+        File.join(ENV["LOCALAPPDATA"], "chef-workstation")
       else
-        File.expand_path("~/.chefcli")
+        File.expand_path("~/.chef-workstation")
       end
     end
 

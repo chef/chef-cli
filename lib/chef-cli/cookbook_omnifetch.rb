@@ -24,8 +24,8 @@ require "chef/http/simple"
 
 # Configure CookbookOmnifetch's dependency injection settings to use our classes and config.
 CookbookOmnifetch.configure do |c|
-  c.cache_path = File.expand_path(File.join(ChefCLI::Helpers.chefcli_home, "cache"))
-  c.storage_path = Pathname.new(File.expand_path(File.join(ChefCLI::Helpers.chefcli_home, "cache", "cookbooks")))
+  c.cache_path = File.expand_path(File.join(ChefCLI::Helpers.package_home, "cache"))
+  c.storage_path = Pathname.new(File.expand_path(File.join(ChefCLI::Helpers.package_home, "cache", "cookbooks")))
   c.shell_out_class = ChefCLI::ShellOut
   c.cached_cookbook_class = ChefCLI::CookbookMetadata
   c.chef_server_download_concurrency = 10

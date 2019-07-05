@@ -245,7 +245,7 @@ module ChefCLI
       #
       # @return [Pathname]
       def cache_path
-        Pathname.new(File.expand_path(File.join(ChefCLI::Helpers.chefcli_home, "cache")))
+        Pathname.new(File.expand_path(File.join(ChefCLI::Helpers.package_home, "cache")))
           .join(".cache", "git", Digest::SHA1.hexdigest(uri))
       end
 

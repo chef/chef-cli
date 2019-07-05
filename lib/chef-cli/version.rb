@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,5 +16,5 @@
 #
 
 module ChefCLI
-  VERSION = "4.0.83".freeze
+  VERSION = "1.0.0".freeze
 end

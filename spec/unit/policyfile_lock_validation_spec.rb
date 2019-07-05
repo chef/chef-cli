@@ -16,11 +16,11 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_lock.rb"
+require "chef-cli/policyfile_lock.rb"
 
-describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
+describe ChefCLI::PolicyfileLock, "validating locked cookbooks" do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:pristine_cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
@@ -45,7 +45,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
   let(:run_list) { [ "recipe[erlang::default]", "recipe[erchef::prereqs]", "recipe[erchef::app]" ] }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
   end
 
   let(:solution_dependencies) do
@@ -59,7 +59,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
   end
 
   let(:lock_generator) do
-    ChefDK::PolicyfileLock.build(storage_config) do |policy|
+    ChefCLI::PolicyfileLock.build(storage_config) do |policy|
 
       policy.name = name
 
@@ -92,7 +92,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
   #
   # With lazy evaluation, #1 may happen after #2.
   let!(:policyfile_lock) do
-    ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
+    ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end
 
   let(:local_cookbook_path) { File.join(local_cookbooks_root, "local-cookbook") }
@@ -137,7 +137,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
         full_path = File.expand_path(local_cookbook_path)
         message = "Cookbook `local-cookbook' not found at path source `local-cookbook` (full path: `#{full_path}')"
 
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::LocalCookbookNotFound, message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::LocalCookbookNotFound, message)
       end
 
     end
@@ -166,7 +166,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
         policyfile_lock
 
         message = "The cookbook at path source `local-cookbook' is expected to be named `local-cookbook', but is now named `WRONG' (full path: #{local_cookbook_path})"
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::MalformedCookbook, message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::MalformedCookbook, message)
       end
 
     end
@@ -240,7 +240,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
       it "reports the dependency conflict and fails validation" do
         expected_message = "Cookbook local-cookbook (3.0.0) conflicts with other dependencies:\nfoo (1.0.0) depends on local-cookbook ~> 2.0"
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, expected_message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::DependencyConflict, expected_message)
       end
 
     end
@@ -350,7 +350,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
       it "reports the not-satisfied dependency and validation fails" do
         error_message = "Cookbook local-cookbook (2.3.4) has dependency constraints that cannot be met by the existing cookbook set:\n" +
           "Cookbook not-a-thing isn't included in the existing cookbook set."
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, error_message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::DependencyConflict, error_message)
       end
 
     end
@@ -424,7 +424,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
       it "reports the not-satisfied dependency and validation fails" do
         error_message = "Cookbook local-cookbook (2.3.4) has dependency constraints that cannot be met by the existing cookbook set:\n" +
           "Dependency on foo ~> 2.0 conflicts with existing version foo (1.0.0)"
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, error_message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::DependencyConflict, error_message)
       end
 
     end
@@ -437,7 +437,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
       # then the user updates A to depend on B ~> 2.0, and bumps the version of B to 2.0.
 
       let(:lock_generator) do
-        ChefDK::PolicyfileLock.build(storage_config) do |policy|
+        ChefCLI::PolicyfileLock.build(storage_config) do |policy|
 
           policy.name = name
 
@@ -563,7 +563,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
       it "reports the missing cookbook and fails validation" do
         message = "Cookbook `foo' not found at expected cache location `foo-1.0.0' (full path: `#{cached_cookbook_path}')"
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::CachedCookbookNotFound, message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::CachedCookbookNotFound, message)
       end
 
     end
@@ -601,7 +601,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
       it "reports the modified cached cookbook and validation fails" do
         message = "Cached cookbook `foo' (1.0.0) has been modified since the lockfile was generated. Cached cookbooks cannot be modified. (full path: `#{cached_cookbook_path}')"
-        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::CachedCookbookModified, message)
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefCLI::CachedCookbookModified, message)
       end
     end
   end

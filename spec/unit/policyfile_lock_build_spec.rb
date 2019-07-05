@@ -19,10 +19,10 @@
 require "spec_helper"
 require "shared/setup_git_cookbooks"
 require "shared/fixture_cookbook_checksums"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile_lock.rb"
+require "chef-cli/policyfile/storage_config"
+require "chef-cli/policyfile_lock.rb"
 
-describe ChefDK::PolicyfileLock, "building a lockfile" do
+describe ChefCLI::PolicyfileLock, "building a lockfile" do
 
   include_context "fixture cookbooks checksums"
 
@@ -48,13 +48,13 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   end
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: relative_paths_root )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: relative_paths_root )
   end
 
   context "when a cached cookbook omits the cache key" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -66,7 +66,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::CachedCookbookNotFound)
     end
 
   end
@@ -74,7 +74,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "when a local cookbook omits the path" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_local_cookbook"
 
@@ -86,14 +86,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::LocalCookbookNotFound)
     end
   end
 
   context "when a local cookbook has an incorrect path" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_local_cookbook"
 
@@ -106,14 +106,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::LocalCookbookNotFound)
     end
   end
 
   context "when a cookbook is not in the cache" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -126,7 +126,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::CachedCookbookNotFound)
     end
 
   end
@@ -134,7 +134,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   describe "policyfiles with invalid attributes" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -153,7 +153,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       let(:default_attributes) { { "infinity" => Float::INFINITY } }
 
       it "raises a descriptive error" do
-        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+        expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::InvalidPolicyfileAttribute)
       end
     end
 
@@ -162,7 +162,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       let(:default_attributes) { { "infinity" => Float::NAN } }
 
       it "raises a descriptive error" do
-        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+        expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::InvalidPolicyfileAttribute)
       end
     end
 
@@ -171,7 +171,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       let(:default_attributes) { { 1906 => "lol nope" } }
 
       it "raises a descriptive error" do
-        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+        expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::InvalidPolicyfileAttribute)
       end
     end
 
@@ -180,7 +180,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       let(:default_attributes) { { "raw object" => Object.new } }
 
       it "raises a descriptive error" do
-        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+        expect { policyfile_lock.to_lock }.to raise_error(ChefCLI::InvalidPolicyfileAttribute)
       end
     end
 
@@ -189,7 +189,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "with a minimal policyfile" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -263,7 +263,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "with a policyfile containing attributes" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -367,7 +367,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "dev_cookbook"
 
@@ -455,7 +455,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "custom_identifier"
 
@@ -566,7 +566,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:policyfile_lock) do
 
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         # Required
         p.name = "basic_example"
@@ -718,7 +718,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "with solution dependencies specified" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -789,7 +789,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "with named run_lists specified" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(storage_config) do |p|
+      ChefCLI::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -875,7 +875,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     let(:cached_cookbook_uri) { "https://supermarket.chef.io/api/v1/cookbooks/foo/versions/1.0.0/download" }
 
     let(:cached_location_spec) do
-      double( "ChefDK::Policyfile::CookbookLocationSpecification",
+      double( "ChefCLI::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: true,
               cache_key: "foo-1.0.0",
               uri: cached_cookbook_uri,
@@ -883,7 +883,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:local_location_spec) do
-      double( "ChefDK::Policyfile::CookbookLocationSpecification",
+      double( "ChefCLI::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: false,
               relative_paths_root: relative_paths_root,
               relative_path: "bar",
@@ -891,7 +891,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_solution_dependencies) do
-      ChefDK::Policyfile::SolutionDependencies.new.tap do |s|
+      ChefCLI::Policyfile::SolutionDependencies.new.tap do |s|
         s.add_policyfile_dep("foo", "~> 1.0")
         s.add_cookbook_dep("foo", "1.0.0", [])
         s.add_cookbook_dep("bar", "0.1.0", [])
@@ -932,7 +932,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     let(:canonicalized_override_attrs) { canonicalized_default_attrs }
 
     let(:policyfile_compiler) do
-      double( "ChefDK::PolicyfileCompiler",
+      double( "ChefCLI::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w{recipe[foo::default] recipe[bar::default]},
               normalized_named_run_lists: { "rl2" => %w{recipe[bar::default]} },
@@ -945,7 +945,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
+      ChefCLI::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
     end
 
     let(:expected_canonical_revision_string) do

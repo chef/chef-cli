@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/push"
+require "chef-cli/command/push"
 
-describe ChefDK::Command::Push do
+describe ChefCLI::Command::Push do
 
   it_behaves_like "a command with a UI object"
 
@@ -31,7 +31,7 @@ describe ChefDK::Command::Push do
     described_class.new
   end
 
-  let(:push_service) { instance_double(ChefDK::PolicyfileServices::Push) }
+  let(:push_service) { instance_double(ChefCLI::PolicyfileServices::Push) }
 
   let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
 
@@ -65,7 +65,7 @@ describe ChefDK::Command::Push do
       end
 
       it "configures the Push service" do
-        expect(ChefDK::PolicyfileServices::Push).to receive(:new)
+        expect(ChefCLI::PolicyfileServices::Push).to receive(:new)
           .with(policyfile: nil, ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd)
           .and_return(push_service)
         expect(command.push).to eq(push_service)
@@ -76,7 +76,7 @@ describe ChefDK::Command::Push do
         let(:params) { [policy_group, "MyPolicy.rb"] }
 
         it "configures the Push service with the given Policyfile" do
-          expect(ChefDK::PolicyfileServices::Push).to receive(:new)
+          expect(ChefCLI::PolicyfileServices::Push).to receive(:new)
             .with(policyfile: "MyPolicy.rb", ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd)
             .and_return(push_service)
           expect(command.push).to eq(push_service)
@@ -144,7 +144,7 @@ describe ChefDK::Command::Push do
         end
 
         let(:exception) do
-          ChefDK::PolicyfilePushError.new("push failed", cause)
+          ChefCLI::PolicyfilePushError.new("push failed", cause)
         end
 
         before do

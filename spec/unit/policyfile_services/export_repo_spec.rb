@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/export_repo"
+require "chef-cli/policyfile_services/export_repo"
 
-describe ChefDK::PolicyfileServices::ExportRepo do
+describe ChefCLI::PolicyfileServices::ExportRepo do
 
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
@@ -71,7 +71,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
   context "when the policyfile lock is missing" do
 
     it "raises an error that suggests you run `chef install'" do
-      expect { export_service.run }.to raise_error(ChefDK::LockfileNotFound)
+      expect { export_service.run }.to raise_error(ChefCLI::LockfileNotFound)
     end
 
   end
@@ -87,7 +87,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
       let(:lockfile_content) { ":::" }
 
       it "errors out" do
-        expect { export_service.run }.to raise_error(ChefDK::PolicyfileExportRepoError, /Error reading lockfile/)
+        expect { export_service.run }.to raise_error(ChefCLI::PolicyfileExportRepoError, /Error reading lockfile/)
       end
 
     end
@@ -97,7 +97,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
       let(:lockfile_content) { "{ }" }
 
       it "errors out" do
-        expect { export_service.run }.to raise_error(ChefDK::PolicyfileExportRepoError, /Invalid lockfile data/)
+        expect { export_service.run }.to raise_error(ChefCLI::PolicyfileExportRepoError, /Invalid lockfile data/)
       end
 
     end
@@ -150,7 +150,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
       it "reads the lockfile data" do
         lock = export_service.policyfile_lock
-        expect(lock).to be_an_instance_of(ChefDK::PolicyfileLock)
+        expect(lock).to be_an_instance_of(ChefCLI::PolicyfileLock)
         expect(lock.name).to eq("install-example")
         expect(lock.cookbook_locks.size).to eq(1)
         expect(lock.cookbook_locks).to have_key("local-cookbook")
@@ -323,7 +323,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
           it "wraps the error in a custom error class" do
             message = "Failed to export policy (in #{expanded_policyfile_path}) to #{export_dir}"
-            expect { export_service.run }.to raise_error(ChefDK::PolicyfileExportRepoError, message)
+            expect { export_service.run }.to raise_error(ChefCLI::PolicyfileExportRepoError, message)
           end
 
         end
@@ -388,7 +388,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
           it "raises a PolicyfileExportRepoError" do
             message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbook_artifacts_dir}, #{extra_policy_item}, #{extra_policy_group_item}, #{conflicting_policyfile_lock})"
-            expect { export_service.run }.to raise_error(ChefDK::ExportDirNotEmpty, message)
+            expect { export_service.run }.to raise_error(ChefCLI::ExportDirNotEmpty, message)
             expect(File).to exist(non_conflicting_file_in_export_dir)
             expect(File).to exist(file_in_cookbook_artifacts_dir)
             expect(File).to exist(extra_policy_item)

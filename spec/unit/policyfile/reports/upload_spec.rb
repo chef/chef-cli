@@ -16,15 +16,15 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/reports/upload"
+require "chef-cli/policyfile/reports/upload"
 
 # For the LockedCookbookForUpload class:
-require "chef-dk/policyfile/uploader"
+require "chef-cli/policyfile/uploader"
 
 # Used for verifying doubles
-require "chef-dk/policyfile/cookbook_locks"
+require "chef-cli/policyfile/cookbook_locks"
 
-describe ChefDK::Policyfile::Reports::Upload do
+describe ChefCLI::Policyfile::Reports::Upload do
 
   let(:ui) { TestHelpers::TestUI.new }
 
@@ -49,12 +49,12 @@ describe ChefDK::Policyfile::Reports::Upload do
   describe "reporting uploaded and reused cookbooks" do
 
     def cb_with_lock(name, version, identifier)
-      lock = instance_double("ChefDK::Policyfile::CookbookLock",
+      lock = instance_double("ChefCLI::Policyfile::CookbookLock",
                              name: name,
                              version: version,
                              identifier: identifier)
 
-      ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(nil, lock)
+      ChefCLI::Policyfile::Uploader::LockedCookbookForUpload.new(nil, lock)
     end
 
     let(:cookbook_one) do

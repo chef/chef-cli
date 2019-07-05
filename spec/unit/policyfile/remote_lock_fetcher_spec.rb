@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/remote_lock_fetcher"
+require "chef-cli/policyfile/remote_lock_fetcher"
 
-describe ChefDK::Policyfile::RemoteLockFetcher do
+describe ChefCLI::Policyfile::RemoteLockFetcher do
 
   let(:minimal_lockfile_json) do
     <<~E
@@ -66,7 +66,7 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
 
   describe "#lock_data" do
     let(:http) { instance_double(Chef::HTTP, url: "http://my.chef.server/policy.lock.json") }
-    let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
+    let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
     let(:source_options) { { remote: "http://my.chef.server/policy.lock.json" } }
 
     before do
@@ -94,9 +94,9 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
           )
         end
 
-        it "raises ChefDK::InvalidLockfile" do
+        it "raises ChefCLI::InvalidLockfile" do
           expect(http).to receive(:get).with("").and_return(minimal_lockfile_json_w_path)
-          expect { fetcher.lock_data } .to raise_error(ChefDK::InvalidLockfile, /Invalid cookbook path/)
+          expect { fetcher.lock_data } .to raise_error(ChefCLI::InvalidLockfile, /Invalid cookbook path/)
         end
       end
     end
@@ -106,7 +106,7 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
       let(:err_re) { /No remote policyfile lock/ }
       it "raises a PolicyfileLockDownloadError" do
         expect(http).to receive(:get).with("").and_raise(Net::HTTPError.new("msg", err))
-        expect { fetcher.lock_data }.to raise_error(ChefDK::PolicyfileLockDownloadError, err_re)
+        expect { fetcher.lock_data }.to raise_error(ChefCLI::PolicyfileLockDownloadError, err_re)
       end
     end
 
@@ -115,7 +115,7 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
       let(:err_re) { /HTTP error attempting to fetch policyfile lock/ }
       it "raises a PolicyfileLockDownloadError" do
         expect(http).to receive(:get).with("").and_raise(Net::HTTPError.new("msg", err))
-        expect { fetcher.lock_data }.to raise_error(ChefDK::PolicyfileLockDownloadError, err_re)
+        expect { fetcher.lock_data }.to raise_error(ChefCLI::PolicyfileLockDownloadError, err_re)
       end
     end
 

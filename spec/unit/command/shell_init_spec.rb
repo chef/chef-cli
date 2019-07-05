@@ -16,16 +16,16 @@
 #
 
 require "spec_helper"
-require "chef-dk/command/shell_init"
+require "chef-cli/command/shell_init"
 
-describe ChefDK::Command::ShellInit do
+describe ChefCLI::Command::ShellInit do
 
   let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"], git_bin_dir].join(File::PATH_SEPARATOR) }
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:command_instance) do
-    ChefDK::Command::ShellInit.new.tap do |c|
+    ChefCLI::Command::ShellInit.new.tap do |c|
       allow(c).to receive(:stdout).and_return(stdout_io)
       allow(c).to receive(:stderr).and_return(stderr_io)
     end
@@ -55,7 +55,7 @@ describe ChefDK::Command::ShellInit do
         allow(::Dir).to receive(:exist?).with(git_bin_dir).and_return(true)
       end
 
-      it "emits a script to add ChefDK's ruby to the shell environment" do
+      it "emits a script to add ChefCLI's ruby to the shell environment" do
         command_instance.run(argv)
         expect(stdout_io.string).to include(expected_environment_commands)
       end
@@ -81,7 +81,7 @@ describe ChefDK::Command::ShellInit do
         allow(::Dir).to receive(:exist?).with(git_bin_dir).and_return(true)
       end
 
-      it "emits a script to add ChefDK's ruby to the shell environment" do
+      it "emits a script to add the package's ruby to the shell environment" do
         command_instance.run(argv)
         expect(stdout_io.string).to include(expected_environment_commands)
       end
@@ -139,7 +139,7 @@ describe ChefDK::Command::ShellInit do
       let(:command_descriptions) do
         {
           "exec" => "Runs the command in context of the embedded ruby",
-          "env" => "Prints environment variables used by ChefDK",
+          "env" => "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
           "generate" => "Generate a new app, cookbook, or component",
         }
@@ -187,7 +187,7 @@ describe ChefDK::Command::ShellInit do
       let(:command_descriptions) do
         {
           "exec" => "Runs the command in context of the embedded ruby",
-          "env" => "Prints environment variables used by ChefDK",
+          "env" => "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
           "generate" => "Generate a new app, cookbook, or component",
         }
@@ -205,7 +205,7 @@ describe ChefDK::Command::ShellInit do
             local -a _1st_arguments
             _1st_arguments=(
                 'exec:Runs the command in context of the embedded ruby'
-                'env:Prints environment variables used by ChefDK'
+                'env:Prints environment variables used by #{ChefCLI::Dist::PRODUCT}'
                 'gem:Runs the `gem` command in context of the embedded ruby'
                 'generate:Generate a new app, cookbook, or component'
               )
@@ -263,7 +263,7 @@ describe ChefDK::Command::ShellInit do
       let(:command_descriptions) do
         {
           "exec" => "Runs the command in context of the embedded ruby",
-          "env" => "Prints environment variables used by ChefDK",
+          "env" => "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
           "generate" => "Generate a new app, cookbook, or component",
         }
@@ -276,7 +276,7 @@ describe ChefDK::Command::ShellInit do
 
       let(:expected_completion_function) do
         <<~END_COMPLETION
-          # Fish Shell command-line completions for ChefDK
+          # Fish Shell command-line completions for #{ChefCLI::Dist::PRODUCT}
 
           function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
             set -l cmd (commandline -opc)
@@ -284,7 +284,7 @@ describe ChefDK::Command::ShellInit do
           end
 
           complete -c chef -f -n '__fish_chef_no_command' -a exec -d "Runs the command in context of the embedded ruby"
-          complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by ChefDK"
+          complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by Chef Workstation"
           complete -c chef -f -n '__fish_chef_no_command' -a gem -d "Runs the `gem` command in context of the embedded ruby"
           complete -c chef -f -n '__fish_chef_no_command' -a generate -d "Generate a new app, cookbook, or component"
         END_COMPLETION

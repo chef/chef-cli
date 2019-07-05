@@ -17,9 +17,9 @@
 
 require "pry"
 require "spec_helper"
-require "chef-dk/command/generator_commands/base"
+require "chef-cli/command/generator_commands/base"
 
-describe ChefDK::Command::GeneratorCommands::Base do
+describe ChefCLI::Command::GeneratorCommands::Base do
   describe "parsing Chef configuration" do
     let(:cli_args) do
       [
@@ -36,13 +36,13 @@ describe ChefDK::Command::GeneratorCommands::Base do
     context "when generator configuration is defined" do
       before do
         Chef::Config.reset
-        Chef::Config.chefdk.generator.copyright_holder = "This Guy"
-        Chef::Config.chefdk.generator.email = "this.guy@twothumbs.net"
-        Chef::Config.chefdk.generator.license = "Two Thumbs License"
+        Chef::Config.chefcli.generator.copyright_holder = "This Guy"
+        Chef::Config.chefcli.generator.email = "this.guy@twothumbs.net"
+        Chef::Config.chefcli.generator.license = "Two Thumbs License"
       end
 
       it "uses the defined values" do
-        cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+        cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
@@ -54,13 +54,13 @@ describe ChefDK::Command::GeneratorCommands::Base do
       context "when cli overrides are provided" do
         before do
           Chef::Config.reset
-          Chef::Config.chefdk.generator.copyright_holder = "This Guy"
-          Chef::Config.chefdk.generator.email = "this.guy@twothumbs.net"
-          Chef::Config.chefdk.generator.license = "Two Thumbs License"
+          Chef::Config.chefcli.generator.copyright_holder = "This Guy"
+          Chef::Config.chefcli.generator.email = "this.guy@twothumbs.net"
+          Chef::Config.chefcli.generator.license = "Two Thumbs License"
         end
 
         it "uses the cli args" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config
@@ -74,16 +74,16 @@ describe ChefDK::Command::GeneratorCommands::Base do
 
         before do
           Chef::Config.reset
-          Chef::Config.chefdk.generator.copyright_holder = "This Guy"
-          Chef::Config.chefdk.generator.email = "this.guy@twothumbs.net"
-          Chef::Config.chefdk.generator.license = "Two Thumbs License"
+          Chef::Config.chefcli.generator.copyright_holder = "This Guy"
+          Chef::Config.chefcli.generator.email = "this.guy@twothumbs.net"
+          Chef::Config.chefcli.generator.license = "Two Thumbs License"
           Chef::Config.knife.cookbook_copyright = "Knife User"
           Chef::Config.knife.cookbook_email = "knife.user@example.com"
           Chef::Config.knife.cookbook_license = "GPLv9000"
         end
 
         it "uses the generator configuration" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
           cmd.parse_options
           cmd.setup_context
           cfg = cmd.config
@@ -103,7 +103,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
       end
 
       it "uses the defined values" do
-        cmd = ChefDK::Command::GeneratorCommands::Base.new([])
+        cmd = ChefCLI::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
@@ -122,7 +122,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
         end
 
         it "uses the cli args" do
-          cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
+          cmd = ChefCLI::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config

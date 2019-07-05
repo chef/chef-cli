@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/push_archive"
+require "chef-cli/policyfile_services/push_archive"
 
-describe ChefDK::PolicyfileServices::PushArchive do
+describe ChefCLI::PolicyfileServices::PushArchive do
 
   FileToTar = Struct.new(:name, :content)
 
@@ -131,7 +131,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
     let(:exception) do
       begin
         push_archive_service.run
-      rescue ChefDK::PolicyfilePushArchiveError => e
+      rescue ChefCLI::PolicyfilePushArchiveError => e
         e
       else
         nil
@@ -147,7 +147,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
         it "errors out" do
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+          expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
           expect(exception_cause.message).to eq("Archive file #{archive_file_path} not found")
         end
       end
@@ -163,7 +163,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
         it "errors out" do
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+          expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
           expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Unrecognized archive format")
         end
       end
@@ -179,7 +179,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
         it "errors out" do
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+          expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
           expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Unrecognized archive format")
         end
       end
@@ -198,7 +198,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
         it "errors out" do
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+          expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
           expect(exception_cause.message).to eq("Archive does not contain a Policyfile.lock.json")
         end
 
@@ -211,7 +211,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
         it "errors out" do
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+          expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
           expect(exception_cause.message).to eq("Archive does not contain a cookbook_artifacts directory")
         end
 
@@ -242,7 +242,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
           it "errors out" do
             expect(exception).to_not be_nil
             expect(exception.message).to eq("Failed to publish archived policy")
-            expect(exception_cause).to be_a(ChefDK::InvalidLockfile)
+            expect(exception_cause).to be_a(ChefCLI::InvalidLockfile)
           end
 
         end
@@ -254,7 +254,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
           it "errors out" do
             expect(exception).to_not be_nil
             expect(exception.message).to eq("Failed to publish archived policy")
-            expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+            expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
 
             msg = "Archive does not have all cookbooks required by the Policyfile.lock. Missing cookbooks: 'local-cookbook'."
             expect(exception_cause.message).to eq(msg)
@@ -281,14 +281,14 @@ describe ChefDK::PolicyfileServices::PushArchive do
           it "errors out, explaining the compatibility issue" do
             expect(exception).to_not be_nil
             expect(exception.message).to eq("Failed to publish archived policy")
-            expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+            expect(exception_cause).to be_a(ChefCLI::InvalidPolicyArchive)
 
             msg = <<~MESSAGE
               This archive is in an unsupported format.
 
-              This archive was created with an older version of ChefDK. This version of
-              ChefDK does not support archives in the older format. Please Re-create the
-              archive with a newer version of ChefDK or Workstation.
+              This archive was created with an older version of ChefCLI. This version of
+              ChefCLI does not support archives in the older format. Please Re-create the
+              archive with a newer version of ChefCLI or Workstation.
             MESSAGE
             expect(exception_cause.message).to eq(msg)
           end
@@ -323,14 +323,14 @@ describe ChefDK::PolicyfileServices::PushArchive do
 
     let(:http_client) { instance_double(Chef::ServerAPI) }
 
-    let(:uploader) { instance_double(ChefDK::Policyfile::Uploader) }
+    let(:uploader) { instance_double(ChefCLI::Policyfile::Uploader) }
 
     before do
       expect(push_archive_service).to receive(:http_client).and_return(http_client)
 
-      expect(ChefDK::Policyfile::Uploader).to receive(:new).
+      expect(ChefCLI::Policyfile::Uploader).to receive(:new).
         # TODO: need more verification that the policyfile.lock is right (?)
-        with(an_instance_of(ChefDK::PolicyfileLock), policy_group, http_client: http_client, ui: ui, policy_document_native_api: true)
+        with(an_instance_of(ChefCLI::PolicyfileLock), policy_group, http_client: http_client, ui: ui, policy_document_native_api: true)
         .and_return(uploader)
 
       create_archive
@@ -349,7 +349,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
 
       it "raises a nested error" do
         expect(uploader).to receive(:upload).and_raise("an error")
-        expect { push_archive_service.run }.to raise_error(ChefDK::PolicyfilePushArchiveError)
+        expect { push_archive_service.run }.to raise_error(ChefCLI::PolicyfilePushArchiveError)
       end
 
     end

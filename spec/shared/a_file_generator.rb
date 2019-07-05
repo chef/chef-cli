@@ -24,16 +24,16 @@ shared_examples_for "a file generator" do
   end
 
   def generator_context
-    ChefDK::Generator.context
+    ChefCLI::Generator.context
   end
 
   before do
-    ChefDK::Generator.reset
+    ChefCLI::Generator.reset
     reset_tempdir
   end
 
   after(:each) do
-    ChefDK::Generator::Context.reset
+    ChefCLI::Generator::Context.reset
   end
 
   context "when argv is empty" do

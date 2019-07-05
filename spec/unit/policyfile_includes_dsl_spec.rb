@@ -16,16 +16,16 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_compiler"
-require "chef-dk/exceptions"
+require "chef-cli/policyfile_compiler"
+require "chef-cli/exceptions"
 
-describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
+describe ChefCLI::PolicyfileCompiler, "including upstream policy locks" do
 
   let(:run_list) { ["local::default"] }
   let(:included_policies) { [] }
 
   let(:policyfile) do
-    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
+    policyfile = ChefCLI::PolicyfileCompiler.new.build do |p|
 
       p.run_list(*run_list)
       included_policies.each do |policy|
@@ -45,7 +45,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       it "uses a local fetcher" do
-        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::LocalLockFetcher)
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::LocalLockFetcher)
       end
 
       it "has a fetcher with no errors" do
@@ -65,7 +65,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       it "uses a local fetcher" do
-        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::LocalLockFetcher)
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::LocalLockFetcher)
       end
 
       it "has a fetcher with no errors" do
@@ -87,7 +87,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       it "uses a remote fetcher" do
-        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::RemoteLockFetcher)
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::RemoteLockFetcher)
       end
 
       it "has a fetcher with no errors" do
@@ -107,7 +107,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       it "uses a remote fetcher" do
-        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::RemoteLockFetcher)
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::RemoteLockFetcher)
       end
 
       it "has a fetcher with no errors" do
@@ -149,7 +149,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         end
 
         it "uses a server fetcher" do
-          expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::ChefServerLockFetcher)
+          expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::ChefServerLockFetcher)
         end
 
         it "has a fetcher with no errors" do
@@ -173,7 +173,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       it "uses a server fetcher" do
-        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::ChefServerLockFetcher)
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefCLI::Policyfile::ChefServerLockFetcher)
       end
 
       it "has a fetcher with no errors" do
@@ -199,7 +199,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
     it "errors when trying to get the fetcher" do
-      expect { policyfile.included_policies[0].fetcher }.to raise_error(ChefDK::InvalidPolicyfileLocation)
+      expect { policyfile.included_policies[0].fetcher }.to raise_error(ChefCLI::InvalidPolicyfileLocation)
     end
   end
 

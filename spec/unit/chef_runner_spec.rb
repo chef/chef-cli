@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "stringio"
-require "chef-dk/chef_runner"
+require "chef-cli/chef_runner"
 
-describe ChefDK::ChefRunner do
+describe ChefCLI::ChefRunner do
 
   let(:stdout_io) { StringIO.new }
 
@@ -32,7 +32,7 @@ describe ChefDK::ChefRunner do
   let(:run_list) { [ "recipe[test_cookbook::recipe_one]", "recipe[test_cookbook::recipe_two]" ] }
 
   subject(:chef_runner) do
-    r = ChefDK::ChefRunner.new(default_cookbook_path, run_list)
+    r = ChefCLI::ChefRunner.new(default_cookbook_path, run_list)
     allow(r).to receive(:stdout).and_return(stdout_io)
     allow(r).to receive(:stderr).and_return(stderr_io)
     r
@@ -59,11 +59,11 @@ describe ChefDK::ChefRunner do
     subscribers = chef_runner.event_dispatcher.subscribers
 
     expect(subscribers.size).to eq(1)
-    expect(subscribers.first).to be_a(ChefDK::QuieterDocFormatter)
+    expect(subscribers.first).to be_a(ChefCLI::QuieterDocFormatter)
   end
 
-  it "extends the recipe DSL with ChefDK's extensions" do
-    expect(Chef::DSL::Recipe.included_modules).to include(ChefDK::RecipeDSLExt)
+  it "extends the recipe DSL with ChefCLI's extensions" do
+    expect(Chef::DSL::Recipe.included_modules).to include(ChefCLI::RecipeDSLExt)
   end
 
   it "detects the platform with ohai" do
@@ -121,7 +121,7 @@ describe ChefDK::ChefRunner do
     end
 
     it "wraps the exception in a ChefConvergeError" do
-      expect { chef_runner.converge }.to raise_error(ChefDK::ChefConvergeError)
+      expect { chef_runner.converge }.to raise_error(ChefCLI::ChefConvergeError)
     end
 
   end

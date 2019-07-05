@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/local_lock_fetcher"
+require "chef-cli/policyfile/local_lock_fetcher"
 
-describe ChefDK::Policyfile::LocalLockFetcher do
+describe ChefCLI::Policyfile::LocalLockFetcher do
 
   let(:minimal_lockfile_json) do
     <<~E
@@ -81,7 +81,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           lock_file_path_abs
         end
       end
-      let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
+      let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
 
       before do
         reset_tempdir
@@ -127,7 +127,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           end
 
           it "raises an error" do
-            expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound)
+            expect { fetcher.lock_data }.to raise_error(ChefCLI::LocalPolicyfileLockNotFound)
           end
         end
 
@@ -140,7 +140,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           end
 
           it "raises an error" do
-            expect { fetcher.lock_data }.to raise_error(ChefDK::InvalidLockfile, /Expected policy_revision_id/)
+            expect { fetcher.lock_data }.to raise_error(ChefCLI::InvalidLockfile, /Expected policy_revision_id/)
           end
         end
       end
@@ -177,7 +177,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           end
 
           it "raises an error" do
-            expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound, /provide the file name as part of the path/)
+            expect { fetcher.lock_data }.to raise_error(ChefCLI::LocalPolicyfileLockNotFound, /provide the file name as part of the path/)
           end
         end
 
@@ -190,7 +190,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           end
 
           it "raises an error" do
-            expect { fetcher.lock_data }.to raise_error(ChefDK::InvalidLockfile, /Expected policy_revision_id/)
+            expect { fetcher.lock_data }.to raise_error(ChefCLI::InvalidLockfile, /Expected policy_revision_id/)
           end
         end
       end

@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/lister"
+require "chef-cli/policyfile/lister"
 
-describe ChefDK::Policyfile::Lister do
+describe ChefCLI::Policyfile::Lister do
 
   def api_url(org_specific_path)
     "https://chef.example/organizations/myorg/#{org_specific_path}"

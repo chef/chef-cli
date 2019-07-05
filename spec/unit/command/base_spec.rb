@@ -16,10 +16,10 @@
 #
 
 require "spec_helper"
-require "chef-dk/command/verify"
+require "chef-cli/command/verify"
 
-describe ChefDK::Command::Base do
-  class TestCommand < ChefDK::Command::Base
+describe ChefCLI::Command::Base do
+  class TestCommand < ChefCLI::Command::Base
     banner "use me please"
 
     option :argue,
@@ -78,12 +78,12 @@ describe ChefDK::Command::Base do
 
   it "should print the version for -v" do
     run_command(["-v"])
-    expect(stdout).to eq("Chef Development Kit version: #{ChefDK::VERSION}\n")
+    expect(stdout).to eq("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}\n")
   end
 
   it "should print the version for --version" do
     run_command(["--version"])
-    expect(stdout).to eq("Chef Development Kit version: #{ChefDK::VERSION}\n")
+    expect(stdout).to eq("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}\n")
   end
 
   it "should run the command passing in the custom options for long custom options" do
@@ -100,7 +100,7 @@ describe ChefDK::Command::Base do
     let(:enforce_license) { true }
 
     it "calls the license acceptance library" do
-      expect(LicenseAcceptance::Acceptor).to receive(:check_and_persist!).with("chef-dk", ChefDK::VERSION.to_s)
+      expect(LicenseAcceptance::Acceptor).to receive(:check_and_persist!).with("chef-workstation", ChefCLI::VERSION.to_s)
       run_command([])
       expect(stdout).to eq("thanks for passing me \n")
     end
@@ -129,7 +129,7 @@ describe ChefDK::Command::Base do
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show Chef Development Kit version
+            -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version
 
       E
       expect(stdout).to eq(expected)
@@ -150,7 +150,7 @@ describe ChefDK::Command::Base do
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show Chef Development Kit version
+            -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version
 
       E
       expect(stdout).to eq(expected)
@@ -168,8 +168,8 @@ describe ChefDK::Command::Base do
         Mixlib::Config::UnknownConfigOptionError: Cannot set unsupported config value foo.
           /Users/person/.chef/config.rb:50:in `from_string'
         Relevant file content:
-         49: chefdk.generator_cookbook "~/.chef/code_generator"
-         50: chefdk.foo "bar"
+         49: chefcli.generator_cookbook "~/.chef/code_generator"
+         50: chefcli.foo "bar"
          51:
 
       MESSAGE

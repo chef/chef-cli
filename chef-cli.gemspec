@@ -17,11 +17,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "chef-dk/version"
+require "chef-cli/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "chef-cli"
-  gem.version       = ChefDK::VERSION
+  gem.version       = ChefCLI::VERSION
   gem.authors       = [ "Daniel DeLeo", "Lamont Granquist", "Serdar Sutay" ]
   gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."
@@ -50,8 +50,4 @@ Gem::Specification.new do |gem|
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
   gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.11"
-
-  %w{rspec-core rspec-expectations rspec-mocks}.each do |dev_gem|
-    gem.add_development_dependency dev_gem, "~> 3.0"
-  end
 end

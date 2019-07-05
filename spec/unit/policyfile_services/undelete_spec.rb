@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/undelete"
+require "chef-cli/policyfile_services/undelete"
 
-describe ChefDK::PolicyfileServices::Undelete do
+describe ChefCLI::PolicyfileServices::Undelete do
 
   let(:chef_config) { double("Chef::Config") }
 
@@ -82,7 +82,7 @@ describe ChefDK::PolicyfileServices::Undelete do
       end
 
       let(:undo_record1) do
-        ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+        ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
           undo_record.description = "delete-policy-group example1"
           undo_record.add_policy_group("example1")
           undo_record.add_policy_revision("appserver", "example1", policy_revision)
@@ -90,7 +90,7 @@ describe ChefDK::PolicyfileServices::Undelete do
       end
 
       let(:undo_record2) do
-        ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+        ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
           undo_record.description = "delete-policy-group example2"
           undo_record.add_policy_group("example2")
           undo_record.add_policy_revision("appserver", "example2", policy_revision)
@@ -98,7 +98,7 @@ describe ChefDK::PolicyfileServices::Undelete do
       end
 
       let(:undo_record3) do
-        ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+        ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
           undo_record.description = "delete-policy-group example3"
           undo_record.add_policy_group("example3")
           undo_record.add_policy_revision("appserver", "example3", policy_revision)
@@ -124,7 +124,7 @@ describe ChefDK::PolicyfileServices::Undelete do
           times << t
           t
         end
-        undo_stack = ChefDK::Policyfile::UndoStack.new
+        undo_stack = ChefCLI::Policyfile::UndoStack.new
         allow(undo_stack).to receive(:undo_dir).and_return(undo_dir)
         undo_stack.push(undo_record1).push(undo_record2).push(undo_record3)
       end
@@ -156,7 +156,7 @@ describe ChefDK::PolicyfileServices::Undelete do
     end
 
     let(:undo_record1) do
-      ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+      ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
         undo_record.description = "delete-policy-group example1"
         undo_record.add_policy_group("example1")
         undo_record.add_policy_revision("appserver", "example1", policy_revision)
@@ -164,7 +164,7 @@ describe ChefDK::PolicyfileServices::Undelete do
     end
 
     let(:undo_stack) do
-      instance_double(ChefDK::Policyfile::UndoStack).tap do |s|
+      instance_double(ChefCLI::Policyfile::UndoStack).tap do |s|
         allow(s).to receive(:pop).and_yield(undo_record1)
       end
     end
@@ -199,7 +199,7 @@ describe ChefDK::PolicyfileServices::Undelete do
       end
 
       it "raises an error" do
-        expect { undelete_service.run }.to raise_error(ChefDK::UndeleteError)
+        expect { undelete_service.run }.to raise_error(ChefCLI::UndeleteError)
       end
 
     end
@@ -264,14 +264,14 @@ describe ChefDK::PolicyfileServices::Undelete do
     end
 
     let(:undo_record1) do
-      ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+      ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
         undo_record.description = "delete-policy-group example1"
         undo_record.add_policy_revision("appserver", nil, policy_revision)
       end
     end
 
     let(:undo_stack) do
-      instance_double(ChefDK::Policyfile::UndoStack).tap do |s|
+      instance_double(ChefCLI::Policyfile::UndoStack).tap do |s|
         allow(s).to receive(:pop).and_yield(undo_record1)
       end
     end

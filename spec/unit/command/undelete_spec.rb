@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/undelete"
+require "chef-cli/command/undelete"
 
-describe ChefDK::Command::Undelete do
+describe ChefCLI::Command::Undelete do
 
   it_behaves_like "a command with a UI object"
 
@@ -186,7 +186,7 @@ describe ChefDK::Command::Undelete do
       end
 
       let(:exception) do
-        ChefDK::UndeleteError.new("Failed to undelete.", cause)
+        ChefCLI::UndeleteError.new("Failed to undelete.", cause)
       end
 
       before do

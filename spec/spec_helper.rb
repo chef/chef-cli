@@ -26,7 +26,7 @@ require "chef/config"
 RSpec.configure do |c|
   running_on_windows = (RUBY_PLATFORM =~ /mswin|mingw|windows/)
 
-  c.include ChefDK
+  c.include ChefCLI
   c.include TestHelpers
 
   # Avoid loading config.rb/knife.rb unintentionally

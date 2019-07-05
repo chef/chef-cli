@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "chef-dk/helpers"
+require "chef-cli/helpers"
 
 RSpec.shared_context "setup git cookbooks" do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:cookbook_pristine_path) do
     File.expand_path("spec/unit/fixtures/dev_cookbooks/bar-cookbook.gitbundle", project_root)

@@ -16,11 +16,11 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/community_cookbook_source"
+require "chef-cli/policyfile/community_cookbook_source"
 
-describe ChefDK::Policyfile::CommunityCookbookSource do
+describe ChefCLI::Policyfile::CommunityCookbookSource do
 
-  subject(:cookbook_source) { ChefDK::Policyfile::CommunityCookbookSource.new }
+  subject(:cookbook_source) { ChefCLI::Policyfile::CommunityCookbookSource.new }
 
   let(:default_community_uri) { "https://supermarket.chef.io" }
 
@@ -62,7 +62,7 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
   context "when created with a block to set source preferences" do
 
     subject(:cookbook_source) do
-      ChefDK::Policyfile::CommunityCookbookSource.new do |s|
+      ChefCLI::Policyfile::CommunityCookbookSource.new do |s|
         s.preferred_for "foo", "bar", "baz"
       end
     end

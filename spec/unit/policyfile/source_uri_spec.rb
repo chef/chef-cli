@@ -17,19 +17,19 @@
 
 require "spec_helper"
 
-require "chef-dk/policyfile/source_uri"
+require "chef-cli/policyfile/source_uri"
 
-describe ChefDK::Policyfile::SourceURI do
+describe ChefCLI::Policyfile::SourceURI do
   subject { described_class.parse(source_uri) }
 
   describe "#validate" do
     context "when the scheme is not https" do
       let(:source_uri) { "ftp://chef.example.com" }
 
-      it "raises ChefDK::InvalidPolicyfileSourceURI" do
+      it "raises ChefCLI::InvalidPolicyfileSourceURI" do
         expect do
           subject.validate
-        end.to raise_error(ChefDK::InvalidPolicyfileSourceURI)
+        end.to raise_error(ChefCLI::InvalidPolicyfileSourceURI)
       end
     end
   end

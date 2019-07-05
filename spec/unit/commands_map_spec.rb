@@ -16,12 +16,12 @@
 #
 
 require "spec_helper"
-require "chef-dk/commands_map"
+require "chef-cli/commands_map"
 require "stringio"
 
-describe ChefDK::CommandsMap do
+describe ChefCLI::CommandsMap do
 
-  subject(:mapping) { ChefDK::CommandsMap.new }
+  subject(:mapping) { ChefCLI::CommandsMap.new }
 
   before do
     mapping.builtin("example", :Example)
@@ -35,11 +35,11 @@ describe ChefDK::CommandsMap do
   end
 
   it "infers a non-hypenated command's require path" do
-    expect(mapping.spec_for("example").require_path).to eq("chef-dk/command/example")
+    expect(mapping.spec_for("example").require_path).to eq("chef-cli/command/example")
   end
 
   it "infers a hyphenated command's require path" do
-    expect(mapping.spec_for("hypenated-example").require_path).to eq("chef-dk/command/hypenated_example")
+    expect(mapping.spec_for("hypenated-example").require_path).to eq("chef-cli/command/hypenated_example")
   end
 
   it "lists the available commands" do
@@ -51,7 +51,7 @@ describe ChefDK::CommandsMap do
   end
 
   it "creates an instance of a command" do
-    expect(mapping.instantiate("explicit-path-example")).to be_an_instance_of(ChefDK::Command::ExplicitPathExample)
+    expect(mapping.instantiate("explicit-path-example")).to be_an_instance_of(ChefCLI::Command::ExplicitPathExample)
   end
 
 end

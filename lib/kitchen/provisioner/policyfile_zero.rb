@@ -18,10 +18,10 @@
 
 require "kitchen/provisioner/chef_base"
 
-# TODO: chef-dk and kitchen can only co-exist if kitchen and chef-dk agree on
+# TODO: chef-cli and kitchen can only co-exist if kitchen and chef-cli agree on
 # the version of mixlib-shellout to use. Kitchen currently locked at 1.4,
-# chef-dk is on 2.x
-require_relative "../../chef-dk/policyfile_services/export_repo"
+# chef-cli is on 2.x
+require_relative "../../chef-cli/policyfile_services/export_repo"
 
 module Kitchen
 
@@ -146,15 +146,15 @@ module Kitchen
         end
       end
 
-      # An instance of ChefDK::PolicyfileServices::ExportRepo, configured with
+      # An instance of ChefCLI::PolicyfileServices::ExportRepo, configured with
       # the sandbox path. Calling `#run` on this copies the cookbooks to the
       # sandbox. Calling `#policy_name` returns the policy's name.
       #
       # @api private
       def policy_exporter
         # Must force this because TK by default copies the current cookbook to the sandbox
-        # See ChefDK::PolicyfileServices::ExportRepo#assert_export_dir_clean!
-        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
+        # See ChefCLI::PolicyfileServices::ExportRepo#assert_export_dir_clean!
+        @policy_exporter ||= ChefCLI::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
                                                                         export_dir: sandbox_path,
                                                                         force: true)
       end

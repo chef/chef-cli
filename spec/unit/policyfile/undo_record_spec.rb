@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/undo_record"
+require "chef-cli/policyfile/undo_record"
 
-describe ChefDK::Policyfile::UndoRecord do
+describe ChefCLI::Policyfile::UndoRecord do
 
   subject(:undo_record) { described_class.new }
 
@@ -109,7 +109,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) { [] }
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -119,7 +119,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) { {} }
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -135,7 +135,7 @@ describe ChefDK::Policyfile::UndoRecord do
         end
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -151,7 +151,7 @@ describe ChefDK::Policyfile::UndoRecord do
         end
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -170,7 +170,7 @@ describe ChefDK::Policyfile::UndoRecord do
         end
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -189,7 +189,7 @@ describe ChefDK::Policyfile::UndoRecord do
         end
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end
@@ -208,7 +208,7 @@ describe ChefDK::Policyfile::UndoRecord do
         end
 
         it "raises an error" do
-          expect { undo_record.load(serialized_data) }.to raise_error(ChefDK::InvalidUndoRecord)
+          expect { undo_record.load(serialized_data) }.to raise_error(ChefCLI::InvalidUndoRecord)
         end
 
       end

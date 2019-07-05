@@ -16,13 +16,13 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_compiler"
+require "chef-cli/policyfile_compiler"
 
-describe ChefDK::PolicyfileCompiler do
+describe ChefCLI::PolicyfileCompiler do
 
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("TestPolicyfile.rb") }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new.use_policyfile("TestPolicyfile.rb") }
 
-  let(:policyfile) { ChefDK::PolicyfileCompiler.evaluate(policyfile_rb, "TestPolicyfile.rb") }
+  let(:policyfile) { ChefCLI::PolicyfileCompiler.evaluate(policyfile_rb, "TestPolicyfile.rb") }
 
   describe "Evaluate a policyfile" do
 
@@ -33,7 +33,7 @@ describe ChefDK::PolicyfileCompiler do
         let(:policyfile_rb) { "raise 'oops'" }
 
         it "raises a PolicyfileError" do
-          expect { policyfile.error! }.to raise_error(ChefDK::PolicyfileError)
+          expect { policyfile.error! }.to raise_error(ChefCLI::PolicyfileError)
         end
       end
 
@@ -248,7 +248,7 @@ describe ChefDK::PolicyfileCompiler do
       it "has no default cookbook source" do
         expect(policyfile.default_source).to be_an(Array)
         expect(policyfile.default_source.size).to eq(1)
-        expect(policyfile.default_source.first).to be_a(ChefDK::Policyfile::NullCookbookSource)
+        expect(policyfile.default_source.first).to be_a(ChefCLI::Policyfile::NullCookbookSource)
       end
 
       context "with the default source set to the community site" do
@@ -262,7 +262,7 @@ describe ChefDK::PolicyfileCompiler do
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = [ ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io") ]
+          expected = [ ChefCLI::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io") ]
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -277,7 +277,7 @@ describe ChefDK::PolicyfileCompiler do
 
           it "has a default source" do
             expect(policyfile.errors).to eq([])
-            expected = [ ChefDK::Policyfile::CommunityCookbookSource.new("https://cookbook-api.example.com") ]
+            expected = [ ChefCLI::Policyfile::CommunityCookbookSource.new("https://cookbook-api.example.com") ]
             expect(policyfile.default_source).to eq(expected)
           end
 
@@ -294,7 +294,7 @@ describe ChefDK::PolicyfileCompiler do
 
           it "adds the cookbook to the list of location specs" do
             expect(policyfile.errors).to eq([])
-            expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("baz", ">= 0.0.0", {}, storage_config)
+            expected_cb_spec = ChefCLI::Policyfile::CookbookLocationSpecification.new("baz", ">= 0.0.0", {}, storage_config)
             expect(policyfile.cookbook_location_specs).to eq("baz" => expected_cb_spec)
           end
         end
@@ -329,7 +329,7 @@ describe ChefDK::PolicyfileCompiler do
 
           it "sets the default source to the delivery_supermarket" do
             expect(policyfile.errors).to eq([])
-            expected = [ ChefDK::Policyfile::DeliverySupermarketSource.new("https://supermarket.example.com") ]
+            expected = [ ChefCLI::Policyfile::DeliverySupermarketSource.new("https://supermarket.example.com") ]
             expect(policyfile.default_source).to eq(expected)
           end
 
@@ -348,7 +348,7 @@ describe ChefDK::PolicyfileCompiler do
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = [ ChefDK::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com") ]
+          expected = [ ChefCLI::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com") ]
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -367,7 +367,7 @@ describe ChefDK::PolicyfileCompiler do
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = [ ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo) ]
+          expected = [ ChefCLI::Policyfile::ChefRepoCookbookSource.new(chef_repo) ]
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -386,7 +386,7 @@ describe ChefDK::PolicyfileCompiler do
           it "sets the repo path relative to the directory the policyfile is in" do
             expect(policyfile.errors).to eq([])
             expect(policyfile.default_source.size).to eq(1)
-            expect(policyfile.default_source.first).to be_a(ChefDK::Policyfile::ChefRepoCookbookSource)
+            expect(policyfile.default_source.first).to be_a(ChefCLI::Policyfile::ChefRepoCookbookSource)
             expect(policyfile.default_source.first.path).to eq(expected_path)
           end
 
@@ -409,8 +409,8 @@ describe ChefDK::PolicyfileCompiler do
         it "has an array of sources" do
           expect(policyfile.errors).to eq([])
 
-          community_source = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io")
-          repo_source = ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo)
+          community_source = ChefCLI::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io")
+          repo_source = ChefCLI::Policyfile::ChefRepoCookbookSource.new(chef_repo)
           expected = [ community_source, repo_source ]
 
           expect(policyfile.default_source).to eq(expected)
@@ -495,7 +495,7 @@ describe ChefDK::PolicyfileCompiler do
         end
 
         it "sets the source of the cookbook to the local path" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { path: "local_cookbooks/foo" }, storage_config)
+          expected_cb_spec = ChefCLI::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { path: "local_cookbooks/foo" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -510,7 +510,7 @@ describe ChefDK::PolicyfileCompiler do
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { git: "git://example.com:me/foo-cookbook.git" }, storage_config)
+          expected_cb_spec = ChefCLI::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { git: "git://example.com:me/foo-cookbook.git" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -525,7 +525,7 @@ describe ChefDK::PolicyfileCompiler do
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { chef_server: "https://mychefserver.example.com" }, storage_config)
+          expected_cb_spec = ChefCLI::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { chef_server: "https://mychefserver.example.com" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 

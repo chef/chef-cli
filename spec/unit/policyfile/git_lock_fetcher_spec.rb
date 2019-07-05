@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/git_lock_fetcher"
+require "chef-cli/policyfile/git_lock_fetcher"
 
-describe ChefDK::Policyfile::GitLockFetcher do
+describe ChefCLI::Policyfile::GitLockFetcher do
 
   let(:revision_id) { "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" }
   let(:identifier) { "fab501cfaf747901bd82c1bc706beae7dc3a350c" }
@@ -73,7 +73,7 @@ describe ChefDK::Policyfile::GitLockFetcher do
 
   let(:policy_name) { "git_fetcher" }
   let(:policy_group) { "somegroup" }
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
+  let(:storage_config) { ChefCLI::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
 
   let(:minimal_lockfile_modified) do
     minimal_lockfile.tap do |lockfile|
@@ -152,4 +152,4 @@ describe ChefDK::Policyfile::GitLockFetcher do
       end # it "omits the relative path of the policyfile from the source_options"
     end # context "when using a relative path for the policyfile"
   end # describe "#lock_data"
-end # describe ChefDK::Policyfile::GitLockFetcher
+end # describe ChefCLI::Policyfile::GitLockFetcher

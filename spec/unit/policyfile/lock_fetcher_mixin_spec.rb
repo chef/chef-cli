@@ -16,10 +16,10 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/lock_fetcher_mixin"
+require "chef-cli/policyfile/lock_fetcher_mixin"
 
-describe ChefDK::Policyfile::LockFetcherMixin do
-  include ChefDK::Policyfile::LockFetcherMixin
+describe ChefCLI::Policyfile::LockFetcherMixin do
+  include ChefCLI::Policyfile::LockFetcherMixin
 
   context "validate_revision_id" do
     let(:included_id) { "6d707130ea67bf5e475ddb40b1de7b799a15a665187b12b0c3e41a517d0fc5fd" }
@@ -52,8 +52,8 @@ describe ChefDK::Policyfile::LockFetcherMixin do
       let(:invalid_id) { "invalid_id" }
       let(:source_options) { { policy_revision_id: invalid_id } }
 
-      it "raises ChefDK::InvalidLockfile" do
-        expect { validate_revision_id(included_id, source_options) }.to raise_error(ChefDK::InvalidLockfile, /Expected policy_revision_id/)
+      it "raises ChefCLI::InvalidLockfile" do
+        expect { validate_revision_id(included_id, source_options) }.to raise_error(ChefCLI::InvalidLockfile, /Expected policy_revision_id/)
       end
     end
   end

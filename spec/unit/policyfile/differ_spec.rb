@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/differ"
+require "chef-cli/policyfile/differ"
 
-describe ChefDK::Policyfile::Differ do
+describe ChefCLI::Policyfile::Differ do
 
   let(:old_lock_json) do
     <<~E

@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/chef_server_lock_fetcher"
+require "chef-cli/policyfile/chef_server_lock_fetcher"
 
-describe ChefDK::Policyfile::ChefServerLockFetcher do
+describe ChefCLI::Policyfile::ChefServerLockFetcher do
 
   let(:revision_id) { "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" }
   let(:identifier) { "fab501cfaf747901bd82c1bc706beae7dc3a350c" }

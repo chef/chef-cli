@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/cookbook_location_specification"
+require "chef-cli/policyfile/cookbook_location_specification"
 
-describe ChefDK::Policyfile::CookbookLocationSpecification do
+describe ChefCLI::Policyfile::CookbookLocationSpecification do
 
   let(:policyfile_filename) { File.join(fixtures_path, "example_app/Policyfile.rb") }
 
@@ -28,14 +28,14 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   let(:source_options) { {} }
 
-  let(:cached_cookbook) { double("ChefDK::CookbookMetadata") }
+  let(:cached_cookbook) { double("ChefCLI::CookbookMetadata") }
 
-  let(:install_path) { Pathname.new("~/.chefdk/cache/cookbooks/my_cookbook-1.0.0") }
+  let(:install_path) { Pathname.new("~/.chefcli/cache/cookbooks/my_cookbook-1.0.0") }
 
   let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook, install_path: install_path) }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new.use_policyfile(policyfile_filename)
+    ChefCLI::Policyfile::StorageConfig.new.use_policyfile(policyfile_filename)
   end
 
   let(:cookbook_location_spec) { described_class.new(cookbook_name, version_constraint, source_options, storage_config) }
@@ -278,7 +278,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
     let(:source_options) { { chef_server: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
 
-    let(:http_client) { instance_double("ChefDK::ChefServerAPIMulti") }
+    let(:http_client) { instance_double("ChefCLI::ChefServerAPIMulti") }
 
     before do
       CookbookOmnifetch.integration.default_chef_server_http_client = http_client
@@ -316,7 +316,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
       }
     end
 
-    let(:http_client) { instance_double("ChefDK::ChefServerAPIMulti") }
+    let(:http_client) { instance_double("ChefCLI::ChefServerAPIMulti") }
 
     before do
       CookbookOmnifetch.integration.default_chef_server_http_client = http_client

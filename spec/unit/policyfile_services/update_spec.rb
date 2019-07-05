@@ -16,12 +16,12 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/install"
-require "chef-dk/policyfile/cookbook_sources"
+require "chef-cli/policyfile_services/install"
+require "chef-cli/policyfile/cookbook_sources"
 
-describe ChefDK::PolicyfileServices::Install do
+describe ChefCLI::PolicyfileServices::Install do
 
-  include ChefDK::Helpers
+  include ChefCLI::Helpers
 
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
@@ -44,7 +44,7 @@ describe ChefDK::PolicyfileServices::Install do
   let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: true) }
 
   let(:storage_config) do
-    ChefDK::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
+    ChefCLI::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
   end
 
   let(:policyfile_content) do

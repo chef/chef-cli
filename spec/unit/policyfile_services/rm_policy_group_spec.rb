@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/rm_policy_group"
+require "chef-cli/policyfile_services/rm_policy_group"
 
-describe ChefDK::PolicyfileServices::RmPolicyGroup do
+describe ChefCLI::PolicyfileServices::RmPolicyGroup do
 
   let(:policy_group) { "preprod" }
 
@@ -111,7 +111,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
       end
 
       it "re-raises the error with a standardized exception class" do
-        expect { rm_policy_group_service.run }.to raise_error(ChefDK::DeletePolicyGroupError)
+        expect { rm_policy_group_service.run }.to raise_error(ChefCLI::DeletePolicyGroupError)
       end
 
     end
@@ -126,7 +126,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
       end
 
       it "re-raises the error with a standardized exception class" do
-        expect { rm_policy_group_service.run }.to raise_error(ChefDK::DeletePolicyGroupError)
+        expect { rm_policy_group_service.run }.to raise_error(ChefCLI::DeletePolicyGroupError)
       end
 
     end

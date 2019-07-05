@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile_services/clean_policies"
+require "chef-cli/policyfile_services/clean_policies"
 
-describe ChefDK::PolicyfileServices::CleanPolicies do
+describe ChefCLI::PolicyfileServices::CleanPolicies do
 
   let(:chef_config) { double("Chef::Config") }
 
@@ -59,7 +59,7 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
     end
 
     it "raises an error" do
-      expect { clean_policies_service.run }.to raise_error(ChefDK::PolicyfileCleanError)
+      expect { clean_policies_service.run }.to raise_error(ChefCLI::PolicyfileCleanError)
     end
 
   end

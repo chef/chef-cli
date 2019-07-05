@@ -1,8 +1,8 @@
-require "chef-dk/command/base"
+require "chef-cli/command/base"
 
-module ChefDK
+module ChefCLI
   module Command
-    class TestCommand < ChefDK::Command::Base
+    class TestCommand < ChefCLI::Command::Base
 
       def self.reset!
         @test_result = nil

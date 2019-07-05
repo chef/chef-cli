@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "pathname"
-require "chef-dk/command/generator_commands/generator_generator"
+require "chef-cli/command/generator_commands/generator_generator"
 
-describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
+describe ChefCLI::Command::GeneratorCommands::GeneratorGenerator do
 
   let(:argv) { raise "define let(:argv)" }
 
@@ -28,7 +28,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
   let(:repo_root) { File.expand_path("../../../../..", __FILE__) }
 
-  let(:builtin_generator_path) { File.join(repo_root, "lib/chef-dk/skeletons/code_generator") }
+  let(:builtin_generator_path) { File.join(repo_root, "lib/chef-cli/skeletons/code_generator") }
 
   let(:builtin_generator_full_paths) { Dir["#{builtin_generator_path}/**/*"] }
 
@@ -78,7 +78,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
     context "when the generator cookbook is configured in the config file" do
 
       before do
-        Chef::Config.chefdk.generator_cookbook("/foo/bar/baz")
+        Chef::Config.chefcli.generator_cookbook("/foo/bar/baz")
       end
 
       it "copies the default generator" do
@@ -182,8 +182,8 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
         metadata_content = IO.read(metadata_path)
         expected_metadata = <<~METADATA
           name             'my_cool_generator'
-          description      'Custom code generator cookbook for use with Chef Development Kit'
-          long_description 'Custom code generator cookbook for use with Chef Development Kit'
+          description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
+          long_description 'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
           version          '0.1.0'
 
         METADATA

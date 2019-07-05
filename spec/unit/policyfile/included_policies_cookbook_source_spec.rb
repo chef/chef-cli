@@ -16,10 +16,10 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/included_policies_cookbook_source"
-require "chef-dk/policyfile/policyfile_location_specification"
+require "chef-cli/policyfile/included_policies_cookbook_source"
+require "chef-cli/policyfile/policyfile_location_specification"
 
-describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
+describe ChefCLI::Policyfile::IncludedPoliciesCookbookSource do
 
   let(:external_cookbook_universe) do
     {
@@ -108,7 +108,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   let(:policy1_fetcher) do
-    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+    instance_double("ChefCLI::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(policy1_lockdata)
       allow(double).to receive(:valid?).and_return(true)
       allow(double).to receive(:errors).and_return([])
@@ -116,7 +116,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   let(:policy2_fetcher) do
-    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+    instance_double("ChefCLI::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(policy2_lockdata)
       allow(double).to receive(:valid?).and_return(true)
       allow(double).to receive(:errors).and_return([])
@@ -124,14 +124,14 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   let(:policy1_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy1", { path: "somelocation" }, nil).tap do |spec|
+    ChefCLI::Policyfile::PolicyfileLocationSpecification.new("policy1", { path: "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy1_fetcher)
     end
   end
 
   let(:policy2_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy2", { path: "somelocation" }, nil).tap do |spec|
+    ChefCLI::Policyfile::PolicyfileLocationSpecification.new("policy2", { path: "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy2_fetcher)
     end
@@ -139,7 +139,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 
   let(:policyfiles) { [] }
 
-  let(:cookbook_source) { ChefDK::Policyfile::IncludedPoliciesCookbookSource.new(policyfiles) }
+  let(:cookbook_source) { ChefCLI::Policyfile::IncludedPoliciesCookbookSource.new(policyfiles) }
 
   context "when no policies are included" do
     it "returns false for preferred_source_for" do
@@ -222,7 +222,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 
       it "raises an error when check_for_conflicts! is called" do
         expect { cookbook_source.check_for_conflicts! }.to raise_error(
-          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookSources)
+          ChefCLI::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookSources)
       end
     end
 
@@ -231,7 +231,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 
       it "raises an error when check_for_conflicts! is called" do
         expect { cookbook_source.check_for_conflicts! }.to raise_error(
-          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions)
+          ChefCLI::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions)
       end
     end
 

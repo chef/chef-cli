@@ -16,9 +16,9 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/storage_config"
+require "chef-cli/policyfile/storage_config"
 
-describe ChefDK::Policyfile::StorageConfig do
+describe ChefCLI::Policyfile::StorageConfig do
 
   let(:config_options) { {} }
 
@@ -110,7 +110,7 @@ describe ChefDK::Policyfile::StorageConfig do
 
       it "raises an error" do
         err_string = %q{Policyfile filenames must end with `.rb' extension (you gave: `Policyfile')}
-        expect { storage_config.use_policyfile("Policyfile") }.to raise_error(ChefDK::InvalidPolicyfileFilename, err_string)
+        expect { storage_config.use_policyfile("Policyfile") }.to raise_error(ChefCLI::InvalidPolicyfileFilename, err_string)
       end
 
     end

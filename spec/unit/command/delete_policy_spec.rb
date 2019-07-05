@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/delete_policy"
+require "chef-cli/command/delete_policy"
 
-describe ChefDK::Command::DeletePolicy do
+describe ChefCLI::Command::DeletePolicy do
 
   it_behaves_like "a command with a UI object"
 
@@ -58,7 +58,7 @@ describe ChefDK::Command::DeletePolicy do
       it "configures the rm_policy service" do
         expect(chef_config_loader).to receive(:load)
         service = command.rm_policy_service
-        expect(service).to be_a(ChefDK::PolicyfileServices::RmPolicy)
+        expect(service).to be_a(ChefCLI::PolicyfileServices::RmPolicy)
         expect(service.chef_config).to eq(chef_config)
         expect(service.ui).to eq(command.ui)
         expect(service.policy_name).to eq("example-policy")
@@ -151,7 +151,7 @@ describe ChefDK::Command::DeletePolicy do
       end
 
       let(:exception) do
-        ChefDK::DeletePolicyError.new("Failed to delete policy.", cause)
+        ChefCLI::DeletePolicyError.new("Failed to delete policy.", cause)
       end
 
       before do

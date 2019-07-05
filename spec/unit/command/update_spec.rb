@@ -17,9 +17,9 @@
 
 require "spec_helper"
 require "shared/command_with_ui_object"
-require "chef-dk/command/update"
+require "chef-cli/command/update"
 
-describe ChefDK::Command::Update do
+describe ChefCLI::Command::Update do
 
   it_behaves_like "a command with a UI object"
 
@@ -31,9 +31,9 @@ describe ChefDK::Command::Update do
     c
   end
 
-  let(:install_service) { instance_double(ChefDK::PolicyfileServices::Install) }
+  let(:install_service) { instance_double(ChefCLI::PolicyfileServices::Install) }
 
-  let(:update_attrs_service) { instance_double(ChefDK::PolicyfileServices::UpdateAttributes) }
+  let(:update_attrs_service) { instance_double(ChefCLI::PolicyfileServices::UpdateAttributes) }
 
   it "disables debug by default" do
     expect(command.debug?).to be(false)
@@ -81,7 +81,7 @@ describe ChefDK::Command::Update do
     end
 
     it "creates an attributes update service object" do
-      expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+      expect(ChefCLI::PolicyfileServices::UpdateAttributes).to receive(:new)
         .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
         .and_return(update_attrs_service)
       expect(command.attributes_updater).to eq(update_attrs_service)
@@ -95,7 +95,7 @@ describe ChefDK::Command::Update do
     end
 
     it "creates the installer service with a `nil` policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+      expect(ChefCLI::PolicyfileServices::Install).to receive(:new)
         .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true)
         .and_return(install_service)
       expect(command.installer).to eq(install_service)
@@ -112,7 +112,7 @@ describe ChefDK::Command::Update do
     end
 
     it "creates the installer service with the specified policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+      expect(ChefCLI::PolicyfileServices::Install).to receive(:new)
         .with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true)
         .and_return(install_service)
       expect(command.installer).to eq(install_service)
@@ -132,7 +132,7 @@ describe ChefDK::Command::Update do
     context "when the command is successful" do
       before do
         expect(install_service).to receive(:run)
-        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+        expect(ChefCLI::PolicyfileServices::UpdateAttributes).to receive(:new)
           .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
           .and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
@@ -154,12 +154,12 @@ describe ChefDK::Command::Update do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileInstallError.new("install failed", cause)
+        ChefCLI::PolicyfileInstallError.new("install failed", cause)
       end
 
       before do
         expect(install_service).to receive(:run).and_raise(exception)
-        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+        expect(ChefCLI::PolicyfileServices::UpdateAttributes).to receive(:new)
           .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
           .and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
@@ -236,7 +236,7 @@ describe ChefDK::Command::Update do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileUpdateError.new("Failed to update Policyfile lock", cause)
+        ChefCLI::PolicyfileUpdateError.new("Failed to update Policyfile lock", cause)
       end
 
       before do

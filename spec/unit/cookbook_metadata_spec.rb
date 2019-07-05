@@ -16,13 +16,13 @@
 #
 
 require "spec_helper"
-require "chef-dk/cookbook_metadata"
+require "chef-cli/cookbook_metadata"
 
-describe ChefDK::CookbookMetadata do
+describe ChefCLI::CookbookMetadata do
 
   describe "providing the API required by CookbookOmnifetch" do
 
-    let(:metadata) { ChefDK::CookbookMetadata.new }
+    let(:metadata) { ChefCLI::CookbookMetadata.new }
 
     it "provides a `from_path` class method" do
       expect(described_class).to respond_to(:from_path)
@@ -87,7 +87,7 @@ describe ChefDK::CookbookMetadata do
       it "raises a MalformedCookbook error" do
         msg = "Cookbook at #{cookbook_root} has neither metadata.json or metadata.rb"
 
-        expect { cookbook }.to raise_error(ChefDK::MalformedCookbook, msg)
+        expect { cookbook }.to raise_error(ChefCLI::MalformedCookbook, msg)
       end
 
     end

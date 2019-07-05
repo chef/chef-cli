@@ -16,11 +16,11 @@
 #
 
 require "spec_helper"
-require "chef-dk/policyfile/undo_stack"
+require "chef-cli/policyfile/undo_stack"
 
-describe ChefDK::Policyfile::UndoStack do
+describe ChefCLI::Policyfile::UndoStack do
 
-  let(:chefdk_home) { File.join(tempdir, "chefdk_home", ".chefdk") }
+  let(:package_home) { File.join(tempdir, "package_home", ".chefcli") }
 
   let(:policy_revision) do
     {
@@ -30,7 +30,7 @@ describe ChefDK::Policyfile::UndoStack do
   end
 
   let(:undo_record) do
-    ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+    ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
       undo_record.add_policy_group("preprod")
       undo_record.add_policy_revision("appserver", "preprod", policy_revision)
     end
@@ -39,7 +39,7 @@ describe ChefDK::Policyfile::UndoStack do
   # Probably takes a Chef::Config as an arg?
   subject(:undo_stack) { described_class.new }
 
-  let(:expected_undo_dir) { File.join(chefdk_home, "undo") }
+  let(:expected_undo_dir) { File.join(package_home, "undo") }
 
   def undo_stack_files
     Dir[File.join(expected_undo_dir, "*")]
@@ -47,14 +47,14 @@ describe ChefDK::Policyfile::UndoStack do
 
   before do
     clear_tempdir
-    allow(ChefDK::Helpers).to receive(:chefdk_home).and_return(chefdk_home)
+    allow(ChefCLI::Helpers).to receive(:package_home).and_return(package_home)
   end
 
   after(:all) do
     clear_tempdir
   end
 
-  it "uses chefdk_home to infer the location of the undo directory" do
+  it "uses package_home to infer the location of the undo directory" do
     expect(undo_stack.undo_dir).to eq(expected_undo_dir)
   end
 
@@ -77,20 +77,20 @@ describe ChefDK::Policyfile::UndoStack do
     end
 
     it "raises an error when attempting to pop an item from the stack" do
-      expect { undo_stack.pop }.to raise_error(ChefDK::CantUndo)
+      expect { undo_stack.pop }.to raise_error(ChefCLI::CantUndo)
     end
 
     describe "pushing an undo record" do
 
       before do
-        expect(File.exist?(chefdk_home)).to be(false)
+        expect(File.exist?(package_home)).to be(false)
         expect(File.exist?(expected_undo_dir)).to be(false)
 
         undo_stack.push(undo_record)
       end
 
       it "creates the undo directory" do
-        expect(File.exist?(chefdk_home)).to be(true)
+        expect(File.exist?(package_home)).to be(true)
         expect(File.exist?(expected_undo_dir)).to be(true)
       end
 
@@ -148,7 +148,7 @@ describe ChefDK::Policyfile::UndoStack do
     end
 
     it "fails to delete a record that doesn't exist" do
-      expect { undo_stack.delete(missing_id) }.to raise_error(ChefDK::UndoRecordNotFound)
+      expect { undo_stack.delete(missing_id) }.to raise_error(ChefCLI::UndoRecordNotFound)
     end
 
     it "pops the last record" do
@@ -198,7 +198,7 @@ describe ChefDK::Policyfile::UndoStack do
         "revision_id" => i.to_s * 64,
       }
 
-      ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+      ChefCLI::Policyfile::UndoRecord.new.tap do |undo_record|
         undo_record.description = "delete-policy-group preprod-#{i}"
         undo_record.add_policy_group("preprod-#{i}")
         undo_record.add_policy_revision("appserver", "preprod-#{i}", record)

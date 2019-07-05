@@ -26,9 +26,9 @@ require "chef/formatters/base"
 
 require "ohai/system"
 
-require "chef-dk/command/generator_commands/chef_exts/generator_desc_resource"
+require "chef-cli/command/generator_commands/chef_exts/generator_desc_resource"
 
-describe ChefDK::ChefResource::GeneratorDesc do
+describe ChefCLI::ChefResource::GeneratorDesc do
 
   let(:node) { Chef::Node.new }
 

@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.82 -->
-## [v4.0.82](https://github.com/chef/chef-dk/tree/v4.0.82) (2019-06-25)
+<!-- latest_release 4.0.83 -->
+## [v4.0.83](https://github.com/chef/chef-cli/tree/v4.0.83) (2019-07-05)
 
 #### Merged Pull Requests
-- Use require_relative everywhere for perf boosts [#2150](https://github.com/chef/chef-dk/pull/2150) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update the expeditor config to be chef-cli [#3](https://github.com/chef/chef-cli/pull/3) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Update the expeditor config to be chef-cli [#3](https://github.com/chef/chef-cli/pull/3) ([tas50](https://github.com/tas50)) <!-- 4.0.83 -->
 - Use require_relative everywhere for perf boosts [#2150](https://github.com/chef/chef-dk/pull/2150) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.82 -->
 - Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50)) <!-- 4.0.81 -->
 - Remove Solaris support from the component_check code [#2148](https://github.com/chef/chef-dk/pull/2148) ([tas50](https://github.com/tas50)) <!-- 4.0.80 -->

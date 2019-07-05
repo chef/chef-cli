@@ -1,13 +1,13 @@
 Style/StringLiterals:
   Exclude:
     - "spec/unit/fixtures/**/*"
-    - "lib/chef-dk/skeletons/**/*"
+    - "lib/chef-cli/skeletons/**/*"
 Layout/TrailingWhitespace:
   Exclude:
     - "spec/unit/fixtures/**/*"
 Style/PercentLiteralDelimiters:
   Exclude:
-    - "lib/chef-dk/skeletons/**/*"
+    - "lib/chef-cli/skeletons/**/*"
 Layout/TrailingBlankLines:
   Exclude:
     - "spec/unit/fixtures/**/*"

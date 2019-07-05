@@ -5,10 +5,8 @@
 slack:
   notify_channel: chef-ws-notify
 
-# Which Ruby Gems, built when the Omnibus package is built, to publish to rubygems.org
 # This publish is triggered by the `built_in:publish_rubygems` artifact_action.
 rubygems:
-  - chef-dk
   - chef-cli
 
 pipelines:
@@ -47,13 +45,7 @@ merge_actions:
         - built_in:bump_version
 
 subscriptions:
-  - workload: artifact_published:unstable:chefdk:{{version_constraint}}
-    actions:
-      - built_in:build_docker_image
-  - workload: artifact_published:current:chefdk:{{version_constraint}}
-    actions:
-      - built_in:tag_docker_image
-  - workload: artifact_published:stable:chefdk:{{version_constraint}}
+  - workload: artifact_published:stable:chef-cli:{{version_constraint}}
     actions:
       - built_in:rollover_changelog
       - built_in:publish_rubygems

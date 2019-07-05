@@ -23,7 +23,13 @@ require_relative "../dist"
 module ChefCLI
   module Command
     class Verify < ChefCLI::Command::Base
-
+      # TODO 2019-07-05 mp - this gets a little odd, because
+      # this the commands that we verify here do not ship with
+      # the chef-cli component - they're only in Workstation and DK.
+      # This should continue to work in an installed Workstation package,
+      # but we will probably want to find some way of letting clients (Workstation)
+      # override this command so that it can report on all
+      # of the components it installs.
       include ChefCLI::Helpers
 
       banner "Usage: #{ChefCLI::Dist::EXEC} verify [component, ...] [options]"

@@ -80,7 +80,8 @@ module ChefCLI
       end
 
       def check_license_acceptance
-        LicenseAcceptance::Acceptor.check_and_persist!("chef-cli", ChefCLI::VERSION.to_s)
+        # TODO - is this the right version?
+        LicenseAcceptance::Acceptor.check_and_persist!("chef-workstation", ChefCLI::VERSION.to_s)
       end
 
     end

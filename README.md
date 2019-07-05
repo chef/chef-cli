@@ -6,7 +6,7 @@
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-The Chef-CLI is the command line interface for Chef Infra practisioners. This tool aims to include everything you need to be successful using Chef Infra and soon Chef Infra and Chef Habitat.
+The Chef-CLI is the command line interface for Chef Infra practitioners. This tool aims to include everything you need to be successful using Chef Infra and soon Chef Infra and Chef Habitat.
 
 ### The `chef` Command
 

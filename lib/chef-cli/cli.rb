@@ -194,11 +194,11 @@ module ChefCLI
         if bin_index
           if embed_index < bin_index
             err("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
-            err("WARN: consider using the correct `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
+            err("WARN: consider using `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
           end
         else
           err("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
-          err("WARN: consider using the correct `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
+          err("WARN: consider using `#{ChefCLI::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
         end
       end
     end

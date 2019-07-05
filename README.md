@@ -1,10 +1,4 @@
-# Chef Development Kit
-
-[![Build Status](https://badge.buildkite.com/19dd11f6792c0cf4617ee97195060bd54b76f6a74228fd6e07.svg?branch=master)](https://buildkite.com/chef-oss/chef-chef-dk-master-verify)
-[![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
-[![](https://img.shields.io/badge/Release%20Policy-Cadence%20Release-brightgreen.svg)](https://github.com/chef/chef-rfc/blob/master/rfc086-chef-oss-project-policies.md#cadence-release)
-[![Docker Stars](https://img.shields.io/docker/stars/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
-[![Docker Pulls](https://img.shields.io/docker/pulls/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
+# Chef-CLI
 
 **Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
 
@@ -12,103 +6,29 @@
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
-
-* [Chef Infra Client][]
-* [Berkshelf][]
-* [Test Kitchen][]
-* [ChefSpec][]
-* [Foodcritic][]
-* [Cookstyle][]
-* [Delivery CLI][]
-* [Push Jobs Client][]
-
-This repository contains the code for the `chef` command. The full
-package is built with omnibus. Project and component build definitions
-are in the omnibus directory in this repository.
-
-## Installation
-
-You can get the [latest release of ChefDK from the downloads page][ChefDK].
-
-On macOS, you can also use [homebrew-cask](https://caskroom.github.io/)
-to `brew cask install chef/chef/chefdk`.
-
-Once you install the package, the `chef-client` suite, `berks`,
-`kitchen`, and this application (`chef`) will be symlinked into your
-system bin directory, ready to use.
-
-### Pre-release Candidates
-
-The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
-More information about flags supported by install.sh available here: https://docs.chef.io/api_omnitruck.html
-
-#### Linux and OS/X:
-
-In a terminal, run:
-
-`curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk`
-
-To download a specific version, append the `-v` flag.  EG, `-v 0.9.0`.
-
-#### Windows
-
-Open up a Powershell command prompt as Administrator and run:
-
-`. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chefdk`
-
-To download a specific version, append the `-version` flag.  EG, `-version 0.9.0`.
-
-## Usage
-
-For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][], [Foodcritic][], [Delivery CLI][] or [Push Jobs Client][],
-visit those projects' homepages for documentation and guides. For help with
-`chef-client` and `knife`, visit the [Chef documentation][]
-and [Learn Chef][].
+The Chef-CLI is the command line interface for Chef Infra practitioners. This tool aims to include everything you need to be successful using Chef Infra and soon Chef Infra and Chef Habitat.
 
 ### The `chef` Command
 
-Our goal is for `chef` to become a workflow tool that builds on the
-ideas of Berkshelf to provide an awesome experience that encourages
-quick iteration and testing (and makes those things easy) and provides a
-way to easily, reliably, and repeatably roll out new automation code to
-your infrastructure.
-
-While we've got a long way to go before we reach that goal we do have
-some helpful bits of functionality already included in the `chef`
-command:
+The `chef` command is a workflow tool that builds Chef Infra Policyfiles to provide an awesome experience that encourages quick iteration and testing (and makes those things easy) and provides a way to easily, reliably, and repeatably roll out new automation code to your infrastructure.
 
 #### `chef generate`
-The generate subcommand generates skeleton Chef Infra code
-layouts so you can skip repetitive boilerplate and get down to
-automating your infrastructure quickly. Unlike other generators, it only
-generates the minimum required files when creating a cookbook so you can
-focus on the task at hand without getting overwhelmed by stuff you don't
-need.
+
+The generate subcommand generates skeleton Chef Infra code layouts so you can skip repetitive boilerplate and get down to automating your infrastructure quickly. Unlike other generators, it only generates the minimum required files when creating a cookbook so you can focus on the task at hand without getting overwhelmed by stuff you don't need.
 
 The following generators are built-in:
 
 * `chef generate cookbook` Creates a single cookbook.
-* `chef generate recipe` Creates a new recipe file in an existing
-cookbook.
-* `chef generate attribute` Creates a new attributes file in an existing
-cookbook.
-* `chef generate template` Creates a new template file in an existing
-cookbook. Use the `-s SOURCE` option to copy a source file's content to
-populate the template.
-* `chef generate file` Creates a new cookbook file in an existing
-cookbook. Supports the `-s SOURCE` option similar to template.
+* `chef generate recipe` Creates a new recipe file in an existing cookbook.
+* `chef generate attribute` Creates a new attributes file in an existing cookbook.
+* `chef generate template` Creates a new template file in an existing cookbook. Use the `-s SOURCE` option to copy a source file's content to populate the template.
+* `chef generate file` Creates a new cookbook file in an existing cookbook. Supports the `-s SOURCE` option similar to template.
 
-The `chef generate` command also accepts additional `--generator-arg key=value`
-pairs that can be used to supply ad-hoc data to a generator cookbook.
-For example, you might specify `--generator-arg database=mysql` and then only
-write a template for `recipes/mysql.rb` if `context.database == 'mysql'`.
+The `chef generate` command also accepts additional `--generator-arg key=value` pairs that can be used to supply ad-hoc data to a generator cookbook. For example, you might specify `--generator-arg database=mysql` and then only write a template for `recipes/mysql.rb` if `context.database == 'mysql'`.
 
 #### `chef gem`
-`chef gem` is a wrapper command that manages installation and updating
-of rubygems for the Ruby installation embedded in the ChefDK package.
-This allows you to install knife plugins, Test Kitchen drivers, and
-other Ruby applications that are not packaged with ChefDK.
+
+`chef gem` is a wrapper command that manages installation and updating of rubygems for the Ruby installation embedded in the ChefDK package. This allows you to install knife plugins, Test Kitchen drivers, and other Ruby applications that are not packaged with Chef Workstation.
 
 Gems are installed to a `.chefdk` directory in your home directory; any
 executables included with a gem you install will be created in
@@ -248,77 +168,12 @@ To permanently enable:
 echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 ```
 
-## Uninstallation Instructions
-
-### macOS
-
-You can uninstall Chef Development Kit on Mac using the below commands.
-
-First, remove the main package files:
-
-```sh
-# Remove the installed files
-sudo rm -rf /opt/chefdk
-
-# Remove the system installation entry
-sudo pkgutil --forget com.getchef.pkg.chefdk
-```
-
-Next, remove the symlinks which the Chef Development Kit installs:
-
-```sh
-# Symlinks are in /usr/local/bin
-ls -la /usr/local/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/local/bin/%
-```
-
-### Windows
-
-You can use `Add / Remove Programs` on Windows to remove the Chef Development
-Kit from your system.
-
-### RHEL
-
-You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
-
-```sh
-rpm -qa *chefdk*
-yum remove <package>
-rm -rf /opt/chefdk
-rm -rf ~/.chefdk
-```
-
-### Ubuntu
-
-You can use `dpkg` to uninstall Chef Development Kit on Ubuntu based systems:
-
-```sh
-dpkg --list | grep chefdk # or dpkg --status chefdk
-
-# Purge chefdk from the system.
-# see man dkpg for details
-dpkg -P chefdk
-```
-
 ## Contributing
 
 For information on contributing to this project see <https://github.com/chef/chef/blob/master/CONTRIBUTING.md>
 
-# For ChefDK Developers
+# For Chef-CLI Developers
 
 See the [Development Guide](CONTRIBUTING.md) for how to get started with
 development on the ChefDK itself, as well as details on how dependencies,
 packaging, and building works.
-
-- - -
-
-[Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
-[Chef Infra Client]: https://www.chef.io/products/chef-infra/ "Chef Infra Client"
-[ChefDK]: https://downloads.chef.io/chefdk/ "Chef Development Kit"
-[Chef Documentation]: https://docs.chef.io "Chef Documentation"
-[ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
-[Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
-[Foodcritic]: http://foodcritic.io "Foodcritic"
-[Learn Chef]: https://learn.chef.io "Learn Chef"
-[Test Kitchen]: http://kitchen.ci "Test Kitchen"
-[Delivery CLI]: https://docs.chef.io/delivery_cli.html "Delivery CLI"
-[Push Jobs Client]: https://docs.chef.io/push_jobs.html#push-jobs-client "Push Jobs Client"

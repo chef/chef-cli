@@ -78,15 +78,14 @@ describe ChefCLI::Command::Verify do
       expect(command_instance.omnibus_root).to end_with("eg_omnibus_dir/valid")
     end
 
-
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
-       expect { command_instance.omnibus_bin_dir}.to raise_error(ChefCLI::OmnibusInstallNotFound)
-     end
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
+      expect { command_instance.omnibus_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
+    end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
       allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/invalid/embedded/bin/ruby"))
-      expect { command_instance.omnibus_bin_dir}.to raise_error(ChefCLI::OmnibusInstallNotFound)
+      expect { command_instance.omnibus_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
 
     context "and a component's gem is not installed" do

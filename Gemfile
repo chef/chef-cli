@@ -9,7 +9,7 @@ group :docs do
 end
 
 group :test do
-  RSPEC_VERSION_SPEC = "~> 3.8"
+  RSPEC_VERSION_SPEC = "~> 3.8".freeze
   gem "rake"
   gem "rspec", RSPEC_VERSION_SPEC
 end

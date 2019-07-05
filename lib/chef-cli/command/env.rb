@@ -37,27 +37,29 @@ module ChefCLI
 
       def run(params)
         info = {}
-        info["#{ChefCLI::Dist::PRODUCT}"] = Hash.new.tap do |chefcli_env|
-          chefcli_env["ChefCLI"] = chefcli_info
-          chefcli_env["Ruby"] = ruby_info
-          chefcli_env["Path"] = paths
-        end
+        info["#{ChefCLI::Dist::PRODUCT}"] = workstation_info
+        info["Ruby"] = ruby_info
+        info["Path"] = paths
         ui.msg info.to_yaml
       end
 
-      def chefcli_info
-        Hash.new.tap do |chefcli|
-          chefcli["ChefCLI Version"] = ChefCLI::VERSION
-          chefcli["ChefCLI Home"] = chefcli_home
-          chefcli["ChefCLI Install Directory"] = omnibus_root
-          chefcli["Policyfile Config"] = policyfile_config
+      def workstation_info
+        info = {}
+        if omnibus_install?
+          info["Version"] = ChefCLI::VERSION
+          info["Home"] = package_home
+          info["Install Directory"] = omnibus_root
+          info["Policyfile Config"] = policyfile_config
+        else
+          info["Version"] = "Not running from within Workstation"
         end
+        info
       end
 
       def ruby_info
         Hash.new.tap do |ruby|
-          ruby["Ruby Executable"] = Gem.ruby
-          ruby["Ruby Version"] = RUBY_VERSION
+          ruby["Executable"] = Gem.ruby
+          ruby["Version"] = RUBY_VERSION
           ruby["RubyGems"] = Hash.new.tap do |rubygems|
             rubygems["RubyGems Version"] = Gem::VERSION
             rubygems["RubyGems Platforms"] = Gem.platforms.map(&:to_s)
@@ -67,15 +69,22 @@ module ChefCLI
       end
 
       def gem_environment
-        Hash.new.tap do |h|
-          h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
-          h["GEM HOME"] = omnibus_env["GEM_HOME"]
-          h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
-        end
+        h = {}
+        h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
+        h["GEM HOME"] = omnibus_env["GEM_HOME"]
+        h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
+      rescue OmnibusInstallNotFound
+        h["GEM_ROOT"] = ENV["GEM_ROOT"] if ENV.key?("GEM_ROOT")
+        h["GEM_HOME"] = ENV["GEM_HOME"] if ENV.key?("GEM_HOME")
+        h["GEM PATHS"] = ENV["GEM_PATH"].split(File::PATH_SEPARATOR) if ENV.key?("GEM_PATH") && !ENV.key?("GEM_PATH").nil?
+      ensure
+        h
       end
 
       def paths
         omnibus_env["PATH"].split(File::PATH_SEPARATOR)
+      rescue OmnibusInstallNotFound
+        ENV["PATH"].split(File::PATH_SEPARATOR)
       end
 
       def policyfile_config

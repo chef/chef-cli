@@ -29,24 +29,58 @@ describe ChefCLI::Command::Env do
   let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
   let(:omnibus_bin_dir) { "/foo/bin" }
 
-  before do
-    allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
-    allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
-    command_instance.ui = ui
-  end
-
-  def run_command
-    command_instance.run_with_default_options(false, command_options)
-  end
-
   it "has a usage banner" do
     expect(command_instance.banner).to eq("Usage: chef env")
   end
 
-  describe "when running env command" do
-    it "should return valid yaml" do
-      run_command
-      expect { YAML.load(ui.output) }.not_to raise_error
+  describe "when running from within an omnibus install" do
+    before do
+      allow(command_instance).to receive(:omnibus_install?).and_return true
+      allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+      allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      command_instance.ui = ui
+    end
+
+    describe "and the env command is run" do
+      let(:yaml) { YAML.load(ui.output) }
+      before :each do
+        run_command
+      end
+      it "output should be valid yaml" do
+        expect { yaml }.not_to raise_error
+      end
+      it "should include correct Workstation version info" do
+        expect(yaml).to have_key ChefCLI::Dist::PRODUCT
+        expect(yaml[ChefCLI::Dist::PRODUCT]["Version"]).to eql ChefCLI::VERSION
+      end
     end
   end
+  describe "when running locally" do
+    before do
+      allow(command_instance).to receive(:omnibus_install?).and_return false
+      command_instance.ui = ui
+    end
+
+    describe "and the env command is run" do
+      let(:yaml) { YAML.load(ui.output) }
+      before :each do
+        run_command
+      end
+      it "output should be valid yaml" do
+        expect { yaml }.not_to raise_error
+      end
+      it "Workstation version should indicate that that we're not runnign from a WS install" do
+        expect(yaml).to have_key ChefCLI::Dist::PRODUCT
+        expect(yaml[ChefCLI::Dist::PRODUCT]["Version"]).to eql "Not running from within Workstation"
+      end
+      it "should return valid yaml" do
+        run_command
+        expect { YAML.load(ui.output) }.not_to raise_error
+      end
+    end
+  end
+  def run_command
+    command_instance.run_with_default_options(false, command_options)
+  end
+
 end

@@ -4,30 +4,26 @@ about: If something isn't working as expected �.
 labels: "Status: Untriaged"
 ---
 
-# Description
+# Version:
 
-Briefly describe the issue
+[Version of the project installed]
 
-# ChefDK Version
+# Environment:
 
-Tell us which version of the ChefDK you are running. Run `chef --version` to display the version.
+[Details about the environment such as the Operating System, cookbook details, etc...]
 
-# Platform Version
+# Scenario:
 
-Tell us which operating system distribution and version ChefDK is running on.
+[What you are trying to achieve and you can't?]
 
-# Replication Case
+# Steps to Reproduce:
 
-Tell us what steps to take to replicate your problem. See [How to create a Minimal, Complete, and Verifiable example](https://stackoverflow.com/help/mcve) for information on how to create a good replication case.
+[If you are filing an issue what are the things we need to do in order to repro your problem?]
 
-# Stacktrace
+# Expected Result:
 
-Please include the stacktrace.out output or link to a gist of it, if there is one.
+[What are you expecting to happen as the consequence of above reproduction steps?]
 
-## NOTE: CHEFDK BUGS ONLY
+# Actual Result:
 
-This issue tracker is for the code contained within this repo -- `chefdk`.
-
-- [Server issues](https://github.com/chef/chef-server/issues/new)
-- [Chef-client issues](https://github.com/chef/chef/issues/new)
-- Cookbook Issues (see the <https://github.com/chef-cookbooks> repos or search [Supermarket](https://supermarket.chef.io) or GitHub/Google)
+[What actually happens after the reproduction steps?]

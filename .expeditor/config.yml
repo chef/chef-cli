@@ -5,15 +5,9 @@
 slack:
   notify_channel: chef-ws-notify
 
-# Which Ruby Gems, built when the Omnibus package is built, to publish to rubygems.org
 # This publish is triggered by the `built_in:publish_rubygems` artifact_action.
 rubygems:
-  - chef-dk
   - chef-cli
-
-pipelines:
-  - verify:
-      public: true
 
 github:
   # This deletes the GitHub PR branch after successfully merged into the release branch
@@ -28,7 +22,7 @@ github:
     - "Expeditor: Bump Version Major"
 
 changelog:
-  rollup_header: Changes not yet released to stable
+  rollup_header: Changes not yet released to rubygems.org
 
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
@@ -43,18 +37,14 @@ merge_actions:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
   - built_in:build_gem:
-      only_if:
-        - built_in:bump_version
+      only_if: built_in:bump_version
 
-subscriptions:
-  - workload: artifact_published:unstable:chefdk:{{version_constraint}}
-    actions:
-      - built_in:build_docker_image
-  - workload: artifact_published:current:chefdk:{{version_constraint}}
-    actions:
-      - built_in:tag_docker_image
-  - workload: artifact_published:stable:chefdk:{{version_constraint}}
-    actions:
-      - built_in:rollover_changelog
-      - built_in:publish_rubygems
-      - built_in:notify_chefio_slack_channels
+promote:
+  actions:
+    - built_in:rollover_changelog
+    - built_in:publish_rubygems
+
+pipelines:
+  - verify:
+      description: Pull Request validation tests
+      public: true

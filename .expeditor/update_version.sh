@@ -6,14 +6,7 @@
 
 set -evx
 
-sed -i -r "s/^(\s*)VERSION = \".+\"/\1VERSION = \"$(cat VERSION)\"/" lib/chef-dk/version.rb
-
-# There is a bug (https://github.com/bundler/bundler/issues/5644) that is preventing
-# us from updating the chef-dk gem via `bundle update` or `bundle lock --update`.
-# Until that is addressed, let's replace the version using sed.
-# We only replace the first instance because chef-apply now also has ChefDK as a
-# dependency, and we don't want to replace that constraint.
-sed -i -r "0,/chef-dk\s\(.+\)$/s/chef-dk\s\(.+\)$/chef-dk \($(cat VERSION)\)/" Gemfile.lock
+sed -i -r "s/^(\s*)VERSION = \".+\"/\1VERSION = \"$(cat VERSION)\"/" lib/chef-cli/version.rb
 
 # Once Expeditor finshes executing this script, it will commit the changes and push
 # the commit as a new tag corresponding to the value in the VERSION file.

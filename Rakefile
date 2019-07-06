@@ -22,7 +22,7 @@ namespace :style do
     desc "Run Cookbook Ruby style checks"
     RuboCop::RakeTask.new(:cookstyle) do |t|
       t.requires = ["cookstyle"]
-      t.patterns = ["lib/chef-dk/skeletons/code_generator"]
+      t.patterns = ["lib/chef-cli/skeletons/code_generator"]
       t.options = ["--display-cop-names"]
     end
   rescue LoadError => e
@@ -33,7 +33,7 @@ namespace :style do
     require "rubocop/rake_task"
 
     ignore_dirs = Regexp.union(%w{
-      lib/chef-dk/skeletons/code_generator
+      lib/chef-cli/skeletons/code_generator
       spec/unit/fixtures/chef-runner-cookbooks
       spec/unit/fixtures/cookbook_cache
       spec/unit/fixtures/example_cookbook
@@ -60,7 +60,7 @@ namespace :style do
       t.options = {
         fail_tags: ["any"],
         tags: ["~FC071", "~supermarket", "~FC031"],
-        cookbook_paths: ["lib/chef-dk/skeletons/code_generator"],
+        cookbook_paths: ["lib/chef-cli/skeletons/code_generator"],
         progress: true,
       }
     end

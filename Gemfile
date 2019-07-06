@@ -18,7 +18,7 @@ group :test do
 end
 
 group :chefstyle do
-  gem "chefstyle", "~> 0.4.0"
+  gem "chefstyle"
 end
 
 group :development do

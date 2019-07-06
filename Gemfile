@@ -11,6 +11,8 @@ end
 group :test do
   gem "rake"
   gem "rspec", "~> 3.8"
+  gem "rspec-expectations", "~> 3.8"
+  gem "rspec-mocks", "~> 3.8"
   gem "cookstyle"
   gem "foodcritic"
 end

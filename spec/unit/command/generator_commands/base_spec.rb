@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-require "pry"
 require "spec_helper"
 require "chef-cli/command/generator_commands/base"
 

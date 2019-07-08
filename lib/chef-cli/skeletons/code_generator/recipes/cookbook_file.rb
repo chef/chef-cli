@@ -10,7 +10,7 @@ end
 if context.content_source
 
   file cookbook_file_path do
-    content(IO.read(context.context_source))
+    content(IO.read(context.content_source))
   end
 
 else

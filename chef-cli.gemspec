@@ -22,8 +22,8 @@ require "chef-cli/version"
 Gem::Specification.new do |gem|
   gem.name          = "chef-cli"
   gem.version       = ChefCLI::VERSION
-  gem.authors       = [ "Daniel DeLeo", "Lamont Granquist", "Serdar Sutay" ]
-  gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
+  gem.authors       = ["Chef Software, Inc."]
+  gem.email         = ["info@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."
   gem.summary       = gem.description
   gem.license       = "Apache-2.0"

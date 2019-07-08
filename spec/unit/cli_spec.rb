@@ -235,6 +235,9 @@ describe ChefCLI::CLI do
     end
 
     context "when installed via omnibus" do
+      before do
+        allow(cli).to receive(:omnibus_install?).and_return true
+      end
 
       context "on unix" do
 
@@ -345,6 +348,9 @@ describe ChefCLI::CLI do
 
     context "when not installed via omnibus" do
 
+      before do
+        allow(cli).to receive(:omnibus_install?).and_return false
+      end
       let(:ruby_path) { "/Users/bog/.lots_o_rubies/2.1.2/bin/ruby" }
       let(:expected_root_path) { "/Users/bog/.lots_o_rubies" }
 

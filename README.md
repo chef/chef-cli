@@ -28,27 +28,27 @@ The `chef generate` command also accepts additional `--generator-arg key=value` 
 
 #### `chef gem`
 
-`chef gem` is a wrapper command that manages installation and updating of rubygems for the Ruby installation embedded in the ChefDK package. This allows you to install knife plugins, Test Kitchen drivers, and other Ruby applications that are not packaged with Chef Workstation.
+`chef gem` is a wrapper command that manages installation and updating of rubygems for the Ruby installation embedded in the Chef Workstation package. This allows you to install knife plugins, Test Kitchen drivers, and other Ruby applications that are not packaged with Chef Workstation.
 
-Gems are installed to a `.chefdk` directory in your home directory; any
+Gems are installed to a `.chef-workstation` directory in your home directory; any
 executables included with a gem you install will be created in
-`~/.chefdk/gem/ruby/2.1.0/bin`. You can run these executables with
-`chef exec`, or use `chef shell-init` to add ChefDK's paths to your
+`~/.chef-workstation/gem/ruby/2.1.0/bin`. You can run these executables with
+`chef exec`, or use `chef shell-init` to add Chef Workstation's paths to your
 environment. Those commands are documented below.
 
-### `chef exec`
+#### `chef exec`
 `chef exec <command>` runs any arbitrary shell command with the PATH
 environment variable and the ruby environment variables (`GEM_HOME`,
-`GEM_PATH`, etc.) setup to point at the embedded ChefDK omnibus environment.
+`GEM_PATH`, etc.) setup to point at the embedded Chef Workstation installation.
 
-### `chef shell-init`
+#### `chef shell-init`
 `chef shell-init SHELL_NAME` emits shell commands that modify your
-environment to make ChefDK your primary ruby. It supports bash, zsh,
+environment to make Chef Workstation your primary ruby. It supports bash, zsh,
 fish and PowerShell (posh). For more information to help you decide if
-this is desirable and instructions, see "Using ChefDK as Your Primary
+this is desirable and instructions, see "Using Chef as Your Primary
 Development Environment" below.
 
-### `chef install`
+#### `chef install`
 `chef install` reads a `Policyfile.rb` document, which contains a
 `run_list` and optional cookbook version constraints, finds a set of
 cookbooks that provide the desired recipes and meet dependency
@@ -59,7 +59,7 @@ uploaded to a Chef Infra Server (via the `chef push` command) to apply the
 expanded run list and locked cookbook set to nodes in your
 infrastructure. See the POLICYFILE_README.md for further details.
 
-### `chef push`
+#### `chef push`
 `chef push POLICY_GROUP` uploads a Policyfile.lock.json along with the cookbooks it
 references to a Chef Infra Server. The policy lock is applied to a
 `POLICY_GROUP`, which is a set of nodes that share the same run list and
@@ -67,12 +67,12 @@ cookbook set. This command operates in compatibility mode and has the
 same caveats as `chef install`. See the POLICYFILE_README.md for further
 details.
 
-### `chef update`
+#### `chef update`
 `chef update` updates a Policyfile.lock.json with the latest cookbooks
 from upstream sources. It supports an `--attributes` flag which will
 cause only attributes from the Policyfile.rb to be updated.
 
-### `chef diff`
+#### `chef diff`
 `chef diff` shows an itemized diff between Policyfile locks. It can
 compare Policyfile locks from local disk, git, and/or the Chef Infra Server,
 based on the options given.
@@ -95,19 +95,19 @@ sensitive to your machine's configuration. If you choose to run these,
 we recommend to only run them on dedicated, isolated hosts (we do this
 in our build cluster to verify each build).
 
-### Using ChefDK as Your Primary Development Environment
+### Using Chef as Your Primary Development Environment
 
-By default, ChefDK only adds a few select applications to your `PATH`
+By default, Chef Workstation only adds a few select applications to your `PATH`
 and packages them in such a way that they are isolated from any other
 Ruby development tools you have on your system. If you're happily using
 your system ruby, rvm, rbenv, chruby or any other development
-environment, you can continue to do so. Just ensure that the ChefDK
+environment, you can continue to do so. Just ensure that the Workstation-
 provided applications appear first in your `PATH` before any
 gem-installed versions and you're good to go.
 
-If you'd like to use ChefDK as your primary Ruby/Chef Infra development
+If you'd like for Chef to provide your primary Ruby/Chef Infra development
 environment, however, you can do so by initializing your shell with
-ChefDK's environment.
+Chef Workstation's environment.
 
 To try it temporarily, in a new terminal session, run:
 
@@ -117,16 +117,16 @@ eval "$(chef shell-init SHELL_NAME)"
 
 where `SHELL_NAME` is the name of your shell (usually bash, but zsh is
 also common). This modifies your `PATH` and `GEM_*` environment
-variables to include ChefDK's paths (run without the `eval` to see the
+variables to include Chef Workstation's paths (run without the `eval` to see the
 generated code). Now your default `ruby` and associated tools will be
-the ones from ChefDK:
+the ones from Chef Workstation:
 
 ```sh
 which ruby
-# => /opt/chefdk/embedded/bin/ruby
+# => /opt/chef-workstation/embedded/bin/ruby
 ```
 
-To add ChefDK to your shell's environment permanently, add the
+To add Chef Workstation to your shell's environment permanently, add the
 initialization step to your shell's profile:
 
 ```sh
@@ -175,5 +175,5 @@ For information on contributing to this project see <https://github.com/chef/che
 # For Chef-CLI Developers
 
 See the [Development Guide](CONTRIBUTING.md) for how to get started with
-development on the ChefDK itself, as well as details on how dependencies,
+development on Chef Workstation itself, as well as details on how dependencies,
 packaging, and building works.

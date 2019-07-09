@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 1.0.4 -->
+## [v1.0.4](https://github.com/chef/chef-cli/tree/v1.0.4) (2019-07-09)
+
+#### Merged Pull Requests
+- new chefstyle rules for 0.13.2 [#14](https://github.com/chef/chef-cli/pull/14) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.3 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- new chefstyle rules for 0.13.2 [#14](https://github.com/chef/chef-cli/pull/14) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 1.0.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
@@ -14,4 +22,3 @@
 - Update README.md [#6](https://github.com/chef/chef-cli/pull/6) ([marcparadise](https://github.com/marcparadise))
 - Change the gem authors + remove reference to old building.md [#7](https://github.com/chef/chef-cli/pull/7) ([tas50](https://github.com/tas50))
 <!-- latest_stable_release -->
-

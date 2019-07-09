@@ -57,10 +57,10 @@ module ChefCLI
       end
 
       def ruby_info
-        Hash.new.tap do |ruby|
+        {}.tap do |ruby|
           ruby["Executable"] = Gem.ruby
           ruby["Version"] = RUBY_VERSION
-          ruby["RubyGems"] = Hash.new.tap do |rubygems|
+          ruby["RubyGems"] = {}.tap do |rubygems|
             rubygems["RubyGems Version"] = Gem::VERSION
             rubygems["RubyGems Platforms"] = Gem.platforms.map(&:to_s)
             rubygems["Gem Environment"] = gem_environment
@@ -88,7 +88,7 @@ module ChefCLI
       end
 
       def policyfile_config
-        Hash.new.tap do |h|
+        {}.tap do |h|
           h["Cache Path"] = CookbookOmnifetch.cache_path
           h["Storage Path"] = CookbookOmnifetch.storage_path.to_s
         end

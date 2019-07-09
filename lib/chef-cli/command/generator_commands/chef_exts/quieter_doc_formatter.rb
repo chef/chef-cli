@@ -28,11 +28,9 @@ module ChefCLI
     cli_name(:chefcli_doc)
 
     # Called when starting to collect gems from the cookbooks
-    def cookbook_gem_start(gems)
-    end
+    def cookbook_gem_start(gems); end
 
     # Called when cookbook loading starts.
-    def library_load_start(file_count)
-    end
+    def library_load_start(file_count); end
   end
 end

@@ -19,7 +19,7 @@ require "spec_helper"
 require "chef-cli/command/exec"
 
 describe ChefCLI::Command::Exec do
-  let(:command_instance) { ChefCLI::Command::Exec.new() }
+  let(:command_instance) { ChefCLI::Command::Exec.new }
 
   let(:command_options) { [] }
 

@@ -60,7 +60,7 @@ module ChefCLI
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
+        other.is_a?(self.class) && other.uri == uri
       end
 
       def default_source_args

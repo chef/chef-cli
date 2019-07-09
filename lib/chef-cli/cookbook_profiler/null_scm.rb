@@ -19,8 +19,7 @@ module ChefCLI
   module CookbookProfiler
     class NullSCM
 
-      def initialize(cookbook_path)
-      end
+      def initialize(cookbook_path); end
 
       def profile_data
         nil

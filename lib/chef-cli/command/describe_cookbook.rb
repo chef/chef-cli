@@ -63,6 +63,7 @@ module ChefCLI
       def run(params = [])
         return 1 unless apply_params!(params)
         return 1 unless check_cookbook_path
+
         IdDumper.new(ui, cookbook_path).run
       end
 

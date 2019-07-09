@@ -35,7 +35,7 @@ describe ChefCLI::Command::Export do
 
   let(:export_service) do
     instance_double(ChefCLI::PolicyfileServices::ExportRepo,
-                    policyfile_lock: policyfile_lock)
+      policyfile_lock: policyfile_lock)
   end
 
   context "after evaluating params" do

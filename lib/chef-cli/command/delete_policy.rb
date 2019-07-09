@@ -68,6 +68,7 @@ module ChefCLI
 
       def run(params)
         return 1 unless apply_params!(params)
+
         rm_policy_service.run
         ui.msg("This operation can be reversed by running `#{ChefCLI::Dist::EXEC} undelete --last`.")
         0

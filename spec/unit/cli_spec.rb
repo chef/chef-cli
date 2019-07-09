@@ -357,11 +357,11 @@ describe ChefCLI::CLI do
       before do
         allow(File).to receive(:exist?).with(expected_root_path).and_return(false)
 
-        [
-          :omnibus_root,
-          :omnibus_bin_dir,
-          :omnibus_embedded_bin_dir,
-        ].each do |method_name|
+        %i{
+          omnibus_root
+          omnibus_bin_dir
+          omnibus_embedded_bin_dir
+        }.each do |method_name|
           allow(cli).to receive(method_name).and_raise(ChefCLI::OmnibusInstallNotFound.new)
         end
       end

@@ -27,12 +27,12 @@ describe ChefCLI::Policyfile::LockApplier do
 
   let(:included_policy_1) do
     instance_double("ChefCLI::Policyfile::PolicyfileLocationSpec",
-                    name: "policy1")
+      name: "policy1")
   end
 
   let(:included_policy_2) do
     instance_double("ChefCLI::Policyfile::PolicyfileLocationSpec",
-                    name: "policy2")
+      name: "policy2")
   end
 
   let(:included_policy_lock_1) do

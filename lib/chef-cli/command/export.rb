@@ -84,6 +84,7 @@ module ChefCLI
 
       def run(params = [])
         return 1 unless apply_params!(params)
+
         export_service.run
         ui.msg("Exported policy '#{export_service.policyfile_lock.name}' to #{export_target}")
         unless archive?

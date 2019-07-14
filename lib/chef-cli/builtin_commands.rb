@@ -58,6 +58,8 @@ ChefCLI.commands do |c|
   c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-cli/command/describe_cookbook",
                                                     desc: "Prints cookbook checksum information used for cookbook identifier"
 
+  c.builtin "test", :Test, desc: "Test your #{ChefCLI::Dist::INFRA_PRODUCT} cookbook code"
+
   c.builtin "verify", :Verify, desc: "Test the embedded #{ChefCLI::Dist::PRODUCT} applications", hidden: true
 
   # deprecated command that throws a failure warning if used. This was removed 4.2019

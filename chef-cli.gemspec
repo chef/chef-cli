@@ -39,6 +39,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^spec/})
   gem.require_paths = ["lib"]
 
+  gem.add_dependency "tomlrb", "~> 1.2" # legacy delivery local mode config parsing
   gem.add_dependency "mixlib-cli", ">= 1.7", "< 3.0"
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"

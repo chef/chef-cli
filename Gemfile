@@ -9,6 +9,10 @@ group :docs do
 end
 
 group :test do
+  # For ruby 2.4 testing we need to use ohai 14
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.5")
+    gem "ohai", "~> 14"
+  end
   gem "rake"
   gem "rspec", "~> 3.8"
   gem "rspec-expectations", "~> 3.8"

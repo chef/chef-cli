@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.license       = "Apache-2.0"
   gem.homepage      = "https://www.chef.io/"
 
-  gem.required_ruby_version = ">= 2.5"
+  gem.required_ruby_version = ">= 2.4"
 
   gem.files = %w{Rakefile LICENSE} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks
@@ -43,7 +43,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
   gem.add_dependency "minitar", "~> 0.6"
-  gem.add_dependency "chef", "~> 15.0"
+  gem.add_dependency "chef", ">= 14.0"
   gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.6"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"

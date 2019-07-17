@@ -44,6 +44,15 @@ steps:
       docker:
         image: ruby:2.6-stretch
 
+- label: run-specs-windows
+  command:
+    - bundle install --jobs=7 --retry=3 --without docs development
+    - bundle exec rake spec
+  expeditor:
+    executor:
+      docker:
+        host_os: windows
+
 - label: foodcritic-generator-cb-tests-ruby-2.6
   command:
     - export USER="root"

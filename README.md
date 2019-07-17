@@ -1,12 +1,16 @@
 # Chef-CLI
 
+[![Build status](https://badge.buildkite.com/c0b83a31c5491c6321949a96f20c628c803409387e9d7e770a.svg?branch=master)](https://buildkite.com/chef-oss/chef-chef-cli-master-verify)
+
 **Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
 
-* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Active
-* **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
-* **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+**[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Active
 
-The Chef-CLI is the command line interface for Chef Infra practitioners. This tool aims to include everything you need to be successful using Chef Infra and soon Chef Infra and Chef Habitat.
+**Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+
+**Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+
+The Chef-CLI is the command line interface for Chef Infra practitioners. This tool aims to include everything you need to be successful using Chef Infra and soon Chef InSpec and Chef Habitat.
 
 ### The `chef` Command
 

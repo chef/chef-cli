@@ -46,7 +46,6 @@ describe ChefCLI::Command::Verify do
       "chefspec",
       "generated-cookbooks-pass-chefspec",
       "fauxhai",
-      "knife-spork",
       "kitchen-vagrant",
       "package installation",
       "openssl",

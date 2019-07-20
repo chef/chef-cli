@@ -92,10 +92,14 @@ module ChefCLI
           bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
           sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")} --color --format progress spec/unit --tag ~graphviz")
         end
-        c.integration_test do
-          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
-          sh("#{embedded_bin("bundle")} exec #{embedded_bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
-        end
+
+        # See older versions of this file in git to retrieve
+        # our cucumber test command for berkshelf.
+        # We had to remove them because we no longer bundle These tests cannot be run unless we bundle cucumber
+        # c.integration_test do
+        #   bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+        #   sh("#{embedded_bin("bundle")} exec #{embedded_bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
+        # end
 
         c.smoke_test do
           tmpdir do |cwd|
@@ -246,11 +250,6 @@ module ChefCLI
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
         c.smoke_test { sh("#{embedded_bin("gem")} list fauxhai") }
-      end
-
-      add_component "knife-spork" do |c|
-        c.gem_base_dir = "knife-spork"
-        c.smoke_test { sh("#{bin("knife")} spork info") }
       end
 
       add_component "kitchen-vagrant" do |c|

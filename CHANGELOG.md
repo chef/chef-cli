@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 1.0.8 -->
-## [v1.0.8](https://github.com/chef/chef-cli/tree/v1.0.8) (2019-07-18)
+<!-- latest_release 1.0.9 -->
+## [v1.0.9](https://github.com/chef/chef-cli/tree/v1.0.9) (2019-07-20)
 
 #### Merged Pull Requests
-- Disable chef-run telemetry data during CI tests [#16](https://github.com/chef/chef-cli/pull/16) ([tyler-ball](https://github.com/tyler-ball))
+- Remove knife-spork verification, and berks integration tests [#21](https://github.com/chef/chef-cli/pull/21) ([marcparadise](https://github.com/marcparadise))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.0.6 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove knife-spork verification, and berks integration tests [#21](https://github.com/chef/chef-cli/pull/21) ([marcparadise](https://github.com/marcparadise)) <!-- 1.0.9 -->
 - Disable chef-run telemetry data during CI tests [#16](https://github.com/chef/chef-cli/pull/16) ([tyler-ball](https://github.com/tyler-ball)) <!-- 1.0.8 -->
 - Run specs in Buildkite on Windows [#20](https://github.com/chef/chef-cli/pull/20) ([tas50](https://github.com/tas50)) <!-- 1.0.7 -->
 <!-- release_rollup -->

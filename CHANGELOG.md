@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 1.0.10 -->
+## [v1.0.10](https://github.com/chef/chef-cli/tree/v1.0.10) (2019-07-22)
+
+#### Merged Pull Requests
+- Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.9 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50)) <!-- 1.0.10 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

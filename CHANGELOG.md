@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 1.0.10 -->
-## [v1.0.10](https://github.com/chef/chef-cli/tree/v1.0.10) (2019-07-22)
+<!-- latest_release 1.0.11 -->
+## [v1.0.11](https://github.com/chef/chef-cli/tree/v1.0.11) (2019-07-25)
 
 #### Merged Pull Requests
-- Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50))
+- Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.0.9 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise)) <!-- 1.0.11 -->
 - Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50)) <!-- 1.0.10 -->
 <!-- release_rollup -->
 

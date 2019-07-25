@@ -1,27 +1,24 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 1.0.11 -->
-## [v1.0.11](https://github.com/chef/chef-cli/tree/v1.0.11) (2019-07-25)
-
-#### Merged Pull Requests
-- Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=1.0.9 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise)) <!-- 1.0.11 -->
-- Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50)) <!-- 1.0.10 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.0.11](https://github.com/chef/chef-cli/tree/v1.0.11) (2019-07-25)
+
+#### Merged Pull Requests
+- Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50))
+- Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_stable_release -->
+
 ## [v1.0.9](https://github.com/chef/chef-cli/tree/v1.0.9) (2019-07-20)
 
 #### Merged Pull Requests
 - Run specs in Buildkite on Windows [#20](https://github.com/chef/chef-cli/pull/20) ([tas50](https://github.com/tas50))
 - Disable chef-run telemetry data during CI tests [#16](https://github.com/chef/chef-cli/pull/16) ([tyler-ball](https://github.com/tyler-ball))
 - Remove knife-spork verification, and berks integration tests [#21](https://github.com/chef/chef-cli/pull/21) ([marcparadise](https://github.com/marcparadise))
-<!-- latest_stable_release -->
 
 ## [v1.0.6](https://github.com/chef/chef-cli/tree/v1.0.6) (2019-07-16)
 

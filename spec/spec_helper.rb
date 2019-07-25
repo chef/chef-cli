@@ -23,6 +23,8 @@ require "test_helpers"
 require "chef/workstation_config_loader"
 require "chef/config"
 
+require "chef-cli/cli"
+
 RSpec.configure do |c|
   running_on_windows = (RUBY_PLATFORM =~ /mswin|mingw|windows/)
 

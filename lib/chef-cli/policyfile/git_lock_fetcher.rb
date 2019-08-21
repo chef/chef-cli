@@ -195,7 +195,7 @@ module ChefCLI
       #
       # @return [String] Content of specified file for a given revision.
       def show_file(version, file)
-        git("show #{version}:#{file}", cwd: cache_path)
+        git("show #{version}:#{file}", cwd: cache_path.to_s)
       end
 
       # COPYPASTA from CookbookOmnifetch

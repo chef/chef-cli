@@ -120,6 +120,17 @@ describe ChefCLI::Policyfile::GitLockFetcher do
       expect(lock_data).to include(minimal_lockfile_modified)
     end
 
+    # Shellout libraries on Windows expect cwd to be provided as a string, not Pathname object
+    it "provides the working directory as a string" do
+      expect(Mixlib::ShellOut).to receive(:new).with(/git clone/, {}).and_return(shellout)
+      expect(Mixlib::ShellOut).to receive(:new).with(/git show/, { cwd: /cache/ }).and_return(shellout)
+      allow(shellout).to receive(:error?).and_return(false)
+      allow(shellout).to receive(:stdout).and_return(minimal_lockfile_json)
+      allow(Dir).to receive(:chdir).and_return(0)
+
+      expect(lock_data).to include(minimal_lockfile_modified)
+    end
+
     context "when using a relative path for the policyfile" do
       let(:source_options_rel) do
         source_options.collect { |k, v| [k.to_s, v] }.to_h.merge({ "rel" => rel })

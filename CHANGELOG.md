@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 1.0.12 -->
+## [v1.0.12](https://github.com/chef/chef-cli/tree/v1.0.12) (2019-08-22)
+
+#### Merged Pull Requests
+- Shellout libraries expect cwd to be provided as a string [#26](https://github.com/chef/chef-cli/pull/26) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.11 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Shellout libraries expect cwd to be provided as a string [#26](https://github.com/chef/chef-cli/pull/26) ([tyler-ball](https://github.com/tyler-ball)) <!-- 1.0.12 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

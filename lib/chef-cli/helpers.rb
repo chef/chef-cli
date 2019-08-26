@@ -51,9 +51,9 @@ module ChefCLI
     # Locates the omnibus directories
     #
     def omnibus_install?
-      # We also checck if the location we're running from (omnibus_root is relative to currently-running ruby)
-      # includes the version manifest that omnibus packages ship with.  If it doesn't then we're running locally or
-      # out of a gem - so not as an 'omnibus install'
+      # We also check if the location we're running from (omnibus_root is relative to currently-running ruby)
+      # includes the version manifest that omnibus packages ship with. If it doesn't, then we're running locally
+      # or out of a gem - so not as an 'omnibus install'
       File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
     end
 

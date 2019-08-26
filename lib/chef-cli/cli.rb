@@ -96,6 +96,30 @@ module ChefCLI
     end
 
     def show_version
+      if omnibus_install?
+        show_version_via_version_manifest
+      else
+        show_version_via_shell_out
+      end
+    end
+
+    def show_version_via_version_manifest
+      require 'json'
+      manifest = File.read(File.join(omnibus_root, "version-manifest.json"))
+      gem_manifest = File.read(File.join(omnibus_root, "gem-version-manifest.json"))
+      manifest_hash = JSON.parse(manifest)
+      gem_manifest_hash = JSON.parse(gem_manifest)
+
+      msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_hash["build_version"]}")
+      msg("Chef CLI version: #{gem_manifest_hash["chef-cli"].first}")
+      msg("#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT} version: #{gem_manifest_hash["chef"].first}")
+      msg("#{ChefCLI::Dist::INSPEC_PRODUCT} version: #{gem_manifest_hash["inspec"].first}")
+      msg("Test Kitchen version: #{gem_manifest_hash["test-kitchen"].first}")
+      msg("Foodcritic version: #{gem_manifest_hash["foodcritic"].first}")
+      msg("Cookstyle version: #{gem_manifest_hash["cookstyle"].first}")
+    end
+
+    def show_version_via_shell_out
       msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
       { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_CLI}",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",

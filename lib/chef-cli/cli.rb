@@ -110,13 +110,25 @@ module ChefCLI
       manifest_hash = JSON.parse(manifest)
       gem_manifest_hash = JSON.parse(gem_manifest)
 
-      msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_hash["build_version"]}")
-      msg("Chef CLI version: #{gem_manifest_hash["chef-cli"].first}")
-      msg("#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT} version: #{gem_manifest_hash["chef"].first}")
-      msg("#{ChefCLI::Dist::INSPEC_PRODUCT} version: #{gem_manifest_hash["inspec"].first}")
-      msg("Test Kitchen version: #{gem_manifest_hash["test-kitchen"].first}")
-      msg("Foodcritic version: #{gem_manifest_hash["foodcritic"].first}")
-      msg("Cookstyle version: #{gem_manifest_hash["cookstyle"].first}")
+      require 'tty-table'
+      table = TTY::Table.new ["Component","Version"]
+      table << [ChefCLI::Dist::PRODUCT, manifest_hash["build_version"]]
+      table << ['Chef CLI', gem_manifest_hash["chef-cli"].first]
+      table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_manifest_hash["chef"].first]
+      table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_manifest_hash["inspec"].first]
+      table << ['Test Kitchen', gem_manifest_hash["test-kitchen"].first]
+      table << ['Feedcritic', gem_manifest_hash["foodcritic"].first]
+      table << ['Cookstyle', gem_manifest_hash["cookstyle"].first]
+
+      rendered_table = table.render do |renderer|
+        renderer.alignments = [:right]
+        renderer.border do
+          mid          "-"
+          mid_mid      " "
+        end
+      end
+
+      msg rendered_table
     end
 
     def show_version_via_shell_out

@@ -111,7 +111,7 @@ module ChefCLI
       gem_manifest_hash = JSON.parse(gem_manifest)
 
       require "tty-table"
-      table = TTY::Table.new header: %w(Component Version)
+      table = TTY::Table.new header: %w{Component Version}
       table << [ChefCLI::Dist::PRODUCT, manifest_hash["build_version"]]
       table << ["Chef CLI", gem_manifest_hash["chef-cli"].first]
       table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_manifest_hash["chef"].first]

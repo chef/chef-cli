@@ -104,21 +104,21 @@ module ChefCLI
     end
 
     def show_version_via_version_manifest
-      require 'json'
+      require "json"
       manifest = File.read(File.join(omnibus_root, "version-manifest.json"))
       gem_manifest = File.read(File.join(omnibus_root, "gem-version-manifest.json"))
       manifest_hash = JSON.parse(manifest)
       gem_manifest_hash = JSON.parse(gem_manifest)
 
-      require 'tty-table'
-      table = TTY::Table.new ["Component","Version"]
+      require "tty-table"
+      table = TTY::Table.new header: %w(Component Version)
       table << [ChefCLI::Dist::PRODUCT, manifest_hash["build_version"]]
-      table << ['Chef CLI', gem_manifest_hash["chef-cli"].first]
+      table << ["Chef CLI", gem_manifest_hash["chef-cli"].first]
       table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_manifest_hash["chef"].first]
       table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_manifest_hash["inspec"].first]
-      table << ['Test Kitchen', gem_manifest_hash["test-kitchen"].first]
-      table << ['Feedcritic', gem_manifest_hash["foodcritic"].first]
-      table << ['Cookstyle', gem_manifest_hash["cookstyle"].first]
+      table << ["Test Kitchen", gem_manifest_hash["test-kitchen"].first]
+      table << ["Feedcritic", gem_manifest_hash["foodcritic"].first]
+      table << ["Cookstyle", gem_manifest_hash["cookstyle"].first]
 
       rendered_table = table.render do |renderer|
         renderer.alignments = [:right]

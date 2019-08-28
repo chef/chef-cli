@@ -96,11 +96,30 @@ module ChefCLI
     end
 
     def show_version
+      if omnibus_install?
+        show_version_via_version_manifest
+      else
+        show_version_via_shell_out
+      end
+    end
+
+    def show_version_via_version_manifest
+      msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "chef",
+        "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
+        "Chef CLI": "chef-cli",
+        "Test Kitchen": "test-kitchen",
+        "Cookstyle": "cookstyle",
+      }.each do |name, gem|
+        msg("#{name} version: #{gem_version(gem)}")
+      end
+    end
+
+    def show_version_via_shell_out
       msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
       { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_CLI}",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
         "Test Kitchen": "kitchen",
-        "Foodcritic": "foodcritic",
         "Cookstyle": "cookstyle",
       }.each do |name, cli|
         result = Bundler.with_clean_env { shell_out("#{cli} --version") }
@@ -154,6 +173,40 @@ module ChefCLI
     end
 
     private
+
+    def manifest_field(field)
+      if manifest_hash[field]
+        manifest_hash[field]
+      else
+        "unknown"
+      end
+    end
+
+    def gem_version(name)
+      if gem_manifest_hash[name].is_a?(Array)
+        gem_manifest_hash[name].first
+      else
+        "unknown"
+      end
+    end
+
+    def manifest_hash
+      require "json"
+      @manifest_hash ||= JSON.parse(read_version_manifest_json)
+    end
+
+    def gem_manifest_hash
+      require "json"
+      @gem_manifest_hash ||= JSON.parse(read_gem_version_manifest_json)
+    end
+
+    def read_version_manifest_json
+      File.read(File.join(omnibus_root, "version-manifest.json"))
+    end
+
+    def read_gem_version_manifest_json
+      File.read(File.join(omnibus_root, "gem-version-manifest.json"))
+    end
 
     def normalized_exit_code(maybe_integer)
       if maybe_integer.is_a?(Integer) && (0..255).cover?(maybe_integer)

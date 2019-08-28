@@ -111,7 +111,7 @@ module ChefCLI
       table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_version("chef")]
       table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_version("inspec")]
       table << ["Test Kitchen", gem_version("test-kitchen")]
-      table << ["Feedcritic", gem_version("foodcritic")]
+      table << ["Foodcritic", gem_version("foodcritic")]
       table << ["Cookstyle", gem_version("cookstyle")]
 
       rendered_table = table.render do |renderer|

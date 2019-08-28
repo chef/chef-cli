@@ -169,7 +169,7 @@ describe ChefCLI::CLI do
           Chef Infra Client 0.0.2  
                 Chef InSpec 0.0.3  
                Test Kitchen 0.0.4  
-                 Feedcritic 0.0.5  
+                 Foodcritic 0.0.5  
                   Cookstyle 0.0.6  
         E
       end
@@ -183,7 +183,7 @@ describe ChefCLI::CLI do
           Chef Infra Client unknown
                 Chef InSpec unknown
                Test Kitchen unknown
-                 Feedcritic unknown
+                 Foodcritic unknown
                   Cookstyle unknown
         E
       end

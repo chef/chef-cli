@@ -124,53 +124,138 @@ describe ChefCLI::CLI do
   context "given -v" do
     let(:argv) { %w{-v} }
 
-    let(:tools) do
-      {
-        "Chef Infra Client" => {
-          "command" => "chef-client",
-          "version_output" => "Chef Infra Client: 15.0.300",
-          "expected_version" => "15.0.300",
-        },
-        "Chef InSpec" => {
-          "command" => "inspec",
-          "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
-          "expected_version" => "4.6.2",
-        },
-        "Test Kitchen" => {
-          "command" => "kitchen",
-          "version_output" => "Test Kitchen version 2.2.5",
-          "expected_version" => "2.2.5",
-        },
-        "Foodcritic" => {
-          "command" => "foodcritic",
-          "version_output" => "foodcritic 16.0.0",
-          "expected_version" => "16.0.0",
-        },
-        "Cookstyle" => {
-          "command" => "cookstyle",
-          "version_output" => "Cookstyle 4.0.0\n  * RuboCop 0.62.0",
-          "expected_version" => "4.0.0",
-        },
-      }
-    end
-
-    it "does not print versions of tools with missing or errored tools" do
-      full_version_message = version_message
-      tools.each do |name, details|
-        if name == "inspec"
-          expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(1, "#{details["version_output"]}", ""))
-          full_version_message += "#{name} version: ERROR\n"
-        else
-          expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
-          full_version_message += "#{name} version: #{details["expected_version"]}\n"
-        end
+    context "#via_version_manifest" do
+      let(:mocked_version_manifest_json) do
+        <<~E
+          {
+            "manifest_format": 2,
+            "build_version": "d.e.v"
+          }
+        E
       end
-      run_cli(0)
-      expect(stdout).to eq(full_version_message)
+
+      let(:mocked_gem_version_manifest_json) do
+        <<~E
+          {
+            "chef-cli": [
+              "0.0.1"
+            ],
+            "chef": [
+              "0.0.2"
+            ],
+            "inspec": [
+              "0.0.3"
+            ],
+            "test-kitchen": [
+              "0.0.4"
+            ],
+            "foodcritic": [
+              "0.0.5"
+            ],
+            "cookstyle": [
+              "0.0.6"
+            ]
+          }
+        E
+      end
+
+      # rubocop:disable Layout/TrailingWhitespace
+      let(:full_table_with_version_message) do
+        <<~E
+                  Component Version
+          ----------------- -------
+           Chef Workstation d.e.v  
+                   Chef CLI 0.0.1  
+          Chef Infra Client 0.0.2  
+                Chef InSpec 0.0.3  
+               Test Kitchen 0.0.4  
+                 Feedcritic 0.0.5  
+                  Cookstyle 0.0.6  
+        E
+      end
+
+      let(:full_table_with_unknown_version_message) do
+        <<~E
+                  Component Version
+          ----------------- -------
+           Chef Workstation unknown
+                   Chef CLI unknown
+          Chef Infra Client unknown
+                Chef InSpec unknown
+               Test Kitchen unknown
+                 Feedcritic unknown
+                  Cookstyle unknown
+        E
+      end
+
+      before do
+        allow(cli).to receive(:omnibus_install?).and_return true
+        allow(cli).to receive(:read_version_manifest_json).and_return(mocked_version_manifest_json)
+        allow(cli).to receive(:read_gem_version_manifest_json).and_return(mocked_gem_version_manifest_json)
+      end
+
+      it "does not print versions of tools with missing or errored tools" do
+        allow(cli).to receive(:read_gem_version_manifest_json).and_return("{}")
+        allow(cli).to receive(:read_version_manifest_json).and_return("{}")
+        run_cli(0)
+        expect(stdout).to eq(full_table_with_unknown_version_message)
+      end
+
+      it "prints a table with the version of all the tools" do
+        run_cli(0)
+        expect(stdout).to eq(full_table_with_version_message)
+      end
     end
 
-    it "prints the version and versions of chef-cli tools" do
-      run_cli_and_validate_tool_versions
+    context "#via_shell_out" do
+      let(:tools) do
+        {
+          "Chef Infra Client" => {
+            "command" => "chef-client",
+            "version_output" => "Chef Infra Client: 15.0.300",
+            "expected_version" => "15.0.300",
+          },
+          "Chef InSpec" => {
+            "command" => "inspec",
+            "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
+            "expected_version" => "4.6.2",
+          },
+          "Test Kitchen" => {
+            "command" => "kitchen",
+            "version_output" => "Test Kitchen version 2.2.5",
+            "expected_version" => "2.2.5",
+          },
+          "Foodcritic" => {
+            "command" => "foodcritic",
+            "version_output" => "foodcritic 16.0.0",
+            "expected_version" => "16.0.0",
+          },
+          "Cookstyle" => {
+            "command" => "cookstyle",
+            "version_output" => "Cookstyle 4.0.0\n  * RuboCop 0.62.0",
+            "expected_version" => "4.0.0",
+          },
+        }
+      end
+
+      it "does not print versions of tools with missing or errored tools" do
+        full_version_message = version_message
+        tools.each do |name, details|
+          if name == "inspec"
+            expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(1, "#{details["version_output"]}", ""))
+            full_version_message += "#{name} version: ERROR\n"
+          else
+            expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
+            full_version_message += "#{name} version: #{details["expected_version"]}\n"
+          end
+        end
+        run_cli(0)
+        expect(stdout).to eq(full_version_message)
+      end
+
+      it "prints the version and versions of chef-cli tools" do
+        run_cli_and_validate_tool_versions
+      end
     end
   end
 

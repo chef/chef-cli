@@ -20,6 +20,7 @@ group :test do
   gem "cookstyle"
   gem "chefstyle"
   gem "foodcritic"
+  gem "tty-table"
 end
 
 group :development do

@@ -104,21 +104,15 @@ module ChefCLI
     end
 
     def show_version_via_version_manifest
-      require "json"
-      manifest = File.read(File.join(omnibus_root, "version-manifest.json"))
-      gem_manifest = File.read(File.join(omnibus_root, "gem-version-manifest.json"))
-      manifest_hash = JSON.parse(manifest)
-      gem_manifest_hash = JSON.parse(gem_manifest)
-
       require "tty-table"
       table = TTY::Table.new header: %w{Component Version}
-      table << [ChefCLI::Dist::PRODUCT, manifest_hash["build_version"]]
-      table << ["Chef CLI", gem_manifest_hash["chef-cli"].first]
-      table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_manifest_hash["chef"].first]
-      table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_manifest_hash["inspec"].first]
-      table << ["Test Kitchen", gem_manifest_hash["test-kitchen"].first]
-      table << ["Feedcritic", gem_manifest_hash["foodcritic"].first]
-      table << ["Cookstyle", gem_manifest_hash["cookstyle"].first]
+      table << [ChefCLI::Dist::PRODUCT, manifest_field("build_version")]
+      table << ["Chef CLI", gem_version("chef-cli")]
+      table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_version("chef")]
+      table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_version("inspec")]
+      table << ["Test Kitchen", gem_version("test-kitchen")]
+      table << ["Feedcritic", gem_version("foodcritic")]
+      table << ["Cookstyle", gem_version("cookstyle")]
 
       rendered_table = table.render do |renderer|
         renderer.alignments = [:right]
@@ -190,6 +184,40 @@ module ChefCLI
     end
 
     private
+
+    def manifest_field(field)
+      if manifest_hash[field]
+        manifest_hash[field]
+      else
+        "unknown"
+      end
+    end
+
+    def gem_version(name)
+      if gem_manifest_hash[name].is_a?(Array)
+        gem_manifest_hash[name].first
+      else
+        "unknown"
+      end
+    end
+
+    def manifest_hash
+      require "json"
+      @manifest_hash ||= JSON.parse(read_version_manifest_json)
+    end
+
+    def gem_manifest_hash
+      require "json"
+      @gem_manifest_hash ||= JSON.parse(read_gem_version_manifest_json)
+    end
+
+    def read_version_manifest_json
+      File.read(File.join(omnibus_root, "version-manifest.json"))
+    end
+
+    def read_gem_version_manifest_json
+      File.read(File.join(omnibus_root, "gem-version-manifest.json"))
+    end
 
     def normalized_exit_code(maybe_integer)
       if maybe_integer.is_a?(Integer) && (0..255).cover?(maybe_integer)

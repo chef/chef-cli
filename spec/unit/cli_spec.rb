@@ -149,9 +149,6 @@ describe ChefCLI::CLI do
             "test-kitchen": [
               "0.0.4"
             ],
-            "foodcritic": [
-              "0.0.5"
-            ],
             "cookstyle": [
               "0.0.6"
             ]
@@ -169,7 +166,6 @@ describe ChefCLI::CLI do
           Chef Infra Client 0.0.2  
                 Chef InSpec 0.0.3  
                Test Kitchen 0.0.4  
-                 Foodcritic 0.0.5  
                   Cookstyle 0.0.6  
         E
       end
@@ -183,7 +179,6 @@ describe ChefCLI::CLI do
           Chef Infra Client unknown
                 Chef InSpec unknown
                Test Kitchen unknown
-                 Foodcritic unknown
                   Cookstyle unknown
         E
       end
@@ -224,11 +219,6 @@ describe ChefCLI::CLI do
             "command" => "kitchen",
             "version_output" => "Test Kitchen version 2.2.5",
             "expected_version" => "2.2.5",
-          },
-          "Foodcritic" => {
-            "command" => "foodcritic",
-            "version_output" => "foodcritic 16.0.0",
-            "expected_version" => "16.0.0",
           },
           "Cookstyle" => {
             "command" => "cookstyle",

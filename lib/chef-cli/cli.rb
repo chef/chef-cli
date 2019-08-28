@@ -111,7 +111,6 @@ module ChefCLI
       table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_version("chef")]
       table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_version("inspec")]
       table << ["Test Kitchen", gem_version("test-kitchen")]
-      table << ["Foodcritic", gem_version("foodcritic")]
       table << ["Cookstyle", gem_version("cookstyle")]
 
       rendered_table = table.render do |renderer|
@@ -130,7 +129,6 @@ module ChefCLI
       { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_CLI}",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
         "Test Kitchen": "kitchen",
-        "Foodcritic": "foodcritic",
         "Cookstyle": "cookstyle",
       }.each do |name, cli|
         result = Bundler.with_clean_env { shell_out("#{cli} --version") }

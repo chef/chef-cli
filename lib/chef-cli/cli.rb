@@ -104,24 +104,15 @@ module ChefCLI
     end
 
     def show_version_via_version_manifest
-      require "tty-table"
-      table = TTY::Table.new header: %w{Component Version}
-      table << [ChefCLI::Dist::PRODUCT, manifest_field("build_version")]
-      table << ["Chef CLI", gem_version("chef-cli")]
-      table << [ChefCLI::Dist::INFRA_CLIENT_PRODUCT, gem_version("chef")]
-      table << [ChefCLI::Dist::INSPEC_PRODUCT, gem_version("inspec")]
-      table << ["Test Kitchen", gem_version("test-kitchen")]
-      table << ["Cookstyle", gem_version("cookstyle")]
-
-      rendered_table = table.render do |renderer|
-        renderer.alignments = [:right]
-        renderer.border do
-          mid          "-"
-          mid_mid      " "
-        end
+      msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "chef",
+        "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
+        "Chef CLI": "chef-cli",
+        "Test Kitchen": "test-kitchen",
+        "Cookstyle": "cookstyle",
+      }.each do |name, gem|
+        msg("#{name} version: #{gem_version(gem)}")
       end
-
-      msg rendered_table
     end
 
     def show_version_via_shell_out

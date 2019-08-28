@@ -159,27 +159,23 @@ describe ChefCLI::CLI do
       # rubocop:disable Layout/TrailingWhitespace
       let(:full_table_with_version_message) do
         <<~E
-                  Component Version
-          ----------------- -------
-           Chef Workstation d.e.v  
-                   Chef CLI 0.0.1  
-          Chef Infra Client 0.0.2  
-                Chef InSpec 0.0.3  
-               Test Kitchen 0.0.4  
-                  Cookstyle 0.0.6  
+          Chef Workstation version: d.e.v
+          Chef Infra Client version: 0.0.2
+          Chef InSpec version: 0.0.3
+          Chef CLI version: 0.0.1
+          Test Kitchen version: 0.0.4
+          Cookstyle version: 0.0.6
         E
       end
 
       let(:full_table_with_unknown_version_message) do
         <<~E
-                  Component Version
-          ----------------- -------
-           Chef Workstation unknown
-                   Chef CLI unknown
-          Chef Infra Client unknown
-                Chef InSpec unknown
-               Test Kitchen unknown
-                  Cookstyle unknown
+          Chef Workstation version: unknown
+          Chef Infra Client version: unknown
+          Chef InSpec version: unknown
+          Chef CLI version: unknown
+          Test Kitchen version: unknown
+          Cookstyle version: unknown
         E
       end
 

@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 1.0.13 -->
-## [v1.0.13](https://github.com/chef/chef-cli/tree/v1.0.13) (2019-08-28)
-
-#### Merged Pull Requests
-- Display correct version of tools + speed up [#27](https://github.com/chef/chef-cli/pull/27) ([afiune](https://github.com/afiune))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=1.0.11 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Display correct version of tools + speed up [#27](https://github.com/chef/chef-cli/pull/27) ([afiune](https://github.com/afiune)) <!-- 1.0.13 -->
-- Shellout libraries expect cwd to be provided as a string [#26](https://github.com/chef/chef-cli/pull/26) ([tyler-ball](https://github.com/tyler-ball)) <!-- 1.0.12 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.0.13](https://github.com/chef/chef-cli/tree/v1.0.13) (2019-09-04)
+
+#### Merged Pull Requests
+- Shellout libraries expect cwd to be provided as a string [#26](https://github.com/chef/chef-cli/pull/26) ([tyler-ball](https://github.com/tyler-ball))
+- Display correct version of tools + speed up [#27](https://github.com/chef/chef-cli/pull/27) ([afiune](https://github.com/afiune))
+<!-- latest_stable_release -->
+
 ## [v1.0.11](https://github.com/chef/chef-cli/tree/v1.0.11) (2019-07-25)
 
 #### Merged Pull Requests
 - Fix failure in chef generate file command [#11](https://github.com/chef/chef-cli/pull/11) ([tas50](https://github.com/tas50))
 - Add missing require for &#39;chef-cli/cli&#39; in spec_helper [#23](https://github.com/chef/chef-cli/pull/23) ([marcparadise](https://github.com/marcparadise))
-<!-- latest_stable_release -->
 
 ## [v1.0.9](https://github.com/chef/chef-cli/tree/v1.0.9) (2019-07-20)
 

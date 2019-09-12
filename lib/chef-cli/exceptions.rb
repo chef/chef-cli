@@ -44,12 +44,6 @@ module ChefCLI
   class InvalidPolicyfileAttribute < StandardError
   end
 
-  class MissingComponentError < RuntimeError
-    def initialize(component_name, reason)
-      super("Component #{component_name} is missing.\nReason: #{reason}")
-    end
-  end
-
   class OmnibusInstallNotFound < RuntimeError
     require_relative "dist"
 

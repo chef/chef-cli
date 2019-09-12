@@ -48,7 +48,6 @@ describe ChefCLI::CLI do
 
 
       Available Commands:
-          verify   Test the embedded ChefCLI applications
           gem      Runs the `gem` command in context of the embedded ruby
           example  Example subcommand for testing
     E
@@ -94,8 +93,6 @@ describe ChefCLI::CLI do
   end
 
   before do
-    commands_map.builtin "verify", :Verify, desc: "Test the embedded ChefCLI applications"
-
     commands_map.builtin "gem", :GemForwarder, require_path: "chef-cli/command/gem",
                                                desc: "Runs the `gem` command in context of the embedded ruby"
 

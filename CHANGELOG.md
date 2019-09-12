@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 1.0.14 -->
+## [v1.0.14](https://github.com/chef/chef-cli/tree/v1.0.14) (2019-09-12)
+
+#### Merged Pull Requests
+- Remove `chef verify` hidden internal command. [#30](https://github.com/chef/chef-cli/pull/30) ([marcparadise](https://github.com/marcparadise))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.13 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Remove `chef verify` hidden internal command. [#30](https://github.com/chef/chef-cli/pull/30) ([marcparadise](https://github.com/marcparadise)) <!-- 1.0.14 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

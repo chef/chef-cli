@@ -16,7 +16,6 @@
 #
 
 require "spec_helper"
-require "chef-cli/command/verify"
 
 describe ChefCLI::Command::Base do
   class TestCommand < ChefCLI::Command::Base

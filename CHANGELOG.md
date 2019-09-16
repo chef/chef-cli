@@ -1,25 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 1.0.14 -->
-## [v1.0.14](https://github.com/chef/chef-cli/tree/v1.0.14) (2019-09-12)
-
-#### Merged Pull Requests
-- Remove `chef verify` hidden internal command. [#30](https://github.com/chef/chef-cli/pull/30) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=1.0.13 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Remove `chef verify` hidden internal command. [#30](https://github.com/chef/chef-cli/pull/30) ([marcparadise](https://github.com/marcparadise)) <!-- 1.0.14 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.0.14](https://github.com/chef/chef-cli/tree/v1.0.14) (2019-09-16)
+
+#### Merged Pull Requests
+- Remove `chef verify` hidden internal command. [#30](https://github.com/chef/chef-cli/pull/30) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_stable_release -->
+
 ## [v1.0.13](https://github.com/chef/chef-cli/tree/v1.0.13) (2019-09-04)
 
 #### Merged Pull Requests
 - Shellout libraries expect cwd to be provided as a string [#26](https://github.com/chef/chef-cli/pull/26) ([tyler-ball](https://github.com/tyler-ball))
 - Display correct version of tools + speed up [#27](https://github.com/chef/chef-cli/pull/27) ([afiune](https://github.com/afiune))
-<!-- latest_stable_release -->
 
 ## [v1.0.11](https://github.com/chef/chef-cli/tree/v1.0.11) (2019-07-25)
 

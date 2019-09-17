@@ -11,11 +11,9 @@
 [local_phases]
 unit = "chef exec rspec spec/"
 lint = "chef exec cookstyle"
-# Foodcritic includes rules only appropriate for community cookbooks
-# uploaded to Supermarket. We turn off any rules tagged "supermarket"
-# by default. If you plan to share this cookbook you should remove
-# '-t ~supermarket' below to enable supermarket rules.
-syntax = "chef exec foodcritic . -t ~supermarket"
+# foodcritic has been deprecated in favor of cookstyle so we skip the syntax
+# phase now.
+syntax = "echo skipping syntax phase. Use lint phase instead."
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"

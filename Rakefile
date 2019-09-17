@@ -51,20 +51,4 @@ namespace :style do
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
-
-  begin
-    require "foodcritic"
-
-    desc "Run Chef Cookbook (Foodcritic) style checks"
-    FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
-      t.options = {
-        fail_tags: ["any"],
-        tags: ["~FC071", "~supermarket", "~FC031"],
-        cookbook_paths: ["lib/chef-cli/skeletons/code_generator"],
-        progress: true,
-      }
-    end
-  rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
-  end
 end

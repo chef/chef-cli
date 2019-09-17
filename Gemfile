@@ -19,7 +19,6 @@ group :test do
   gem "rspec-mocks", "~> 3.8"
   gem "cookstyle"
   gem "chefstyle"
-  gem "foodcritic"
 end
 
 group :development do

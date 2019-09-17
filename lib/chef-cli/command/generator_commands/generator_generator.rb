@@ -111,7 +111,6 @@ module ChefCLI
           <<~METADATA
             name             '#{cookbook_name}'
             description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
-            long_description 'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
             version          '0.1.0'
 
           METADATA

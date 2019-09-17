@@ -183,7 +183,6 @@ describe ChefCLI::Command::GeneratorCommands::GeneratorGenerator do
         expected_metadata = <<~METADATA
           name             'my_cool_generator'
           description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
-          long_description 'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
           version          '0.1.0'
 
         METADATA

@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 1.0.15 -->
+## [v1.0.15](https://github.com/chef/chef-cli/tree/v1.0.15) (2019-09-17)
+
+#### Merged Pull Requests
+- Don&#39;t generate cookbooks with long_description metadata [#28](https://github.com/chef/chef-cli/pull/28) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.14 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Don&#39;t generate cookbooks with long_description metadata [#28](https://github.com/chef/chef-cli/pull/28) ([tas50](https://github.com/tas50)) <!-- 1.0.15 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

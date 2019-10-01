@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 2.0.0 -->
+## [v2.0.0](https://github.com/chef/chef-cli/tree/v2.0.0) (2019-10-01)
+
+#### Merged Pull Requests
+- Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.16 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune)) <!-- 2.0.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

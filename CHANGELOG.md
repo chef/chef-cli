@@ -1,25 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.0 -->
-## [v2.0.0](https://github.com/chef/chef-cli/tree/v2.0.0) (2019-10-01)
-
-#### Merged Pull Requests
-- Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=1.0.16 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune)) <!-- 2.0.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.0.0](https://github.com/chef/chef-cli/tree/v2.0.0) (2019-10-02)
+
+#### Merged Pull Requests
+- Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune))
+<!-- latest_stable_release -->
+
 ## [v1.0.16](https://github.com/chef/chef-cli/tree/v1.0.16) (2019-09-17)
 
 #### Merged Pull Requests
 - Don&#39;t generate cookbooks with long_description metadata [#28](https://github.com/chef/chef-cli/pull/28) ([tas50](https://github.com/tas50))
 - Remove foodcritic from the delivery local config in the generator [#33](https://github.com/chef/chef-cli/pull/33) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v1.0.14](https://github.com/chef/chef-cli/tree/v1.0.14) (2019-09-16)
 

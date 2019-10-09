@@ -6,6 +6,10 @@ module ChefCLI
     PRODUCT = "Chef Workstation".freeze
     PRODUCT_PKG_HOME = "chef-workstation".freeze
 
+    # the name of the chef-cli gem
+    CLI_PRODUCT = "Chef CLI".freeze
+    CLI_GEM = "chef-cli".freeze
+
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze
 

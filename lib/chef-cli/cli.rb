@@ -107,7 +107,7 @@ module ChefCLI
       msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
       { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "chef",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
-        "Chef CLI": "chef-cli",
+        "#{ChefCLI::Dist::CLI_PRODUCT}": "#{ChefCLI::Dist::CLI_GEM}",
         "Test Kitchen": "test-kitchen",
         "Cookstyle": "cookstyle",
       }.each do |name, gem|

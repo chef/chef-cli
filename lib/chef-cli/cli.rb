@@ -34,9 +34,9 @@ module ChefCLI
 
     banner(<<~BANNER)
       Usage:
-          chef -h/--help
-          chef -v/--version
-          chef command [arguments...] [options...]
+          #{ChefCLI::Dist::EXEC} -h/--help
+          #{ChefCLI::Dist::EXEC} -v/--version
+          #{ChefCLI::Dist::EXEC} command [arguments...] [options...]
     BANNER
 
     option :version,

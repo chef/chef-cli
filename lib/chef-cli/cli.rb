@@ -34,9 +34,9 @@ module ChefCLI
 
     banner(<<~BANNER)
       Usage:
-          chef -h/--help
-          chef -v/--version
-          chef command [arguments...] [options...]
+          #{ChefCLI::Dist::EXEC} -h/--help
+          #{ChefCLI::Dist::EXEC} -v/--version
+          #{ChefCLI::Dist::EXEC} command [arguments...] [options...]
     BANNER
 
     option :version,
@@ -105,9 +105,9 @@ module ChefCLI
 
     def show_version_via_version_manifest
       msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
-      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "chef",
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_GEM}",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
-        "Chef CLI": "chef-cli",
+        "#{ChefCLI::Dist::CLI_PRODUCT}": "#{ChefCLI::Dist::CLI_GEM}",
         "Test Kitchen": "test-kitchen",
         "Cookstyle": "cookstyle",
       }.each do |name, gem|

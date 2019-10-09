@@ -4,6 +4,11 @@ module ChefCLI
 
     # The full marketing name of the product
     PRODUCT = "Chef Workstation".freeze
+    PRODUCT_PKG_HOME = "chef-workstation".freeze
+
+    # the name of the chef-cli gem
+    CLI_PRODUCT = "Chef CLI".freeze
+    CLI_GEM = "chef-cli".freeze
 
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze
@@ -13,6 +18,9 @@ module ChefCLI
 
     # The client's alias (chef-client)
     INFRA_CLIENT_CLI = "chef-client".freeze
+
+    # The client's gem
+    INFRA_CLIENT_GEM = "chef".freeze
 
     INSPEC_PRODUCT = "Chef InSpec".freeze
     INSPEC_CLI = "inspec".freeze

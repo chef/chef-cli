@@ -4,6 +4,7 @@ module ChefCLI
 
     # The full marketing name of the product
     PRODUCT = "Chef Workstation".freeze
+    PRODUCT_PKG_HOME = "chef-workstation".freeze
 
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze

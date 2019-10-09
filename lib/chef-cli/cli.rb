@@ -105,7 +105,7 @@ module ChefCLI
 
     def show_version_via_version_manifest
       msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
-      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "chef",
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_GEM}",
         "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
         "#{ChefCLI::Dist::CLI_PRODUCT}": "#{ChefCLI::Dist::CLI_GEM}",
         "Test Kitchen": "test-kitchen",

@@ -19,6 +19,9 @@ module ChefCLI
     # The client's alias (chef-client)
     INFRA_CLIENT_CLI = "chef-client".freeze
 
+    # The client's gem
+    INFRA_CLIENT_GEM = "chef".freeze
+
     INSPEC_PRODUCT = "Chef InSpec".freeze
     INSPEC_CLI = "inspec".freeze
 

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.1 -->
-## [v2.0.1](https://github.com/chef/chef-cli/tree/v2.0.1) (2019-10-09)
+<!-- latest_release 2.0.2 -->
+## [v2.0.2](https://github.com/chef/chef-cli/tree/v2.0.2) (2019-10-14)
 
 #### Merged Pull Requests
-- Additional distribution constants [#45](https://github.com/chef/chef-cli/pull/45) ([ramereth](https://github.com/ramereth))
+- Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->
 - Additional distribution constants [#45](https://github.com/chef/chef-cli/pull/45) ([ramereth](https://github.com/ramereth)) <!-- 2.0.1 -->
 <!-- release_rollup -->
 

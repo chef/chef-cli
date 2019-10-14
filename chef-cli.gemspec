@@ -48,6 +48,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.8"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
   gem.add_dependency "diff-lcs", "~> 1.0"
-  gem.add_dependency "paint", "~> 1.0"
+  gem.add_dependency "paint", ">= 1", "< 3"
   gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.11"
 end

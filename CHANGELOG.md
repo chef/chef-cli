@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.3 -->
-## [v2.0.3](https://github.com/chef/chef-cli/tree/v2.0.3) (2019-10-14)
+<!-- latest_release 2.0.4 -->
+## [v2.0.4](https://github.com/chef/chef-cli/tree/v2.0.4) (2019-10-14)
 
 #### Merged Pull Requests
-- Update addressable requirement from &gt;= 2.3.5, &lt; 2.6 to &gt;= 2.3.5, &lt; 2.8 [#51](https://github.com/chef/chef-cli/pull/51) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.4 -->
 - Update addressable requirement from &gt;= 2.3.5, &lt; 2.6 to &gt;= 2.3.5, &lt; 2.8 [#51](https://github.com/chef/chef-cli/pull/51) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.3 -->
 - Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->
 - Additional distribution constants [#45](https://github.com/chef/chef-cli/pull/45) ([ramereth](https://github.com/ramereth)) <!-- 2.0.1 -->

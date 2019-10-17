@@ -102,7 +102,9 @@ module ChefCLI
       end
 
       def prepare_constraints
+        # Ensure we recompute policies from their (possibly updated) source
         Policyfile::LockApplier.new(policyfile_lock, policyfile_compiler)
+          .with_unlocked_policies(:all)
           .apply!
       end
     end

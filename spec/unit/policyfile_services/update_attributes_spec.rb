@@ -176,7 +176,7 @@ describe ChefCLI::PolicyfileServices::UpdateAttributes do
           expect(ChefCLI::Policyfile::LockApplier).to receive(:new).with(
             update_attrs_service.policyfile_lock, update_attrs_service.policyfile_compiler
           ).and_return(lock_applier)
-          expect(lock_applier).not_to receive(:with_unlocked_policies)
+          expect(lock_applier).to receive(:with_unlocked_policies).with(:all).and_return(lock_applier)
           expect(lock_applier).to receive(:apply!)
 
           update_attrs_service.run

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.4 -->
-## [v2.0.4](https://github.com/chef/chef-cli/tree/v2.0.4) (2019-10-14)
+<!-- latest_release 2.0.5 -->
+## [v2.0.5](https://github.com/chef/chef-cli/tree/v2.0.5) (2019-10-17)
 
 #### Merged Pull Requests
-- Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- new include_policies not added to lock on &#39;chef update&#39; [#38](https://github.com/chef/chef-cli/pull/38) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- new include_policies not added to lock on &#39;chef update&#39; [#38](https://github.com/chef/chef-cli/pull/38) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.0.5 -->
 - Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.4 -->
 - Update addressable requirement from &gt;= 2.3.5, &lt; 2.6 to &gt;= 2.3.5, &lt; 2.8 [#51](https://github.com/chef/chef-cli/pull/51) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.3 -->
 - Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->

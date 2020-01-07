@@ -44,12 +44,14 @@ module ChefCLI
       attr_reader :storage_config
       attr_reader :root_dir
       attr_reader :export_dir
+      attr_reader :ui
 
-      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false)
+      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false, ui: nil)
         @root_dir = root_dir
         @export_dir = File.expand_path(export_dir)
         @archive = archive
         @force_export = force
+        @ui = ui
 
         @policy_data = nil
         @policyfile_lock = nil
@@ -162,6 +164,9 @@ module ChefCLI
         FileUtils.mkdir(export_path) unless File.directory?(export_path)
         copy_unignored_cookbook_files(lock, export_path)
         FileUtils.rm_f(metadata_rb_path)
+        if(lock.cookbook_version.nil?){
+          ui.msg "Unable to get the cookbook version/metadata for #{lock}"
+        }
         metadata = lock.cookbook_version.metadata
 
         metadata_json_path = File.join(export_path, "metadata.json")

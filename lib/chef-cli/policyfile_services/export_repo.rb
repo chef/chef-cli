@@ -164,9 +164,9 @@ module ChefCLI
         FileUtils.mkdir(export_path) unless File.directory?(export_path)
         copy_unignored_cookbook_files(lock, export_path)
         FileUtils.rm_f(metadata_rb_path)
-        if(lock.cookbook_version.nil?){
+        if(lock.cookbook_version.nil?)
           ui.msg "Unable to get the cookbook version/metadata for #{lock}"
-        }
+        end
         metadata = lock.cookbook_version.metadata
 
         metadata_json_path = File.join(export_path, "metadata.json")

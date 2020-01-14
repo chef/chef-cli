@@ -22,7 +22,7 @@ require "shared/fixture_cookbook_checksums"
 require "chef-cli/policyfile/storage_config"
 require "chef-cli/policyfile_lock.rb"
 
-describe ChefCLI::PolicyfileLock, "building a lockfile" do
+describe ChefCLI::PolicyfileLock, "building a lockfile", :skip_on_windows do
 
   include_context "fixture cookbooks checksums"
 

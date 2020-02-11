@@ -231,7 +231,7 @@ describe ChefCLI::Command::GeneratorCommands::Repo do
             let(:argv) { ["new_repo", "--policy-only" ] }
 
             it "tells you whats up" do
-              expect(file_contents).to match(/This directory typically contains Chef cookbooks/)
+              expect(file_contents).to match(/This directory typically contains Chef Infra cookbooks/)
             end
           end
         end

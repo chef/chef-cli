@@ -1,4 +1,4 @@
-This directory contains the cookbooks used to configure systems in your infrastructure with Chef - an example basic cookbook called `example` has been automatically created for you.
+This directory contains the cookbooks used to configure systems in your infrastructure with Chef Infra - an example basic cookbook called `example` has been automatically created for you.
 
 Knife needs to be configured to know where the cookbooks are located with the `cookbook_path` setting. If this is not set, then several cookbook operations will fail to work properly.
 
@@ -23,7 +23,7 @@ cookbook_email     "cookbooks@example.com"
 cookbook_license   "apachev2"
 ```
 
-Supported values for `cookbook_license` are "apachev2", "mit","gplv2","gplv3", or "none". These settings are used to prefill comments in the default recipe, and the corresponding values in the metadata.rb. You are free to change the the comments in those files.
+Supported values for `cookbook_license` are "apachev2", "mit","gplv2","gplv3", or "none". These settings are used to prefill comments in the default recipe, and the corresponding values in the metadata.rb. You are free to change the comments in those files.
 
 Create new cookbooks in this directory with Chef.
 

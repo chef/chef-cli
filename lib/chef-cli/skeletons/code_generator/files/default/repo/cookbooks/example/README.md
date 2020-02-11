@@ -4,11 +4,11 @@ An example cookbook
 
 ## Requirements
 
-### Platforms:
+### Platforms
 
 _No platforms defined_
 
-### Cookbooks:
+### Cookbooks
 
 _No dependencies defined_
 

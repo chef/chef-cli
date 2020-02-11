@@ -101,7 +101,7 @@ cd .delivery/build_cookbook
 kitchen converge
 ```
 
-This will take a while because it will now pass on the first VM, and then create the second VM. We should have warned you this was a good time for a coffee break.
+This will take a while because it will now pass on the first VM and then create the second VM. We should have warned you this was a good time for a coffee break.
 
 ```
 Recipe: test::default

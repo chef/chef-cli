@@ -101,7 +101,7 @@ cd .delivery/build_cookbook
 kitchen converge
 ```
 
-This will take awhile because it will now pass on the first VM, and then create the second VM. We should have warned you this was a good time for a coffee break.
+This will take a while because it will now pass on the first VM and then create the second VM. We should have warned you this was a good time for a coffee break.
 
 ```
 Recipe: test::default
@@ -115,7 +115,7 @@ Recipe: test::default
 Running handlers:
 Running handlers complete
 Chef Infra Client finished, 3/32 resources updated in 54.665445968 seconds
-Finished converging <default-centos-71> (1m26.83s).
+Finished converging <default-centos-8> (1m26.83s).
 ```
 
 Victory is ours! Our verify phase passed on the build nodes.
@@ -129,7 +129,7 @@ delivery review
 
 ## FAQ
 
-### Why don't I just run rspec and foodcritic/cookstyle on my local system?
+### Why don't I just run rspec and cookstyle on my local system?
 
 An objection to the Test Kitchen approach is that it is much faster to run the unit, lint, and syntax commands for the project on the local system. That is totally true, and also totally valid. Do that for the really fast feedback loop. However, the dance we do with Test Kitchen brings a much higher degree of confidence in the changes we're making, that everything will run on the build nodes in Chef Workflow. We strongly encourage this approach before actually pushing the changes to Workflow.
 

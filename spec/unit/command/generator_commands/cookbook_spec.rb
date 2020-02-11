@@ -580,7 +580,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
             platforms:
               - name: ubuntu-18.04
-              - name: centos-7
+              - name: centos-8
 
             suites:
               - name: default
@@ -667,7 +667,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
             platforms:
               - name: ubuntu-18.04
-              - name: centos-7
+              - name: centos-8
 
             suites:
               - name: default

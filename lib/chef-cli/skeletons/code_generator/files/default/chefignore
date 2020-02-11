@@ -30,6 +30,7 @@ mkmf.log
 REVISION
 TAGS*
 tmtags
+.vscode
 
 ## COMPILED ##
 ##############
@@ -97,7 +98,7 @@ Gemfile.lock
 Policyfile.rb
 Policyfile.lock.json
 
-# Cookbooks #
+# Documentation #
 #############
 CHANGELOG*
 CONTRIBUTING*

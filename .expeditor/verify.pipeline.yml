@@ -2,52 +2,48 @@
 expeditor:
   defaults:
     buildkite:
+      retry:
+        automatic:
+          limit: 1
       timeout_in_minutes: 30
 
 steps:
 - label: run-specs-ruby-2.4
   command:
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - export USER="root"
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.4-stretch
+        image: ruby:2.4-buster
+
 - label: run-specs-ruby-2.5
   command:
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - export USER="root"
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.5-stretch
+        image: ruby:2.5-buster
 
 - label: run-specs-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
-- label: run-specs-ruby-2.6
+- label: run-specs-ruby-2.7
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.7-buster
 
 - label: run-specs-windows
   command:
     - bundle install --jobs=7 --retry=3 --without docs development
-    - bundle exec rake spec
+    - bundle exec rspec
   expeditor:
     executor:
       docker:
@@ -55,20 +51,16 @@ steps:
 
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - bundle exec rake style:cookstyle
+    - .expeditor/run_linux_tests.sh "rake style:cookstyle"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: chefstyle-tests-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3 --without docs development
-    - bundle exec rake style:chefstyle
+    - .expeditor/run_linux_tests.sh "rake style:chefstyle"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster

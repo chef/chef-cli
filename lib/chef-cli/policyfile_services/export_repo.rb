@@ -46,12 +46,12 @@ module ChefCLI
       attr_reader :export_dir
       attr_reader :ui
 
-      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false, ui: nil)
+      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false)
         @root_dir = root_dir
         @export_dir = File.expand_path(export_dir)
         @archive = archive
         @force_export = force
-        @ui = ui
+        @ui = UI.new
 
         @policy_data = nil
         @policyfile_lock = nil

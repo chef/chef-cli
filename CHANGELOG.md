@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.8 -->
-## [v2.0.8](https://github.com/chef/chef-cli/tree/v2.0.8) (2020-02-11)
+<!-- latest_release 2.0.9 -->
+## [v2.0.9](https://github.com/chef/chef-cli/tree/v2.0.9) (2020-03-18)
 
 #### Merged Pull Requests
-- Fix typos in the readmes and update examples [#59](https://github.com/chef/chef-cli/pull/59) ([tas50](https://github.com/tas50))
+- Add logging to export command [#56](https://github.com/chef/chef-cli/pull/56) ([mbaitelman](https://github.com/mbaitelman))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add logging to export command [#56](https://github.com/chef/chef-cli/pull/56) ([mbaitelman](https://github.com/mbaitelman)) <!-- 2.0.9 -->
 - Fix typos in the readmes and update examples [#59](https://github.com/chef/chef-cli/pull/59) ([tas50](https://github.com/tas50)) <!-- 2.0.8 -->
 - Improve how we test the gem / add Ruby 2.7 testing [#57](https://github.com/chef/chef-cli/pull/57) ([tas50](https://github.com/tas50)) <!-- 2.0.7 -->
 - Replace usage of deprecated Net::HTTPServerException error class [#53](https://github.com/chef/chef-cli/pull/53) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.0.6 -->

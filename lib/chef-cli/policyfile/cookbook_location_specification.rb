@@ -125,7 +125,8 @@ module ChefCLI
 
       def cookbook_has_recipe?(recipe_name)
         expected_path = cookbook_path.join("recipes/#{recipe_name}.rb")
-        expected_path.exist?
+        expected_path_yml = cookbook_path.join("recipes/#{recipe_name}.yml")
+        expected_path.exist? || expected_path_yml.exist?
       end
 
       def cached_cookbook

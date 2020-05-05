@@ -1,33 +1,30 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.10 -->
-## [v2.0.10](https://github.com/chef/chef-cli/tree/v2.0.10) (2020-05-05)
-
-#### Merged Pull Requests
-- recognize .yml as a valid recipe extension [#63](https://github.com/chef/chef-cli/pull/63) ([ChefRycar](https://github.com/ChefRycar))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.0.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- recognize .yml as a valid recipe extension [#63](https://github.com/chef/chef-cli/pull/63) ([ChefRycar](https://github.com/ChefRycar)) <!-- 2.0.10 -->
-- Add logging to export command [#56](https://github.com/chef/chef-cli/pull/56) ([mbaitelman](https://github.com/mbaitelman)) <!-- 2.0.9 -->
-- Fix typos in the readmes and update examples [#59](https://github.com/chef/chef-cli/pull/59) ([tas50](https://github.com/tas50)) <!-- 2.0.8 -->
-- Improve how we test the gem / add Ruby 2.7 testing [#57](https://github.com/chef/chef-cli/pull/57) ([tas50](https://github.com/tas50)) <!-- 2.0.7 -->
-- Replace usage of deprecated Net::HTTPServerException error class [#53](https://github.com/chef/chef-cli/pull/53) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.0.6 -->
-- new include_policies not added to lock on &#39;chef update&#39; [#38](https://github.com/chef/chef-cli/pull/38) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.0.5 -->
-- Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.4 -->
-- Update addressable requirement from &gt;= 2.3.5, &lt; 2.6 to &gt;= 2.3.5, &lt; 2.8 [#51](https://github.com/chef/chef-cli/pull/51) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.0.3 -->
-- Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->
-- Additional distribution constants [#45](https://github.com/chef/chef-cli/pull/45) ([ramereth](https://github.com/ramereth)) <!-- 2.0.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.0.10](https://github.com/chef/chef-cli/tree/v2.0.10) (2020-05-05)
+
+#### Merged Pull Requests
+- Additional distribution constants [#45](https://github.com/chef/chef-cli/pull/45) ([ramereth](https://github.com/ramereth))
+- Remove the instance_eval from the gemfile [#49](https://github.com/chef/chef-cli/pull/49) ([tas50](https://github.com/tas50))
+- Update addressable requirement from &gt;= 2.3.5, &lt; 2.6 to &gt;= 2.3.5, &lt; 2.8 [#51](https://github.com/chef/chef-cli/pull/51) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update paint requirement from ~&gt; 1.0 to &gt;= 1, &lt; 3 [#52](https://github.com/chef/chef-cli/pull/52) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- new include_policies not added to lock on &#39;chef update&#39; [#38](https://github.com/chef/chef-cli/pull/38) ([tyler-ball](https://github.com/tyler-ball))
+- Replace usage of deprecated Net::HTTPServerException error class [#53](https://github.com/chef/chef-cli/pull/53) ([tyler-ball](https://github.com/tyler-ball))
+- Improve how we test the gem / add Ruby 2.7 testing [#57](https://github.com/chef/chef-cli/pull/57) ([tas50](https://github.com/tas50))
+- Fix typos in the readmes and update examples [#59](https://github.com/chef/chef-cli/pull/59) ([tas50](https://github.com/tas50))
+- Add logging to export command [#56](https://github.com/chef/chef-cli/pull/56) ([mbaitelman](https://github.com/mbaitelman))
+- recognize .yml as a valid recipe extension [#63](https://github.com/chef/chef-cli/pull/63) ([ChefRycar](https://github.com/ChefRycar))
+<!-- latest_stable_release -->
+
 ## [v2.0.0](https://github.com/chef/chef-cli/tree/v2.0.0) (2019-10-02)
 
 #### Merged Pull Requests
 - Rename `chef` binary to `chef-cli` [#35](https://github.com/chef/chef-cli/pull/35) ([afiune](https://github.com/afiune))
-<!-- latest_stable_release -->
 
 ## [v1.0.16](https://github.com/chef/chef-cli/tree/v1.0.16) (2019-09-17)
 

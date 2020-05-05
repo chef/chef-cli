@@ -154,6 +154,7 @@ describe ChefCLI::Policyfile::CookbookLocationSpecification do
 
       expect(default_recipe_path).to receive(:exist?).and_return(true)
       expect(nope_recipe_path).to receive(:exist?).and_return(false)
+      expect(nope_yml_recipe_path).to receive(:exist?).and_return(false)
 
       expect(cookbook_location_spec.cookbook_has_recipe?("default")).to be(true)
       expect(cookbook_location_spec.cookbook_has_recipe?("nope")).to be(false)

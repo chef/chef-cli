@@ -110,7 +110,7 @@ module ChefCLI
         remaining_args = parse_options(params)
         if remaining_args.size > 1
           ui.err(opt_parser)
-          return false
+          false
         else
           @policyfile_relative_path = remaining_args.first
           true

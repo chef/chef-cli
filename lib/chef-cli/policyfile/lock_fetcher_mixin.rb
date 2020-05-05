@@ -24,9 +24,9 @@ module ChefCLI
         expected_id = source_options[:policy_revision_id]
         if expected_id
           if included_id.eql?(expected_id) # are they the same?
-            return
+            nil
           elsif included_id[0, 10].eql?(expected_id) # did they use the 10 char substring
-            return
+            nil
           else
             raise ChefCLI::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
           end

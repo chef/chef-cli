@@ -76,7 +76,7 @@ module ChefCLI
             if chef_repo_mode?
               err("ERROR: You must give a policy name when generating a policy in a chef-repo.")
               @params_valid = false
-              return false
+              false
             else
               use_default_policy_settings
             end
@@ -85,7 +85,7 @@ module ChefCLI
           else
             @params_valid = false
             err("ERROR: too many arguments")
-            return false
+            false
           end
         end
 

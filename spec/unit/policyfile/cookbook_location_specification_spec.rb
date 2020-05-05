@@ -143,10 +143,14 @@ describe ChefCLI::Policyfile::CookbookLocationSpecification do
       allow(cookbook_location_spec).to receive(:cookbook_path).and_return(cookbook_path)
 
       default_recipe_path = install_path.join("recipes/default.rb")
+      default_yml_recipe_path = install_path.join("recipes/default.yml")
       nope_recipe_path = install_path.join("recipes/nope.rb")
+      nope_yml_recipe_path = install_path.join("recipes/nope.yml")
 
       expect(cookbook_path).to receive(:join).with("recipes/default.rb").and_return(default_recipe_path)
+      expect(cookbook_path).to receive(:join).with("recipes/default.yml").and_return(default_yml_recipe_path)
       expect(cookbook_path).to receive(:join).with("recipes/nope.rb").and_return(nope_recipe_path)
+      expect(cookbook_path).to receive(:join).with("recipes/nope.yml").and_return(nope_yml_recipe_path)
 
       expect(default_recipe_path).to receive(:exist?).and_return(true)
       expect(nope_recipe_path).to receive(:exist?).and_return(false)

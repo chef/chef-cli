@@ -8,6 +8,6 @@ Layout/TrailingWhitespace:
 Style/PercentLiteralDelimiters:
   Exclude:
     - "lib/chef-cli/skeletons/**/*"
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Exclude:
     - "spec/unit/fixtures/**/*"

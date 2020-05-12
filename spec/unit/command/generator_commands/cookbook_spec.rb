@@ -573,7 +573,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               ## product_name and product_version specifies a specific Chef product and version to install.
               ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
               #  product_name: chef
-              #  product_version: 15
+              #  product_version: 16
 
             verifier:
               name: inspec
@@ -660,7 +660,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               ## product_name and product_version specifies a specific Chef product and version to install.
               ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
               #  product_name: chef
-              #  product_version: 15
+              #  product_version: 16
 
             verifier:
               name: inspec

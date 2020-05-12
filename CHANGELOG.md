@@ -1,24 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.1 -->
-## [v3.0.1](https://github.com/chef/chef-cli/tree/v3.0.1) (2020-05-12)
-
-#### Merged Pull Requests
-- Generate markdown that won&#39;t fail tests [#72](https://github.com/chef/chef-cli/pull/72) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.0.10 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Generate markdown that won&#39;t fail tests [#72](https://github.com/chef/chef-cli/pull/72) ([tas50](https://github.com/tas50)) <!-- 3.0.1 -->
-- Require Chef 15 / Ruby 2.6+ [#68](https://github.com/chef/chef-cli/pull/68) ([tas50](https://github.com/tas50)) <!-- 3.0.0 -->
-- Update ChefSpecs to match platform versions in Kitchen [#71](https://github.com/chef/chef-cli/pull/71) ([tas50](https://github.com/tas50)) <!-- 2.0.14 -->
-- Generate kitchen configs that use Ubuntu 20.04 [#69](https://github.com/chef/chef-cli/pull/69) ([tas50](https://github.com/tas50)) <!-- 2.0.13 -->
-- Generate cookbooks with Chef Infra Client 16 in the examples [#70](https://github.com/chef/chef-cli/pull/70) ([tas50](https://github.com/tas50)) <!-- 2.0.12 -->
-- Update test configs to better cache gems + test on Ruby 2.7 [#67](https://github.com/chef/chef-cli/pull/67) ([tas50](https://github.com/tas50)) <!-- 2.0.11 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.1](https://github.com/chef/chef-cli/tree/v3.0.1) (2020-05-12)
+
+#### Merged Pull Requests
+- Update test configs to better cache gems + test on Ruby 2.7 [#67](https://github.com/chef/chef-cli/pull/67) ([tas50](https://github.com/tas50))
+- Generate cookbooks with Chef Infra Client 16 in the examples [#70](https://github.com/chef/chef-cli/pull/70) ([tas50](https://github.com/tas50))
+- Generate kitchen configs that use Ubuntu 20.04 [#69](https://github.com/chef/chef-cli/pull/69) ([tas50](https://github.com/tas50))
+- Update ChefSpecs to match platform versions in Kitchen [#71](https://github.com/chef/chef-cli/pull/71) ([tas50](https://github.com/tas50))
+- Require Chef 15 / Ruby 2.6+ [#68](https://github.com/chef/chef-cli/pull/68) ([tas50](https://github.com/tas50))
+- Generate markdown that won&#39;t fail tests [#72](https://github.com/chef/chef-cli/pull/72) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v2.0.10](https://github.com/chef/chef-cli/tree/v2.0.10) (2020-05-05)
 
 #### Merged Pull Requests
@@ -32,7 +30,6 @@
 - Fix typos in the readmes and update examples [#59](https://github.com/chef/chef-cli/pull/59) ([tas50](https://github.com/tas50))
 - Add logging to export command [#56](https://github.com/chef/chef-cli/pull/56) ([mbaitelman](https://github.com/mbaitelman))
 - recognize .yml as a valid recipe extension [#63](https://github.com/chef/chef-cli/pull/63) ([ChefRycar](https://github.com/ChefRycar))
-<!-- latest_stable_release -->
 
 ## [v2.0.0](https://github.com/chef/chef-cli/tree/v2.0.0) (2019-10-02)
 

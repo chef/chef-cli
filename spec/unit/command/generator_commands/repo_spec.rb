@@ -331,9 +331,9 @@ describe ChefCLI::Command::GeneratorCommands::Repo do
 
                     knife role from file roles/example.json
 
-                For more information on roles, see the Chef docs site:
+                For more information on roles, see the Chef Infra docs site:
 
-                https://docs.chef.io/roles.html
+                https://docs.chef.io/roles/
               README
             end
 
@@ -355,9 +355,9 @@ describe ChefCLI::Command::GeneratorCommands::Repo do
 
                     knife environment from file environments/example.json
 
-                For more information on environments, see the Chef docs site:
+                For more information on environments, see the Chef Infra docs site:
 
-                https://docs.chef.io/environments.html
+                https://docs.chef.io/environments/
               README
             end
 

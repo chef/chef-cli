@@ -12,9 +12,9 @@ Then we can upload the items in the data bag's directory to the Chef Infra Serve
 
     knife data bag from file example example_item.json
 
-For more information on data bags, see the Chef docs site:
+For more information on data bags, see the Chef Infra docs site:
 
-https://docs.chef.io/data_bags.html
+https://docs.chef.io/data_bags/
 
 # Encrypted Data Bags
 
@@ -51,6 +51,6 @@ Use the secret_key to view the contents.
     password:  abc123
 
 
-For more information on encrypted data bags, see the Chef docs site:
+For more information on encrypted data bags, see the Chef Infra docs site:
 
-https://docs.chef.io/data_bags.html
+https://docs.chef.io/data_bags/

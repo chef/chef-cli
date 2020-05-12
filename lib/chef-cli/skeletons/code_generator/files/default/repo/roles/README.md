@@ -4,6 +4,6 @@ For example, in this directory, you'll find an example role file called `example
 
     knife role from file roles/example.json
 
-For more information on roles, see the Chef docs site:
+For more information on roles, see the Chef Infra docs site:
 
-https://docs.chef.io/roles.html
+https://docs.chef.io/roles/

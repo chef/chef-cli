@@ -38,7 +38,7 @@ module ChefCLI
 
         For more information about Policyfiles, see our detailed README:
 
-        https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile/
 
         Options:
       E

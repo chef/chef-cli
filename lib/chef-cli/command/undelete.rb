@@ -47,7 +47,7 @@ module ChefCLI
 
         See our detailed README for more information:
 
-        https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile/
 
         Options:
 

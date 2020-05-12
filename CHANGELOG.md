@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 2.0.13 -->
-## [v2.0.13](https://github.com/chef/chef-cli/tree/v2.0.13) (2020-05-12)
+<!-- latest_release 2.0.14 -->
+## [v2.0.14](https://github.com/chef/chef-cli/tree/v2.0.14) (2020-05-12)
 
 #### Merged Pull Requests
-- Generate kitchen configs that use Ubuntu 20.04 [#69](https://github.com/chef/chef-cli/pull/69) ([tas50](https://github.com/tas50))
+- Update ChefSpecs to match platform versions in Kitchen [#71](https://github.com/chef/chef-cli/pull/71) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.10 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update ChefSpecs to match platform versions in Kitchen [#71](https://github.com/chef/chef-cli/pull/71) ([tas50](https://github.com/tas50)) <!-- 2.0.14 -->
 - Generate kitchen configs that use Ubuntu 20.04 [#69](https://github.com/chef/chef-cli/pull/69) ([tas50](https://github.com/tas50)) <!-- 2.0.13 -->
 - Generate cookbooks with Chef Infra Client 16 in the examples [#70](https://github.com/chef/chef-cli/pull/70) ([tas50](https://github.com/tas50)) <!-- 2.0.12 -->
 - Update test configs to better cache gems + test on Ruby 2.7 [#67](https://github.com/chef/chef-cli/pull/67) ([tas50](https://github.com/tas50)) <!-- 2.0.11 -->

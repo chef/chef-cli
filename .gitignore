@@ -13,7 +13,6 @@ gem_graph.png
 .bundle
 
 # ignore some common Bundler 'binstubs' directory names
-# http://gembundler.com/man/bundle-exec.1.html
 b/
 binstubs/
 vendor/

@@ -216,7 +216,7 @@ module ChefCLI
           if !@cookbook_name_or_path
             @params_valid = false
           elsif /-/ =~ File.basename(@cookbook_name_or_path)
-            msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef.html#chef-generate-cookbook for more information.")
+            msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef/#chef-generate-cookbook for more information.")
           end
 
           if config[:berks] && config[:policy]

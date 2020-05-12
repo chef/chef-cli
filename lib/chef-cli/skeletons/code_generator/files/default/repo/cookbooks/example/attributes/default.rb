@@ -4,4 +4,4 @@
 # Set a default name
 default['example']['name'] = 'Sam Doe'
 
-# For further information, see the Chef documentation (https://docs.chef.io/attributes.html).
+# For further information, see the Chef Infra documentation (https://docs.chef.io/attributes/).

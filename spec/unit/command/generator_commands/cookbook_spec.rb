@@ -129,7 +129,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
     it "warns if a hyphenated cookbook name is passed" do
       expect(with_argv(%w{my-cookbook}).run).to eq(0)
-      message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef.html#chef-generate-cookbook for more information."
+      message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef/#chef-generate-cookbook for more information."
       expect(stdout_io.string).to include(message)
     end
 
@@ -523,7 +523,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
             # Policyfile.rb - Describe how you want Chef Infra Client to build your system.
             #
             # For more information on the Policyfile feature, visit
-            # https://docs.chef.io/policyfile.html
+            # https://docs.chef.io/policyfile/
 
             # A name that describes what the system you're building with Chef does.
             name 'new_cookbook'
@@ -571,7 +571,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               name: chef_zero
 
               ## product_name and product_version specifies a specific Chef product and version to install.
-              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
               #  product_name: chef
               #  product_version: 15
 
@@ -658,7 +658,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               always_update_cookbooks: true
 
               ## product_name and product_version specifies a specific Chef product and version to install.
-              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
               #  product_name: chef
               #  product_version: 15
 

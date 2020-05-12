@@ -579,7 +579,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               name: inspec
 
             platforms:
-              - name: ubuntu-18.04
+              - name: ubuntu-20.04
               - name: centos-8
 
             suites:
@@ -666,7 +666,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               name: inspec
 
             platforms:
-              - name: ubuntu-18.04
+              - name: ubuntu-20.04
               - name: centos-8
 
             suites:

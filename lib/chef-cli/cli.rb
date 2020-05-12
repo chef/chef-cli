@@ -122,7 +122,7 @@ module ChefCLI
         "Test Kitchen": "kitchen",
         "Cookstyle": "cookstyle",
       }.each do |name, cli|
-        result = Bundler.with_clean_env { shell_out("#{cli} --version") }
+        result = Bundler.with_unbundled_env { shell_out("#{cli} --version") }
         if result.exitstatus != 0
           msg("#{name} version: ERROR")
         else

@@ -6,4 +6,4 @@ For example, in this directory, you'll find an example environment file called `
 
 For more information on environments, see the Chef Infra docs site:
 
-https://docs.chef.io/environments
+https://docs.chef.io/environments/

@@ -14,9 +14,9 @@ verifier:
 platforms:
   # @see https://github.com/chef-cookbooks/testing_examples/blob/master/kitchen.dokken.yml
   # @see https://hub.docker.com/u/dokken
-  - name: ubuntu-18.04
+  - name: ubuntu-20.04
     driver:
-      image: dokken/ubuntu-18.04
+      image: dokken/ubuntu-20.04
       pid_one_command: /bin/systemd
       intermediate_instructions:
         - RUN /usr/bin/apt-get update

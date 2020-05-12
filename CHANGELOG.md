@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.0 -->
-## [v3.0.0](https://github.com/chef/chef-cli/tree/v3.0.0) (2020-05-12)
+<!-- latest_release 3.0.1 -->
+## [v3.0.1](https://github.com/chef/chef-cli/tree/v3.0.1) (2020-05-12)
 
 #### Merged Pull Requests
-- Require Chef 15 / Ruby 2.6+ [#68](https://github.com/chef/chef-cli/pull/68) ([tas50](https://github.com/tas50))
+- Generate markdown that won&#39;t fail tests [#72](https://github.com/chef/chef-cli/pull/72) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.10 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Generate markdown that won&#39;t fail tests [#72](https://github.com/chef/chef-cli/pull/72) ([tas50](https://github.com/tas50)) <!-- 3.0.1 -->
 - Require Chef 15 / Ruby 2.6+ [#68](https://github.com/chef/chef-cli/pull/68) ([tas50](https://github.com/tas50)) <!-- 3.0.0 -->
 - Update ChefSpecs to match platform versions in Kitchen [#71](https://github.com/chef/chef-cli/pull/71) ([tas50](https://github.com/tas50)) <!-- 2.0.14 -->
 - Generate kitchen configs that use Ubuntu 20.04 [#69](https://github.com/chef/chef-cli/pull/69) ([tas50](https://github.com/tas50)) <!-- 2.0.13 -->

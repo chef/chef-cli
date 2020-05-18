@@ -21,11 +21,12 @@ steps:
 
 - label: run-specs-windows
   command:
-    - powershell .expeditor/ruby_27.ps1
+    - powershell .expeditor/run_windows_tests.ps1 rspec
   expeditor:
     executor:
       docker:
         host_os: windows
+        image: rubydistros/windows-2019:2.7
 
 - label: cookstyle-generator-cb-tests-ruby-2.7
   command:

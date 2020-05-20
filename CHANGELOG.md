@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.2 -->
+## [v3.0.2](https://github.com/chef/chef-cli/tree/v3.0.2) (2020-05-20)
+
+#### Merged Pull Requests
+- Cleaning up bundler 2.x deprecation warning [#73](https://github.com/chef/chef-cli/pull/73) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.1 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Cleaning up bundler 2.x deprecation warning [#73](https://github.com/chef/chef-cli/pull/73) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.0.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

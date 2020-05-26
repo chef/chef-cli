@@ -62,8 +62,6 @@ kitchen.yml*
 Procfile
 Rakefile
 spec/*
-spec/*
-spec/fixtures/*
 test/*
 
 # SCM #

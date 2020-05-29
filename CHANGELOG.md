@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.3 -->
-## [v3.0.3](https://github.com/chef/chef-cli/tree/v3.0.3) (2020-05-26)
+<!-- latest_release 3.0.4 -->
+## [v3.0.4](https://github.com/chef/chef-cli/tree/v3.0.4) (2020-05-29)
 
 #### Merged Pull Requests
-- Remove duplicate chefignore entries [#74](https://github.com/chef/chef-cli/pull/74) ([tas50](https://github.com/tas50))
+- Add a ChefZeroCapture kitchen provisioner [#75](https://github.com/chef/chef-cli/pull/75) ([marcparadise](https://github.com/marcparadise))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add a ChefZeroCapture kitchen provisioner [#75](https://github.com/chef/chef-cli/pull/75) ([marcparadise](https://github.com/marcparadise)) <!-- 3.0.4 -->
 - Remove duplicate chefignore entries [#74](https://github.com/chef/chef-cli/pull/74) ([tas50](https://github.com/tas50)) <!-- 3.0.3 -->
 - Cleaning up bundler 2.x deprecation warning [#73](https://github.com/chef/chef-cli/pull/73) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.0.2 -->
 <!-- release_rollup -->

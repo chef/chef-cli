@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.6 -->
-## [v3.0.6](https://github.com/chef/chef-cli/tree/v3.0.6) (2020-06-04)
+<!-- latest_release 3.0.7 -->
+## [v3.0.7](https://github.com/chef/chef-cli/tree/v3.0.7) (2020-06-04)
 
 #### Merged Pull Requests
-- Revert Ruby requirements to allow for 2.5 or later [#78](https://github.com/chef/chef-cli/pull/78) ([tas50](https://github.com/tas50))
+- Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.4 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50)) <!-- 3.0.7 -->
 - Revert Ruby requirements to allow for 2.5 or later [#78](https://github.com/chef/chef-cli/pull/78) ([tas50](https://github.com/tas50)) <!-- 3.0.6 -->
 - Pin ffi gem to less than 1.13.0 [#76](https://github.com/chef/chef-cli/pull/76) ([TheLunaticScripter](https://github.com/TheLunaticScripter)) <!-- 3.0.5 -->
 <!-- release_rollup -->

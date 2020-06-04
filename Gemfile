@@ -16,6 +16,9 @@ group :test do
   gem "cookstyle"
   gem "chefstyle"
   gem "test-kitchen", "> 2.5"
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
+    gem "chef-zero", "~> 14"
+  end
 end
 
 group :development do

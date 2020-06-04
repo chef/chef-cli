@@ -35,7 +35,16 @@ steps:
       docker:
         image: ruby:2.7-buster
 
-- label: run-specs-windows
+- label: run-specs-windows-2.6
+  command:
+    - powershell .expeditor/run_windows_tests.ps1 rspec
+  expeditor:
+    executor:
+      docker:
+        host_os: windows
+        image: rubydistros/windows-2019:2.6
+
+- label: run-specs-windows-2.7
   command:
     - powershell .expeditor/run_windows_tests.ps1 rspec
   expeditor:

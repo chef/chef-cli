@@ -122,7 +122,13 @@ module ChefCLI
         "Test Kitchen": "kitchen",
         "Cookstyle": "cookstyle",
       }.each do |name, cli|
-        result = Bundler.with_unbundled_env { shell_out("#{cli} --version") }
+        # @todo when Ruby 2.5/2.6 support goes away this if statement can go away
+        if Gem::Version.new(Bundler::VERSION) >= Gem::Version.new("2")
+          result = Bundler.with_unbundled_env { shell_out("#{cli} --version") }
+        else
+          result = Bundler.with_clean_env { shell_out("#{cli} --version") }
+        end
+
         if result.exitstatus != 0
           msg("#{name} version: ERROR")
         else

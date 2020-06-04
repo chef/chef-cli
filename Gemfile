@@ -18,12 +18,13 @@ group :test do
   gem "test-kitchen", "> 2.5"
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
     gem "chef-zero", "~> 14"
+    gem "chef", "~> 15"
   end
 end
 
 group :development do
   gem "pry"
   gem "pry-byebug"
-  gem "pry-stack_explorer"
+  gem "pry-stack_explorer", "~> 0.4.0"
   gem "rb-readline"
 end

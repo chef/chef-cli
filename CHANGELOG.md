@@ -1,28 +1,25 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.7 -->
-## [v3.0.7](https://github.com/chef/chef-cli/tree/v3.0.7) (2020-06-04)
-
-#### Merged Pull Requests
-- Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.4 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50)) <!-- 3.0.7 -->
-- Revert Ruby requirements to allow for 2.5 or later [#78](https://github.com/chef/chef-cli/pull/78) ([tas50](https://github.com/tas50)) <!-- 3.0.6 -->
-- Pin ffi gem to less than 1.13.0 [#76](https://github.com/chef/chef-cli/pull/76) ([TheLunaticScripter](https://github.com/TheLunaticScripter)) <!-- 3.0.5 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.7](https://github.com/chef/chef-cli/tree/v3.0.7) (2020-06-04)
+
+#### Merged Pull Requests
+- Pin ffi gem to less than 1.13.0 [#76](https://github.com/chef/chef-cli/pull/76) ([TheLunaticScripter](https://github.com/TheLunaticScripter))
+- Revert Ruby requirements to allow for 2.5 or later [#78](https://github.com/chef/chef-cli/pull/78) ([tas50](https://github.com/tas50))
+- Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.0.4](https://github.com/chef/chef-cli/tree/v3.0.4) (2020-05-29)
 
 #### Merged Pull Requests
 - Cleaning up bundler 2.x deprecation warning [#73](https://github.com/chef/chef-cli/pull/73) ([tyler-ball](https://github.com/tyler-ball))
 - Remove duplicate chefignore entries [#74](https://github.com/chef/chef-cli/pull/74) ([tas50](https://github.com/tas50))
 - Add a ChefZeroCapture kitchen provisioner [#75](https://github.com/chef/chef-cli/pull/75) ([marcparadise](https://github.com/marcparadise))
-<!-- latest_stable_release -->
 
 ## [v3.0.1](https://github.com/chef/chef-cli/tree/v3.0.1) (2020-05-12)
 

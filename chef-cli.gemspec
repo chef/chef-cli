@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.license       = "Apache-2.0"
   gem.homepage      = "https://www.chef.io/"
 
-  gem.required_ruby_version = ">= 2.7"
+  gem.required_ruby_version = ">= 2.5"
 
   gem.files = %w{Rakefile LICENSE} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks
@@ -50,6 +50,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", ">= 1", "< 3"
   gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.11"
-  gem.add_development_dependency "test-kitchen", "> 2.5"
   gem.add_dependency "ffi", "< 1.13"
 end

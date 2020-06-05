@@ -50,5 +50,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", ">= 1", "< 3"
   gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.11"
-  gem.add_dependency "ffi", "< 1.13"
+  gem.add_dependency "ffi", "< 1.14"
 end

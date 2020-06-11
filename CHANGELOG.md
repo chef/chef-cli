@@ -1,27 +1,24 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.9 -->
-## [v3.0.9](https://github.com/chef/chef-cli/tree/v3.0.9) (2020-06-11)
-
-#### Merged Pull Requests
-- Remove the ffi pin now that 1.13.1 is out [#106](https://github.com/chef/chef-cli/pull/106) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.7 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Remove the ffi pin now that 1.13.1 is out [#106](https://github.com/chef/chef-cli/pull/106) ([tas50](https://github.com/tas50)) <!-- 3.0.9 -->
-- More updates to the generated chefignore file [#105](https://github.com/chef/chef-cli/pull/105) ([tas50](https://github.com/tas50)) <!-- 3.0.8 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.9](https://github.com/chef/chef-cli/tree/v3.0.9) (2020-06-11)
+
+#### Merged Pull Requests
+- More updates to the generated chefignore file [#105](https://github.com/chef/chef-cli/pull/105) ([tas50](https://github.com/tas50))
+- Remove the ffi pin now that 1.13.1 is out [#106](https://github.com/chef/chef-cli/pull/106) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.0.7](https://github.com/chef/chef-cli/tree/v3.0.7) (2020-06-04)
 
 #### Merged Pull Requests
 - Pin ffi gem to less than 1.13.0 [#76](https://github.com/chef/chef-cli/pull/76) ([TheLunaticScripter](https://github.com/TheLunaticScripter))
 - Revert Ruby requirements to allow for 2.5 or later [#78](https://github.com/chef/chef-cli/pull/78) ([tas50](https://github.com/tas50))
 - Update the generate to generate &gt;= Chef 15 cookbooks [#77](https://github.com/chef/chef-cli/pull/77) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.4](https://github.com/chef/chef-cli/tree/v3.0.4) (2020-05-29)
 

@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.10 -->
+## [v3.0.10](https://github.com/chef/chef-cli/tree/v3.0.10) (2020-06-18)
+
+#### Merged Pull Requests
+- Update the generatator_desc resource to support Chef Infra Client 16.2 [#107](https://github.com/chef/chef-cli/pull/107) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.9 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update the generatator_desc resource to support Chef Infra Client 16.2 [#107](https://github.com/chef/chef-cli/pull/107) ([tas50](https://github.com/tas50)) <!-- 3.0.10 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

@@ -28,6 +28,7 @@ module ChefCLI
     # takes to create a cookbook.
     class GeneratorDesc < Chef::Resource
       resource_name :generator_desc
+      provides :generator_desc
 
       property :message, String, name_property: true
 

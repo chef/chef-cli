@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.11 -->
+## [v3.0.11](https://github.com/chef/chef-cli/tree/v3.0.11) (2020-06-29)
+
+#### Merged Pull Requests
+- Update the content of the generated chefignore [#108](https://github.com/chef/chef-cli/pull/108) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.10 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update the content of the generated chefignore [#108](https://github.com/chef/chef-cli/pull/108) ([tas50](https://github.com/tas50)) <!-- 3.0.11 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

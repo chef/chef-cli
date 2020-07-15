@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 #
 # Author:: Marc Paradsie <marc.paradise@gmail.com>
 #

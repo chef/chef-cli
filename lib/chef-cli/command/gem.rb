@@ -42,7 +42,7 @@ module ChefCLI
         unless skip_rehash?
           Chef::Knife::SubcommandLoader.write_hash(Chef::Knife::SubcommandLoader.generate_hash)
 
-          ui.msg "Regeneated cache of knife subcommands at #{Chef::Knife::SubcommandLoader.plugin_manifest_path}. Delete this file to disable the caching."
+          ui.msg "Regenerated cache of knife subcommands at #{Chef::Knife::SubcommandLoader.plugin_manifest_path}. Delete this file to disable the caching."
         end
 
         exit( e.exit_code )

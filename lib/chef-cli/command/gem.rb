@@ -32,7 +32,7 @@ module ChefCLI
 
       option :skip_rehash,
         long:        "--skip-rehash",
-        description: "Don't run rehash the cache of knife plugins after running the gem command.",
+        description: "Don't rehash the cache of knife plugins after running the gem command.",
         default:     false
 
       def run(params)

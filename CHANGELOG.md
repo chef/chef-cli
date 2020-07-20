@@ -1,8 +1,9 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.0.13 -->
+## [v3.0.13](https://github.com/chef/chef-cli/tree/v3.0.13) (2020-07-20)
 
 #### Merged Pull Requests
+- Update cookstyle requirement from 6.12.6 to 6.13.3 [#114](https://github.com/chef/chef-cli/pull/114) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Test chef generate cookbook content on each cookstyle release [#113](https://github.com/chef/chef-cli/pull/113) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update cookstyle requirement from 6.12.6 to 6.13.3 [#114](https://github.com/chef/chef-cli/pull/114) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.13 -->
 - Test chef generate cookbook content on each cookstyle release [#113](https://github.com/chef/chef-cli/pull/113) ([tas50](https://github.com/tas50)) <!-- 3.0.12 -->
 - Remove redundant encoding comments [#112](https://github.com/chef/chef-cli/pull/112) ([tas50](https://github.com/tas50)) <!-- 3.0.12 -->
 <!-- release_rollup -->

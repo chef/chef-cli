@@ -35,5 +35,10 @@ module ChefCLI
 
     # Chef-Zero's product name
     ZERO_PRODUCT = "Chef Infra Zero".freeze
+
+    HAB_PRODUCT = "Chef Habitat".freeze
+    HAB_SOFTWARE_NAME = "habitat".freeze
+
+    HAB_CLI = "hab".freeze
   end
 end

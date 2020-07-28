@@ -44,7 +44,7 @@ module Kitchen
     #
     # This provisioner does not do any cookbook dependency
     # resolution and will not pull in external cookbooks.  All cookbooks
-    # or cookbook artificats  + policy data as captured from the live node and are
+    # or cookbook artifacts + policy data as captured from the live node and are
     # expected to be available for chef-zero to provide to the client.
     class ChefZeroCapture < ChefZero
       # Declaring these ensure that they're available to the sandbox - it's initialized
@@ -54,7 +54,7 @@ module Kitchen
       default_config :cookbook_artifacts_path, "cookbook_artifacts"
 
       # This will load policyfile/berkshelf.  We don't want either - the client resolves all
-      # dependencies from chef-zero, exactly as preppped in the captured repository.
+      # dependencies from chef-zero, exactly as prepped in the captured repository.
       def load_needed_dependencies!; end
 
       def create_sandbox
@@ -72,7 +72,7 @@ module Kitchen
       end
 
       # Overriding the private ProviderChefZero#default_config_rb
-      # so that we can add additional configuratoin required for  chef-zeor
+      # so that we can add additional configuration required for chef-zero
       # to be able to locate our policies/, policy groups, and cookbook artifacts
       # at run-time.
       def default_config_rb

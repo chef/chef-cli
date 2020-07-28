@@ -89,9 +89,9 @@ module ChefCLI
         @cookbook_version ||=
           begin
             cookbook_version = loader.cookbook_version
-            # TODO: dont do this for non-compat mode
+            # TODO: don't do this for non-compat mode
             cookbook_version.version = version_override
-            # TODO: dont do this either
+            # TODO: don't do this either
 
             # Fixup manifest.
             # What happens is, the 'manifest' representation of cookbook

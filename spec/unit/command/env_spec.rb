@@ -69,7 +69,7 @@ describe ChefCLI::Command::Env do
       it "output should be valid yaml" do
         expect { yaml }.not_to raise_error
       end
-      it "Workstation version should indicate that that we're not runnign from a WS install" do
+      it "Workstation version should indicate that that we're not running from a WS install" do
         expect(yaml).to have_key ChefCLI::Dist::PRODUCT
         expect(yaml[ChefCLI::Dist::PRODUCT]["Version"]).to eql "Not running from within Workstation"
       end

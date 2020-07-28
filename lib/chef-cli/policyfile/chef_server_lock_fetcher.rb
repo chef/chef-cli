@@ -67,7 +67,7 @@ module ChefCLI
         errors.empty?
       end
 
-      # Check the options provided when craeting this class for errors
+      # Check the options provided when creating this class for errors
       #
       # @return [Array<String>] A list of errors found
       def errors

@@ -400,8 +400,8 @@ module ChefCLI
 
         dot_git = Pathname.new(".git")
         Pathname.new(cookbook_path).ascend do |parent_dir|
-          possbile_git_dir = parent_dir + dot_git
-          if possbile_git_dir.exist?
+          possible_git_dir = parent_dir + dot_git
+          if possible_git_dir.exist?
             @cookbook_in_git_repo = true
             break
           end

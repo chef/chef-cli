@@ -361,7 +361,7 @@ module ChefCLI
         # doubles give 15-17 digits of precision, so we err on the safe side
         # and only use 15 digits in the string conversion. We use the `g`
         # format, which is a documented-enough "do what I mean" where floats
-        # >= 0.1 and < precsion are represented as floating point literals, and
+        # >= 0.1 and < precision are represented as floating point literals, and
         # other numbers use the exponent notation with a lowercase 'e'. Note
         # that both Ruby and Erlang document what their `g` does but have some
         # differences both subtle and non-subtle:

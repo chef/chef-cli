@@ -50,9 +50,9 @@ describe ChefCLI::Command::CleanPolicyCookbooks do
 
     context "when given a path to the config" do
 
-      let(:params) { %w{ -c ~/otherstuff/config.rb } }
+      let(:params) { %w{ -c ~/other_stuff/config.rb } }
 
-      let(:config_arg) { "~/otherstuff/config.rb" }
+      let(:config_arg) { "~/other_stuff/config.rb" }
 
       before do
         expect(chef_config_loader).to receive(:load)

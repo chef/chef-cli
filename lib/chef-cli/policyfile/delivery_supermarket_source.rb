@@ -39,7 +39,7 @@ module ChefCLI
     # * Version numbers for cookbooks that pass through the Ci pipeline always
     #   increase over time (so that largest version number == newest)
     #
-    # In the future, alternative approaches may be persued to achieve the goal
+    # In the future, alternative approaches may be pursued to achieve the goal
     # of continuously integrating at the cookbook level without imposing those
     # constraints.
     #

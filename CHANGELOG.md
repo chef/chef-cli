@@ -1,27 +1,24 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.14 -->
-## [v3.0.14](https://github.com/chef/chef-cli/tree/v3.0.14) (2020-07-28)
-
-#### Merged Pull Requests
-- Minor spelling fixes [#116](https://github.com/chef/chef-cli/pull/116) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.11 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Minor spelling fixes [#116](https://github.com/chef/chef-cli/pull/116) ([tas50](https://github.com/tas50)) <!-- 3.0.14 -->
-- Update cookstyle requirement from 6.12.6 to 6.13.3 [#114](https://github.com/chef/chef-cli/pull/114) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.13 -->
-- Test chef generate cookbook content on each cookstyle release [#113](https://github.com/chef/chef-cli/pull/113) ([tas50](https://github.com/tas50)) <!-- 3.0.12 -->
-- Remove redundant encoding comments [#112](https://github.com/chef/chef-cli/pull/112) ([tas50](https://github.com/tas50)) <!-- 3.0.12 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.14](https://github.com/chef/chef-cli/tree/v3.0.14) (2020-07-28)
+
+#### Merged Pull Requests
+- Remove redundant encoding comments [#112](https://github.com/chef/chef-cli/pull/112) ([tas50](https://github.com/tas50))
+- Test chef generate cookbook content on each cookstyle release [#113](https://github.com/chef/chef-cli/pull/113) ([tas50](https://github.com/tas50))
+- Update cookstyle requirement from 6.12.6 to 6.13.3 [#114](https://github.com/chef/chef-cli/pull/114) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Minor spelling fixes [#116](https://github.com/chef/chef-cli/pull/116) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.0.11](https://github.com/chef/chef-cli/tree/v3.0.11) (2020-06-29)
 
 #### Merged Pull Requests
 - Update the content of the generated chefignore [#108](https://github.com/chef/chef-cli/pull/108) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.10](https://github.com/chef/chef-cli/tree/v3.0.10) (2020-06-18)
 

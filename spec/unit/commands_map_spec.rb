@@ -25,7 +25,7 @@ describe ChefCLI::CommandsMap do
 
   before do
     mapping.builtin("example", :Example)
-    mapping.builtin("hypenated-example", :HyphenatedExample)
+    mapping.builtin("hyphenated-example", :HyphenatedExample)
     mapping.builtin("explicit-path-example", :ExplicitPathExample, require_path: "unit/fixtures/command/explicit_path_example")
     mapping.builtin("documented-example", :DocumentedExample, desc: "I have documentation")
   end
@@ -34,16 +34,16 @@ describe ChefCLI::CommandsMap do
     expect(mapping.have_command?("example")).to be true
   end
 
-  it "infers a non-hypenated command's require path" do
+  it "infers a non-hyphenated command's require path" do
     expect(mapping.spec_for("example").require_path).to eq("chef-cli/command/example")
   end
 
   it "infers a hyphenated command's require path" do
-    expect(mapping.spec_for("hypenated-example").require_path).to eq("chef-cli/command/hypenated_example")
+    expect(mapping.spec_for("hyphenated-example").require_path).to eq("chef-cli/command/hyphenated_example")
   end
 
   it "lists the available commands" do
-    expect(mapping.command_names).to match_array(%w{example hypenated-example explicit-path-example documented-example})
+    expect(mapping.command_names).to match_array(%w{example hyphenated-example explicit-path-example documented-example})
   end
 
   it "keeps the docstring of a command" do

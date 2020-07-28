@@ -274,7 +274,7 @@ module ChefCLI
     # compared to an unmodified copy upstream. For example, the community site
     # may have a cookbook "apache2" at version "1.10.4", which the user has
     # forked on github and modified the dependencies without changing the
-    # version number. To accomodate this, the local_artifacts_graph should be
+    # version number. To accommodate this, the local_artifacts_graph should be
     # merged over the upstream's artifacts graph.
     def local_artifacts_graph
       cookbook_location_specs.inject({}) do |local_artifacts, (cookbook_name, cookbook_location_spec)|

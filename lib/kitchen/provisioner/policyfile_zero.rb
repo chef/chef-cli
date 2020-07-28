@@ -53,7 +53,7 @@ module Kitchen
     # @author Daniel DeLeo <dan@chef.io>
     class PolicyfileZero < ChefBase
 
-      # This provsioner will forcibly set the following config options:
+      # This provisioner will forcibly set the following config options:
       # * `use_policyfile`: `true`
       # * `versioned_cookbooks`: `true`
       # * `deployment_group`: `POLICY_NAME-local`

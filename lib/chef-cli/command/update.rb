@@ -70,7 +70,7 @@ module ChefCLI
 
       option :exclude_deps,
         long:         "--exclude-deps",
-        description:  "Only update cookbooks explicitely mentioned on the command line",
+        description:  "Only update cookbooks explicitly mentioned on the command line",
         boolean:      true,
         default:      false
 

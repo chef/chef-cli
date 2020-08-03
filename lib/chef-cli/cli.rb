@@ -99,42 +99,21 @@ module ChefCLI
       if omnibus_install?
         show_version_via_version_manifest
       else
-        show_version_via_shell_out
+        msg("#{ChefCLI::Dist::CLI_PRODUCT} version: #{ChefCLI::VERSION}")
       end
     end
 
     def show_version_via_version_manifest
-      msg("#{ChefCLI::Dist::PRODUCT} version: #{manifest_field("build_version")}")
-      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_GEM}",
-        "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
-        "#{ChefCLI::Dist::CLI_PRODUCT}": "#{ChefCLI::Dist::CLI_GEM}",
+      msg("#{ChefCLI::Dist::PRODUCT} version: #{component_version("build_version")}")
+
+      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": ChefCLI::Dist::INFRA_CLIENT_GEM,
+        "#{ChefCLI::Dist::INSPEC_PRODUCT}": ChefCLI::Dist::INSPEC_CLI,
+        "#{ChefCLI::Dist::CLI_PRODUCT}": ChefCLI::Dist::CLI_GEM,
+        "#{ChefCLI::Dist::HAB_PRODUCT}": ChefCLI::Dist::HAB_SOFTWARE_NAME,
         "Test Kitchen": "test-kitchen",
         "Cookstyle": "cookstyle",
-      }.each do |name, gem|
-        msg("#{name} version: #{gem_version(gem)}")
-      end
-    end
-
-    def show_version_via_shell_out
-      msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
-      { "#{ChefCLI::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefCLI::Dist::INFRA_CLIENT_CLI}",
-        "#{ChefCLI::Dist::INSPEC_PRODUCT}": "#{ChefCLI::Dist::INSPEC_CLI}",
-        "Test Kitchen": "kitchen",
-        "Cookstyle": "cookstyle",
-      }.each do |name, cli|
-        # @todo when Ruby 2.5/2.6 support goes away this if statement can go away
-        if Gem::Version.new(Bundler::VERSION) >= Gem::Version.new("2")
-          result = Bundler.with_unbundled_env { shell_out("#{cli} --version") }
-        else
-          result = Bundler.with_clean_env { shell_out("#{cli} --version") }
-        end
-
-        if result.exitstatus != 0
-          msg("#{name} version: ERROR")
-        else
-          version = result.stdout.lines.first.scan(/(?:master\s)?[\d+\.\(\)]+\S+/).join("\s")
-          msg("#{name} version: #{version}")
-        end
+      }.each do |prod_name, component|
+        msg("#{prod_name} version: #{component_version(component)}")
       end
     end
 
@@ -188,11 +167,13 @@ module ChefCLI
       end
     end
 
-    def gem_version(name)
+    def component_version(name)
       if gem_manifest_hash[name].is_a?(Array)
         gem_manifest_hash[name].first
+      elsif manifest_hash.key? name
+        manifest_field(name)
       else
-        "unknown"
+        manifest_hash.dig("software", name, "locked_version") || "unknown"
       end
     end
 

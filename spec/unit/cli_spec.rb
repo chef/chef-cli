@@ -53,8 +53,6 @@ describe ChefCLI::CLI do
     E
   end
 
-  let(:version_message) { "#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}\n" }
-
   def run_cli(expected_exit_code)
     expect(cli).to receive(:exit).with(expected_exit_code)
     expect(cli).to receive(:sanity_check!)
@@ -64,16 +62,6 @@ describe ChefCLI::CLI do
   def run_cli_with_sanity_check(expected_exit_code)
     expect(cli).to receive(:exit).with(expected_exit_code)
     cli.run
-  end
-
-  def run_cli_and_validate_tool_versions
-    full_version_message = version_message
-    tools.each do |name, details|
-      expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
-      full_version_message += "#{name} version: #{details["expected_version"]}\n"
-    end
-    run_cli(0)
-    expect(stdout).to eq(full_version_message)
   end
 
   def mock_shell_out(exitstatus, stdout, stderr)
@@ -121,12 +109,17 @@ describe ChefCLI::CLI do
   context "given -v" do
     let(:argv) { %w{-v} }
 
-    context "#via_version_manifest" do
+    context "when installed via omnibus" do
       let(:mocked_version_manifest_json) do
         <<~E
           {
             "manifest_format": 2,
-            "build_version": "d.e.v"
+            "build_version": "d.e.v",
+            "software": {
+              "habitat": {
+                "locked_version": "1.2.3"
+              }
+            }
           }
         E
       end
@@ -160,6 +153,7 @@ describe ChefCLI::CLI do
           Chef Infra Client version: 0.0.2
           Chef InSpec version: 0.0.3
           Chef CLI version: 0.0.1
+          Chef Habitat version: 1.2.3
           Test Kitchen version: 0.0.4
           Cookstyle version: 0.0.6
         E
@@ -171,6 +165,7 @@ describe ChefCLI::CLI do
           Chef Infra Client version: unknown
           Chef InSpec version: unknown
           Chef CLI version: unknown
+          Chef Habitat version: unknown
           Test Kitchen version: unknown
           Cookstyle version: unknown
         E
@@ -195,49 +190,15 @@ describe ChefCLI::CLI do
       end
     end
 
-    context "#via_shell_out" do
-      let(:tools) do
-        {
-          "Chef Infra Client" => {
-            "command" => "chef-client",
-            "version_output" => "Chef Infra Client: 15.0.300",
-            "expected_version" => "15.0.300",
-          },
-          "Chef InSpec" => {
-            "command" => "inspec",
-            "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
-            "expected_version" => "4.6.2",
-          },
-          "Test Kitchen" => {
-            "command" => "kitchen",
-            "version_output" => "Test Kitchen version 2.2.5",
-            "expected_version" => "2.2.5",
-          },
-          "Cookstyle" => {
-            "command" => "cookstyle",
-            "version_output" => "Cookstyle 4.0.0\n  * RuboCop 0.62.0",
-            "expected_version" => "4.0.0",
-          },
-        }
-      end
-
-      it "does not print versions of tools with missing or errored tools" do
-        full_version_message = version_message
-        tools.each do |name, details|
-          if name == "inspec"
-            expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(1, "#{details["version_output"]}", ""))
-            full_version_message += "#{name} version: ERROR\n"
-          else
-            expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
-            full_version_message += "#{name} version: #{details["expected_version"]}\n"
-          end
-        end
-        run_cli(0)
-        expect(stdout).to eq(full_version_message)
+    context "when installed as a gem" do
+      let(:gem_version_message) { "#{ChefCLI::Dist::CLI_PRODUCT} version: #{ChefCLI::VERSION}\n" }
+      before do
+        allow(cli).to receive(:omnibus_install?).and_return false
       end
 
       it "prints the version and versions of chef-cli tools" do
-        run_cli_and_validate_tool_versions
+        run_cli(0)
+        expect(stdout).to eq(gem_version_message)
       end
     end
   end

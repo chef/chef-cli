@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.15 -->
-## [v3.0.15](https://github.com/chef/chef-cli/tree/v3.0.15) (2020-07-30)
+<!-- latest_release 3.0.16 -->
+## [v3.0.16](https://github.com/chef/chef-cli/tree/v3.0.16) (2020-08-03)
 
 #### Merged Pull Requests
-- Update InSpec documentation link in test template [#117](https://github.com/chef/chef-cli/pull/117) ([detjensrobert](https://github.com/detjensrobert))
+- Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.14 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise)) <!-- 3.0.16 -->
 - Update InSpec documentation link in test template [#117](https://github.com/chef/chef-cli/pull/117) ([detjensrobert](https://github.com/detjensrobert)) <!-- 3.0.15 -->
 <!-- release_rollup -->
 

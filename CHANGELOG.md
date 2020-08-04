@@ -1,20 +1,18 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.16 -->
-## [v3.0.16](https://github.com/chef/chef-cli/tree/v3.0.16) (2020-08-03)
-
-#### Merged Pull Requests
-- Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.14 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise)) <!-- 3.0.16 -->
-- Update InSpec documentation link in test template [#117](https://github.com/chef/chef-cli/pull/117) ([detjensrobert](https://github.com/detjensrobert)) <!-- 3.0.15 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.16](https://github.com/chef/chef-cli/tree/v3.0.16) (2020-08-04)
+
+#### Merged Pull Requests
+- Update InSpec documentation link in test template [#117](https://github.com/chef/chef-cli/pull/117) ([detjensrobert](https://github.com/detjensrobert))
+- Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_stable_release -->
+
 ## [v3.0.14](https://github.com/chef/chef-cli/tree/v3.0.14) (2020-07-28)
 
 #### Merged Pull Requests
@@ -22,7 +20,6 @@
 - Test chef generate cookbook content on each cookstyle release [#113](https://github.com/chef/chef-cli/pull/113) ([tas50](https://github.com/tas50))
 - Update cookstyle requirement from 6.12.6 to 6.13.3 [#114](https://github.com/chef/chef-cli/pull/114) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Minor spelling fixes [#116](https://github.com/chef/chef-cli/pull/116) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.11](https://github.com/chef/chef-cli/tree/v3.0.11) (2020-06-29)
 

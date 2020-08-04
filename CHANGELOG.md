@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.17 -->
+## [v3.0.17](https://github.com/chef/chef-cli/tree/v3.0.17) (2020-08-04)
+
+#### Merged Pull Requests
+- Update cookstyle requirement from 6.13.3 to 6.14.7 [#118](https://github.com/chef/chef-cli/pull/118) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.16 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update cookstyle requirement from 6.13.3 to 6.14.7 [#118](https://github.com/chef/chef-cli/pull/118) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.17 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

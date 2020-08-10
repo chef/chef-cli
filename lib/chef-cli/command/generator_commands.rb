@@ -16,7 +16,6 @@
 #
 
 require "mixlib/cli" unless defined?(Mixlib::CLI)
-require "rbconfig"
 require "pathname" unless defined?(Pathname)
 require_relative "base"
 require_relative "../chef_runner"

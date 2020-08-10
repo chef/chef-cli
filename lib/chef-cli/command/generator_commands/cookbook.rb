@@ -205,9 +205,13 @@ module ChefCLI
           result
         end
 
+        #
+        # @param [Pathname] path a directory
+        #
+        # @return [Boolean] delivery cli.toml exists
+        #
         def contains_delivery_cli_toml?(path)
-          delivery_cli_path = path.join(".delivery/cli.toml")
-          delivery_cli_path.exist?
+          path.join(".delivery/cli.toml").exist?
         end
 
         def read_and_validate_params

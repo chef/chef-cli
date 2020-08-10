@@ -16,9 +16,7 @@
 #
 
 require "forwardable" unless defined?(Forwardable)
-
-require "semverse"
-
+require "semverse" unless defined?(Semverse)
 require_relative "community_cookbook_source"
 
 module ChefCLI

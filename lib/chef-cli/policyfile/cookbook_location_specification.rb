@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "semverse"
+require "semverse" unless defined?(Semverse)
 require_relative "../cookbook_omnifetch"
 require_relative "storage_config"
 

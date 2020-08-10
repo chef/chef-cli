@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "json"
+require "json" unless defined?(JSON)
 require_relative "../cookbook_omnifetch"
 require_relative "source_uri"
 require_relative "../exceptions"
-require "chef/http/simple"
+require "chef/http/simple" unless defined?(Chef::HTTP::Simple)
 
 module ChefCLI
   module Policyfile

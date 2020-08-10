@@ -1,6 +1,6 @@
 require "openssl"
 require "net/https"
-require "json"
+require "json" unless defined?(JSON)
 require "pp"
 require "uri"
 

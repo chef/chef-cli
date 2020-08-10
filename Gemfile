@@ -32,4 +32,5 @@ end
 group :profile do
   gem "stackprof"
   gem "stackprof-webnav"
+  gem "memory_profiler"
 end

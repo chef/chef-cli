@@ -187,22 +187,21 @@ module ChefCLI
           @verbose
         end
 
+        #
+        # Is there a .delivery/cli.toml in the current dir or any of the parent dirs
+        #
+        # @return [Boolean]
+        #
         def have_delivery_config?
           # delivery-cli's logic is to look recursively upward for
           # .delivery/cli.toml starting from pwd:
           # https://github.com/chef/delivery-cli/blob/22cbef3987ebd0aee98405b7e161a100edc87e49/src/delivery/config/mod.rs#L225-L247
 
-          path_to_check = File.expand_path(Dir.pwd)
-          result = false
-
-          Pathname.new(path_to_check).ascend do |path|
-            if contains_delivery_cli_toml?(path)
-              result = true
-              break
-            end
+          Pathname.new(Dir.pwd).ascend do |path|
+            return true if contains_delivery_cli_toml?(path)
           end
 
-          result
+          false # nothing was found
         end
 
         #

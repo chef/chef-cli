@@ -17,7 +17,7 @@
 
 require "diff/lcs"
 require "diff/lcs/hunk"
-require "paint"
+require "pastel"
 require "ffi_yajl" unless defined?(FFI_Yajl)
 
 module ChefCLI
@@ -215,9 +215,15 @@ module ChefCLI
         ui.print("\n")
       end
 
+      def pastel
+        @pastel ||= Pastel.new
+      end
+
       def print_color_diff(hunk)
         hunk.to_s.each_line do |line|
-          ui.print(Paint[line, color_for_line(line)])
+          line_color = color_for_line(line)
+          line = pastel.decorate(line, line_color) unless line_color.nil?
+          ui.print(line)
         end
       end
 

@@ -215,7 +215,7 @@ module ChefCLI
           @cookbook_name_or_path = arguments[0]
           if !@cookbook_name_or_path
             @params_valid = false
-          elsif /-/ =~ File.basename(@cookbook_name_or_path)
+          elsif File.basename(@cookbook_name_or_path).include?("-")
             msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef/#chef-generate-cookbook for more information.")
           end
 

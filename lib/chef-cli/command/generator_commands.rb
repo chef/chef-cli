@@ -37,7 +37,7 @@ module ChefCLI
         long: "--license LICENSE",
         description: "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
         proc: Proc.new { |l|
-          l =~ /apache2/ ? "apachev2" : l
+          /apache2/.match?(l) ? "apachev2" : l
         },
         default: nil
 

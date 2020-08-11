@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.21 -->
-## [v3.0.21](https://github.com/chef/chef-cli/tree/v3.0.21) (2020-08-11)
+<!-- latest_release 3.0.22 -->
+## [v3.0.22](https://github.com/chef/chef-cli/tree/v3.0.22) (2020-08-11)
 
 #### Merged Pull Requests
-- Remove unused requires [#125](https://github.com/chef/chef-cli/pull/125) ([tas50](https://github.com/tas50))
+- Use match? when we don&#39;t need the match [#119](https://github.com/chef/chef-cli/pull/119) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Use match? when we don&#39;t need the match [#119](https://github.com/chef/chef-cli/pull/119) ([tas50](https://github.com/tas50)) <!-- 3.0.22 -->
 - Remove unused requires [#125](https://github.com/chef/chef-cli/pull/125) ([tas50](https://github.com/tas50)) <!-- 3.0.21 -->
 - Speed up requires when outside omnibus [#127](https://github.com/chef/chef-cli/pull/127) ([tas50](https://github.com/tas50)) <!-- 3.0.20 -->
 - Minor memory optimizations to `chef generate cookbook` command [#124](https://github.com/chef/chef-cli/pull/124) ([tas50](https://github.com/tas50)) <!-- 3.0.19 -->

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.18 -->
-## [v3.0.18](https://github.com/chef/chef-cli/tree/v3.0.18) (2020-08-11)
+<!-- latest_release 3.0.19 -->
+## [v3.0.19](https://github.com/chef/chef-cli/tree/v3.0.19) (2020-08-11)
 
 #### Merged Pull Requests
-- Optimize how we detect options vs. params [#121](https://github.com/chef/chef-cli/pull/121) ([tas50](https://github.com/tas50))
+- Minor memory optimizations to `chef generate cookbook` command [#124](https://github.com/chef/chef-cli/pull/124) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Minor memory optimizations to `chef generate cookbook` command [#124](https://github.com/chef/chef-cli/pull/124) ([tas50](https://github.com/tas50)) <!-- 3.0.19 -->
 - Optimize how we detect options vs. params [#121](https://github.com/chef/chef-cli/pull/121) ([tas50](https://github.com/tas50)) <!-- 3.0.18 -->
 - Update cookstyle requirement from 6.13.3 to 6.14.7 [#118](https://github.com/chef/chef-cli/pull/118) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.17 -->
 <!-- release_rollup -->

@@ -59,7 +59,7 @@ module ChefCLI
     end
 
     def run(enforce_license: false)
-      sanity_check!
+      path_check!
 
       subcommand_name, *subcommand_params = argv
 
@@ -231,7 +231,7 @@ module ChefCLI
     # catch the cases where users setup only the embedded_bin_dir in their path, or
     # when they have the embedded_bin_dir before the omnibus_bin_dir -- both of which will
     # defeat appbundler and interact very badly with our intent.
-    def sanity_check!
+    def path_check!
       # When installed outside of omnibus, trust the user to configure their PATH
       return true unless omnibus_install?
 

@@ -55,7 +55,7 @@ describe ChefCLI::CLI do
 
   def run_cli(expected_exit_code)
     expect(cli).to receive(:exit).with(expected_exit_code)
-    expect(cli).to receive(:sanity_check!)
+    expect(cli).to receive(:path_check!)
     cli.run
   end
 
@@ -256,7 +256,7 @@ describe ChefCLI::CLI do
     end
   end
 
-  context "sanity_check!" do
+  context "path_check!" do
 
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)

@@ -233,7 +233,7 @@ module ChefCLI
             message = "#{run_list_desc} has invalid cookbook name '#{cookbook}'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
 
             # Special case when there's only one colon instead of two:
-            if cookbook =~ /[^:]:[^:]/
+            if /[^:]:[^:]/.match?(cookbook)
               message << "\nDid you mean '#{item.sub(":", "::")}'?"
             end
 

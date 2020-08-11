@@ -20,7 +20,6 @@ require_relative "../dist"
 require "rubygems" unless defined?(Gem)
 require "rubygems/gem_runner"
 require "rubygems/exceptions"
-require "pp" unless defined?(PP)
 
 module ChefCLI
   module Command

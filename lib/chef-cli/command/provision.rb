@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require "ostruct"
-
 require_relative "base"
 require_relative "../chef_runner"
 require_relative "../dist"

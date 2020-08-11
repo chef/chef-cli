@@ -53,8 +53,7 @@ module ChefCLI
     # @return [Boolean]
     #
     def omnibus_install?
-      # https://rubular.com/r/z74Rt0X9m2fJ96
-      __dir__.match?(%r{C:/opscode|/opt/})
+      __dir__.start_with?("C:/opscode/", "/opt/")
     end
 
     def omnibus_root

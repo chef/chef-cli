@@ -87,7 +87,7 @@ module ChefCLI
     # On Mac we place all of our symlinks under /usr/local/bin on other
     # platforms they are under /usr/bin
     def usr_bin_prefix
-      @usr_bin_prefix ||= os_x? ? "/usr/local/bin" : "/usr/bin"
+      @usr_bin_prefix ||= macos? ? "/usr/local/bin" : "/usr/bin"
     end
 
     # Returns the full path to the given command under usr_bin_prefix
@@ -166,8 +166,11 @@ module ChefCLI
       end
     end
 
-    # Returns true if we are on Mac OS X. Otherwise false
-    def os_x?
+    # @return [Boolean] Returns true if we are on macOS. Otherwise false
+    #
+    # @api private
+    #
+    def macos?
       !!(RUBY_PLATFORM =~ /darwin/)
     end
   end

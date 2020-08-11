@@ -149,8 +149,15 @@ module ChefCLI
       commands_map.command_specs
     end
 
+    #
+    # Is a passed parameter actually an option aka does it start with '-'
+    #
+    # @param [String] param The passed parameter to check
+    #
+    # @return [Boolean]
+    #
     def option?(param)
-      param =~ /^-/
+      param[0] == "-"
     end
 
     def instantiate_subcommand(name)

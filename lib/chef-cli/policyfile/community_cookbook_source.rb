@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "json"
+require "json" unless defined?(JSON)
 require_relative "../cookbook_omnifetch"
 require_relative "../exceptions"
 require "chef/http/simple"

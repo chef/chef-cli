@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "erb"
+require "erb" unless defined?(ERB)
 
 require_relative "../commands_map"
 require_relative "../builtin_commands"

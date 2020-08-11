@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "yaml"
+require "yaml" unless defined?(YAML)
 require "chef-cli/command/env"
 
 describe ChefCLI::Command::Env do

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef/mash"
+require "chef/mash" unless defined?(Mash)
 
 module ChefCLI
   module Policyfile

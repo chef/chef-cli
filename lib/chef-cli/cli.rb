@@ -185,12 +185,12 @@ module ChefCLI
     end
 
     def manifest_hash
-      require "json"
+      require "json" unless defined?(JSON)
       @manifest_hash ||= JSON.parse(read_version_manifest_json)
     end
 
     def gem_manifest_hash
-      require "json"
+      require "json" unless defined?(JSON)
       @gem_manifest_hash ||= JSON.parse(read_gem_version_manifest_json)
     end
 

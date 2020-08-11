@@ -21,7 +21,7 @@ require_relative "../ui"
 require_relative "../version"
 require_relative "../dist"
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
-require "yaml"
+require "yaml" unless defined?(YAML)
 
 module ChefCLI
   module Command

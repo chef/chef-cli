@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "json"
+require "json" unless defined?(JSON)
 require "kitchen"
 require "kitchen/provisioner/base"
 require "kitchen/provisioner/chef_zero"

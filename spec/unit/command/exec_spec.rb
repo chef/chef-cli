@@ -33,22 +33,22 @@ describe ChefCLI::Command::Exec do
 
   describe "when locating omnibus directory" do
     it "should find omnibus bin directory from ruby path" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      allow(Gem).to receive(:bindir).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin"))
       expect(command_instance.omnibus_bin_dir).to include("eg_omnibus_dir/valid/bin")
     end
 
     it "should find omnibus embedded bin directory from ruby path" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      allow(Gem).to receive(:bindir).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin"))
       expect(command_instance.omnibus_embedded_bin_dir).to include("eg_omnibus_dir/valid/embedded/bin")
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
+      allow(Gem).to receive(:bindir).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin"))
       expect { command_instance.omnibus_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
+      allow(Gem).to receive(:bindir).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin"))
       expect { command_instance.omnibus_embedded_bin_dir }.to raise_error(ChefCLI::OmnibusInstallNotFound)
     end
   end

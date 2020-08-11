@@ -53,7 +53,7 @@ module ChefCLI
     # @return [Boolean]
     #
     def omnibus_install?
-      __dir__.start_with?("C:/opscode/", "/opt/")
+      omnibus_embedded_bin_dir.split(File::SEPARATOR)[-2] == 'embedded'
     end
 
     def omnibus_root
@@ -65,7 +65,7 @@ module ChefCLI
     end
 
     def omnibus_embedded_bin_dir
-      @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
+      @omnibus_embedded_bin_dir ||= omnibus_expand_path(Gem.bindir)
     end
 
     def package_home
@@ -134,8 +134,13 @@ module ChefCLI
       dir
     end
 
+    #
+    # The base path of the omnibus install such as /opt/chef-workstation/
+    #
+    # @return [String]
+    #
     def expected_omnibus_root
-      File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
+      File.expand_path(File.join(Gem.bindir, "..", ".."))
     end
 
     def default_package_home

@@ -243,7 +243,7 @@ describe ChefCLI::Policyfile::Differ do
 
   def output
     # ANSI codes make the tests harder to read
-    Paint.unpaint(ui.output)
+    Pastel.new.strip(ui.output)
   end
 
   subject(:differ) do

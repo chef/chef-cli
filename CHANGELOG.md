@@ -1,30 +1,27 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.22 -->
-## [v3.0.22](https://github.com/chef/chef-cli/tree/v3.0.22) (2020-08-11)
-
-#### Merged Pull Requests
-- Use match? when we don&#39;t need the match [#119](https://github.com/chef/chef-cli/pull/119) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.16 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Use match? when we don&#39;t need the match [#119](https://github.com/chef/chef-cli/pull/119) ([tas50](https://github.com/tas50)) <!-- 3.0.22 -->
-- Remove unused requires [#125](https://github.com/chef/chef-cli/pull/125) ([tas50](https://github.com/tas50)) <!-- 3.0.21 -->
-- Speed up requires when outside omnibus [#127](https://github.com/chef/chef-cli/pull/127) ([tas50](https://github.com/tas50)) <!-- 3.0.20 -->
-- Minor memory optimizations to `chef generate cookbook` command [#124](https://github.com/chef/chef-cli/pull/124) ([tas50](https://github.com/tas50)) <!-- 3.0.19 -->
-- Optimize how we detect options vs. params [#121](https://github.com/chef/chef-cli/pull/121) ([tas50](https://github.com/tas50)) <!-- 3.0.18 -->
-- Update cookstyle requirement from 6.13.3 to 6.14.7 [#118](https://github.com/chef/chef-cli/pull/118) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.17 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.22](https://github.com/chef/chef-cli/tree/v3.0.22) (2020-08-12)
+
+#### Merged Pull Requests
+- Update cookstyle requirement from 6.13.3 to 6.14.7 [#118](https://github.com/chef/chef-cli/pull/118) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Optimize how we detect options vs. params [#121](https://github.com/chef/chef-cli/pull/121) ([tas50](https://github.com/tas50))
+- Minor memory optimizations to `chef generate cookbook` command [#124](https://github.com/chef/chef-cli/pull/124) ([tas50](https://github.com/tas50))
+- Speed up requires when outside omnibus [#127](https://github.com/chef/chef-cli/pull/127) ([tas50](https://github.com/tas50))
+- Remove unused requires [#125](https://github.com/chef/chef-cli/pull/125) ([tas50](https://github.com/tas50))
+- Use match? when we don&#39;t need the match [#119](https://github.com/chef/chef-cli/pull/119) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.0.16](https://github.com/chef/chef-cli/tree/v3.0.16) (2020-08-04)
 
 #### Merged Pull Requests
 - Update InSpec documentation link in test template [#117](https://github.com/chef/chef-cli/pull/117) ([detjensrobert](https://github.com/detjensrobert))
 - Add habitat to version output [#115](https://github.com/chef/chef-cli/pull/115) ([marcparadise](https://github.com/marcparadise))
-<!-- latest_stable_release -->
 
 ## [v3.0.14](https://github.com/chef/chef-cli/tree/v3.0.14) (2020-07-28)
 

@@ -1,5 +1,5 @@
 require "openssl"
-require "net/https"
+require "net/http" unless defined?(Net::HTTP)
 require "json" unless defined?(JSON)
 require "pp"
 require "uri"

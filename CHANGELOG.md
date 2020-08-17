@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.24 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v3.0.24](https://github.com/chef/chef-cli/tree/v3.0.24) (2020-08-17)
 
 #### Merged Pull Requests
 - Simplify delivery config check. [#129](https://github.com/chef/chef-cli/pull/129) ([phiggins](https://github.com/phiggins))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.0.23 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Simplify delivery config check. [#129](https://github.com/chef/chef-cli/pull/129) ([phiggins](https://github.com/phiggins)) <!-- 3.0.24 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v3.0.23](https://github.com/chef/chef-cli/tree/v3.0.23) (2020-08-12)
 
 #### Merged Pull Requests
 - Replace paint gem with Pastel [#126](https://github.com/chef/chef-cli/pull/126) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.22](https://github.com/chef/chef-cli/tree/v3.0.22) (2020-08-12)
 

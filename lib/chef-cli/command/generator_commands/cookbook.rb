@@ -197,20 +197,7 @@ module ChefCLI
           # .delivery/cli.toml starting from pwd:
           # https://github.com/chef/delivery-cli/blob/22cbef3987ebd0aee98405b7e161a100edc87e49/src/delivery/config/mod.rs#L225-L247
 
-          Pathname.new(Dir.pwd).ascend do |path|
-            return true if contains_delivery_cli_toml?(path)
-          end
-
-          false # nothing was found
-        end
-
-        #
-        # @param [Pathname] path a directory
-        #
-        # @return [Boolean] delivery cli.toml exists
-        #
-        def contains_delivery_cli_toml?(path)
-          path.join(".delivery/cli.toml").exist?
+          Pathname.pwd.ascend.any? { |path| path.join(".delivery/cli.toml").exist? }
         end
 
         def read_and_validate_params

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.25 -->
-## [v3.0.25](https://github.com/chef/chef-cli/tree/v3.0.25) (2020-08-18)
+<!-- latest_release 3.0.26 -->
+## [v3.0.26](https://github.com/chef/chef-cli/tree/v3.0.26) (2020-08-18)
 
 #### Merged Pull Requests
-- Update license-acceptance requirement from ~&gt; 1.0, &gt;= 1.0.11 to &gt;= 1.0.11, &lt; 3 [#128](https://github.com/chef/chef-cli/pull/128) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Add profiling gems [#120](https://github.com/chef/chef-cli/pull/120) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.24 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add profiling gems [#120](https://github.com/chef/chef-cli/pull/120) ([tas50](https://github.com/tas50)) <!-- 3.0.26 -->
 - Update license-acceptance requirement from ~&gt; 1.0, &gt;= 1.0.11 to &gt;= 1.0.11, &lt; 3 [#128](https://github.com/chef/chef-cli/pull/128) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.25 -->
 <!-- release_rollup -->
 

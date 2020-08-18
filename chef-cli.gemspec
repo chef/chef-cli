@@ -49,5 +49,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
   gem.add_dependency "diff-lcs", ">= 1.0", "< 1.4" # 1.4 changes the output
   gem.add_dependency "pastel", "~> 0.7" # used for policyfile differ
-  gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.11"
+  gem.add_dependency "license-acceptance", ">= 1.0.11", "< 3"
 end

@@ -3,8 +3,7 @@ $ErrorActionPreference="stop"
 Write-Host "--- bundle install"
 
 bundle config --local path vendor/bundle
-bundle config --local set without 'docs development'
-bundle install --jobs=7 --retry=3
+bundle install --jobs=7 --retry=3 --without docs development profile
 
 Write-Host "+++ bundle exec task"
 bundle exec $args

@@ -28,3 +28,9 @@ group :development do
   gem "pry-stack_explorer", "~> 0.4.0"
   gem "rb-readline"
 end
+
+group :profile do
+  gem "stackprof"
+  gem "stackprof-webnav"
+  gem "memory_profiler"
+end

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "net/http"
+require "net/http" unless defined?(Net::HTTP)
 require "chef/monkey_patches/net_http"
 require "chef-cli/service_exception_inspectors/http"
 

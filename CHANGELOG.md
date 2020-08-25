@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.27 -->
-## [v3.0.27](https://github.com/chef/chef-cli/tree/v3.0.27) (2020-08-24)
-
-#### Merged Pull Requests
-- Require net/http not net/https [#130](https://github.com/chef/chef-cli/pull/130) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.24 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Require net/http not net/https [#130](https://github.com/chef/chef-cli/pull/130) ([tas50](https://github.com/tas50)) <!-- 3.0.27 -->
-- Add profiling gems [#120](https://github.com/chef/chef-cli/pull/120) ([tas50](https://github.com/tas50)) <!-- 3.0.26 -->
-- Update license-acceptance requirement from ~&gt; 1.0, &gt;= 1.0.11 to &gt;= 1.0.11, &lt; 3 [#128](https://github.com/chef/chef-cli/pull/128) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.0.25 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.27](https://github.com/chef/chef-cli/tree/v3.0.27) (2020-08-25)
+
+#### Merged Pull Requests
+- Update license-acceptance requirement from ~&gt; 1.0, &gt;= 1.0.11 to &gt;= 1.0.11, &lt; 3 [#128](https://github.com/chef/chef-cli/pull/128) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Add profiling gems [#120](https://github.com/chef/chef-cli/pull/120) ([tas50](https://github.com/tas50))
+- Require net/http not net/https [#130](https://github.com/chef/chef-cli/pull/130) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.0.24](https://github.com/chef/chef-cli/tree/v3.0.24) (2020-08-17)
 
 #### Merged Pull Requests
 - Simplify delivery config check. [#129](https://github.com/chef/chef-cli/pull/129) ([phiggins](https://github.com/phiggins))
-<!-- latest_stable_release -->
 
 ## [v3.0.23](https://github.com/chef/chef-cli/tree/v3.0.23) (2020-08-12)
 

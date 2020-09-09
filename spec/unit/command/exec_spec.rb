@@ -127,7 +127,7 @@ describe ChefCLI::Command::Exec do
         end
 
         context "when running a exec with #{switch}" do
-          let(:command_options) { ["#{switch}"] }
+          let(:command_options) { [switch] }
 
           it "should call not call exec, but it should print the banner" do
             allow(command_instance).to receive(:msg)

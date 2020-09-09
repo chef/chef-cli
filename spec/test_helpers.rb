@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +35,7 @@ module TestHelpers
   end
 
   def fixtures_path
-    File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+    File.expand_path(__dir__ + "/unit/fixtures/")
   end
 
   def project_root

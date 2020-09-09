@@ -37,7 +37,7 @@ module ChefCLI
 
       def run(params)
         info = {}
-        info["#{ChefCLI::Dist::PRODUCT}"] = workstation_info
+        info[ChefCLI::Dist::PRODUCT] = workstation_info
         info["Ruby"] = ruby_info
         info["Path"] = paths
         ui.msg info.to_yaml

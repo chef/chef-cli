@@ -1,14 +1,11 @@
 require "openssl"
 require "net/http" unless defined?(Net::HTTP)
 require "json" unless defined?(JSON)
-require "pp"
 require "uri"
 
-THIS_DIR = File.expand_path(File.dirname(__FILE__))
-
-UNIVERSE_JSON_PATH = File.join(THIS_DIR, "universe.json")
-SMALL_UNIVERSE_JSON_PATH = File.join(THIS_DIR, "small_universe.json")
-PRUNED_UNIVERSE_PATH = File.join(THIS_DIR, "pruned_small_universe.json")
+UNIVERSE_JSON_PATH = File.join(__dir__, "universe.json")
+SMALL_UNIVERSE_JSON_PATH = File.join(__dir__, "small_universe.json")
+PRUNED_UNIVERSE_PATH = File.join(__dir__, "pruned_small_universe.json")
 
 COOKBOOKS_IN_SMALL_UNIVERSE = %w{apache2 application apt database mysql nginx postgresql yum}.freeze
 

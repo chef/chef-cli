@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "zlib"
+require "zlib" unless defined?(Zlib)
 require "archive/tar/minitar"
 
 require_relative "../service_exceptions"

@@ -18,7 +18,7 @@
 require "pathname" unless defined?(Pathname)
 require "fileutils" unless defined?(FileUtils)
 require "tmpdir" unless defined?(Dir.mktmpdir)
-require "zlib"
+require "zlib" unless defined?(Zlib)
 
 require "archive/tar/minitar"
 

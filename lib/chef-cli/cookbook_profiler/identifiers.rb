@@ -18,7 +18,7 @@
 # TODO: Chef should require its dependency correctly.
 require "singleton" unless defined?(Singleton)
 require "chef/cookbook/cookbook_version_loader"
-require "digest/sha1"
+require "digest/sha1" unless defined?(Digest::SHA1)
 
 require "chef/digester"
 

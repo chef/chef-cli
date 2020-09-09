@@ -125,7 +125,7 @@ module ChefCLI
       subcommand_specs.each do |name, spec|
         next if spec.hidden
 
-        msg("    #{"#{name}".ljust(justify_length)}#{spec.description}")
+        msg("    #{name.to_s.ljust(justify_length)}#{spec.description}")
       end
     end
 

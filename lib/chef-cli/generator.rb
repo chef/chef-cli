@@ -154,7 +154,7 @@ module ChefCLI
         end
         if comment
           # Ensure there's no trailing whitespace
-          result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, "#{comment}").strip
+          result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, comment).strip
         else
           result
         end

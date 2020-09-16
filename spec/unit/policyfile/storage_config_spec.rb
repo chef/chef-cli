@@ -106,10 +106,10 @@ describe ChefCLI::Policyfile::StorageConfig do
 
     end
 
-    context "when the policyfile file name doesn't have a .rb extension" do
+    context "when the policyfile file name doesn't have an .rb or .lock.json extension" do
 
       it "raises an error" do
-        err_string = %q{Policyfile filenames must end with `.rb' extension (you gave: `Policyfile')}
+        err_string = %q{Policyfile filenames must end with an `.rb' or `.lock.json' extension (you gave: `Policyfile')}
         expect { storage_config.use_policyfile("Policyfile") }.to raise_error(ChefCLI::InvalidPolicyfileFilename, err_string)
       end
 

@@ -42,8 +42,8 @@ module ChefCLI
         @overwrite = overwrite
         @chef_config = config
 
-        policyfile_rel_path = policyfile || "Policyfile.rb"
-        policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
+        @policyfile_rel_path = policyfile || "Policyfile.rb"
+        policyfile_full_path = File.expand_path(@policyfile_rel_path, root_dir)
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
 
         @policyfile_content = nil
@@ -51,9 +51,11 @@ module ChefCLI
       end
 
       def run(cookbooks_to_update = [], exclude_deps = false)
-        unless File.exist?(policyfile_expanded_path)
-          # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
-          # See card CC-232
+        # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
+        # See card CC-232
+        if @policyfile_rel_path.end_with?(".lock.json") && !File.exist?(policyfile_lock_expanded_path)
+          raise PolicyfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
+        elsif @policyfile_rel_path.end_with?(".rb") && !File.exist?(policyfile_expanded_path)
           raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
         end
 

@@ -77,6 +77,26 @@ describe ChefCLI::PolicyfileServices::Install do
 
   end
 
+  context "When an explicit Policfyfile lock name is given and does not exist" do
+
+    let(:policyfile_rb_explicit_name) { "i_do_not_exist.lock.json" }
+
+    it "errors out" do
+      expect { install_service.run }.to raise_error(ChefCLI::PolicyfileNotFound, "Policyfile lock not found at path #{policyfile_rb_path}")
+    end
+
+  end
+
+  context "When an explicit Policfyfile name is given and does not exist" do
+
+    let(:policyfile_rb_explicit_name) { "i_do_not_exist.rb" }
+
+    it "errors out" do
+      expect { install_service.run }.to raise_error(ChefCLI::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
+    end
+
+  end
+
   context "when a Policyfile exists" do
 
     before do

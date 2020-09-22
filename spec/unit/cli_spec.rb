@@ -41,7 +41,7 @@ describe ChefCLI::CLI do
 
   let(:base_help_message) do
     <<~E
-      The Chef command line tool for managaing your infrastructure from your workstation.
+      The Chef command line tool for managing your infrastructure from your workstation.
       Docs: https://docs.chef.io/workstation/
       Patents: https://www.chef.io/patents
 

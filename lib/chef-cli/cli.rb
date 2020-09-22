@@ -33,6 +33,10 @@ module ChefCLI
     include Chef::Mixin::ShellOut
 
     banner(<<~BANNER)
+      The Chef command line tool for managing your infrastructure from your workstation.
+      Docs: https://docs.chef.io/workstation/
+      Patents: https://www.chef.io/patents
+
       Usage:
           #{ChefCLI::Dist::EXEC} -h/--help
           #{ChefCLI::Dist::EXEC} -v/--version
@@ -119,7 +123,7 @@ module ChefCLI
 
     def show_help
       msg(banner)
-      msg("\nAvailable Commands:")
+      msg("Available Commands:")
 
       justify_length = subcommands.map(&:length).max + 2
       subcommand_specs.each do |name, spec|

@@ -41,11 +41,14 @@ describe ChefCLI::CLI do
 
   let(:base_help_message) do
     <<~E
+      The Chef command line tool for managaing your infrastructure from your workstation.
+      Docs: https://docs.chef.io/workstation/
+      Patents: https://www.chef.io/patents
+
       Usage:
           chef -h/--help
           chef -v/--version
           chef command [arguments...] [options...]
-
 
       Available Commands:
           gem      Runs the `gem` command in context of the embedded ruby

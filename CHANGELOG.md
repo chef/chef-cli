@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.29 -->
-## [v3.0.29](https://github.com/chef/chef-cli/tree/v3.0.29) (2020-09-16)
+<!-- latest_release 3.0.30 -->
+## [v3.0.30](https://github.com/chef/chef-cli/tree/v3.0.30) (2020-09-22)
 
 #### Merged Pull Requests
-- Chef install now works when lockfile alone exists  #1292 [#131](https://github.com/chef/chef-cli/pull/131) ([rclarkmorrow](https://github.com/rclarkmorrow))
+- Adding patent notice to chef-cli [#133](https://github.com/chef/chef-cli/pull/133) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.27 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Adding patent notice to chef-cli [#133](https://github.com/chef/chef-cli/pull/133) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.0.30 -->
 - Chef install now works when lockfile alone exists  #1292 [#131](https://github.com/chef/chef-cli/pull/131) ([rclarkmorrow](https://github.com/rclarkmorrow)) <!-- 3.0.29 -->
 - Misc Chefstyle cleanup [#132](https://github.com/chef/chef-cli/pull/132) ([tas50](https://github.com/tas50)) <!-- 3.0.28 -->
 <!-- release_rollup -->

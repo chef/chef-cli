@@ -1,28 +1,25 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.30 -->
-## [v3.0.30](https://github.com/chef/chef-cli/tree/v3.0.30) (2020-09-22)
-
-#### Merged Pull Requests
-- Adding patent notice to chef-cli [#133](https://github.com/chef/chef-cli/pull/133) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.27 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Adding patent notice to chef-cli [#133](https://github.com/chef/chef-cli/pull/133) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.0.30 -->
-- Chef install now works when lockfile alone exists  #1292 [#131](https://github.com/chef/chef-cli/pull/131) ([rclarkmorrow](https://github.com/rclarkmorrow)) <!-- 3.0.29 -->
-- Misc Chefstyle cleanup [#132](https://github.com/chef/chef-cli/pull/132) ([tas50](https://github.com/tas50)) <!-- 3.0.28 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.30](https://github.com/chef/chef-cli/tree/v3.0.30) (2020-09-23)
+
+#### Merged Pull Requests
+- Misc Chefstyle cleanup [#132](https://github.com/chef/chef-cli/pull/132) ([tas50](https://github.com/tas50))
+- Chef install now works when lockfile alone exists  #1292 [#131](https://github.com/chef/chef-cli/pull/131) ([rclarkmorrow](https://github.com/rclarkmorrow))
+- Adding patent notice to chef-cli [#133](https://github.com/chef/chef-cli/pull/133) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_stable_release -->
+
 ## [v3.0.27](https://github.com/chef/chef-cli/tree/v3.0.27) (2020-08-25)
 
 #### Merged Pull Requests
 - Update license-acceptance requirement from ~&gt; 1.0, &gt;= 1.0.11 to &gt;= 1.0.11, &lt; 3 [#128](https://github.com/chef/chef-cli/pull/128) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Add profiling gems [#120](https://github.com/chef/chef-cli/pull/120) ([tas50](https://github.com/tas50))
 - Require net/http not net/https [#130](https://github.com/chef/chef-cli/pull/130) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.24](https://github.com/chef/chef-cli/tree/v3.0.24) (2020-08-17)
 

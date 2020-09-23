@@ -27,7 +27,6 @@ module ChefCLI
 
     # The name of the server product
     SERVER_PRODUCT = "Chef Infra Server".freeze
-
     WORKFLOW = "Chef Workflow (Delivery)".freeze
 
     # The chef executable, as in `chef gem install` or `chef generate cookbook`
@@ -38,7 +37,13 @@ module ChefCLI
 
     HAB_PRODUCT = "Chef Habitat".freeze
     HAB_SOFTWARE_NAME = "habitat".freeze
-
     HAB_CLI = "hab".freeze
+
+    # product patents page
+    PATENTS = "https://www.chef.io/patents".freeze
+
+    # Workstation banner/help text
+    WORKSTATION_DOCS = "https://docs.chef.io/workstation/".freeze
+    WORKSTATION_HEADER = "The Chef command line tool for managing your infrastructure from your workstation.".freeze
   end
 end

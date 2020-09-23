@@ -33,9 +33,9 @@ module ChefCLI
     include Chef::Mixin::ShellOut
 
     banner(<<~BANNER)
-      The Chef command line tool for managing your infrastructure from your workstation.
-      Docs: https://docs.chef.io/workstation/
-      Patents: https://www.chef.io/patents
+      #{ChefCLI::Dist::WORKSTATION_HEADER}
+      Docs: #{ChefCLI::Dist::WORKSTATION_DOCS}
+      Patents: #{ChefCLI::Dist::PATENTS}
 
       Usage:
           #{ChefCLI::Dist::EXEC} -h/--help

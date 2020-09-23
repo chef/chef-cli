@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.31 -->
+## [v3.0.31](https://github.com/chef/chef-cli/tree/v3.0.31) (2020-09-23)
+
+#### Merged Pull Requests
+- Replacing hardcoded patent notice with DIST [#134](https://github.com/chef/chef-cli/pull/134) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.30 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Replacing hardcoded patent notice with DIST [#134](https://github.com/chef/chef-cli/pull/134) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.0.31 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

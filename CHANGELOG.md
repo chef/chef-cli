@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.32 -->
+## [v3.0.32](https://github.com/chef/chef-cli/tree/v3.0.32) (2020-09-29)
+
+#### Merged Pull Requests
+- Convert to autoload and resolve YAML failures with Chef 16.5 [#135](https://github.com/chef/chef-cli/pull/135) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.31 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Convert to autoload and resolve YAML failures with Chef 16.5 [#135](https://github.com/chef/chef-cli/pull/135) ([tas50](https://github.com/tas50)) <!-- 3.0.32 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

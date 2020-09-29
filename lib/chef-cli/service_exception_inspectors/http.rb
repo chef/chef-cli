@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "ffi_yajl" unless defined?(FFI_Yajl)
+autoload :FFI_Yajl, "ffi_yajl"
 
 module ChefCLI
   module ServiceExceptionInspectors

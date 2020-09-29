@@ -20,8 +20,11 @@ require_relative "../cookbook_omnifetch"
 require_relative "../ui"
 require_relative "../version"
 require_relative "../dist"
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
-require "yaml" unless defined?(YAML)
+
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
+autoload :YAML, "yaml"
 
 module ChefCLI
   module Command
@@ -40,7 +43,7 @@ module ChefCLI
         info[ChefCLI::Dist::PRODUCT] = workstation_info
         info["Ruby"] = ruby_info
         info["Path"] = paths
-        ui.msg info.to_yaml
+        ui.msg YAML.dump(info)
       end
 
       def workstation_info

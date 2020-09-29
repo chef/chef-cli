@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "ffi_yajl" unless defined?(FFI_Yajl)
+autoload :FFI_Yajl, "ffi_yajl"
 require_relative "../exceptions"
 require_relative "source_uri"
 require_relative "../chef_server_api_multi"

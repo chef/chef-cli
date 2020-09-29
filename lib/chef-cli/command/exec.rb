@@ -17,7 +17,10 @@
 
 require_relative "base"
 require_relative "../dist"
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
 
 module ChefCLI
   module Command

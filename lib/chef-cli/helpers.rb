@@ -15,7 +15,10 @@
 # limitations under the License.
 #
 
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
+
 require_relative "exceptions"
 
 module ChefCLI

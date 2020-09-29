@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "set" unless defined?(Set)
+autoload :Set, "set"
 require "forwardable" unless defined?(Forwardable)
 
 require "solve"

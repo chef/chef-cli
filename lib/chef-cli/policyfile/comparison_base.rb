@@ -15,8 +15,11 @@
 # limitations under the License.
 #
 
-require "ffi_yajl" unless defined?(FFI_Yajl)
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
+
+autoload :FFI_Yajl, "ffi_yajl"
 require_relative "../service_exceptions"
 
 module ChefCLI

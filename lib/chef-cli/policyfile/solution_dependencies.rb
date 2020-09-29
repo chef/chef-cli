@@ -16,7 +16,7 @@
 #
 
 require "semverse"
-require "set" unless defined?(Set)
+autoload :Set, "set"
 require_relative "../exceptions"
 
 module ChefCLI

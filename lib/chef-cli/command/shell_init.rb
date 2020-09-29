@@ -15,13 +15,16 @@
 # limitations under the License.
 #
 
-require "erb" unless defined?(ERB)
+autoload :ERB, "erb"
 
 require_relative "../commands_map"
 require_relative "../builtin_commands"
 require_relative "base"
 require_relative "../dist"
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
 
 module ChefCLI
 

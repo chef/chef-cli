@@ -17,7 +17,7 @@
 
 require "fileutils" unless defined?(FileUtils)
 
-require "ffi_yajl" unless defined?(FFI_Yajl)
+autoload :FFI_Yajl, "ffi_yajl"
 
 require_relative "../helpers"
 require_relative "undo_record"

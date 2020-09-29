@@ -15,7 +15,10 @@
 # limitations under the License.
 #
 
-require "addressable/uri" unless defined?(Addressable::URI)
+module Addressable
+  autoload :URI, "addressable/uri"
+end
+
 require_relative "../exceptions"
 
 module ChefCLI

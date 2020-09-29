@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "set" unless defined?(Set)
+autoload :Set, "set"
 
 require "chef/server_api"
 require_relative "../service_exceptions"

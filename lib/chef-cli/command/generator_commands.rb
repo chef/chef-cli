@@ -16,7 +16,7 @@
 #
 
 require "mixlib/cli" unless defined?(Mixlib::CLI)
-require "pathname" unless defined?(Pathname)
+autoload :Pathname, "pathname"
 require_relative "base"
 require_relative "../chef_runner"
 require_relative "../generator"

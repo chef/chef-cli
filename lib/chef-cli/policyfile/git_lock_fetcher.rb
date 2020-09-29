@@ -15,10 +15,13 @@
 # limitations under the License.
 #
 
+module Mixlib
+  autoload :ShellOut, "mixlib/shellout"
+end
+
 require_relative "../policyfile_lock"
 require_relative "../exceptions"
 require_relative "../helpers"
-require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require "tmpdir" unless defined?(Dir.mktmpdir)
 
 module ChefCLI

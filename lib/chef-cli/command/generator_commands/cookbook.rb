@@ -137,6 +137,7 @@ module ChefCLI
           Generator.add_attr_to_context(:use_policyfile, policy_mode?)
           Generator.add_attr_to_context(:pipeline, pipeline)
           Generator.add_attr_to_context(:kitchen, kitchen)
+          Generator.add_attr_to_context(:vscode_dir, create_vscode_dir?)
         end
 
         def kitchen
@@ -234,6 +235,10 @@ module ChefCLI
             return true if File.directory?(File.join(dir.to_s, ".git"))
           end
           false
+        end
+
+        def create_vscode_dir?
+          ::File.exist?("/Applications/Visual Studio Code.app") || ::File.exist?("#{ENV["APPDATA"]}\\Code")
         end
       end
     end

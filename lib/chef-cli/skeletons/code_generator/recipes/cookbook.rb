@@ -91,7 +91,7 @@ template "#{cookbook_dir}/test/integration/default/default_test.rb" do
   action :create_if_missing
 end
 
-# Chefspec
+# ChefSpec
 directory "#{cookbook_dir}/spec/unit/recipes" do
   recursive true
 end
@@ -113,7 +113,6 @@ template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
 end
 
 # Recipes
-
 directory "#{cookbook_dir}/recipes"
 
 template "#{cookbook_dir}/recipes/default.rb" do
@@ -161,6 +160,20 @@ if context.have_git
       command('git commit -m "Add generated cookbook content"')
       cwd cookbook_dir
     end
+  end
+end
+
+if context.vscode_dir
+  directory "#{cookbook_dir}/.vscode"
+
+  file "#{cookbook_dir}/.vscode/extensions.json" do
+    content <<~CONTENT
+    {
+      "recommendations": [
+          "chef-software.chef"
+      ]
+    }
+    CONTENT
   end
 end
 

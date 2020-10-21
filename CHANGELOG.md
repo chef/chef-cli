@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.33 -->
+## [v3.0.33](https://github.com/chef/chef-cli/tree/v3.0.33) (2020-10-21)
+
+#### Merged Pull Requests
+- Create a .vscode dir in cookbooks if vscode is installed [#137](https://github.com/chef/chef-cli/pull/137) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.32 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Create a .vscode dir in cookbooks if vscode is installed [#137](https://github.com/chef/chef-cli/pull/137) ([tas50](https://github.com/tas50)) <!-- 3.0.33 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

@@ -11,7 +11,7 @@ if path_arr.size > 1
    end
    cookbook_file_path = File.join(files_dir, new_file_basename)
 else
-  cookbook_file_path = File.join(files_dir, context.new_file_basename)  # handlers/email_handler.rb # alert some change might be required here
+  cookbook_file_path = File.join(files_dir, context.new_file_basename) 
 end
 
 directory files_dir do

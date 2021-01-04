@@ -10,7 +10,7 @@ if path_arr.size > 1
   end
   cookbook_file_path = File.join(files_dir, new_file_basename)
 else
-  cookbook_file_path = File.join(files_dir, context.new_file_basename) 
+  cookbook_file_path = File.join(files_dir, context.new_file_basename)
 end
 
 

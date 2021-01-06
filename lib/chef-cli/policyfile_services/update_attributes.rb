@@ -44,6 +44,9 @@ module ChefCLI
       end
 
       def run
+        unless File.exist?(policyfile_lock_expanded_path)
+          return
+        end
         assert_policy_and_lock_present!
         prepare_constraints
 

@@ -33,17 +33,11 @@ module ChefCLI
 
       def extended_error_info
         <<~END
-          --- REQUEST DATA ----
-          #{http_method} #{uri}
-          #{request_headers}
-          #{req_body}
-
           --- RESPONSE DATA ---
           #{code} #{response_message}
           #{response_headers}
 
           #{response_body}
-
         END
       end
 
@@ -90,28 +84,8 @@ module ChefCLI
         headers_s
       end
 
-      def request
-        exception.chef_rest_request
-      end
-
       def uri
         request.uri.to_s + request.path.to_s
-      end
-
-      def http_method
-        request.method
-      end
-
-      def request_headers
-        headers_s = ""
-        request.each_header do |key, value|
-          headers_s << key << ": " << value << "\n"
-        end
-        headers_s
-      end
-
-      def req_body
-        request.body
       end
 
     end

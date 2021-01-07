@@ -21,6 +21,7 @@ end
 
 autoload :FFI_Yajl, "ffi_yajl"
 require_relative "../service_exceptions"
+require "net/protocol" unless defined?(Net::ProtocolError)
 
 module ChefCLI
   module Policyfile

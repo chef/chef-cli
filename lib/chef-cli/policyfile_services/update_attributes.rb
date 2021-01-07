@@ -45,10 +45,7 @@ module ChefCLI
 
       def run
         assert_policy_and_lock_present!
-        unless File.exist?(policyfile_lock_expanded_path)
-          return
-        end
-        
+        return unless File.exist?(policyfile_lock_expanded_path)
         prepare_constraints
 
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes

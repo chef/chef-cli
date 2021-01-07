@@ -18,7 +18,7 @@
 require_relative "../policyfile_lock"
 require_relative "lock_fetcher_mixin"
 require_relative "../exceptions"
-require "chef/http"
+require "net/protocol" unless defined?(Net::ProtocolError)
 require "tempfile" unless defined?(Tempfile)
 
 module ChefCLI

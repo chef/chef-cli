@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "net/http" unless defined?(Net::HTTP)
+require "net/http"
 require "chef-cli/service_exception_inspectors/http"
 
 describe ChefCLI::ServiceExceptionInspectors::HTTP do
@@ -63,7 +63,7 @@ describe ChefCLI::ServiceExceptionInspectors::HTTP do
   end
 
   let(:exception) do
-    Net::HTTPClientException.new(message, response).tap { |e| e.chef_rest_request = request }
+    Net::HTTPClientException.new(message, response)
   end
 
   subject(:inspector) { described_class.new(exception) }
@@ -102,22 +102,9 @@ describe ChefCLI::ServiceExceptionInspectors::HTTP do
 
   end
 
-  describe "showing the request and response in extended error info" do
+  describe "showing the response in extended error info" do
 
     let(:response_body) { "this is the response" }
-
-    it "shows the request in a format similar to HTTP messages" do
-      expected_request_string = <<~E
-        --- REQUEST DATA ----
-        POST /organizations/chef-oss-dev/cookbooks
-        content-type: application/json
-        accept: application/json
-
-        this is the request
-
-      E
-      expect(inspector.extended_error_info).to include(expected_request_string)
-    end
 
     it "shows the response in a format similar to HTTP messages" do
       expected_response_string = <<~E

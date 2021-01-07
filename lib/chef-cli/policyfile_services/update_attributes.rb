@@ -44,10 +44,10 @@ module ChefCLI
       end
 
       def run
+        assert_policy_and_lock_present!
         unless File.exist?(policyfile_lock_expanded_path)
           return
         end
-        assert_policy_and_lock_present!
         prepare_constraints
 
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes
@@ -98,9 +98,6 @@ module ChefCLI
       def assert_policy_and_lock_present!
         unless File.exist?(policyfile_expanded_path)
           raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
-        end
-        unless File.exist?(policyfile_lock_expanded_path)
-          raise LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
         end
       end
 

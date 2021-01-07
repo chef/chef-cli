@@ -98,16 +98,6 @@ describe ChefCLI::PolicyfileServices::UpdateAttributes do
 
   end
 
-  context "when no lockfile exists" do
-
-    it "errors out" do
-      with_file(policyfile_rb_path) { |f| f.print(policyfile_content) }
-      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefCLI::LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_path}")
-      expect { update_attrs_service.run }.to raise_error(ChefCLI::PolicyfileUpdateError)
-    end
-
-  end
-
   context "when both the policyfile and lockfile exist" do
 
     let(:lock_data_with_new_values) do

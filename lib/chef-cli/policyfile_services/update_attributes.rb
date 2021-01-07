@@ -48,6 +48,7 @@ module ChefCLI
         unless File.exist?(policyfile_lock_expanded_path)
           return
         end
+        
         prepare_constraints
 
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes

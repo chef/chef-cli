@@ -26,6 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::CookbookFile do
     let(:generator_name) { "file" }
     let(:generated_files) { [ "files/new_file.txt" ] }
     let(:new_file_name) { "new_file.txt" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 end

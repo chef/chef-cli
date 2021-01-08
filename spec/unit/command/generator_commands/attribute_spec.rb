@@ -26,6 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::Attribute do
     let(:generator_name) { "attribute" }
     let(:generated_files) { [ "attributes/new_attribute_file.rb" ] }
     let(:new_file_name) { "new_attribute_file" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 end

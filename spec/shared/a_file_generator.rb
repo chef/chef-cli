@@ -110,6 +110,27 @@ shared_examples_for "a file generator" do
         expect(generator_context.new_file_basename).to eq(new_file_name)
       end
 
+      it "configures the generator context when file name is in form of directory hierarchy" do
+
+        #  test for chnages
+
+        # new_file_basename = File.basename(context.new_file_basename)
+        # relative_path = File.dirname(context.new_file_basename)
+        # files_dir = File.join(cookbook_dir, 'files', relative_path)
+        # cookbook_file_path = File.join(files_dir, new_file_basename) # code to be tested for command -> chef generate file cookbooks/email_handler handlers/email_handler.rb
+
+        recipe_generator.read_and_validate_params
+        recipe_generator.setup_context
+        generator_context.new_file_basename = new_file_with_path
+
+        expect(generator_context.cookbook_root).to eq(File.dirname(cookbook_path))
+        expect(generator_context.cookbook_name).to eq(cookbook_name)
+        expect(generator_context.new_file_basename).to eq(new_file_with_path)
+        expect( File.dirname(generator_context.new_file_basename)).directory?
+        # expect( File.dirname(generator_context.new_file_basename)).be_directory
+        expect(File).to exist( File.basename(generator_context.new_file_basename))
+      end
+
       it "creates a new recipe" do
         allow(recipe_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         recipe_generator.run

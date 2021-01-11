@@ -32,6 +32,7 @@ describe ChefCLI::Command::GeneratorCommands::Recipe do
                             ]
     end
     let(:new_file_name) { "new_recipe" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 

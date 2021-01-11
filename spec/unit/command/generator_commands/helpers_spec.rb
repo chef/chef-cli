@@ -26,6 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::Helpers do
     let(:generator_name) { "helpers" }
     let(:generated_files) { [ "libraries/new_helpers.rb" ] }
     let(:new_file_name) { "new_helpers" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 end

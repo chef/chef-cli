@@ -26,6 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::Template do
     let(:generator_name) { "template" }
     let(:generated_files) { [ "templates/new_template.txt.erb" ] }
     let(:new_file_name) { "new_template.txt" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 end

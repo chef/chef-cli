@@ -26,6 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::Resource do
     let(:generator_name) { "resource" }
     let(:generated_files) { [ "resources/new_resource.rb" ] }
     let(:new_file_name) { "new_resource" }
+    let(:new_file_with_path) { "sub_directory/new_attribute_file" }
 
   end
 end

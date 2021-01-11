@@ -101,6 +101,12 @@ shared_examples_for "a file generator" do
         FileUtils.cp_r(File.join(fixtures_path, "example_cookbook"), tempdir)
       end
 
+      # let(:directory) { File.dirname(generator_context.new_file_basename) }
+      # let(:file) { File.basename(generator_context.new_file_basename) }
+
+      # before(:each) { create_directory(directory) }
+      # before(:each) { touch(file) }
+
       it "configures the generator context" do
         recipe_generator.read_and_validate_params
         recipe_generator.setup_context
@@ -111,7 +117,6 @@ shared_examples_for "a file generator" do
       end
 
       it "configures the generator context when file name is in form of directory hierarchy" do
-
         #  test for chnages
 
         # new_file_basename = File.basename(context.new_file_basename)
@@ -126,9 +131,16 @@ shared_examples_for "a file generator" do
         expect(generator_context.cookbook_root).to eq(File.dirname(cookbook_path))
         expect(generator_context.cookbook_name).to eq(cookbook_name)
         expect(generator_context.new_file_basename).to eq(new_file_with_path)
-        expect( File.dirname(generator_context.new_file_basename)).directory?
-        # expect( File.dirname(generator_context.new_file_basename)).be_directory
+
+        # expect( File.dirname(generator_context.new_file_basename)).directory?
+        expect( File.dirname(generator_context.new_file_basename)).be_directory
         expect(File).to exist( File.basename(generator_context.new_file_basename))
+        # expect(File).to exist( File.dirname(generator_context.new_file_basename))
+        
+
+        # expect(exist?(directory)).to be true 
+        # expect(exist?(file)).to be true 
+
       end
 
       it "creates a new recipe" do

@@ -1,25 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.35 -->
-## [v3.0.35](https://github.com/chef/chef-cli/tree/v3.0.35) (2021-01-07)
-
-#### Merged Pull Requests
-- Remove references to patched version of net/http [#143](https://github.com/chef/chef-cli/pull/143) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.33 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Remove references to patched version of net/http [#143](https://github.com/chef/chef-cli/pull/143) ([marcparadise](https://github.com/marcparadise)) <!-- 3.0.35 -->
-- Removed reference to http monkeypatch [#142](https://github.com/chef/chef-cli/pull/142) ([marcparadise](https://github.com/marcparadise)) <!-- 3.0.34 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.35](https://github.com/chef/chef-cli/tree/v3.0.35) (2021-01-14)
+
+#### Merged Pull Requests
+- Removed reference to http monkeypatch [#142](https://github.com/chef/chef-cli/pull/142) ([marcparadise](https://github.com/marcparadise))
+- Remove references to patched version of net/http [#143](https://github.com/chef/chef-cli/pull/143) ([marcparadise](https://github.com/marcparadise))
+<!-- latest_stable_release -->
+
 ## [v3.0.33](https://github.com/chef/chef-cli/tree/v3.0.33) (2020-10-21)
 
 #### Merged Pull Requests
 - Create a .vscode dir in cookbooks if vscode is installed [#137](https://github.com/chef/chef-cli/pull/137) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.0.32](https://github.com/chef/chef-cli/tree/v3.0.32) (2020-09-29)
 

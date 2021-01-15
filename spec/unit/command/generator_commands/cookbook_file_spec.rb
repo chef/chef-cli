@@ -28,4 +28,13 @@ describe ChefCLI::Command::GeneratorCommands::CookbookFile do
     let(:new_file_name) { "new_file.txt" }
 
   end
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "file" }
+    let(:generated_files) { [ "files/file/new_file.txt" ] }
+    let(:new_file_name) { "file/new_file.txt" }
+
+  end
+
 end

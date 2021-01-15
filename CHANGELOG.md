@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.0.36 -->
+## [v3.0.36](https://github.com/chef/chef-cli/tree/v3.0.36) (2021-01-15)
+
+#### Merged Pull Requests
+- Allow cookbook files to be generated into subdirectories.  [#144](https://github.com/chef/chef-cli/pull/144) ([i5pranay93](https://github.com/i5pranay93))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.35 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Allow cookbook files to be generated into subdirectories.  [#144](https://github.com/chef/chef-cli/pull/144) ([i5pranay93](https://github.com/i5pranay93)) <!-- 3.0.36 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

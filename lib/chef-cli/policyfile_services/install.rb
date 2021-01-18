@@ -61,7 +61,7 @@ module ChefCLI
 
         if installing_from_lock?
           install_from_lock
-        elsif cookbooks_to_update.empty? # means update everything
+        elsif cookbooks_to_update.empty? || policyfile_lock.nil? # means update everything
           generate_lock_and_install
         else
           update_lock_and_install(cookbooks_to_update, exclude_deps)

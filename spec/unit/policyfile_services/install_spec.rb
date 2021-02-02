@@ -54,6 +54,10 @@ describe ChefCLI::PolicyfileServices::Install do
 
   let(:overwrite) { false }
 
+  let(:cookbooks_to_update) { [] || [ "my_cookbook" ] }
+
+  let(:cookbooks_to_update_empty) { false }
+
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: overwrite) }
@@ -149,6 +153,90 @@ describe ChefCLI::PolicyfileServices::Install do
       it "prints the lockfile's revision id" do
         install_service.run
         expect(ui.output).to include("Policy revision id: 7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec")
+      end
+
+    end
+
+    context "when cookbook to update is empty and no policy lock exist" do
+
+      let(:cookbooks_to_update_empty) { true }
+
+      it "create the policy lock" do
+        install_service.run(:cookbooks_to_update)
+        generated_lock = result_policyfile_lock
+        expect(generated_lock.name).to eq("install-example")
+        expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+      it "checks for policy lock" do
+        lock = install_service.policyfile_lock
+        expect(lock).to eq(nil)
+      end
+
+    end
+
+    context "when cookbook to update is empty and policy lock exist" do
+
+      before do
+        install_service.dup.run
+      end
+
+      let(:cookbooks_to_update_empty) { true }
+
+      it "create the policy lock" do
+        install_service.run(:cookbooks_to_update)
+        generated_lock = result_policyfile_lock
+        expect(generated_lock.name).to eq("install-example")
+        expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+      it "checks for policy lock" do
+        lock = install_service.policyfile_lock
+        expect(lock).to be_an_instance_of(ChefCLI::PolicyfileLock)
+        expect(lock.name).to eq("install-example")
+        expect(lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+    end
+
+    context "when cookbook to update is not empty and no policy lock exist" do
+
+      let(:cookbooks_to_update) { [ "my_cookbook" ] }
+
+      it "create the policy lock" do
+        install_service.run(:cookbooks_to_update)
+        generated_lock = result_policyfile_lock
+        expect(generated_lock.name).to eq("install-example")
+        expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+      it "checks for policy lock" do
+        lock = install_service.policyfile_lock
+        expect(lock).to eq(nil)
+      end
+
+    end
+
+    context "when cookbook to update is not empty and policy lock exist" do
+
+      before do
+        install_service.dup.run
+      end
+
+      let(:cookbooks_to_update) { [ "my_cookbook" ] }
+
+      it "create the policy lock" do
+        install_service.run(:cookbooks_to_update)
+        generated_lock = result_policyfile_lock
+        expect(generated_lock.name).to eq("install-example")
+        expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+      it "create the policy lock" do
+        lock = install_service.policyfile_lock
+        expect(lock).to be_an_instance_of(ChefCLI::PolicyfileLock)
+        expect(lock.name).to eq("install-example")
+        expect(lock.cookbook_locks).to have_key("local-cookbook")
       end
 
     end

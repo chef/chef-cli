@@ -33,7 +33,7 @@ class Chef::Config
     # instead of `chefcli.generator_cookbook`).
     config_strict_mode(true)
 
-    default(:generator_cookbook, File.expand_path("../skeletons/code_generator", __FILE__))
+    default(:generator_cookbook, File.expand_path("skeletons/code_generator", __dir__))
 
     config_context(:generator) do
       config_strict_mode(true)

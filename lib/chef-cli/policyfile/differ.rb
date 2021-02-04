@@ -17,7 +17,7 @@
 
 require "diff/lcs"
 require "diff/lcs/hunk"
-require "pastel"
+require "pastel" unless defined?(Pastel)
 autoload :FFI_Yajl, "ffi_yajl"
 
 module ChefCLI

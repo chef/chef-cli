@@ -123,6 +123,7 @@ module ChefCLI
 
   class DeletePolicyError < PolicyfileNestedException
   end
+
   class PolicyCookbookCleanError < PolicyfileNestedException
   end
 

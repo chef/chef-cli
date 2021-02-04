@@ -26,7 +26,7 @@ describe ChefCLI::Command::GeneratorCommands::GeneratorGenerator do
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
-  let(:repo_root) { File.expand_path("../../../../..", __FILE__) }
+  let(:repo_root) { File.expand_path("../../../..", __dir__) }
 
   let(:builtin_generator_path) { File.join(repo_root, "lib/chef-cli/skeletons/code_generator") }
 

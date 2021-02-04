@@ -86,7 +86,7 @@ module ChefCLI
           # chefcli.generator_cookbook would make this command copy the custom
           # generator, but that doesn't make sense because the user can easily
           # do that anyway.
-          File.expand_path("../../../skeletons/code_generator", __FILE__)
+          File.expand_path("../../skeletons/code_generator", __dir__)
         end
 
         private

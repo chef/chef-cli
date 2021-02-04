@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "shared/fixture_cookbook_checksums"
-require "chef-cli/policyfile_lock.rb"
+require "chef-cli/policyfile_lock"
 
 describe ChefCLI::PolicyfileLock, "installing cookbooks from a lockfile" do
 

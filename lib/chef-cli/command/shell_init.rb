@@ -142,7 +142,7 @@ module ChefCLI
       end
 
       def expand_completion_template_path(basename)
-        File.join(File.expand_path("../../completions", __FILE__), basename)
+        File.join(File.expand_path("../completions", __dir__), basename)
       end
 
       def shell_completion_template_context

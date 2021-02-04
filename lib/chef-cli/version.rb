@@ -16,5 +16,5 @@
 #
 
 module ChefCLI
-  VERSION = "3.0.38".freeze
+  VERSION = "3.0.39".freeze
 end

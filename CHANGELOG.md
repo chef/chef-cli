@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.0.38 -->
-## [v3.0.38](https://github.com/chef/chef-cli/tree/v3.0.38) (2021-02-04)
+<!-- latest_release 3.0.39 -->
+## [v3.0.39](https://github.com/chef/chef-cli/tree/v3.0.39) (2021-02-04)
 
 #### Merged Pull Requests
-- Update vagrant docs links in the generated kitchen configs [#149](https://github.com/chef/chef-cli/pull/149) ([tas50](https://github.com/tas50))
+- Update cookstyle/chefstyle to the latest [#147](https://github.com/chef/chef-cli/pull/147) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update cookstyle/chefstyle to the latest [#147](https://github.com/chef/chef-cli/pull/147) ([tas50](https://github.com/tas50)) <!-- 3.0.39 -->
 - Update vagrant docs links in the generated kitchen configs [#149](https://github.com/chef/chef-cli/pull/149) ([tas50](https://github.com/tas50)) <!-- 3.0.38 -->
 - Test on Ruby 3 [#148](https://github.com/chef/chef-cli/pull/148) ([tas50](https://github.com/tas50)) <!-- 3.0.37 -->
 <!-- release_rollup -->

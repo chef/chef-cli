@@ -13,8 +13,8 @@ group :test do
   gem "rspec", "~> 3.8"
   gem "rspec-expectations", "~> 3.8"
   gem "rspec-mocks", "~> 3.8"
-  gem "cookstyle", "6.14.7" # this forces dependabot PRs to open which triggers cookstyle CI on the chef generate command
-  gem "chefstyle", "1.2.0"
+  gem "cookstyle", "=7.7.2" # this forces dependabot PRs to open which triggers cookstyle CI on the chef generate command
+  gem "chefstyle", "=1.6.2"
   gem "test-kitchen", "> 2.5"
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
     gem "chef-zero", "~> 14"

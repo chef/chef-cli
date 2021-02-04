@@ -17,7 +17,7 @@
 
 require "spec_helper"
 require "chef-cli/policyfile_compiler"
-require "chef-cli/policyfile_lock.rb"
+require "chef-cli/policyfile_lock"
 
 describe ChefCLI::PolicyfileLock, "installing cookbooks from included policies" do
 

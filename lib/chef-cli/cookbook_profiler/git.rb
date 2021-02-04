@@ -120,14 +120,10 @@ module ChefCLI
         @unborn_branch = false
         branch
       rescue Mixlib::ShellOut::ShellCommandFailed => e
-        # We may have an "unborn" branch, i.e. one with no commits.
-        if unborn_branch_ref
-          unborn_branch_ref
-        else
-          # if we got here, but verify_ref_cmd didn't error, we don't know why
-          # the original git command failed, so re-raise.
-          raise e
-        end
+        # "unborn" branch, i.e. one with no commits or
+        # verify_ref_cmd didn't error, we don't know why
+        # the original git command failed, so re-raise.
+        unborn_branch_ref || raise(e)
       end
 
       def unborn_branch_ref

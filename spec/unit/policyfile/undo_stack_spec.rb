@@ -223,7 +223,7 @@ describe ChefCLI::Policyfile::UndoStack do
       end
 
       it "removes the oldest record" do
-        oldest_record_file = undo_stack_files.sort.first
+        oldest_record_file = undo_stack_files.min
 
         undo_stack.push(incremented_undo_record(11))
 
@@ -251,7 +251,7 @@ describe ChefCLI::Policyfile::UndoStack do
         end
 
         it "removes the oldest record" do
-          oldest_record_file = undo_stack_files.sort.first
+          oldest_record_file = undo_stack_files.min
 
           undo_stack.push(incremented_undo_record(11))
 

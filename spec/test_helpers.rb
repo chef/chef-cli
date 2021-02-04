@@ -39,7 +39,7 @@ module TestHelpers
   end
 
   def project_root
-    File.expand_path("../..", __FILE__)
+    File.expand_path("..", __dir__)
   end
 
   def reset_tempdir

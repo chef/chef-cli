@@ -171,11 +171,7 @@ module ChefCLI
     private
 
     def manifest_field(field)
-      if manifest_hash[field]
-        manifest_hash[field]
-      else
-        "unknown"
-      end
+      manifest_hash[field] || "unknown"
     end
 
     def component_version(name)

@@ -16,7 +16,7 @@
 #
 
 require "spec_helper"
-require "chef-cli/policyfile_lock.rb"
+require "chef-cli/policyfile_lock"
 
 describe ChefCLI::PolicyfileLock, "validating locked cookbooks" do
 

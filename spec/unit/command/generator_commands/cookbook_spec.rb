@@ -562,7 +562,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
             ## The forwarded_port port feature lets you connect to ports on the VM guest via
             ## localhost on the host.
-            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
 
             #  network:
             #    - ["forwarded_port", {guest: 80, host: 8080}]
@@ -645,7 +645,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
             ## The forwarded_port port feature lets you connect to ports on the VM guest via
             ## localhost on the host.
-            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
 
             #  network:
             #    - ["forwarded_port", {guest: 80, host: 8080}]

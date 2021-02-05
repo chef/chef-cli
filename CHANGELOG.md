@@ -1,19 +1,17 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.1.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v3.1.0](https://github.com/chef/chef-cli/tree/v3.1.0) (2021-02-05)
 
 #### Merged Pull Requests
 - update should do install when no .lock file present [#145](https://github.com/chef/chef-cli/pull/145) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.0.40 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- update should do install when no .lock file present [#145](https://github.com/chef/chef-cli/pull/145) ([nikhil2611](https://github.com/nikhil2611)) <!-- 3.1.0 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v3.0.40](https://github.com/chef/chef-cli/tree/v3.0.40) (2021-02-05)
 
 #### Merged Pull Requests
@@ -21,7 +19,6 @@
 - Update vagrant docs links in the generated kitchen configs [#149](https://github.com/chef/chef-cli/pull/149) ([tas50](https://github.com/tas50))
 - Update cookstyle/chefstyle to the latest [#147](https://github.com/chef/chef-cli/pull/147) ([tas50](https://github.com/tas50))
 - Permit missing chef_config in ArtifactoryCookbookSource [#139](https://github.com/chef/chef-cli/pull/139) ([marcparadise](https://github.com/marcparadise))
-<!-- latest_stable_release -->
 
 ## [v3.0.36](https://github.com/chef/chef-cli/tree/v3.0.36) (2021-01-28)
 

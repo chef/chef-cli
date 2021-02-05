@@ -132,10 +132,6 @@ describe ChefCLI::Command::Update do
     context "when the command is successful" do
       before do
         expect(install_service).to receive(:run)
-        expect(ChefCLI::PolicyfileServices::UpdateAttributes).to receive(:new)
-          .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
-          .and_return(update_attrs_service)
-        expect(update_attrs_service).to receive(:run)
       end
 
       it "returns 0" do
@@ -159,10 +155,6 @@ describe ChefCLI::Command::Update do
 
       before do
         expect(install_service).to receive(:run).and_raise(exception)
-        expect(ChefCLI::PolicyfileServices::UpdateAttributes).to receive(:new)
-          .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
-          .and_return(update_attrs_service)
-        expect(update_attrs_service).to receive(:run)
       end
 
       it "returns 1" do

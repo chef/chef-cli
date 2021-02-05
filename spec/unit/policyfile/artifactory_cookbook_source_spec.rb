@@ -20,8 +20,9 @@ require "chef-cli/policyfile/source_uri"
 require "chef-cli/policyfile/artifactory_cookbook_source"
 
 describe ChefCLI::Policyfile::ArtifactoryCookbookSource do
-  subject { described_class.new(cookbook_source) }
+  subject { described_class.new(cookbook_source, chef_config: config) }
 
+  let(:config) { nil }
   let(:cookbook_source) { "https://supermarket.chef.io/api/v1" }
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
@@ -54,6 +55,31 @@ describe ChefCLI::Policyfile::ArtifactoryCookbookSource do
         version: "1.10.4",
       }
       expect(subject.source_options_for("apache2", "1.10.4")).to eq(expected_opts)
+    end
+  end
+
+  describe "#artifactory_api_key" do
+    before do
+      ENV["ARTIFACTORY_API_KEY"] = "test"
+    end
+
+    context "when config is not present" do
+      let(:config) { nil }
+      it "should get artifactory key from the env" do
+        expect(subject.artifactory_api_key).to eq("test")
+      end
+    end
+
+    context "when config is present" do
+      let(:config) { double("Chef::Config") }
+      it "should get artifactory key from config when key is present" do
+        expect(config).to receive(:artifactory_api_key).and_return "test1"
+        expect(subject.artifactory_api_key).to eq("test1")
+      end
+      it "should get artifactory key from env when config is present but has a nil key" do
+        expect(config).to receive(:artifactory_api_key).and_return nil
+        expect(subject.artifactory_api_key).to eq("test")
+      end
     end
   end
 end

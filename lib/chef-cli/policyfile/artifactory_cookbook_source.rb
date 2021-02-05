@@ -82,10 +82,14 @@ module ChefCLI
         "artifactory(#{uri})"
       end
 
+      def artifactory_api_key
+        chef_config&.artifactory_api_key || ENV["ARTIFACTORY_API_KEY"]
+      end
+
       private
 
       def http_connection_for(base_url)
-        headers = { "X-Jfrog-Art-API" => chef_config.artifactory_api_key || ENV["ARTIFACTORY_API_KEY"] }
+        headers = { "X-Jfrog-Art-API" => artifactory_api_key }
         @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url, headers: headers)
       end
 

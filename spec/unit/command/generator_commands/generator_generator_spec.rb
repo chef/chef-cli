@@ -181,7 +181,7 @@ describe ChefCLI::Command::GeneratorCommands::GeneratorGenerator do
         metadata_path = File.join(target_dir, "metadata.rb")
         metadata_content = IO.read(metadata_path)
         expected_metadata = <<~METADATA
-          name             'my_cool_generator'
+          name             File.basename(File.dirname(__FILE__))
           description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
           version          '0.1.0'
 

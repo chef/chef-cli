@@ -109,7 +109,7 @@ module ChefCLI
         # @api private
         def metadata_rb
           <<~METADATA
-            name             '#{cookbook_name}'
+            name             File.basename(File.dirname(__FILE__))
             description      'Custom code generator cookbook for use with #{ChefCLI::Dist::PRODUCT}'
             version          '0.1.0'
 

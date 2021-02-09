@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.1.1 -->
+## [v3.1.1](https://github.com/chef/chef-cli/tree/v3.1.1) (2021-02-09)
+
+#### Merged Pull Requests
+- Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93)) <!-- 3.1.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

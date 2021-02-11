@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.1.1 -->
-## [v3.1.1](https://github.com/chef/chef-cli/tree/v3.1.1) (2021-02-09)
-
-#### Merged Pull Requests
-- Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93)) <!-- 3.1.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.1.1](https://github.com/chef/chef-cli/tree/v3.1.1) (2021-02-11)
+
+#### Merged Pull Requests
+- Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93))
+<!-- latest_stable_release -->
+
 ## [v3.1.0](https://github.com/chef/chef-cli/tree/v3.1.0) (2021-02-05)
 
 #### Merged Pull Requests
 - update should do install when no .lock file present [#145](https://github.com/chef/chef-cli/pull/145) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v3.0.40](https://github.com/chef/chef-cli/tree/v3.0.40) (2021-02-05)
 

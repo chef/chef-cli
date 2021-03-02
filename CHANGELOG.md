@@ -1,25 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.1.3 -->
-## [v3.1.3](https://github.com/chef/chef-cli/tree/v3.1.3) (2021-03-02)
-
-#### Merged Pull Requests
-- Remove yard / pry-stack_explorer gemfile deps [#157](https://github.com/chef/chef-cli/pull/157) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Remove yard / pry-stack_explorer gemfile deps [#157](https://github.com/chef/chef-cli/pull/157) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->
-- Update links in generators [#156](https://github.com/chef/chef-cli/pull/156) ([tas50](https://github.com/tas50)) <!-- 3.1.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.1.3](https://github.com/chef/chef-cli/tree/v3.1.3) (2021-03-02)
+
+#### Merged Pull Requests
+- Update links in generators [#156](https://github.com/chef/chef-cli/pull/156) ([tas50](https://github.com/tas50))
+- Remove yard / pry-stack_explorer gemfile deps [#157](https://github.com/chef/chef-cli/pull/157) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.1.1](https://github.com/chef/chef-cli/tree/v3.1.1) (2021-02-11)
 
 #### Merged Pull Requests
 - Allow generator directory to be renamed after generation without breaking usage [#150](https://github.com/chef/chef-cli/pull/150) ([i5pranay93](https://github.com/i5pranay93))
-<!-- latest_stable_release -->
 
 ## [v3.1.0](https://github.com/chef/chef-cli/tree/v3.1.0) (2021-02-05)
 

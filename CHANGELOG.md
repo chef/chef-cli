@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 3.1.2 -->
-## [v3.1.2](https://github.com/chef/chef-cli/tree/v3.1.2) (2021-03-02)
+<!-- latest_release 3.1.3 -->
+## [v3.1.3](https://github.com/chef/chef-cli/tree/v3.1.3) (2021-03-02)
 
 #### Merged Pull Requests
-- Update links in generators [#156](https://github.com/chef/chef-cli/pull/156) ([tas50](https://github.com/tas50))
+- Remove yard / pry-stack_explorer gemfile deps [#157](https://github.com/chef/chef-cli/pull/157) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove yard / pry-stack_explorer gemfile deps [#157](https://github.com/chef/chef-cli/pull/157) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->
 - Update links in generators [#156](https://github.com/chef/chef-cli/pull/156) ([tas50](https://github.com/tas50)) <!-- 3.1.2 -->
 <!-- release_rollup -->
 

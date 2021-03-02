@@ -129,7 +129,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
     it "warns if a hyphenated cookbook name is passed" do
       expect(with_argv(%w{my-cookbook}).run).to eq(0)
-      message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef/#chef-generate-cookbook for more information."
+      message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook for more information."
       expect(stdout_io.string).to include(message)
     end
 

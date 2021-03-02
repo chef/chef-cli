@@ -150,7 +150,7 @@ module ChefCLI
             along with this program.  If not, see <http://www.gnu.org/licenses/>.
           EOH
         else
-          raise ArgumentError, "Invalid generator.license setting: #{license}. See available licenses at https://docs.chef.io/ctl_chef/#chef-generate-cookbook"
+          raise ArgumentError, "Invalid generator.license setting: #{license}. See available licenses at https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook"
         end
         if comment
           # Ensure there's no trailing whitespace

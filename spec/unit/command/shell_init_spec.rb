@@ -264,8 +264,8 @@ describe ChefCLI::Command::ShellInit do
         {
           "exec" => "Runs the command in context of the embedded ruby",
           "env" => "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}",
-          "gem" => "Runs the `gem` command in context of the embedded ruby",
-          "generate" => "Generate a new app, cookbook, or component",
+          "gem" => "Runs the `gem` command in context of the embedded Ruby",
+          "generate" => "Generate a new repository, cookbook, or other component",
         }
       end
 
@@ -276,17 +276,17 @@ describe ChefCLI::Command::ShellInit do
 
       let(:expected_completion_function) do
         <<~END_COMPLETION
+
           # Fish Shell command-line completions for #{ChefCLI::Dist::PRODUCT}
 
-          function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
-            set -l cmd (commandline -opc)
-            test (count $cmd) -eq 1
-          end
+          # set a list of all the chef commands in the Ruby chef-cli
+          set -l chef_commands exec env gem generate;
 
-          complete -c chef -f -n '__fish_chef_no_command' -a exec -d "Runs the command in context of the embedded ruby"
-          complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by Chef Workstation"
-          complete -c chef -f -n '__fish_chef_no_command' -a gem -d "Runs the `gem` command in context of the embedded ruby"
-          complete -c chef -f -n '__fish_chef_no_command' -a generate -d "Generate a new app, cookbook, or component"
+          complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a exec -d "Runs the command in context of the embedded ruby";
+          complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a env -d "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}";
+          complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a gem -d "Runs the `gem` command in context of the embedded Ruby";
+          complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a generate -d "Generate a new repository, cookbook, or other component";
+
         END_COMPLETION
       end
 

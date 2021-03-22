@@ -92,24 +92,26 @@ template "#{cookbook_dir}/test/integration/default/default_test.rb" do
 end
 
 # ChefSpec
-directory "#{cookbook_dir}/spec/unit/recipes" do
-  recursive true
-end
-
-cookbook_file "#{cookbook_dir}/spec/spec_helper.rb" do
-  if context.use_policyfile
-    source 'spec_helper_policyfile.rb'
-  else
-    source 'spec_helper.rb'
+if context.specs
+  directory "#{cookbook_dir}/spec/unit/recipes" do
+    recursive true
   end
 
-  action :create_if_missing
-end
+  cookbook_file "#{cookbook_dir}/spec/spec_helper.rb" do
+    if context.use_policyfile
+      source 'spec_helper_policyfile.rb'
+    else
+      source 'spec_helper.rb'
+    end
 
-template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
-  source 'recipe_spec.rb.erb'
-  helpers(ChefCLI::Generator::TemplateHelper)
-  action :create_if_missing
+    action :create_if_missing
+  end
+
+  template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
+    source 'recipe_spec.rb.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+    action :create_if_missing
+  end
 end
 
 # Recipes

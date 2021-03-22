@@ -39,6 +39,8 @@ module ChefCLI
     end
 
     def converge
+      # require 'pry'
+      # binding.pry
       configure
       Chef::Runner.new(run_context).converge
     rescue Chef::Exceptions::CookbookNotFound => e

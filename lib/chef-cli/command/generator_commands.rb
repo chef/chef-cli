@@ -75,6 +75,8 @@ module ChefCLI
     # This module is the namespace for all subcommands of `chef generate`
     module GeneratorCommands
       def self.build(class_name, params)
+        # require 'pry'
+        # binding.pry
         const_get(class_name).new(params)
       end
     end

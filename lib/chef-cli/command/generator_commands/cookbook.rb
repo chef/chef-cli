@@ -55,6 +55,13 @@ module ChefCLI
           boolean:      true,
           default:      nil
 
+        option :specs,
+          short:        "-s",
+          long:         "--specs",
+          description:  "Generate a cookbook with specs directory",
+          boolean:      true,
+          default:      nil  
+
         option :workflow,
           short:        "-w",
           long:         "--workflow",
@@ -85,6 +92,8 @@ module ChefCLI
         end
 
         def run
+          # require 'pry'
+          # binding.pry
           read_and_validate_params
           if params_valid?
             setup_context

@@ -83,6 +83,8 @@ module ChefCLI
       end
 
       def run(params)
+        # require 'pry'
+        # binding.pry
         if ( generator_spec = generator_for(params[0]) )
           params.shift
           generator = GeneratorCommands.build(generator_spec.class_name, params)

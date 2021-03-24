@@ -92,8 +92,6 @@ module ChefCLI
         end
 
         def run
-          # require 'pry'
-          # binding.pry
           read_and_validate_params
           if params_valid?
             setup_context

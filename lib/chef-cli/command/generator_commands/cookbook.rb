@@ -60,7 +60,7 @@ module ChefCLI
           long:         "--specs",
           description:  "Generate a cookbook with specs directory",
           boolean:      true,
-          default:      nil  
+          default:      nil
 
         option :workflow,
           short:        "-w",

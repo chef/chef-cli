@@ -44,11 +44,6 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       CHANGELOG.md
       recipes
       recipes/default.rb
-      spec
-      spec/spec_helper.rb
-      spec/unit
-      spec/unit/recipes
-      spec/unit/recipes/default_spec.rb
     }
   end
 
@@ -593,16 +588,16 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
       end
 
-      include_examples "chefspec_spec_helper_file" do
+      # include_examples "chefspec_spec_helper_file" do
 
-        let(:expected_chefspec_spec_helper_content) do
-          <<~SPEC_HELPER
-            require 'chefspec'
-            require 'chefspec/policyfile'
-          SPEC_HELPER
-        end
+      #   let(:expected_chefspec_spec_helper_content) do
+      #     <<~SPEC_HELPER
+      #       require 'chefspec'
+      #       require 'chefspec/policyfile'
+      #     SPEC_HELPER
+      #   end
 
-      end
+      # end
 
     end
 
@@ -682,16 +677,16 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
       end
 
-      include_examples "chefspec_spec_helper_file" do
+      # include_examples "chefspec_spec_helper_file" do
 
-        let(:expected_chefspec_spec_helper_content) do
-          <<~SPEC_HELPER
-            require 'chefspec'
-            require 'chefspec/berkshelf'
-          SPEC_HELPER
-        end
+      #   let(:expected_chefspec_spec_helper_content) do
+      #     <<~SPEC_HELPER
+      #       require 'chefspec'
+      #       require 'chefspec/berkshelf'
+      #     SPEC_HELPER
+      #   end
 
-      end
+      # end
 
     end
 
@@ -711,13 +706,13 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       end
     end
 
-    describe "spec/unit/recipes/default_spec.rb" do
-      let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
+    # describe "spec/unit/recipes/default_spec.rb" do
+    #   let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
 
-      include_examples "a generated file", :cookbook_name do
-        let(:line) { "describe 'new_cookbook::default' do" }
-      end
-    end
+    #   include_examples "a generated file", :cookbook_name do
+    #     let(:line) { "describe 'new_cookbook::default' do" }
+    #   end
+    # end
 
   end
 

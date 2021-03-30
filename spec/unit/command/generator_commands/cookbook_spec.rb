@@ -47,8 +47,37 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
     }
   end
 
+  let(:expected_cookbook_file_relpaths_specs) do
+    %w{
+      .gitignore
+      kitchen.yml
+      test
+      test/integration
+      test/integration/default/default_test.rb
+      Policyfile.rb
+      chefignore
+      LICENSE
+      metadata.rb
+      README.md
+      CHANGELOG.md
+      recipes
+      recipes/default.rb
+      spec
+      spec/spec_helper.rb
+      spec/unit
+      spec/unit/recipes
+      spec/unit/recipes/default_spec.rb
+    }
+  end
+
   let(:expected_cookbook_files) do
     expected_cookbook_file_relpaths.map do |relpath|
+      File.join(tempdir, "new_cookbook", relpath)
+    end
+  end
+
+  let(:expected_cookbook_files_specs) do
+    expected_cookbook_file_relpaths_specs.map do |relpath|
       File.join(tempdir, "new_cookbook", relpath)
     end
   end
@@ -145,9 +174,11 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       expect(generator_context.cookbook_name).to eq("new_cookbook")
       expect(generator_context.recipe_name).to eq("default")
       expect(generator_context.verbose).to be(false)
+      expect(generator_context.specs).to be(false)
     end
 
     it "creates a new cookbook" do
+
       Dir.chdir(tempdir) do
         allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         expect(cookbook_generator.run).to eq(0)
@@ -393,6 +424,29 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       end
     end
 
+    context "when given the specs flag" do
+
+      let(:argv) { %w{ new_cookbook --specs } }
+
+      it "configures the generator context with specs mode enabled" do
+        cookbook_generator.read_and_validate_params
+        cookbook_generator.setup_context
+        expect(generator_context.specs).to be(true)
+      end
+
+      it "creates a new cookbook" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
+        expected_cookbook_files_specs.each do |expected_file|
+        expect(generated_files).to include(expected_file)
+        end
+      end
+    end
+
+
     context "when given the verbose flag" do
 
       let(:argv) { %w{ new_cookbook --verbose } }
@@ -588,16 +642,17 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
       end
 
-      # include_examples "chefspec_spec_helper_file" do
+      include_examples "chefspec_spec_helper_file" do
+        let(:argv) { %w{ new_cookbook --policy --specs } }
 
-      #   let(:expected_chefspec_spec_helper_content) do
-      #     <<~SPEC_HELPER
-      #       require 'chefspec'
-      #       require 'chefspec/policyfile'
-      #     SPEC_HELPER
-      #   end
+        let(:expected_chefspec_spec_helper_content) do
+          <<~SPEC_HELPER
+            require 'chefspec'
+            require 'chefspec/policyfile'
+          SPEC_HELPER
+        end
 
-      # end
+      end
 
     end
 
@@ -677,16 +732,17 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
       end
 
-      # include_examples "chefspec_spec_helper_file" do
+      include_examples "chefspec_spec_helper_file" do
+        let(:argv) { %w{ new_cookbook --berks --specs } }
 
-      #   let(:expected_chefspec_spec_helper_content) do
-      #     <<~SPEC_HELPER
-      #       require 'chefspec'
-      #       require 'chefspec/berkshelf'
-      #     SPEC_HELPER
-      #   end
+        let(:expected_chefspec_spec_helper_content) do
+          <<~SPEC_HELPER
+            require 'chefspec'
+            require 'chefspec/berkshelf'
+          SPEC_HELPER
+        end
 
-      # end
+      end
 
     end
 
@@ -706,13 +762,14 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       end
     end
 
-    # describe "spec/unit/recipes/default_spec.rb" do
-    #   let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
+    describe "spec/unit/recipes/default_spec.rb" do
+      let(:argv) { %w{ new_cookbook --specs } }
+      let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
 
-    #   include_examples "a generated file", :cookbook_name do
-    #     let(:line) { "describe 'new_cookbook::default' do" }
-    #   end
-    # end
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "describe 'new_cookbook::default' do" }
+      end
+    end
 
   end
 

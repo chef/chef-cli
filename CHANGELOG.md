@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 3.1.4 -->
+## [v3.1.4](https://github.com/chef/chef-cli/tree/v3.1.4) (2021-03-30)
+
+#### Merged Pull Requests
+- Update os_x? helper to be macos? and mark it private [#155](https://github.com/chef/chef-cli/pull/155) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.3 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update os_x? helper to be macos? and mark it private [#155](https://github.com/chef/chef-cli/pull/155) ([tas50](https://github.com/tas50)) <!-- 3.1.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

@@ -1,10 +1,9 @@
+
 # Fish Shell command-line completions for <%=ChefCLI::Dist::PRODUCT %>
 
-function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
-  set -l cmd (commandline -opc)
-  test (count $cmd) -eq 1
-end
+# set a list of all the chef commands in the Ruby chef-cli
+set -l chef_commands <%= commands.keys.join(' ') %>;
 
 <% commands.each do |command, desc| -%>
-complete -c chef -f -n '__fish_chef_no_command' -a <%= command %> -d "<%= desc %>"
+complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a <%= command %> -d "<%= desc %>";
 <% end -%>

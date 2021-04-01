@@ -125,17 +125,18 @@ end
 
 # the same will be done below if workflow was enabled so avoid double work and skip this
 unless context.enable_workflow
-directory "#{cookbook_dir}/.delivery"
-template "#{cookbook_dir}/.delivery/project.toml" do
-  if context.specs == true
-    source 'delivery-project-spec.toml.erb'
-  else
-    source 'delivery-project.toml.erb'
-  end
+  directory "#{cookbook_dir}/.delivery"
 
-  helpers(ChefCLI::Generator::TemplateHelper)
-  action :create_if_missing
-end
+  template "#{cookbook_dir}/.delivery/project.toml" do
+    if context.specs == true
+      source 'delivery-project-spec.toml.erb'
+    else
+      source 'delivery-project.toml.erb'
+    end
+
+    helpers(ChefCLI::Generator::TemplateHelper)
+    action :create_if_missing
+  end
 end
 
 # git

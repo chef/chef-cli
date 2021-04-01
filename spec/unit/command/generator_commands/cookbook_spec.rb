@@ -441,10 +441,11 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         end
         generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
         expected_cookbook_files_specs.each do |expected_file|
-          expect(generated_files).to include(expected_file)
+        expect(generated_files).to include(expected_file)
         end
       end
     end
+
 
     context "when given the verbose flag" do
 

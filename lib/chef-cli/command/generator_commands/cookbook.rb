@@ -55,6 +55,13 @@ module ChefCLI
           boolean:      true,
           default:      nil
 
+        option :specs,
+          short:        "-s",
+          long:         "--specs",
+          description:  "Generate a cookbook with sample ChefSpec specs",
+          boolean:      true,
+          default:      nil
+
         option :workflow,
           short:        "-w",
           long:         "--workflow",
@@ -81,6 +88,7 @@ module ChefCLI
           @cookbook_name = nil
           @policy_mode = true
           @verbose = false
+          @specs = false
           super
         end
 
@@ -133,6 +141,7 @@ module ChefCLI
           Generator.add_attr_to_context(:workflow_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
 
           Generator.add_attr_to_context(:verbose, verbose?)
+          Generator.add_attr_to_context(:specs, specs?)
 
           Generator.add_attr_to_context(:use_policyfile, policy_mode?)
           Generator.add_attr_to_context(:pipeline, pipeline)
@@ -188,6 +197,10 @@ module ChefCLI
           @verbose
         end
 
+        def specs?
+          @specs
+        end
+
         #
         # Is there a .delivery/cli.toml in the current dir or any of the parent dirs
         #
@@ -221,6 +234,10 @@ module ChefCLI
 
           if config[:verbose]
             @verbose = true
+          end
+
+          if config[:specs]
+            @specs = true
           end
 
           true

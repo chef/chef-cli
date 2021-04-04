@@ -129,7 +129,7 @@ unless context.enable_workflow
 
   template "#{cookbook_dir}/.delivery/project.toml" do
     variables(
-      :specs => context.specs
+      specs: context.specs
     )
     source 'delivery-project.toml.erb'
     helpers(ChefCLI::Generator::TemplateHelper)

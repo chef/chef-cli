@@ -68,8 +68,11 @@ end
 # Test Kitchen
 template "#{cookbook_dir}/kitchen.yml" do
   if context.kitchen == 'dokken'
-    # kitchen-dokken configuration works with berkshelf and policyfiles
-    source 'kitchen_dokken.yml.erb'
+    if context.use_policyfile
+      source 'kitchen_dokken_policy.yml.erb'
+    else
+      source 'kitchen_dokken.yml.erb'
+    end
   elsif context.use_policyfile
     source 'kitchen_policyfile.yml.erb'
   else

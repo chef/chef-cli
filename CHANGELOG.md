@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 4.0.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v4.0.0](https://github.com/chef/chef-cli/tree/v4.0.0) (2021-04-04)
 
 #### Merged Pull Requests
 - Stop generating chefspecs in chef generate cookbook and allow  on using --specs [#161](https://github.com/chef/chef-cli/pull/161) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_release -->
-
-<!-- release_rollup since=3.1.6 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Stop generating chefspecs in chef generate cookbook and allow  on using --specs [#161](https://github.com/chef/chef-cli/pull/161) ([nikhil2611](https://github.com/nikhil2611)) <!-- 4.0.0 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v3.1.6](https://github.com/chef/chef-cli/tree/v3.1.6) (2021-03-30)
 
 #### Merged Pull Requests
 - Update os_x? helper to be macos? and mark it private [#155](https://github.com/chef/chef-cli/pull/155) ([tas50](https://github.com/tas50))
 - Generate dokken configs with privileged: true [#162](https://github.com/chef/chef-cli/pull/162) ([tas50](https://github.com/tas50))
 - Fix the fish autocompletes for the chef command [#160](https://github.com/chef/chef-cli/pull/160) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.1.3](https://github.com/chef/chef-cli/tree/v3.1.3) (2021-03-02)
 

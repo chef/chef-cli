@@ -9,7 +9,11 @@
 #
 
 [local_phases]
+<% if @specs %>
+unit = "chef exec rspec spec/"
+<% else %>
 unit = "echo skipping unit phase."
+<% end %>
 lint = "chef exec cookstyle"
 # foodcritic has been deprecated in favor of cookstyle so we skip the syntax
 # phase now.

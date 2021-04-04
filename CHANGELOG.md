@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 4.0.0 -->
+## [v4.0.0](https://github.com/chef/chef-cli/tree/v4.0.0) (2021-04-04)
+
+#### Merged Pull Requests
+- Stop generating chefspecs in chef generate cookbook and allow  on using --specs [#161](https://github.com/chef/chef-cli/pull/161) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.6 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Stop generating chefspecs in chef generate cookbook and allow  on using --specs [#161](https://github.com/chef/chef-cli/pull/161) ([nikhil2611](https://github.com/nikhil2611)) <!-- 4.0.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

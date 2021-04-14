@@ -117,18 +117,11 @@ module ChefCLI
       @omnibus_env ||=
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
-          original_path = ENV["PATH"].split(File::PATH_SEPARATOR)
-          if original_path.include?(omnibus_bin_dir) && original_path.include?(user_bin_dir) && original_path.include?(omnibus_embedded_bin_dir)
-            path = [ ENV["PATH"] ]  
-          else  
-            path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"] ]
-          end
-          unless original_path.include?(git_bin_dir)
-            path << git_bin_dir if Dir.exist?(git_bin_dir)
-          end  
+          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"].split(File::PATH_SEPARATOR) ]
+          path << git_bin_dir if Dir.exist?(git_bin_dir)
           path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
           {
-            "PATH" => path.join(File::PATH_SEPARATOR),
+            "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
             "GEM_ROOT" => Gem.default_dir,
             "GEM_HOME" => Gem.user_dir,
             "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
@@ -136,14 +129,14 @@ module ChefCLI
         end
     end
 
-    private
-
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))
       raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
 
       dir
     end
+
+    private
 
     def expected_omnibus_root
       File.expand_path(File.join(Gem.ruby, "..", "..", ".."))

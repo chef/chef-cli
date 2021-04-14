@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 4.0.1 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v4.0.1](https://github.com/chef/chef-cli/tree/v4.0.1) (2021-04-14)
 
 #### Merged Pull Requests
 - Don&#39;t add the Workstation path if it is already there in chef shell-init  [#151](https://github.com/chef/chef-cli/pull/151) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_release -->
-
-<!-- release_rollup since=4.0.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Don&#39;t add the Workstation path if it is already there in chef shell-init  [#151](https://github.com/chef/chef-cli/pull/151) ([nikhil2611](https://github.com/nikhil2611)) <!-- 4.0.1 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v4.0.0](https://github.com/chef/chef-cli/tree/v4.0.0) (2021-04-04)
 
 #### Merged Pull Requests
 - Stop generating chefspecs in chef generate cookbook and allow  on using --specs [#161](https://github.com/chef/chef-cli/pull/161) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v3.1.6](https://github.com/chef/chef-cli/tree/v3.1.6) (2021-03-30)
 

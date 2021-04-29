@@ -65,7 +65,7 @@ module ChefCLI
         option :workflow,
           short:        "-w",
           long:         "--workflow",
-          description:  "Generate a cookbook with a full #{ChefCLI::Dist::WORKFLOW} build cookbook.",
+          description:  "Deprecated flag for EOL #{ChefCLI::Dist::WORKFLOW}",
           boolean:      true,
           default:      false
 

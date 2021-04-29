@@ -183,7 +183,7 @@ if context.vscode_dir
 end
 
 if context.enable_workflow
-  warn "The Workflow flag is deprecated as #{ChefCLI::Dist::WORKFLOW} is now EOL."
+  warn "The Workflow flag is deprecated as #{ChefCLI::Dist::WORKFLOW} is now EOL as of December 2020."
   directory "#{cookbook_dir}/.delivery"
 
   template "#{cookbook_dir}/.delivery/project.toml" do

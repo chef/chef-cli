@@ -15,6 +15,8 @@ group :test do
     gem "chef-zero", "~> 14"
     gem "chef", "~> 15"
     gem "chef-utils", "=16.6.14"
+  end
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7")
     gem "ohai", "~> 16"
   end
 end

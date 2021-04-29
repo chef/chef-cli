@@ -82,7 +82,7 @@ module ChefCLI
       end
 
       def run(params)
-        if params[0] == 'build-cookbook'
+        if params[0] == "build-cookbook"
           warn warning_msg
           return 1
         end

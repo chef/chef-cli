@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 4.0.2 -->
-## [v4.0.2](https://github.com/chef/chef-cli/tree/v4.0.2) (2021-04-29)
+<!-- latest_release 4.0.3 -->
+## [v4.0.3](https://github.com/chef/chef-cli/tree/v4.0.3) (2021-04-29)
 
 #### Merged Pull Requests
-- Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611)) <!-- 4.0.3 -->
 - Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.0.2 -->
 <!-- release_rollup -->
 

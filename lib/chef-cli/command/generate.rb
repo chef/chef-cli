@@ -55,7 +55,7 @@ module ChefCLI
       generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy #{ChefCLI::Dist::PRODUCT}'s generator cookbook so you can customize it")
-      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with #{ChefCLI::Dist::WORKFLOW}-DEPRECATED")
+      generator(:'build-cookbook', :BuildCookbook, "DEPRECATED: Generate a build cookbook for use with #{ChefCLI::Dist::WORKFLOW}")
 
       def self.banner_headline
         <<~E

@@ -84,7 +84,7 @@ module ChefCLI
       def run(params)
         if params[0] == 'build-cookbook'
           warn warning_msg
-          exit(1)
+          return 1
         end
         if ( generator_spec = generator_for(params[0]) )
           params.shift

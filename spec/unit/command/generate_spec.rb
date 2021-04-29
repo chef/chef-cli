@@ -138,5 +138,12 @@ describe ChefCLI::Command::Generate do
 
     end
 
+    describe "When build-cookbookis given as subcommand" do
+      it "shows deprecation warning when" do
+        result = generate.run(%w{build-cookbook example})
+        expect(result).to eq(1)
+      end
+    end
+
   end
 end

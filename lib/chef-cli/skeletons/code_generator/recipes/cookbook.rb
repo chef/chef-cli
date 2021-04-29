@@ -182,4 +182,17 @@ if context.vscode_dir
   end
 end
 
-include_recipe '::build_cookbook' if context.enable_workflow
+if context.enable_workflow
+  warn "The Workflow flag is deprecated as #{ChefCLI::Dist::WORKFLOW} is now EOL as of December 2020."
+  directory "#{cookbook_dir}/.delivery"
+
+  template "#{cookbook_dir}/.delivery/project.toml" do
+    variables(
+      specs: context.specs
+    )
+    source 'delivery-project.toml.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+    action :create_if_missing
+  end
+
+end

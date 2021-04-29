@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "06:00"
+    timezone: America/Los_Angeles
+  open-pull-requests-limit: 10
+  allow:
+  - dependency-type: direct
+  - dependency-type: indirect
+  ignore:
+  - dependency-name: diff-lcs
+    versions:
+    - ">= 1.4.a, < 1.5"
+  - dependency-name: ffi
+    versions:
+    - ">= 1.13.a, < 1.14"

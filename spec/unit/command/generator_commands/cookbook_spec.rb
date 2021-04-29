@@ -188,7 +188,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         expect(generated_files).to include(expected_file)
       end
     end
-    
+
     context "when given the specs flag" do
 
       let(:argv) { %w{ new_cookbook --specs } }

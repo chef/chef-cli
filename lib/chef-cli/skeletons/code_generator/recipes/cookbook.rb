@@ -182,4 +182,3 @@ if context.vscode_dir
   end
 end
 
-# include_recipe '::build_cookbook' if context.enable_workflow

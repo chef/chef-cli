@@ -83,7 +83,7 @@ module ChefCLI
 
       def run(params)
         if params[0] == "build-cookbook"
-          warn warning_msg
+          warn "[DEPRECATION] Chef Workflow (Delivery) is end of life (EOL) as of December 31, 2020 and this generator subcommand has been removed".freeze
           return 1
         end
         if ( generator_spec = generator_for(params[0]) )
@@ -120,11 +120,6 @@ module ChefCLI
 
       def have_generator?(name)
         self.class.generators.map { |g| g.name.to_s }.include?(name)
-      end
-
-      def warning_msg
-        "[DEPRECATION] Chef Workflow (Delivery) is end of life (EOL) as of December 31, 2020 and this generator subcommand has
-         been removed"
       end
     end
   end

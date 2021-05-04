@@ -1,28 +1,25 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.0.2 -->
-## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
-
-#### Merged Pull Requests
-- chef generate build-cookbook removed(cherrypicked from 166) [#171](https://github.com/chef/chef-cli/pull/171) ([i5pranay93](https://github.com/i5pranay93))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.0.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- chef generate build-cookbook removed(cherrypicked from 166) [#171](https://github.com/chef/chef-cli/pull/171) ([i5pranay93](https://github.com/i5pranay93)) <!-- 5.0.2 -->
-- Expand the warning message when using --workflow [#170](https://github.com/chef/chef-cli/pull/170) ([tas50](https://github.com/tas50)) <!-- 5.0.1 -->
-- Remove support for Ruby 2.5 [#169](https://github.com/chef/chef-cli/pull/169) ([tas50](https://github.com/tas50)) <!-- 5.0.0 -->
-- Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611)) <!-- 4.0.3 -->
-- Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.0.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
+
+#### Merged Pull Requests
+- Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611))
+- Remove support for Ruby 2.5 [#169](https://github.com/chef/chef-cli/pull/169) ([tas50](https://github.com/tas50))
+- Expand the warning message when using --workflow [#170](https://github.com/chef/chef-cli/pull/170) ([tas50](https://github.com/tas50))
+- chef generate build-cookbook removed(cherrypicked from 166) [#171](https://github.com/chef/chef-cli/pull/171) ([i5pranay93](https://github.com/i5pranay93))
+<!-- latest_stable_release -->
+
 ## [v4.0.1](https://github.com/chef/chef-cli/tree/v4.0.1) (2021-04-14)
 
 #### Merged Pull Requests
 - Don&#39;t add the Workstation path if it is already there in chef shell-init  [#151](https://github.com/chef/chef-cli/pull/151) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v4.0.0](https://github.com/chef/chef-cli/tree/v4.0.0) (2021-04-04)
 

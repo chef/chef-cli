@@ -2,13 +2,15 @@
 <!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.0.2 -->
+<!-- release_rollup since=5.0.1 -->
 ### Changes not yet released to rubygems.org
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
-## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
+## [v5.0.1](https://github.com/chef/chef-cli/tree/v5.0.1) (2021-05-04)
 <!-- latest_stable_release -->
+
+## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
 
 ## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
 

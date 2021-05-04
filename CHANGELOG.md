@@ -2,10 +2,14 @@
 <!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.0.2 -->
+### Changes not yet released to rubygems.org
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
+<!-- latest_stable_release -->
+
 ## [v5.0.2](https://github.com/chef/chef-cli/tree/v5.0.2) (2021-05-04)
 
 #### Merged Pull Requests
@@ -14,7 +18,6 @@
 - Remove support for Ruby 2.5 [#169](https://github.com/chef/chef-cli/pull/169) ([tas50](https://github.com/tas50))
 - Expand the warning message when using --workflow [#170](https://github.com/chef/chef-cli/pull/170) ([tas50](https://github.com/tas50))
 - chef generate build-cookbook removed(cherrypicked from 166) [#171](https://github.com/chef/chef-cli/pull/171) ([i5pranay93](https://github.com/i5pranay93))
-<!-- latest_stable_release -->
 
 ## [v4.0.1](https://github.com/chef/chef-cli/tree/v4.0.1) (2021-04-14)
 

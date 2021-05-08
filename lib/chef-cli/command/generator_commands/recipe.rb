@@ -26,6 +26,13 @@ module ChefCLI
 
         banner "Usage: #{ChefCLI::Dist::EXEC} generate recipe [path/to/cookbook] NAME [options]"
 
+        option :yaml,
+          short:        "-y",
+          long:         "--yaml",
+          description:  "Generate recipe using YAML configuration format.",
+          boolean:      true,
+          default:      nil
+
         options.merge!(SharedGeneratorOptions.options)
 
         def recipe

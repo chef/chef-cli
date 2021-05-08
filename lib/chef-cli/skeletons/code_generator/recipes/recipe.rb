@@ -1,6 +1,7 @@
 context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 recipe_path = File.join(cookbook_dir, 'recipes', "#{context.new_file_basename}.rb")
+recipe_path_yml = File.join(cookbook_dir, 'recipes', "#{context.new_file_basename}.yml")
 spec_helper_path = File.join(cookbook_dir, 'spec', 'spec_helper.rb')
 spec_dir = File.join(cookbook_dir, 'spec', 'unit', 'recipes')
 spec_path = File.join(spec_dir, "#{context.new_file_basename}_spec.rb")
@@ -44,7 +45,15 @@ template inspec_path do
 end
 
 # Recipe
-template recipe_path do
-  source 'recipe.rb.erb'
-  helpers(ChefCLI::Generator::TemplateHelper)
+if context.yaml
+  template recipe_path_yml do
+    source 'recipe.yml.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+  end
+else
+  template recipe_path do
+    source 'recipe.rb.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+  end
 end
+

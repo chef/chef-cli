@@ -37,35 +37,35 @@ describe ChefCLI::Command::GeneratorCommands::Recipe do
 
   context "when YAML recipe flag is passed" do
 
-      let(:argv) { %w{some_recipe --yaml} }
-      let(:expected_cookbook_root) { tempdir }
-      let(:cookbook_name) { "example_cookbook" }
-      let(:cookbook_path) { File.join(tempdir, cookbook_name) }
+    let(:argv) { %w{some_recipe --yaml} }
+    let(:expected_cookbook_root) { tempdir }
+    let(:cookbook_name) { "example_cookbook" }
+    let(:cookbook_path) { File.join(tempdir, cookbook_name) }
 
-      let(:generator_name) { "recipe" }
-      let(:generated_files) do
-        [ "recipes/some_recipe.yml",
-                                "spec/spec_helper.rb",
-                                "spec/unit/recipes/some_recipe_spec.rb",
-                                "test/integration/default/some_recipe_test.rb",
-                              ]
+    let(:generator_name) { "recipe" }
+    let(:generated_files) do
+      [ "recipes/some_recipe.yml",
+                              "spec/spec_helper.rb",
+                              "spec/unit/recipes/some_recipe_spec.rb",
+                              "test/integration/default/some_recipe_test.rb",
+                            ]
+    end
+    let(:new_file_name) { "some_recipe" }
+
+    before do
+      FileUtils.cp_r(File.join(fixtures_path, "example_cookbook"), tempdir)
+    end
+
+    it "creates a new recipe" do
+      Dir.chdir(cookbook_path) do
+        allow(recipe_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+        recipe_generator.run
       end
-      let(:new_file_name) { "some_recipe" }
 
-      before do
-        FileUtils.cp_r(File.join(fixtures_path, "example_cookbook"), tempdir)
+      generated_files.each do |expected_file|
+        expect(File).to exist(File.join(cookbook_path, expected_file))
       end
-
-      it "creates a new recipe" do
-        Dir.chdir(cookbook_path) do
-          allow(recipe_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          recipe_generator.run
-        end
-
-        generated_files.each do |expected_file|
-          expect(File).to exist(File.join(cookbook_path, expected_file))
-        end
-      end
+    end
 
   end
 

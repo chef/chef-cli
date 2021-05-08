@@ -56,4 +56,3 @@ else
     helpers(ChefCLI::Generator::TemplateHelper)
   end
 end
-

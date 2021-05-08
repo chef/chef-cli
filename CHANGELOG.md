@@ -1,26 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.1.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.1.0](https://github.com/chef/chef-cli/tree/v5.1.0) (2021-05-08)
 
 #### Merged Pull Requests
 - Adds YAML flag to recipe and cookbook generate [#172](https://github.com/chef/chef-cli/pull/172) ([collinmcneese](https://github.com/collinmcneese))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.0.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Adds YAML flag to recipe and cookbook generate [#172](https://github.com/chef/chef-cli/pull/172) ([collinmcneese](https://github.com/collinmcneese)) <!-- 5.1.0 -->
-- Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.0.1](https://github.com/chef/chef-cli/tree/v5.0.1) (2021-05-04)
 - Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611))
 - Remove support for Ruby 2.5 [#169](https://github.com/chef/chef-cli/pull/169) ([tas50](https://github.com/tas50))
 - Expand the warning message when using --workflow [#170](https://github.com/chef/chef-cli/pull/170) ([tas50](https://github.com/tas50))
 - chef generate build-cookbook removed(cherrypicked from 166) [#171](https://github.com/chef/chef-cli/pull/171) ([i5pranay93](https://github.com/i5pranay93))
-<!-- latest_stable_release -->
 
 ## [v4.0.1](https://github.com/chef/chef-cli/tree/v4.0.1) (2021-04-14)
 

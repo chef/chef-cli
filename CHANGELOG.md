@@ -1,9 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.1.0 -->
+## [v5.1.0](https://github.com/chef/chef-cli/tree/v5.1.0) (2021-05-08)
+
+#### Merged Pull Requests
+- Adds YAML flag to recipe and cookbook generate [#172](https://github.com/chef/chef-cli/pull/172) ([collinmcneese](https://github.com/collinmcneese))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.0.1 -->
 ### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Adds YAML flag to recipe and cookbook generate [#172](https://github.com/chef/chef-cli/pull/172) ([collinmcneese](https://github.com/collinmcneese)) <!-- 5.1.0 -->
 - Upgrade to GitHub-native Dependabot [#168](https://github.com/chef/chef-cli/pull/168) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- release_rollup -->
 

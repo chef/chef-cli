@@ -76,6 +76,13 @@ module ChefCLI
           boolean:      true,
           default:      false
 
+        option :yaml,
+          short:        "-y",
+          long:         "--yaml",
+          description:  "Generate a cookbook with YAML Recipe configuration file as the default.",
+          boolean:      true,
+          default:      nil
+
         option :pipeline,
           long:         "--pipeline PIPELINE",
           description:  "Use PIPELINE to set target branch to something other than master for the #{ChefCLI::Dist::WORKFLOW} build_cookbook",
@@ -111,6 +118,7 @@ module ChefCLI
         end
 
         def emit_post_create_message
+          default_recipe_file = yaml ? "default.yml" : "default.rb"
           if have_delivery_config?
             msg("Your cookbook is ready. To setup the pipeline, type `cd #{cookbook_name_or_path}`, then run `delivery init`")
           else
@@ -120,7 +128,7 @@ module ChefCLI
             msg("\nWhy not start by writing an InSpec test? Tests for the default recipe are stored at:\n")
             msg("test/integration/default/default_test.rb")
             msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
-            msg("\nrecipes/default.rb\n")
+            msg("\nrecipes/#{default_recipe_file}\n")
           end
         end
 
@@ -147,6 +155,7 @@ module ChefCLI
           Generator.add_attr_to_context(:pipeline, pipeline)
           Generator.add_attr_to_context(:kitchen, kitchen)
           Generator.add_attr_to_context(:vscode_dir, create_vscode_dir?)
+          Generator.add_attr_to_context(:yaml, yaml)
         end
 
         def kitchen
@@ -155,6 +164,10 @@ module ChefCLI
 
         def pipeline
           config[:pipeline]
+        end
+
+        def yaml
+          config[:yaml]
         end
 
         def policy_name

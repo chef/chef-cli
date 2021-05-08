@@ -420,6 +420,55 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
     end
 
+    context "when YAML recipe flag is passed" do
+
+      let(:argv) { %w{new_cookbook --yaml} }
+
+      describe "recipes/default.yml" do
+        let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.yml") }
+
+        let(:expected_content_header) do
+          <<~DEFAULT_YML_HEADER
+          #
+          # Cookbook:: new_cookbook
+          # Recipe:: default
+          #
+          DEFAULT_YML_HEADER
+        end
+
+        let(:expected_content) do
+          <<~DEFAULT_YML_CONTENT
+          ---
+          resources:
+          # Example Syntax
+          # Additional snippets are available using the Chef Infra Extension for Visual Studio Code
+          # - type: file
+          #   name: '/path/to/file'
+          #   content: 'content'
+          #   owner: 'root'
+          #   group: 'root'
+          #   mode: '0755'
+          #   action:
+          #     - create
+          DEFAULT_YML_CONTENT
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        it "has a default.yml file with template contents" do
+          expect(IO.read(file)).to match(expected_content_header)
+          expect(IO.read(file)).to match(expected_content)
+        end
+
+      end
+
+    end
+
     context "when configured for Berkshelf" do
 
       let(:argv) { %w{new_cookbook --berks} }

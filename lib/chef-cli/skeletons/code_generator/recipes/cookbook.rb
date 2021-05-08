@@ -117,10 +117,18 @@ end
 # Recipes
 directory "#{cookbook_dir}/recipes"
 
-template "#{cookbook_dir}/recipes/default.rb" do
-  source 'recipe.rb.erb'
-  helpers(ChefCLI::Generator::TemplateHelper)
-  action :create_if_missing
+if context.yaml
+  template "#{cookbook_dir}/recipes/default.yml" do
+    source 'recipe.yml.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+    action :create_if_missing
+  end
+else
+  template "#{cookbook_dir}/recipes/default.rb" do
+    source 'recipe.rb.erb'
+    helpers(ChefCLI::Generator::TemplateHelper)
+    action :create_if_missing
+  end
 end
 
 # the same will be done below if workflow was enabled so avoid double work and skip this

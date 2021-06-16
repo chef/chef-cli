@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2019, Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -136,6 +136,20 @@ module ChefCLI
           included_policies << spec
           @errors += spec.errors
         end
+      end
+
+      def metadata
+        cookbook_root = storage_config.relative_paths_root
+        unless File.exist?(File.join(cookbook_root, "metadata.rb")) || File.exist?(File.join(cookbook_root, "metadata.json"))
+          raise PolicyfileMissingCookbookMetadata.new(cookbook_root)
+        end
+        begin
+          cookbook_name = CookbookMetadata.from_path(cookbook_root).cookbook_name
+        rescue Exception => e
+          raise PolicyfileBadCookbookMetadata.new(cookbook_root, e)
+        end
+        name cookbook_name if name.nil?
+        cookbook(cookbook_name, path: ".")
       end
 
       def default

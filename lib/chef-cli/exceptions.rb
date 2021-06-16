@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -69,6 +69,18 @@ module ChefCLI
   end
 
   class MissingCookbookLockData < StandardError
+  end
+
+  class PolicyfileMissingCookbookMetadata < StandardError
+    def initialize(cookbook_root)
+      super("Policyfile specified to use cookbook metadata, but neither #{cookbook_root}/metadata.rb or #{cookbook_root}/metadata.json was found.")
+    end
+  end
+
+  class PolicyfileBadCookbookMetadata < StandardError
+    def initialize(cookbook_root, e)
+      super("Cookbook metadata for cookbook at #{cookbook_root} could not be parsed:\n    Original Exception: #{e}")
+    end
   end
 
   class InvalidLockfile < StandardError

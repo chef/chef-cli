@@ -143,6 +143,7 @@ module ChefCLI
         unless File.exist?(File.join(cookbook_root, "metadata.rb")) || File.exist?(File.join(cookbook_root, "metadata.json"))
           raise PolicyfileMissingCookbookMetadata.new(cookbook_root)
         end
+
         begin
           cookbook_name = CookbookMetadata.from_path(cookbook_root).cookbook_name
         rescue Exception => e

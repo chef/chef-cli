@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,12 +42,15 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
 
   let(:archive) { false }
 
+  let(:policy_group) { nil }
+
   subject(:export_service) do
     described_class.new(policyfile: policyfile_rb_explicit_name,
                         root_dir: working_dir,
                         export_dir: export_dir,
                         archive: archive,
-                        force: force_export)
+                        force: force_export,
+                        policy_group: policy_group)
   end
 
   it "uses Policyfile.rb as the default Policyfile name" do
@@ -295,15 +298,61 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
                 exit!(1)
               end
 
-            CONFIG
-            config_path = File.join(export_dir, ".chef", "config.rb")
-            expect(File).to exist(config_path)
-            expect(IO.read(config_path)).to eq(expected_config_text)
+                CONFIG
+                config_path = File.join(export_dir, ".chef", "config.rb")
+                expect(File).to exist(config_path)
+                expect(IO.read(config_path)).to eq(expected_config_text)
           end
 
           it "generates a README.md in the exported repo" do
             readme_path = File.join(export_dir, "README.md")
             expect(File).to exist(readme_path)
+          end
+
+          context "when the policy_group is changed" do
+            let(:policy_group) { "production" }
+            it "creates a policy_group file for a specified policy group with the revision id of the exported policy" do
+              exported_policy_group_path = File.join(export_dir, "policy_groups", "production.json")
+              exported_policy_group_data = FFI_Yajl::Parser.parse(IO.read(exported_policy_group_path))
+
+              expected_data = { "policies" => { "install-example" => { "revision_id" => revision_id } } }
+
+              expect(exported_policy_group_data).to eq(expected_data)
+            end
+
+            it "creates a working local mode configuration file with the changed policy_group" do
+              expected_config_text = <<~CONFIG
+              ### Chef Infra Client Configuration ###
+              # The settings in this file will configure chef to apply the exported policy in
+              # this directory. To use it, run:
+              #
+              # chef-client -z
+              #
+
+              policy_name 'install-example'
+              policy_group 'production'
+
+              use_policyfile true
+              policy_document_native_api true
+
+              # In order to use this repo, you need a version of Chef Infra Client and Chef Zero
+              # that supports policyfile "native mode" APIs:
+              current_version = Gem::Version.new(Chef::VERSION)
+              unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
+                puts("!" * 80)
+                puts(<<-MESSAGE)
+              This Chef Repo requires features introduced in Chef Infra Client 12.7, but you are using
+              Chef \#{Chef::VERSION}. Please upgrade to Chef Infra Client 12.7 or later.
+              MESSAGE
+                puts("!" * 80)
+                exit!(1)
+              end
+
+                CONFIG
+                config_path = File.join(export_dir, ".chef", "config.rb")
+                expect(File).to exist(config_path)
+                expect(IO.read(config_path)).to eq(expected_config_text)
+            end
           end
 
         end

@@ -298,10 +298,10 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
                 exit!(1)
               end
 
-                CONFIG
-                config_path = File.join(export_dir, ".chef", "config.rb")
-                expect(File).to exist(config_path)
-                expect(IO.read(config_path)).to eq(expected_config_text)
+            CONFIG
+            config_path = File.join(export_dir, ".chef", "config.rb")
+            expect(File).to exist(config_path)
+            expect(IO.read(config_path)).to eq(expected_config_text)
           end
 
           it "generates a README.md in the exported repo" do
@@ -348,10 +348,10 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
                 exit!(1)
               end
 
-                CONFIG
-                config_path = File.join(export_dir, ".chef", "config.rb")
-                expect(File).to exist(config_path)
-                expect(IO.read(config_path)).to eq(expected_config_text)
+              CONFIG
+              config_path = File.join(export_dir, ".chef", "config.rb")
+              expect(File).to exist(config_path)
+              expect(IO.read(config_path)).to eq(expected_config_text)
             end
           end
 

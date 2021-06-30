@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,20 +33,15 @@ module ChefCLI
 
     class ExportRepo
 
-      # Policy groups provide namespaces for policies so that a Chef Infra Server can
-      # have multiple active iterations of a policy at once, but we don't need
-      # this when serving a single exported policy via Chef Zero, so hardcode
-      # it to a "well known" value:
-      POLICY_GROUP = "local".freeze
-
       include Policyfile::StorageConfigDelegation
 
       attr_reader :storage_config
       attr_reader :root_dir
       attr_reader :export_dir
       attr_reader :ui
+      attr_reader :policy_group
 
-      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false)
+      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false, policy_group: nil)
         @root_dir = root_dir
         @export_dir = File.expand_path(export_dir)
         @archive = archive
@@ -55,6 +50,8 @@ module ChefCLI
 
         @policy_data = nil
         @policyfile_lock = nil
+        @policy_group = policy_group
+        @policy_group ||= "local".freeze
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
@@ -243,7 +240,7 @@ module ChefCLI
             #
 
             policy_name '#{policy_name}'
-            policy_group 'local'
+            policy_group '#{policy_group}'
 
             use_policyfile true
             policy_document_native_api true
@@ -301,9 +298,8 @@ module ChefCLI
             ### policy_groups/
 
             Policy groups are used by Chef Infra Server to manage multiple revisions of the same
-            policy. However, exported policies contain only a single policy revision, so
-            this policy group name is hardcoded to "local" and should not be changed.
-
+            policy. The default "local" policy is recommended for export use since there can be
+            no different revisions when not utilizing a server.
           README
         end
       end
@@ -389,7 +385,7 @@ module ChefCLI
       end
 
       def policy_group_repo_item_path
-        File.join(staging_dir, "policy_groups", "local.json")
+        File.join(staging_dir, "policy_groups", "#{policy_group}.json")
       end
 
       def dot_chef_staging_dir

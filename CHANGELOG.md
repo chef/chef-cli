@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.2.0 -->
+## [v5.2.0](https://github.com/chef/chef-cli/tree/v5.2.0) (2021-07-01)
+
+#### Merged Pull Requests
+- Add option to `chef export` to specify the policygroup [#176](https://github.com/chef/chef-cli/pull/176) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.1.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Add option to `chef export` to specify the policygroup [#176](https://github.com/chef/chef-cli/pull/176) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.2.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

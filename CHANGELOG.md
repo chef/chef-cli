@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.2.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.2.0](https://github.com/chef/chef-cli/tree/v5.2.0) (2021-07-01)
 
 #### Merged Pull Requests
 - Add option to `chef export` to specify the policygroup [#176](https://github.com/chef/chef-cli/pull/176) ([lamont-granquist](https://github.com/lamont-granquist))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.1.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add option to `chef export` to specify the policygroup [#176](https://github.com/chef/chef-cli/pull/176) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.2.0 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.1.0](https://github.com/chef/chef-cli/tree/v5.1.0) (2021-05-08)
 
 #### Merged Pull Requests
 - Adds YAML flag to recipe and cookbook generate [#172](https://github.com/chef/chef-cli/pull/172) ([collinmcneese](https://github.com/collinmcneese))
-<!-- latest_stable_release -->
 
 ## [v5.0.1](https://github.com/chef/chef-cli/tree/v5.0.1) (2021-05-04)
 - Removed the ability to generate workflow cookbooks. [#167](https://github.com/chef/chef-cli/pull/167) ([nikhil2611](https://github.com/nikhil2611))

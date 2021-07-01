@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,6 +67,11 @@ module ChefCLI
         description: "Enable stacktraces and other debug output",
         default:     false
 
+      option :policy_group,
+        long:        "--policy-group POLICY_GROUP",
+        description: "The policy_group to include in the export (default: 'local')",
+        default:     nil
+
       attr_reader :policyfile_relative_path
       attr_reader :export_dir
 
@@ -120,11 +125,14 @@ module ChefCLI
       end
 
       def export_service
-        @export_service ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
-                                                               export_dir: export_dir,
-                                                               root_dir: Dir.pwd,
-                                                               archive: archive?,
-                                                               force: config[:force])
+        @export_service ||= PolicyfileServices::ExportRepo.new(
+          policyfile: policyfile_relative_path,
+          export_dir: export_dir,
+          root_dir: Dir.pwd,
+          archive: archive?,
+          force: config[:force],
+          policy_group: config[:policy_group]
+        )
       end
 
       def handle_error(error)

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -84,6 +84,10 @@ describe ChefCLI::Command::Export do
         expect(command.export_service.policyfile_filename).to eq(File.expand_path("Policyfile.rb"))
       end
 
+      it "uses the default policy_group name" do
+        expect(command.export_service.policy_group).to eq("local")
+      end
+
     end
 
     context "when a Policyfile relative path and export path are given" do
@@ -96,6 +100,19 @@ describe ChefCLI::Command::Export do
 
       it "configures the export service with the policyfile relative path" do
         expect(command.export_service.policyfile_filename).to eq(File.expand_path("CustomNamedPolicy.rb"))
+      end
+    end
+
+    context "when a policy_group is given" do
+
+      let(:params) { [ "path/to/export", "--policy_group", "production" ] }
+
+      it "configures the export service with the export path" do
+        expect(command.export_service.export_dir).to eq(File.expand_path("path/to/export"))
+      end
+
+      it "configures the export service with the policyfile relative path" do
+        expect(command.export_service.policy_group).to eq("production")
       end
     end
   end

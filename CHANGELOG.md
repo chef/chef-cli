@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.3.0 -->
+## [v5.3.0](https://github.com/chef/chef-cli/tree/v5.3.0) (2021-07-02)
+
+#### Merged Pull Requests
+- add policyfile metadata DSL helper [#174](https://github.com/chef/chef-cli/pull/174) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.2.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- add policyfile metadata DSL helper [#174](https://github.com/chef/chef-cli/pull/174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 5.3.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

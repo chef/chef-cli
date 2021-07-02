@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -553,6 +553,72 @@ describe ChefCLI::PolicyfileCompiler do
         expect(policyfile.errors.first).to eq(expected)
       end
 
+    end
+
+    describe "the metadata DSL keyword used in a cookbook with metadata" do
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo"
+          metadata
+        EOH
+      end
+      it "reads the metadata from the current cookbook" do
+        expect(File).to receive(:exist?).with("./metadata.rb").and_return(true)
+        expect(ChefCLI::CookbookMetadata).to receive(:from_path).and_return(double(cookbook_name: "foo"))
+        expect(policyfile.errors.size).to eq(0)
+        expect(policyfile.errors.first).to eq(nil)
+      end
+    end
+
+    describe "the metadata DSL keyword used in a cookbook without metadata" do
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo"
+          metadata
+        EOH
+      end
+      it "throws a missing cookbook metadata error" do
+        expected = <<~EOH
+         Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
+           Exception: ChefCLI::PolicyfileMissingCookbookMetadata "Policyfile specified to use cookbook metadata, but neither ./metadata.rb or ./metadata.json was found."
+
+           Relevant Code:
+             2: metadata
+
+           Backtrace:
+             TestPolicyfile.rb:2:in `eval_policyfile'
+        EOH
+        expect(File).to receive(:exist?).with("./metadata.rb").and_return(false)
+        expect(File).to receive(:exist?).with("./metadata.json").and_return(false)
+        expect(policyfile.errors.size).to eq(1)
+        expect(policyfile.errors.first).to eq(expected)
+      end
+    end
+
+    describe "the metadata DSL keyword used in a cookbook with bad metadata" do
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo"
+          metadata
+        EOH
+      end
+      it "throws a bad cookbook metadata error" do
+        expected = <<~EOH
+         Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
+           Exception: ChefCLI::PolicyfileBadCookbookMetadata "Cookbook metadata for cookbook at . could not be parsed:
+             Original Exception: No such file or directory @ rb_sysopen - ./metadata.json"
+
+           Relevant Code:
+             2: metadata
+
+           Backtrace:
+             TestPolicyfile.rb:2:in `eval_policyfile'
+        EOH
+        expect(File).to receive(:exist?).with("./metadata.rb").and_return(true)
+        expect(File).to receive(:exist?).with("./metadata.json").and_return(true)
+        expect(policyfile.errors.size).to eq(1)
+        expect(policyfile.errors.first).to eq(expected)
+      end
     end
 
     describe "defining attributes" do

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,6 +64,25 @@ describe ChefCLI::CookbookMetadata do
     context "and the cookbook has only a metadata.json" do
 
       let(:cookbook_root) { File.join(fixtures_path, "example_cookbook_metadata_json_only") }
+
+      it "has a name" do
+        expect(cookbook.name).to eq("example_cookbook")
+        expect(cookbook.cookbook_name).to eq("example_cookbook")
+      end
+
+      it "has a version" do
+        expect(cookbook.version).to eq("0.1.0")
+      end
+
+      it "has a map of dependencies" do
+        expect(cookbook.dependencies).to eq({})
+      end
+
+    end
+
+    context "and the cookbook has both a metadata.json and an (invalid) metadata.rb" do
+
+      let(:cookbook_root) { File.join(fixtures_path, "example_cookbook_both_metadata") }
 
       it "has a name" do
         expect(cookbook.name).to eq("example_cookbook")

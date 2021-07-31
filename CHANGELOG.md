@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.3.2 -->
-## [v5.3.2](https://github.com/chef/chef-cli/tree/v5.3.2) (2021-07-31)
+<!-- latest_release 5.4.0 -->
+## [v5.4.0](https://github.com/chef/chef-cli/tree/v5.4.0) (2021-07-31)
 
 #### Merged Pull Requests
-- Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50))
+- Require Chef Infra 16 + generate 16+ content [#180](https://github.com/chef/chef-cli/pull/180) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.3.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Require Chef Infra 16 + generate 16+ content [#180](https://github.com/chef/chef-cli/pull/180) ([tas50](https://github.com/tas50)) <!-- 5.4.0 -->
 - Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50)) <!-- 5.3.2 -->
 <!-- release_rollup -->
 

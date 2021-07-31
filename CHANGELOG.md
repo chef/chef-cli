@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.3.2 -->
+## [v5.3.2](https://github.com/chef/chef-cli/tree/v5.3.2) (2021-07-31)
+
+#### Merged Pull Requests
+- Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.3.1 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50)) <!-- 5.3.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

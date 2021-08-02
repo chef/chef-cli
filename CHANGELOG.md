@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.4.1 -->
-## [v5.4.1](https://github.com/chef/chef-cli/tree/v5.4.1) (2021-07-31)
-
-#### Merged Pull Requests
-- Update kitchen examples to show Chef Infra 17 [#181](https://github.com/chef/chef-cli/pull/181) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.3.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Update kitchen examples to show Chef Infra 17 [#181](https://github.com/chef/chef-cli/pull/181) ([tas50](https://github.com/tas50)) <!-- 5.4.1 -->
-- Require Chef Infra 16 + generate 16+ content [#180](https://github.com/chef/chef-cli/pull/180) ([tas50](https://github.com/tas50)) <!-- 5.4.0 -->
-- Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50)) <!-- 5.3.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.4.1](https://github.com/chef/chef-cli/tree/v5.4.1) (2021-08-02)
+
+#### Merged Pull Requests
+- Remove specific copyright dates [#179](https://github.com/chef/chef-cli/pull/179) ([tas50](https://github.com/tas50))
+- Require Chef Infra 16 + generate 16+ content [#180](https://github.com/chef/chef-cli/pull/180) ([tas50](https://github.com/tas50))
+- Update kitchen examples to show Chef Infra 17 [#181](https://github.com/chef/chef-cli/pull/181) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v5.3.1](https://github.com/chef/chef-cli/tree/v5.3.1) (2021-07-13)
 
 #### Merged Pull Requests
 - Update addressable requirement from &gt;= 2.3.5, &lt; 2.8 to &gt;= 2.3.5, &lt; 2.9 [#177](https://github.com/chef/chef-cli/pull/177) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_stable_release -->
 
 ## [v5.3.0](https://github.com/chef/chef-cli/tree/v5.3.0) (2021-07-02)
 

@@ -858,7 +858,7 @@ describe ChefCLI::PolicyfileServices::ShowPolicy do
               "source_options" => {
                 "git" => "git@github.com:opscode-cookbooks/omnibus.git",
                 "revision" => "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
-                "branch" => "main",
+                "branch" => "master",
               },
             },
           },

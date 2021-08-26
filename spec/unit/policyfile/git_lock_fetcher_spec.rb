@@ -93,7 +93,7 @@ describe ChefCLI::Policyfile::GitLockFetcher do
         "working_tree_clean" => true,
         "published" => true,
         "synchronized_remote_branches" => [
-          "origin/main",
+          "origin/master",
         ],
       }
     end

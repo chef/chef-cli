@@ -48,6 +48,6 @@ RSpec.shared_context "setup git cookbook remote" do
   before do
     system_command("git init --bare #{tempdir}/bar-cookbook.git").error!
     system_command("git remote add origin #{remote_url}", cwd: cookbook_path).error!
-    system_command("git push -u origin main", cwd: cookbook_path).error!
+    system_command("git push -u origin master", cwd: cookbook_path).error!
   end
 end

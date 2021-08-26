@@ -96,7 +96,7 @@ describe ChefCLI::CookbookProfiler::Git do
         end
 
         it "lists the remotes that commits are published to" do
-          expect(git_profiler.synchronized_remotes).to eq(%w{origin/master})
+          expect(git_profiler.synchronized_remotes).to eq(%w{origin/main})
         end
 
       end
@@ -140,7 +140,7 @@ describe ChefCLI::CookbookProfiler::Git do
 
   end
 
-  context "given a repo on an unborn master branch" do
+  context "given a repo on an unborn main branch" do
 
     let(:cookbook_path) { File.join(tempdir, "unborn") }
 

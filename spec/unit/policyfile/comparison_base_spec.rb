@@ -147,7 +147,7 @@ describe "Policyfile Comparison Bases" do
 
   describe ChefCLI::Policyfile::ComparisonBase::Git do
 
-    let(:ref) { "master" }
+    let(:ref) { "main" }
 
     let(:policyfile_lock_relpath) { "policies/MyPolicy.lock.json" }
 
@@ -162,12 +162,12 @@ describe "Policyfile Comparison Bases" do
     end
 
     it "is named git:REF" do
-      expect(comparison_base.name).to eq("git:master")
+      expect(comparison_base.name).to eq("git:main")
     end
 
     it "creates a `git show` command for the policyfile lock and ref" do
-      expect(comparison_base.git_cmd_string).to eq("git show master:./policies/MyPolicy.lock.json")
-      expect(comparison_base.git_cmd.command).to eq("git show master:./policies/MyPolicy.lock.json")
+      expect(comparison_base.git_cmd_string).to eq("git show main:./policies/MyPolicy.lock.json")
+      expect(comparison_base.git_cmd.command).to eq("git show main:./policies/MyPolicy.lock.json")
     end
 
     context "when the git command fails" do

@@ -147,7 +147,7 @@ describe ChefCLI::Command::Diff do
 
         context "using the --git option" do
 
-          let(:params) { %w{ policies/OtherPolicy.rb --git master } }
+          let(:params) { %w{ policies/OtherPolicy.rb --git main } }
 
           it "uses the corresponding lock as the local lock" do
             expect(command.run(params)).to eq(0)
@@ -160,12 +160,12 @@ describe ChefCLI::Command::Diff do
 
       context "when given a single commit-ish" do
 
-        let(:params) { %w{ --git master } }
+        let(:params) { %w{ --git main } }
 
         it "compares the local lock to the commit" do
           expect(command.run(params)).to eq(0)
           expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
-          expect(command.old_base.ref).to eq("master")
+          expect(command.old_base.ref).to eq("main")
           expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Local)
           expect(command.new_base.policyfile_lock_relpath).to eq("Policyfile.lock.json")
         end
@@ -174,12 +174,12 @@ describe ChefCLI::Command::Diff do
 
       context "when given two commit-ish names" do
 
-        let(:params) { %w{ --git master...dev-branch } }
+        let(:params) { %w{ --git main...dev-branch } }
 
         it "compares the two commits" do
           expect(command.run(params)).to eq(0)
           expect(command.old_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
-          expect(command.old_base.ref).to eq("master")
+          expect(command.old_base.ref).to eq("main")
           expect(command.new_base).to be_a_kind_of(ChefCLI::Policyfile::ComparisonBase::Git)
           expect(command.new_base.ref).to eq("dev-branch")
         end

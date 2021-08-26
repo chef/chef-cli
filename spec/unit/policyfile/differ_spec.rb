@@ -27,13 +27,13 @@ describe ChefCLI::Policyfile::Differ do
         "name": "jenkins",
         "run_list": [
           "recipe[java::default]",
-          "recipe[jenkins::master]",
+          "recipe[jenkins::main]",
           "recipe[policyfile_demo::whatever]",
           "recipe[policyfile_demo::default]"
         ],
         "named_run_lists": {
           "update_jenkins": [
-            "recipe[jenkins::master]",
+            "recipe[jenkins::main]",
             "recipe[policyfile_demo::default]"
           ]
         },
@@ -51,7 +51,7 @@ describe ChefCLI::Policyfile::Differ do
               "working_tree_clean": false,
               "published": true,
               "synchronized_remote_branches": [
-                "mine/master"
+                "mine/main"
               ]
             },
             "source_options": {
@@ -327,7 +327,7 @@ describe ChefCLI::Policyfile::Differ do
 
         @@ -1,5 +1,7 @@
          recipe[java::default]
-         recipe[jenkins::master]
+         recipe[jenkins::main]
         -recipe[policyfile_demo::whatever]
          recipe[policyfile_demo::default]
         +recipe[one::one]

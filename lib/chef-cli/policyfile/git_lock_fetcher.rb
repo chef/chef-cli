@@ -63,7 +63,7 @@ module ChefCLI
         @ref      = @source_options[:ref]
 
         # The revision to parse
-        @rev_parse = @source_options[:ref] || @source_options[:branch] || @source_options[:tag] || "master"
+        @rev_parse = @source_options[:ref] || @source_options[:branch] || @source_options[:tag] || "main"
       end
 
       # @return [True] if there were no errors with the provided source_options

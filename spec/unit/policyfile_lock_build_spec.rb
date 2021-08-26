@@ -416,7 +416,7 @@ describe ChefCLI::PolicyfileLock, "building a lockfile", :skip_on_windows do
               "revision" => current_rev,
               "working_tree_clean" => true,
               "published" => true,
-              "synchronized_remote_branches" => ["origin/master"],
+              "synchronized_remote_branches" => ["origin/main"],
             },
             "source_options" => nil,
           },

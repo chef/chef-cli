@@ -36,8 +36,8 @@ module ChefCLI
         {
           "scm" => "git",
           # To get this info, you need to do something like:
-          # figure out branch or assume 'master'
-          # git config --get branch.master.remote
+          # figure out branch or assume 'main'
+          # git config --get branch.main.remote
           # git config --get remote.opscode.url
           "remote" => remote,
           "revision" => revision,

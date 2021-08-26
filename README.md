@@ -1,6 +1,6 @@
 # Chef-CLI
 
-[![Build status](https://badge.buildkite.com/c0b83a31c5491c6321949a96f20c628c803409387e9d7e770a.svg?branch=main)](https://buildkite.com/chef-oss/chef-chef-cli-master-verify)
+[![Build status](https://badge.buildkite.com/c0b83a31c5491c6321949a96f20c628c803409387e9d7e770a.svg?branch=master)](https://buildkite.com/chef-oss/chef-chef-cli-master-verify)
 [![Gem Version](https://badge.fury.io/rb/chef-cli.svg)](https://badge.fury.io/rb/chef-cli)
 
 **Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/main/projects/chef-workstation.md)

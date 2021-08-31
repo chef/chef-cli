@@ -44,15 +44,15 @@ knife cookbook site install COOKBOOK
 This will:
 
 - Download the cookbook tarball from the Chef Supermarket.
-- Ensure its on the git main branch.
+- Ensure its on the git master branch.
 - Checks for an existing vendor branch, and creates if it doesn't.
 - Checks out the vendor branch (chef-vendor-COOKBOOK).
 - Removes the existing (old) version.
 - Untars the cookbook tarball it downloaded in the first step.
 - Adds the cookbook files to the git index and commits.
 - Creates a tag for the version downloaded.
-- Checks out the main branch again.
-- Merges the cookbook into main.
+- Checks out the master branch again.
+- Merges the cookbook into master.
 - Repeats the above for all the cookbooks dependencies, downloading them from the community site
 
 The last step will ensure that any local changes or modifications you have made to the cookbook are preserved, so you can keep your changes through upstream updates.

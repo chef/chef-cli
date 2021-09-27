@@ -132,7 +132,7 @@ else
 end
 
 # the same will be done below if workflow was enabled so avoid double work and skip this
-unless context.enable_workflow
+if context.enable_workflow
   directory "#{cookbook_dir}/.delivery"
 
   template "#{cookbook_dir}/.delivery/project.toml" do

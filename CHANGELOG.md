@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.4.3 -->
-## [v5.4.3](https://github.com/chef/chef-cli/tree/v5.4.3) (2021-10-19)
+<!-- latest_release 5.4.4 -->
+## [v5.4.4](https://github.com/chef/chef-cli/tree/v5.4.4) (2021-10-20)
 
 #### Merged Pull Requests
-- Remove attributes from Test Kitchen with policyfiles [#182](https://github.com/chef/chef-cli/pull/182) ([tas50](https://github.com/tas50))
+- Revert &quot;Remove attributes from Test Kitchen with policyfiles&quot; [#194](https://github.com/chef/chef-cli/pull/194) ([vkarve-chef](https://github.com/vkarve-chef))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.4.2 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Revert &quot;Remove attributes from Test Kitchen with policyfiles&quot; [#194](https://github.com/chef/chef-cli/pull/194) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.4.4 -->
 - Remove attributes from Test Kitchen with policyfiles [#182](https://github.com/chef/chef-cli/pull/182) ([tas50](https://github.com/tas50)) <!-- 5.4.3 -->
 <!-- release_rollup -->
 

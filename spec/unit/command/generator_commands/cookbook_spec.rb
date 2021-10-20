@@ -373,8 +373,8 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
             driver:
               name: vagrant
 
-            ## The forwarded_port port feature lets you connect to ports on the VM guest via
-            ## localhost on the host.
+            ## The forwarded_port port feature lets you connect to ports on the VM guest
+            ## via localhost on the host.
             ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
 
             #  network:
@@ -400,7 +400,6 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
                 verifier:
                   inspec_tests:
                     - test/integration/default
-                attributes:
           KITCHEN_YML
         end
 

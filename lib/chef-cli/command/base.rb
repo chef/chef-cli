@@ -42,6 +42,17 @@ module ChefCLI
         description: "Show #{ChefCLI::Dist::PRODUCT} version",
         boolean: true
 
+      option :debug,
+        short:       "-D",
+        long:        "--debug",
+        description: "Enable stacktraces and other debug output",
+        default:     false
+
+      option :config_file,
+        short:       "-c CONFIG_FILE",
+        long:        "--config CONFIG_FILE",
+        description: "Path to configuration file"
+
       def initialize
         super
       end

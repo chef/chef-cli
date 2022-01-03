@@ -16,6 +16,7 @@
 #
 
 require "spec_helper"
+require "chef-cli/command/base"
 
 describe ChefCLI::Command::Base do
   class TestCommand < ChefCLI::Command::Base
@@ -94,7 +95,7 @@ describe ChefCLI::Command::Base do
     run_command(["-u"])
     expect(stdout).to eq("thanks for passing me true\n")
   end
-
+  
   describe "when enforce_license is true" do
     let(:enforce_license) { true }
 
@@ -126,6 +127,8 @@ describe ChefCLI::Command::Base do
         use me please
             -a, --arg ARG                    An option with a required argument
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
+            -c, --config CONFIG_FILE         Path to configuration file
+            -D, --debug                      Enable stacktraces and other debug output
             -h, --help                       Show this message
             -u, --user                       If the user exists
             -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version
@@ -147,6 +150,8 @@ describe ChefCLI::Command::Base do
         use me please
             -a, --arg ARG                    An option with a required argument
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
+            -c, --config CONFIG_FILE         Path to configuration file
+            -D, --debug                      Enable stacktraces and other debug output
             -h, --help                       Show this message
             -u, --user                       If the user exists
             -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version

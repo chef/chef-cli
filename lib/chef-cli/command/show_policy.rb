@@ -58,17 +58,6 @@ module ChefCLI
         default:     true,
         boolean:     true
 
-      option :config_file,
-        short:        "-c CONFIG_FILE",
-        long:         "--config CONFIG_FILE",
-        description:  "Path to configuration file"
-
-      option :debug,
-        short:        "-D",
-        long:         "--debug",
-        description:  "Enable stacktraces and other debug output",
-        default:      false
-
       include Configurable
 
       attr_accessor :ui

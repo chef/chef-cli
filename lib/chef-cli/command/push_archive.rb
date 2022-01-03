@@ -43,17 +43,6 @@ module ChefCLI
         Options:
       E
 
-      option :config_file,
-        short:       "-c CONFIG_FILE",
-        long:        "--config CONFIG_FILE",
-        description: "Path to configuration file"
-
-      option :debug,
-        short:       "-D",
-        long:        "--debug",
-        description: "Enable stacktraces and other debug output",
-        default:     false
-
       attr_accessor :ui
 
       attr_reader :policy_group

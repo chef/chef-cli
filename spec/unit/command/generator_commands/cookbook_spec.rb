@@ -400,6 +400,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
                 verifier:
                   inspec_tests:
                     - test/integration/default
+                attributes:
           KITCHEN_YML
         end
 

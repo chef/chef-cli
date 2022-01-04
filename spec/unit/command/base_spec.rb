@@ -95,7 +95,7 @@ describe ChefCLI::Command::Base do
     run_command(["-u"])
     expect(stdout).to eq("thanks for passing me true\n")
   end
-  
+
   describe "when enforce_license is true" do
     let(:enforce_license) { true }
 

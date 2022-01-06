@@ -1,27 +1,24 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.5.0 -->
-## [v5.5.0](https://github.com/chef/chef-cli/tree/v5.5.0) (2022-01-06)
-
-#### Merged Pull Requests
-- Supporting -c &amp; -d flags for all the chef-cli commands. [#197](https://github.com/chef/chef-cli/pull/197) ([ashwin-msys](https://github.com/ashwin-msys))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.4.2 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Supporting -c &amp; -d flags for all the chef-cli commands. [#197](https://github.com/chef/chef-cli/pull/197) ([ashwin-msys](https://github.com/ashwin-msys)) <!-- 5.5.0 -->
-- Updated test template (follow up to `attribute` removal in policyfile erb) [#195](https://github.com/chef/chef-cli/pull/195) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.4.5 -->
-- Revert &quot;Remove attributes from Test Kitchen with policyfiles&quot; [#194](https://github.com/chef/chef-cli/pull/194) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.4.4 -->
-- Remove attributes from Test Kitchen with policyfiles [#182](https://github.com/chef/chef-cli/pull/182) ([tas50](https://github.com/tas50)) <!-- 5.4.3 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.5.0](https://github.com/chef/chef-cli/tree/v5.5.0) (2022-01-06)
+
+#### Merged Pull Requests
+- Remove attributes from Test Kitchen with policyfiles [#182](https://github.com/chef/chef-cli/pull/182) ([tas50](https://github.com/tas50))
+- Revert &quot;Remove attributes from Test Kitchen with policyfiles&quot; [#194](https://github.com/chef/chef-cli/pull/194) ([vkarve-chef](https://github.com/vkarve-chef))
+- Updated test template (follow up to `attribute` removal in policyfile erb) [#195](https://github.com/chef/chef-cli/pull/195) ([vkarve-chef](https://github.com/vkarve-chef))
+- Supporting -c &amp; -d flags for all the chef-cli commands. [#197](https://github.com/chef/chef-cli/pull/197) ([ashwin-msys](https://github.com/ashwin-msys))
+<!-- latest_stable_release -->
+
 ## [v5.4.2](https://github.com/chef/chef-cli/tree/v5.4.2) (2021-09-02)
 
 #### Merged Pull Requests
 - Update the community slack URL [#188](https://github.com/chef/chef-cli/pull/188) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v5.4.1](https://github.com/chef/chef-cli/tree/v5.4.1) (2021-08-02)
 

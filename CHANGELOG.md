@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.4.5 -->
-## [v5.4.5](https://github.com/chef/chef-cli/tree/v5.4.5) (2021-10-20)
+<!-- latest_release 5.5.0 -->
+## [v5.5.0](https://github.com/chef/chef-cli/tree/v5.5.0) (2022-01-06)
 
 #### Merged Pull Requests
-- Updated test template (follow up to `attribute` removal in policyfile erb) [#195](https://github.com/chef/chef-cli/pull/195) ([vkarve-chef](https://github.com/vkarve-chef))
+- Supporting -c &amp; -d flags for all the chef-cli commands. [#197](https://github.com/chef/chef-cli/pull/197) ([ashwin-msys](https://github.com/ashwin-msys))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.4.2 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Supporting -c &amp; -d flags for all the chef-cli commands. [#197](https://github.com/chef/chef-cli/pull/197) ([ashwin-msys](https://github.com/ashwin-msys)) <!-- 5.5.0 -->
 - Updated test template (follow up to `attribute` removal in policyfile erb) [#195](https://github.com/chef/chef-cli/pull/195) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.4.5 -->
 - Revert &quot;Remove attributes from Test Kitchen with policyfiles&quot; [#194](https://github.com/chef/chef-cli/pull/194) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.4.4 -->
 - Remove attributes from Test Kitchen with policyfiles [#182](https://github.com/chef/chef-cli/pull/182) ([tas50](https://github.com/tas50)) <!-- 5.4.3 -->

@@ -55,7 +55,6 @@ module ChefCLI
       generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy #{ChefCLI::Dist::PRODUCT}'s generator cookbook so you can customize it")
-      generator(:'build-cookbook', :BuildCookbook, "DEPRECATED: Generate a build cookbook for use with #{ChefCLI::Dist::WORKFLOW}")
 
       def self.banner_headline
         <<~E
@@ -82,10 +81,6 @@ module ChefCLI
       end
 
       def run(params)
-        if params[0] == "build-cookbook"
-          warn "[DEPRECATION] Chef Workflow (Delivery) is end of life (EOL) as of December 31, 2020 and this generator subcommand has been removed".freeze
-          return 1
-        end
         if ( generator_spec = generator_for(params[0]) )
           params.shift
           generator = GeneratorCommands.build(generator_spec.class_name, params)

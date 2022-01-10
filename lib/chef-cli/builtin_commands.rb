@@ -57,7 +57,4 @@ ChefCLI.commands do |c|
 
   c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-cli/command/describe_cookbook",
                                                     desc: "Prints cookbook checksum information used for cookbook identifier"
-
-  # deprecated command that throws a failure warning if used. This was removed 4.2019
-  c.builtin "provision", :Provision, desc: "Provision VMs and clusters via cookbook", hidden: true
 end

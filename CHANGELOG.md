@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.5.1 -->
-## [v5.5.1](https://github.com/chef/chef-cli/tree/v5.5.1) (2022-01-10)
+<!-- latest_release 5.5.2 -->
+## [v5.5.2](https://github.com/chef/chef-cli/tree/v5.5.2) (2022-01-10)
 
 #### Merged Pull Requests
-- Entirely remove the provision subcommand [#198](https://github.com/chef/chef-cli/pull/198) ([tas50](https://github.com/tas50))
+- Remove the build-cookbook generate subcommand [#199](https://github.com/chef/chef-cli/pull/199) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.5.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove the build-cookbook generate subcommand [#199](https://github.com/chef/chef-cli/pull/199) ([tas50](https://github.com/tas50)) <!-- 5.5.2 -->
 - Entirely remove the provision subcommand [#198](https://github.com/chef/chef-cli/pull/198) ([tas50](https://github.com/tas50)) <!-- 5.5.1 -->
 <!-- release_rollup -->
 

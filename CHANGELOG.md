@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.5.1 -->
+## [v5.5.1](https://github.com/chef/chef-cli/tree/v5.5.1) (2022-01-10)
+
+#### Merged Pull Requests
+- Entirely remove the provision subcommand [#198](https://github.com/chef/chef-cli/pull/198) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.5.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Entirely remove the provision subcommand [#198](https://github.com/chef/chef-cli/pull/198) ([tas50](https://github.com/tas50)) <!-- 5.5.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

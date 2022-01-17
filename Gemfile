@@ -19,6 +19,8 @@ group :test do
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7")
     gem "ohai", "~> 16"
   end
+
+  gem "simplecov", require: false
 end
 
 group :development do

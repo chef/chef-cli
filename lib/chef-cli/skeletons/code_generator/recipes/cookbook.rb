@@ -131,20 +131,6 @@ else
   end
 end
 
-# the same will be done below if workflow was enabled so avoid double work and skip this
-unless context.enable_workflow
-  directory "#{cookbook_dir}/.delivery"
-
-  template "#{cookbook_dir}/.delivery/project.toml" do
-    variables(
-      specs: context.specs
-    )
-    source 'delivery-project.toml.erb'
-    helpers(ChefCLI::Generator::TemplateHelper)
-    action :create_if_missing
-  end
-end
-
 # git
 if context.have_git
   unless context.skip_git_init
@@ -188,19 +174,4 @@ if context.vscode_dir
     }
     CONTENT
   end
-end
-
-if context.enable_workflow
-  warn "\n---------WARNING---------\nThe --workflow flag is deprecated as #{ChefCLI::Dist::WORKFLOW} is EOL as of December 2020.\n\nThis flag will be ignored and will be removed in a future release.\n-------------------------\n\n"
-  directory "#{cookbook_dir}/.delivery"
-
-  template "#{cookbook_dir}/.delivery/project.toml" do
-    variables(
-      specs: context.specs
-    )
-    source 'delivery-project.toml.erb'
-    helpers(ChefCLI::Generator::TemplateHelper)
-    action :create_if_missing
-  end
-
 end

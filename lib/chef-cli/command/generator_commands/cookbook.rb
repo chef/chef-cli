@@ -65,7 +65,7 @@ module ChefCLI
         option :workflow,
           short:        "-w",
           long:         "--workflow",
-          description:  "DEPRECATED: Generate a cookbook with a full #{ChefCLI::Dist::WORKFLOW} build cookbook.",
+          description:  "REMOVED: #{ChefCLI::Dist::WORKFLOW} is EOL. This option has been removed.",
           boolean:      true,
           default:      false
 
@@ -85,7 +85,7 @@ module ChefCLI
 
         option :pipeline,
           long:         "--pipeline PIPELINE",
-          description:  "Use PIPELINE to set target branch to something other than master for the #{ChefCLI::Dist::WORKFLOW} build_cookbook",
+          description:  "REMOVED: #{ChefCLI::Dist::WORKFLOW} is EOL. This option has been removed.",
           default:      "master"
 
         options.merge!(SharedGeneratorOptions.options)
@@ -119,17 +119,12 @@ module ChefCLI
 
         def emit_post_create_message
           default_recipe_file = yaml ? "default.yml" : "default.rb"
-          if have_delivery_config?
-            msg("Your cookbook is ready. To setup the pipeline, type `cd #{cookbook_name_or_path}`, then run `delivery init`")
-          else
-            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to enter it.")
-            msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
-            msg("Type `delivery local --help` to see a full list of local testing commands.")
-            msg("\nWhy not start by writing an InSpec test? Tests for the default recipe are stored at:\n")
-            msg("test/integration/default/default_test.rb")
-            msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
-            msg("\nrecipes/#{default_recipe_file}\n")
-          end
+          msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to enter it.")
+          msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
+          msg("\nWhy not start by writing an InSpec test? Tests for the default recipe are stored at:\n")
+          msg("test/integration/default/default_test.rb")
+          msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
+          msg("\nrecipes/#{default_recipe_file}\n")
         end
 
         def setup_context
@@ -143,16 +138,10 @@ module ChefCLI
           Generator.add_attr_to_context(:policy_run_list, policy_run_list)
           Generator.add_attr_to_context(:policy_local_cookbook, ".")
 
-          Generator.add_attr_to_context(:enable_workflow, enable_workflow?)
-          Generator.add_attr_to_context(:workflow_project_dir, cookbook_full_path)
-          Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, true)
-          Generator.add_attr_to_context(:workflow_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
-
           Generator.add_attr_to_context(:verbose, verbose?)
           Generator.add_attr_to_context(:specs, specs?)
 
           Generator.add_attr_to_context(:use_policyfile, policy_mode?)
-          Generator.add_attr_to_context(:pipeline, pipeline)
           Generator.add_attr_to_context(:kitchen, kitchen)
           Generator.add_attr_to_context(:vscode_dir, create_vscode_dir?)
           Generator.add_attr_to_context(:yaml, yaml)
@@ -160,10 +149,6 @@ module ChefCLI
 
         def kitchen
           config[:kitchen]
-        end
-
-        def pipeline
-          config[:pipeline]
         end
 
         def yaml
@@ -202,10 +187,6 @@ module ChefCLI
           @policy_mode
         end
 
-        def enable_workflow?
-          config[:workflow]
-        end
-
         def verbose?
           @verbose
         end
@@ -214,22 +195,10 @@ module ChefCLI
           @specs
         end
 
-        #
-        # Is there a .delivery/cli.toml in the current dir or any of the parent dirs
-        #
-        # @return [Boolean]
-        #
-        def have_delivery_config?
-          # delivery-cli's logic is to look recursively upward for
-          # .delivery/cli.toml starting from pwd:
-          # https://github.com/chef/delivery-cli/blob/22cbef3987ebd0aee98405b7e161a100edc87e49/src/delivery/config/mod.rs#L225-L247
-
-          Pathname.pwd.ascend.any? { |path| path.join(".delivery/cli.toml").exist? }
-        end
-
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
+
           if !@cookbook_name_or_path
             @params_valid = false
           elsif File.basename(@cookbook_name_or_path).include?("-")
@@ -238,6 +207,11 @@ module ChefCLI
 
           if config[:berks] && config[:policy]
             err("Berkshelf and Policyfiles are mutually exclusive. Please specify only one.")
+            @params_valid = false
+          end
+
+          if config[:workflow] || config[:pipeline]
+            err("[DEPRECATION] Chef Workflow (Delivery) is end of life (EOL) as of December 31, 2020 and the --workflow and --pipeline flags have been removed")
             @params_valid = false
           end
 

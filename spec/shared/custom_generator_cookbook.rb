@@ -66,23 +66,6 @@ shared_examples_for "custom generator cookbook" do
       end
     end
 
-    context "with an invalid generator-cookbook path" do
-
-      it "fails with an informative error" do
-        Dir.chdir(tempdir) do
-          allow(code_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          allow(code_generator).to receive(:stderr).and_return(stderr_io)
-          expect(code_generator.run).to eq(1)
-        end
-
-        cookbook_path = File.dirname(generator_cookbook_path)
-        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::#{generator_name}]"] in #{cookbook_path}}
-
-        expect(stderr_io.string).to include(expected_msg)
-      end
-
-    end
-
     context "with a generator-cookbook path to a specific cookbook" do
 
       let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
@@ -104,33 +87,6 @@ shared_examples_for "custom generator cookbook" do
         end
       end
 
-    end
-
-    context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
-
-      before do
-        FileUtils.mkdir_p(generator_cookbook_path)
-        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
-
-        allow(code_generator).to receive(:stderr).and_return(stderr_io)
-      end
-
-      it "creates the new_files (and warns about deprecated usage)" do
-        allow(code_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-
-        Dir.chdir(tempdir) do
-          code_generator.run
-        end
-        generated_files = Dir.glob("#{tempdir}/#{generator_arg}/**/*", File::FNM_DOTMATCH)
-        expected_cookbook_files.each do |expected_file|
-          expect(generated_files).to include(expected_file)
-        end
-
-        code_generator_path = File.join(generator_cookbook_path, "code_generator")
-        warning_message = "WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_path}')"
-
-        expect(stderr_io.string).to include(warning_message)
-      end
     end
   end
 end

@@ -1,19 +1,17 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.5.5 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.5.5](https://github.com/chef/chef-cli/tree/v5.5.5) (2022-01-20)
 
 #### Merged Pull Requests
 - To revert changes for workflow [#203](https://github.com/chef/chef-cli/pull/203) ([snehaldwivedi](https://github.com/snehaldwivedi))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.5.4 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- To revert changes for workflow [#203](https://github.com/chef/chef-cli/pull/203) ([snehaldwivedi](https://github.com/snehaldwivedi)) <!-- 5.5.5 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.5.4](https://github.com/chef/chef-cli/tree/v5.5.4) (2022-01-18)
 
 #### Merged Pull Requests
@@ -21,7 +19,6 @@
 - Remove the build-cookbook generate subcommand [#199](https://github.com/chef/chef-cli/pull/199) ([tas50](https://github.com/tas50))
 - Integrated test coverage % report [#202](https://github.com/chef/chef-cli/pull/202) ([snehaldwivedi](https://github.com/snehaldwivedi))
 - Fully remove support for Delivery / Delivery Local Mode in generators [#201](https://github.com/chef/chef-cli/pull/201) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v5.5.0](https://github.com/chef/chef-cli/tree/v5.5.0) (2022-01-06)
 

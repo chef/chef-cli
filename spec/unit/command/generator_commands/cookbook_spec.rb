@@ -151,7 +151,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
     end
 
     it "warns if a hyphenated cookbook name is passed" do
-      expect(with_argv(%w{my-cookbook}).run).to eq(1)
+      expect(with_argv(%w{my-cookbook}).run).to eq(0)
       message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook for more information."
       expect(stdout_io.string).to include(message)
     end
@@ -176,6 +176,18 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       expect(generator_context.specs).to be(false)
     end
 
+    it "creates a new cookbook" do
+
+      Dir.chdir(tempdir) do
+        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+        expect(cookbook_generator.run).to eq(0)
+      end
+      generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
+      expected_cookbook_files.each do |expected_file|
+        expect(generated_files).to include(expected_file)
+      end
+    end
+
     context "when given the specs flag" do
 
       let(:argv) { %w{ new_cookbook --specs } }
@@ -184,6 +196,17 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         cookbook_generator.read_and_validate_params
         cookbook_generator.setup_context
         expect(generator_context.specs).to be(true)
+      end
+
+      it "creates a new cookbook" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
+        expected_cookbook_files_specs.each do |expected_file|
+          expect(generated_files).to include(expected_file)
+        end
       end
     end
 
@@ -196,19 +219,34 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         cookbook_generator.setup_context
         expect(generator_context.verbose).to be(true)
       end
+
+      it "emits verbose output" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+
+        # The normal chef formatter puts a heading for each recipe like this.
+        # Full output is large and subject to change with minor changes in the
+        # generator cookbook, so we just look for this line
+        expected_line = "Recipe: code_generator::cookbook"
+
+        actual = stdout_io.string
+
+        expect(actual).to include(expected_line)
+      end
     end
 
     shared_examples_for "a generated file" do |context_var|
       before do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          expect(cookbook_generator.run).to eq(1)
+          expect(cookbook_generator.run).to eq(0)
         end
       end
 
-      it "should not generate a file" do
-        expect(File.directory?(file)).to be false
-        expect(File).not_to exist(file)
+      it "should contain #{context_var} from the generator context" do
+        expect(File.read(file)).to match line
       end
     end
 
@@ -226,6 +264,297 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       include_examples "a generated file", :cookbook_name do
         let(:line) { "# new_cookbook" }
       end
+    end
+
+    # This shared example group requires a let binding for
+    # `expected_kitchen_yml_content`
+    shared_examples_for "kitchen_yml_and_integration_tests" do
+
+      describe "Generating Test Kitchen and integration testing files" do
+
+        describe "generating kitchen config" do
+
+          before do
+            Dir.chdir(tempdir) do
+              allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+              expect(cookbook_generator.run).to eq(0)
+            end
+          end
+
+          let(:file) { File.join(tempdir, "new_cookbook", "kitchen.yml") }
+
+          it "creates a kitchen.yml with the expected content" do
+            expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+          end
+
+        end
+
+        describe "test/integration/default/default_test.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "default_test.rb") }
+
+          include_examples "a generated file", :cookbook_name do
+            let(:line) { "describe port" }
+          end
+        end
+      end
+    end
+
+    # This shared example group requires you to define a let binding for
+    # `expected_chefspec_spec_helper_content`
+    shared_examples_for "chefspec_spec_helper_file" do
+
+      describe "Generating ChefSpec files" do
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        let(:file) { File.join(tempdir, "new_cookbook", "spec", "spec_helper.rb") }
+
+        it "creates a spec/spec_helper.rb for ChefSpec with the expected content" do
+          expect(IO.read(file)).to eq(expected_chefspec_spec_helper_content)
+        end
+
+      end
+
+    end
+
+    context "when configured for Policyfiles" do
+
+      let(:argv) { %w{new_cookbook --policy} }
+
+      describe "Policyfile.rb" do
+
+        let(:file) { File.join(tempdir, "new_cookbook", "Policyfile.rb") }
+
+        let(:expected_content) do
+          <<~POLICYFILE_RB
+            # Policyfile.rb - Describe how you want Chef Infra Client to build your system.
+            #
+            # For more information on the Policyfile feature, visit
+            # https://docs.chef.io/policyfile/
+
+            # A name that describes what the system you're building with Chef does.
+            name 'new_cookbook'
+
+            # Where to find external cookbooks:
+            default_source :supermarket
+
+            # run_list: chef-client will run these recipes in the order specified.
+            run_list 'new_cookbook::default'
+
+            # Specify a custom source for a single cookbook:
+            cookbook 'new_cookbook', path: '.'
+          POLICYFILE_RB
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        it "has a run_list and cookbook path that will work out of the box" do
+          expect(IO.read(file)).to eq(expected_content)
+        end
+
+      end
+
+      include_examples "kitchen_yml_and_integration_tests" do
+
+        let(:expected_kitchen_yml_content) do
+          <<~KITCHEN_YML
+            ---
+            driver:
+              name: vagrant
+
+            ## The forwarded_port port feature lets you connect to ports on the VM guest
+            ## via localhost on the host.
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
+
+            #  network:
+            #    - ["forwarded_port", {guest: 80, host: 8080}]
+
+            provisioner:
+              name: chef_zero
+
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
+              #  product_name: chef
+              #  product_version: 17
+
+            verifier:
+              name: inspec
+
+            platforms:
+              - name: ubuntu-20.04
+              - name: centos-8
+
+            suites:
+              - name: default
+                verifier:
+                  inspec_tests:
+                    - test/integration/default
+          KITCHEN_YML
+        end
+
+      end
+
+      include_examples "chefspec_spec_helper_file" do
+        let(:argv) { %w{ new_cookbook --policy --specs } }
+
+        let(:expected_chefspec_spec_helper_content) do
+          <<~SPEC_HELPER
+            require 'chefspec'
+            require 'chefspec/policyfile'
+          SPEC_HELPER
+        end
+
+      end
+
+    end
+
+    context "when YAML recipe flag is passed" do
+
+      let(:argv) { %w{new_cookbook --yaml} }
+
+      describe "recipes/default.yml" do
+        let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.yml") }
+
+        let(:expected_content_header) do
+          <<~DEFAULT_YML_HEADER
+          #
+          # Cookbook:: new_cookbook
+          # Recipe:: default
+          #
+          DEFAULT_YML_HEADER
+        end
+
+        let(:expected_content) do
+          <<~DEFAULT_YML_CONTENT
+          ---
+          resources:
+          # Example Syntax
+          # Additional snippets are available using the Chef Infra Extension for Visual Studio Code
+          # - type: file
+          #   name: '/path/to/file'
+          #   content: 'content'
+          #   owner: 'root'
+          #   group: 'root'
+          #   mode: '0755'
+          #   action:
+          #     - create
+          DEFAULT_YML_CONTENT
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        it "has a default.yml file with template contents" do
+          expect(IO.read(file)).to match(expected_content_header)
+          expect(IO.read(file)).to match(expected_content)
+        end
+
+      end
+
+    end
+
+    context "when configured for Berkshelf" do
+
+      let(:argv) { %w{new_cookbook --berks} }
+
+      describe "Berksfile" do
+
+        let(:file) { File.join(tempdir, "new_cookbook", "Berksfile") }
+
+        let(:expected_content) do
+          <<~POLICYFILE_RB
+            source 'https://supermarket.chef.io'
+
+            metadata
+          POLICYFILE_RB
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        it "pulls deps from metadata" do
+          expect(IO.read(file)).to eq(expected_content)
+        end
+
+      end
+
+      include_examples "kitchen_yml_and_integration_tests" do
+
+        let(:expected_kitchen_yml_content) do
+          <<~KITCHEN_YML
+            ---
+            driver:
+              name: vagrant
+
+            ## The forwarded_port port feature lets you connect to ports on the VM guest via
+            ## localhost on the host.
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
+
+            #  network:
+            #    - ["forwarded_port", {guest: 80, host: 8080}]
+
+            provisioner:
+              name: chef_zero
+              # You may wish to disable always updating cookbooks in CI or other testing environments.
+              # For example:
+              #   always_update_cookbooks: <%= !ENV['CI'] %>
+              always_update_cookbooks: true
+
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
+              #  product_name: chef
+              #  product_version: 17
+
+            verifier:
+              name: inspec
+
+            platforms:
+              - name: ubuntu-20.04
+              - name: centos-8
+
+            suites:
+              - name: default
+                run_list:
+                  - recipe[new_cookbook::default]
+                verifier:
+                  inspec_tests:
+                    - test/integration/default
+                attributes:
+          KITCHEN_YML
+        end
+
+      end
+
+      include_examples "chefspec_spec_helper_file" do
+        let(:argv) { %w{ new_cookbook --berks --specs } }
+
+        let(:expected_chefspec_spec_helper_content) do
+          <<~SPEC_HELPER
+            require 'chefspec'
+            require 'chefspec/berkshelf'
+          SPEC_HELPER
+        end
+
+      end
+
     end
 
     describe "metadata.rb" do

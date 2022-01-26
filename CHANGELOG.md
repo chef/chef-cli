@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.5.6 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.5.6](https://github.com/chef/chef-cli/tree/v5.5.6) (2022-01-26)
 
 #### Merged Pull Requests
 - To fix breaking changes for chef generate command [#204](https://github.com/chef/chef-cli/pull/204) ([snehaldwivedi](https://github.com/snehaldwivedi))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.5.5 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- To fix breaking changes for chef generate command [#204](https://github.com/chef/chef-cli/pull/204) ([snehaldwivedi](https://github.com/snehaldwivedi)) <!-- 5.5.6 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.5.5](https://github.com/chef/chef-cli/tree/v5.5.5) (2022-01-20)
 
 #### Merged Pull Requests
 - To revert changes for workflow [#203](https://github.com/chef/chef-cli/pull/203) ([snehaldwivedi](https://github.com/snehaldwivedi))
-<!-- latest_stable_release -->
 
 ## [v5.5.4](https://github.com/chef/chef-cli/tree/v5.5.4) (2022-01-18)
 

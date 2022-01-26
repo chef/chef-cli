@@ -86,7 +86,7 @@ module ChefCLI
         option :pipeline,
           long:         "--pipeline PIPELINE",
           description:  "REMOVED: #{ChefCLI::Dist::WORKFLOW} is EOL. This option has been removed.",
-          default:      "master"
+          default:      nil
 
         options.merge!(SharedGeneratorOptions.options)
 

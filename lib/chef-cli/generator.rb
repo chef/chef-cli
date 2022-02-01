@@ -70,16 +70,16 @@ module ChefCLI
 
       def self.license_long(license = nil)
         case license
-        when 'apachev2'
-          'Apache-2.0'
-        when 'mit'
-          'MIT'
-        when 'gplv2'
-          'GPL-2.0'
-        when 'gplv3'
-          'GPL-3.0'
+        when "apachev2"
+          "Apache-2.0"
+        when "mit"
+          "MIT"
+        when "gplv2"
+          "GPL-2.0"
+        when "gplv3"
+          "GPL-3.0"
         else
-          'All Rights Reserved'
+          "All Rights Reserved"
         end
       end
 

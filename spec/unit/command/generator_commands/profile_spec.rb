@@ -24,8 +24,10 @@ describe ChefCLI::Command::GeneratorCommands::Profile do
   include_examples "a file generator" do
 
     let(:generator_name) { "profile" }
-    let(:generated_files) { [ "compliance/profiles/new_profile/inspec.yml",
-                              "compliance/profiles/new_profile/controls/example.rb" ] }
+    let(:generated_files) {
+      [ "compliance/profiles/new_profile/inspec.yml",
+                              "compliance/profiles/new_profile/controls/example.rb" ]
+    }
     let(:new_file_name) { "new_profile" }
 
   end

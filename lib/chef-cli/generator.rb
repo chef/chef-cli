@@ -68,6 +68,21 @@ module ChefCLI
         Time.now.year
       end
 
+      def self.license_long(license = nil)
+        case license
+        when 'apachev2'
+          'Apache-2.0'
+        when 'mit'
+          'MIT'
+        when 'gplv2'
+          'GPL-2.0'
+        when 'gplv3'
+          'GPL-3.0'
+        else
+          'All Rights Reserved'
+        end
+      end
+
       # Prints the short description of the license, suitable for use in a
       # preamble to a file. Optionally specify a comment to prepend to each line.
       def license_description(comment = nil)

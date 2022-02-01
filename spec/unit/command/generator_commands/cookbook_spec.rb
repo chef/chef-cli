@@ -44,6 +44,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       CHANGELOG.md
       recipes
       recipes/default.rb
+      compliance/README.md
     }
   end
 
@@ -67,6 +68,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       spec/unit
       spec/unit/recipes
       spec/unit/recipes/default_spec.rb
+      compliance/README.md
     }
   end
 

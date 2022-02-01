@@ -29,6 +29,9 @@ require_relative "generator_commands/template"
 require_relative "generator_commands/repo"
 require_relative "generator_commands/policyfile"
 require_relative "generator_commands/generator_generator"
+require_relative "generator_commands/input"
+require_relative "generator_commands/profile"
+require_relative "generator_commands/waiver"
 require_relative "../dist"
 
 module ChefCLI
@@ -45,16 +48,19 @@ module ChefCLI
         generators << GeneratorCommand.new(name, class_name, description)
       end
 
-      generator(:cookbook, :Cookbook, "Generate a single cookbook")
-      generator(:recipe, :Recipe, "Generate a new recipe")
       generator(:attribute, :Attribute, "Generate an attributes file")
-      generator(:template, :Template, "Generate a file template")
+      generator(:cookbook, :Cookbook, "Generate a single cookbook")
       generator(:file, :CookbookFile, "Generate a cookbook file")
-      generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
-      generator(:resource, :Resource, "Generate a custom resource")
-      generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
-      generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy #{ChefCLI::Dist::PRODUCT}'s generator cookbook so you can customize it")
+      generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
+      generator(:input, :Input, "Generate a Compliance Phase InSpec Input file")
+      generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
+      generator(:profile, :Profile, "Generate a Compliance Phase InSpec profile")
+      generator(:recipe, :Recipe, "Generate a new recipe")
+      generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
+      generator(:resource, :Resource, "Generate a custom resource")
+      generator(:template, :Template, "Generate a file template")
+      generator(:waiver, :Waiver, "Generate a Compliance Phase InSpec Waiver file")
 
       def self.banner_headline
         <<~E

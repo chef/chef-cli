@@ -32,5 +32,14 @@ module ChefCLI
 
     # Called when cookbook loading starts.
     def library_load_start(file_count); end
+
+    # Called when cookbook loading starts.
+    def profiles_load_start; end
+
+    # Called when cookbook loading starts.
+    def inputs_load_start; end
+
+    # Called when cookbook loading starts.
+    def waivers_load_start; end
   end
 end

@@ -119,10 +119,10 @@ else
 end
 
 # compliance phase
-directory "#{cookbook_dir}/compliance"
-
 %w(inputs profiles waivers).each do |dir|
-  directory "#{cookbook_dir}/compliance/#{dir}"
+  directory "#{cookbook_dir}/compliance/#{dir}" do
+    recursive true
+  end
 end
 
 template "#{cookbook_dir}/compliance/README.md" do

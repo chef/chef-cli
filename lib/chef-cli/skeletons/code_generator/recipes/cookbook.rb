@@ -9,23 +9,10 @@ generator_desc('Ensuring correct cookbook content')
 directory cookbook_dir
 
 # metadata.rb
-spdx_license =  case context.license
-                when 'apachev2'
-                  'Apache-2.0'
-                when 'mit'
-                  'MIT'
-                when 'gplv2'
-                  'GPL-2.0'
-                when 'gplv3'
-                  'GPL-3.0'
-                else
-                  'All Rights Reserved'
-                end
-
 template "#{cookbook_dir}/metadata.rb" do
   helpers(ChefCLI::Generator::TemplateHelper)
   variables(
-    spdx_license: spdx_license
+    spdx_license: ChefCLI::Generator::TemplateHelper.license_long(context.license)
   )
   action :create_if_missing
 end
@@ -129,6 +116,18 @@ else
     helpers(ChefCLI::Generator::TemplateHelper)
     action :create_if_missing
   end
+end
+
+# compliance phase
+%w(inputs profiles waivers).each do |dir|
+  directory "#{cookbook_dir}/compliance/#{dir}" do
+    recursive true
+  end
+end
+
+template "#{cookbook_dir}/compliance/README.md" do
+  source 'compliance_dir_README.md.erb'
+  action :create_if_missing
 end
 
 # git

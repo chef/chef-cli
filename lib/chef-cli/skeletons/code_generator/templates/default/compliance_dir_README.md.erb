@@ -1,0 +1,25 @@
+# compliance
+
+This directory contains <%= ChefCLI::Dist::INSPEC_PRODUCT %> profile, waiver and input objects which are used with the <%= ChefCLI::Dist::INFRA_PRODUCT %> Compliance Phase.
+
+Detailed information on the <%= ChefCLI::Dist::INFRA_PRODUCT %> Compliance Phase can be found in the [Chef Documentation](https://docs.chef.io/chef_compliance_phase/).
+
+```plain
+./compliance
+├── inputs
+├── profiles
+└── waivers
+```
+
+Use the `<%= ChefCLI::Dist::EXEC %> generate` command from <%= ChefCLI::Dist::PRODUCT %> to create content for these directories:
+
+```sh
+# Generate a <%= ChefCLI::Dist::INSPEC_PRODUCT %> profile
+<%= ChefCLI::Dist::EXEC %> generate profile PROFILE_NAME
+
+# Generate a <%= ChefCLI::Dist::INSPEC_PRODUCT %> waiver file
+<%= ChefCLI::Dist::EXEC %> generate waiver WAIVER_NAME
+
+# Generate a <%= ChefCLI::Dist::INSPEC_PRODUCT %> input file
+<%= ChefCLI::Dist::EXEC %> generate input INPUT_NAME
+```

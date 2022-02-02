@@ -1,0 +1,14 @@
+# Cookbook:: <%= cookbook_name %>
+
+# The <%= ChefCLI::Dist::INSPEC_PRODUCT %> reference, with examples and extensive documentation, can be
+# found at https://docs.chef.io/inspec/resources/
+
+control 'example_control' do
+  impact 0.7
+  title 'Example Control'
+  desc 'This is an example control.  Replace with real test content.'
+
+  describe user('root'), :skip do
+    it { should exist }
+  end
+end

@@ -125,8 +125,8 @@ directory "#{cookbook_dir}/compliance"
   directory "#{cookbook_dir}/compliance/#{dir}"
 end
 
-cookbook_file "#{cookbook_dir}/compliance/README.md" do
-  source 'compliance/README.md'
+template "#{cookbook_dir}/compliance/README.md" do
+  source 'compliance_dir_README.md.erb'
   action :create_if_missing
 end
 

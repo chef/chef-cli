@@ -53,14 +53,14 @@ module ChefCLI
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:generator, :GeneratorGenerator, "Copy #{ChefCLI::Dist::PRODUCT}'s generator cookbook so you can customize it")
       generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
-      generator(:input, :Input, "Generate a Compliance Phase InSpec Input file")
+      generator(:input, :Input, "Generate a Compliance Phase #{ChefCLI::Dist::INSPEC_PRODUCT} Input file")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
-      generator(:profile, :Profile, "Generate a Compliance Phase InSpec profile")
+      generator(:profile, :Profile, "Generate a Compliance Phase #{ChefCLI::Dist::INSPEC_PRODUCT} profile")
       generator(:recipe, :Recipe, "Generate a new recipe")
       generator(:repo, :Repo, "Generate a #{ChefCLI::Dist::INFRA_PRODUCT} code repository")
       generator(:resource, :Resource, "Generate a custom resource")
       generator(:template, :Template, "Generate a file template")
-      generator(:waiver, :Waiver, "Generate a Compliance Phase InSpec Waiver file")
+      generator(:waiver, :Waiver, "Generate a Compliance Phase #{ChefCLI::Dist::INSPEC_PRODUCT} Waiver file")
 
       def self.banner_headline
         <<~E

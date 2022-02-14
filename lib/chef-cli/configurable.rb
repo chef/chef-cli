@@ -61,7 +61,11 @@ module ChefCLI
     end
 
     def config_loader
-      @config_loader ||= Chef::WorkstationConfigLoader.new(config[:config_file])
+      if !config[:profile].nil?
+        @config_loader ||= Chef::WorkstationConfigLoader.new(config[:config_file], profile: config[:profile])
+      else
+        @config_loader ||= Chef::WorkstationConfigLoader.new(config[:config_file])
+      end
     end
 
     def generator_config

@@ -46,7 +46,7 @@ module ChefCLI
 
       option :credential,
         long: "--credentials string",
-        description: "The credentials file to load for user profiles"
+        description: "The credentials file to load for user profiles (default $HOME/.chef/credentials)"
 
       option :profile,
         short: "-p",

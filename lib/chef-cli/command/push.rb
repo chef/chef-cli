@@ -44,6 +44,15 @@ module ChefCLI
 
       E
 
+      option :credential,
+        long: "--credentials string",
+        description: "The credentials file to load for user profiles (default $HOME/.chef/credentials)"
+
+      option :profile,
+        short: "-p",
+        long: "--profile PROFILE",
+        description: "The credentials profile to select."
+
       attr_reader :policyfile_relative_path
       attr_reader :policy_group
 

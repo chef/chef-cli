@@ -1,25 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.1 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.6.1](https://github.com/chef/chef-cli/tree/v5.6.1) (2022-02-16)
 
 #### Merged Pull Requests
 - Added the --profile with push command [#207](https://github.com/chef/chef-cli/pull/207) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.6.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Added the --profile with push command [#207](https://github.com/chef/chef-cli/pull/207) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.1 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.6.0](https://github.com/chef/chef-cli/tree/v5.6.0) (2022-02-02)
 
 #### Merged Pull Requests
 - Fix the output of the chef generate command [#206](https://github.com/chef/chef-cli/pull/206) ([tas50](https://github.com/tas50))
 - Adds generate subcommands for Compliance Phase objects [#205](https://github.com/chef/chef-cli/pull/205) ([collinmcneese](https://github.com/collinmcneese))
-<!-- latest_stable_release -->
 
 ## [v5.5.6](https://github.com/chef/chef-cli/tree/v5.5.6) (2022-01-26)
 

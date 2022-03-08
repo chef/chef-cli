@@ -15,7 +15,10 @@
 # limitations under the License.
 #
 
+require "chef/config"
 require "cookbook-omnifetch"
+require_relative "exceptions"
+require_relative "chef_server_api_multi"
 require_relative "shell_out"
 require_relative "cookbook_metadata"
 require_relative "helpers"
@@ -29,4 +32,15 @@ CookbookOmnifetch.configure do |c|
   c.shell_out_class = ChefCLI::ShellOut
   c.cached_cookbook_class = ChefCLI::CookbookMetadata
   c.chef_server_download_concurrency = 10
+
+  c.default_chef_server_http_client = lambda do
+    if Chef::Config.node_name.nil?
+      raise ChefCLI::BUG.new("CookbookOmnifetch.default_chef_server_http_client requires Chef::Config;" \
+                             " load the config or configure a different default")
+    end
+
+    ChefCLI::ChefServerAPIMulti.new(Chef::Config.chef_server_url,
+                                    signing_key_filename: Chef::Config.client_key,
+                                    client_name: Chef::Config.node_name)
+  end
 end

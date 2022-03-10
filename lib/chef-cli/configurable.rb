@@ -18,9 +18,6 @@
 require "chef/config"
 require "chef/workstation_config_loader"
 
-require_relative "cookbook_omnifetch"
-require_relative "chef_server_api_multi"
-
 # Define a config context for ChefCLI
 class Chef::Config
 
@@ -52,8 +49,6 @@ module ChefCLI
 
       config_loader.load
       @chef_config = Chef::Config
-      CookbookOmnifetch.integration.default_chef_server_http_client = default_chef_server_http_client
-      @chef_config
     end
 
     def chefcli_config
@@ -80,14 +75,5 @@ module ChefCLI
       @chef_config = nil
       @config_loader = nil
     end
-
-    def default_chef_server_http_client
-      lambda do
-        ChefServerAPIMulti.new(@chef_config.chef_server_url,
-          signing_key_filename: @chef_config.client_key,
-          client_name: @chef_config.node_name)
-      end
-    end
-
   end
 end

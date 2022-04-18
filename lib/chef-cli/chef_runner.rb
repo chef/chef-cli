@@ -39,6 +39,7 @@ module ChefCLI
     end
 
     def converge
+      p "platform is :- #{RUBY_PLATFORM}"
       configure
       Chef::Runner.new(run_context).converge
     rescue Chef::Exceptions::CookbookNotFound => e

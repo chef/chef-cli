@@ -45,6 +45,7 @@ module ChefCLI
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
+      puts "Error in windows:- #{e.message}"
       raise ChefConvergeError.new("#{ChefCLI::Dist::INFRA_PRODUCT} failed to converge: #{e} from file #{e.backtrace.first}", e)
     end
 

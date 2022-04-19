@@ -39,14 +39,12 @@ module ChefCLI
     end
 
     def converge
-      p "platform is :- #{RUBY_PLATFORM}"
       configure
       Chef::Runner.new(run_context).converge
     rescue Chef::Exceptions::CookbookNotFound => e
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
-      puts "Error in windows:- #{e.message}"
       raise ChefConvergeError.new("#{ChefCLI::Dist::INFRA_PRODUCT} failed to converge: #{e} from file #{e.backtrace.first}", e)
     end
 

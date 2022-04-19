@@ -17,7 +17,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: ruby:2.6
 
 - label: run-specs-ruby-2.7
   command:
@@ -25,7 +25,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.7-buster
+        image: ruby:2.7
 
 - label: run-specs-ruby-3.0
   command:
@@ -33,8 +33,16 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:3.0-buster
-        
+        image: ruby:3.0
+
+- label: run-specs-ruby-3.1
+  command:
+    - .expeditor/run_linux_tests.sh rspec
+  expeditor:
+    executor:
+      docker:
+        image: ruby:3.1
+
 - label: run-specs-windows-2.7
   command:
     - powershell .expeditor/run_windows_tests.ps1 rspec
@@ -44,13 +52,23 @@ steps:
         host_os: windows
         image: rubydistros/windows-2019:2.7
 
+- label: run-specs-windows-ruby-3.0
+  command:
+    - powershell .expeditor/run_windows_tests.ps1 rspec
+  expeditor:
+    executor:
+      docker:
+        host_os: windows
+        shell: ["powershell", "-Command"]
+        image: rubydistros/windows-2019:3.0
+
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
     - .expeditor/run_linux_tests.sh "rake style:cookstyle"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: ruby:2.6
 
 - label: chefstyle-tests-ruby-2.6
   command:
@@ -58,4 +76,4 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: ruby:2.6

@@ -112,7 +112,7 @@ module ChefCLI
         ui.msg ""
 
         ui.msg "Lockfile written to #{policyfile_lock_expanded_path}"
-        ui.msg "Policy revision id: #{policyfile_lock.revision_id}"
+        ui.msg "Policy revision id: #{lock_data["revision_id"]}"
       rescue => error
         raise PolicyfileInstallError.new("Failed to generate Policyfile.lock", error)
       end

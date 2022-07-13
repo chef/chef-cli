@@ -36,11 +36,12 @@ module ChefCLI
       attr_reader :ui
       attr_reader :storage_config
 
-      def initialize(policyfile: nil, ui: nil, policy_group: nil, config: nil, root_dir: nil)
+      def initialize(policyfile: nil, ui: nil, policy_group: nil, config: nil, root_dir: nil, calling_request: "CLI")
         @root_dir = root_dir
         @ui = ui
         @config = config
         @policy_group = policy_group
+        @calling_request = calling_request
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
@@ -71,12 +72,13 @@ module ChefCLI
 
       def run
         unless File.exist?(policyfile_lock_expanded_path)
-          raise LockfileNotFound, "No lockfile at #{policyfile_lock_expanded_path} - you need to run `install` before `push`"
+          raise @calling_request == "CLI" ? LockfileNotFound : LockfileNotFoundAPI , "No lockfile at #{policyfile_lock_expanded_path} - you need to run `install` before `push`"
         end
 
         validate_lockfile
         write_updated_lockfile
         upload_policy
+        { "status" => 200, "message" => "Succeed" } if @calling_request != "CLI"
       end
 
       def policyfile_lock

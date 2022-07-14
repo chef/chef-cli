@@ -27,14 +27,6 @@ steps:
       docker:
         image: ruby:3.0
 
-- label: run-specs-ruby-3.1
-  command:
-    - .expeditor/run_linux_tests.sh rspec
-  expeditor:
-    executor:
-      docker:
-        image: ruby:3.1
-
 - label: run-specs-windows-2.7
   command:
     - powershell .expeditor/run_windows_tests.ps1 rspec
@@ -53,16 +45,6 @@ steps:
         host_os: windows
         shell: ["powershell", "-Command"]
         image: rubydistros/windows-2019:3.0
-
-- label: run-specs-windows-ruby-3.1
-  command:
-    - powershell .expeditor/run_windows_tests.ps1 rspec
-  expeditor:
-    executor:
-      docker:
-        host_os: windows
-        shell: ["powershell", "-Command"]
-        image: rubydistros/windows-2019:3.1
 
 - label: cookstyle-generator-cb-tests-ruby-2.7
   command:

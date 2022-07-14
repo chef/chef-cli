@@ -78,7 +78,7 @@ module ChefCLI
         validate_lockfile
         write_updated_lockfile
         upload_policy
-        { "status" => 200, "message" => "Succeed" } if @calling_request != "CLI"
+        { "status" => 200, "message" => "Success" } if @calling_request != "CLI"
       end
 
       def policyfile_lock

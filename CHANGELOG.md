@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.3 -->
-## [v5.6.3](https://github.com/chef/chef-cli/tree/v5.6.3) (2022-04-19)
+<!-- latest_release 5.6.4 -->
+## [v5.6.4](https://github.com/chef/chef-cli/tree/v5.6.4) (2022-07-14)
 
 #### Merged Pull Requests
-- Added ruby 3.1 testing  [#209](https://github.com/chef/chef-cli/pull/209) ([nikhil2611](https://github.com/nikhil2611))
+- Update minimum ruby version to 2.7 [#213](https://github.com/chef/chef-cli/pull/213) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update minimum ruby version to 2.7 [#213](https://github.com/chef/chef-cli/pull/213) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.4 -->
 - Added ruby 3.1 testing  [#209](https://github.com/chef/chef-cli/pull/209) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.3 -->
 <!-- release_rollup -->
 

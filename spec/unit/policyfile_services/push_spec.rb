@@ -46,6 +46,8 @@ describe ChefCLI::PolicyfileServices::Push do
 
   let(:policy_document_native_api) { false }
 
+  let(:calling_request) { "API" }
+
   let(:config) do
     double("Chef::Config",
       chef_server_url: "https://localhost:10443",
@@ -57,6 +59,8 @@ describe ChefCLI::PolicyfileServices::Push do
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:push_service) { described_class.new(policyfile: policyfile_rb_name, policy_group: policy_group, ui: ui, config: config, root_dir: working_dir) }
+
+  let(:push_service_api) { described_class.new(policyfile: policyfile_rb_name, policy_group: policy_group, ui: ui, config: config, root_dir: working_dir, calling_request: calling_request) }
 
   it "configures an HTTP client" do
     expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
@@ -108,7 +112,9 @@ describe ChefCLI::PolicyfileServices::Push do
     it "errors out" do
       expect { push_service.run }.to raise_error(ChefCLI::LockfileNotFound)
     end
-
+    it "errors out, call by API client" do
+      expect { push_service_api.run }.to raise_error(ChefCLI::LockfileNotFoundAPI)
+    end
   end
 
   context "when a lockfile is present" do

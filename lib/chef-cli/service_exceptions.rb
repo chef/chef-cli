@@ -70,6 +70,19 @@ module ChefCLI
   class PolicyfileServiceError < StandardError
   end
 
+  class PolicyfileServiceErrorAPI < StandardError
+    def initialize(msg, exception_type = "API exception")
+      @exception_type = exception_type
+      super( { message: msg, status: 422 }.to_json)
+    end
+  end
+
+  class PolicyfileNotFoundAPI < PolicyfileServiceErrorAPI
+  end
+
+  class LockfileNotFoundAPI < PolicyfileServiceErrorAPI
+  end
+
   class PolicyfileNotFound < PolicyfileServiceError
   end
 

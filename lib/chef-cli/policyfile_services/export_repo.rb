@@ -120,7 +120,7 @@ module ChefCLI
         # p = Process.pid
         # t = Time.new.utc.strftime("%Y%m%d%H%M%S") # commenting out as we need to tweak long path which cause issue while exporting in windows machine
         # path = "chefcli-export-#{p}-#{t}"
-        require 'securerandom'
+        require "securerandom" unless defined?(SecureRandom)
         random_string = SecureRandom.hex(2)
         path = "chef-export-#{random_string}"
         Dir.mktmpdir(path) do |d|

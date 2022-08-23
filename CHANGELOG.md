@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.5 -->
-## [v5.6.5](https://github.com/chef/chef-cli/tree/v5.6.5) (2022-07-14)
+<!-- latest_release 5.6.6 -->
+## [v5.6.6](https://github.com/chef/chef-cli/tree/v5.6.6) (2022-08-23)
 
 #### Merged Pull Requests
-- Refactor chef install/update/push command for non-CLI use [#212](https://github.com/chef/chef-cli/pull/212) ([sanjain-progress](https://github.com/sanjain-progress))
+- Fix chef-export when cookbook path is long in windows [#215](https://github.com/chef/chef-cli/pull/215) ([i5pranay93](https://github.com/i5pranay93))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Fix chef-export when cookbook path is long in windows [#215](https://github.com/chef/chef-cli/pull/215) ([i5pranay93](https://github.com/i5pranay93)) <!-- 5.6.6 -->
 - Refactor chef install/update/push command for non-CLI use [#212](https://github.com/chef/chef-cli/pull/212) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.5 -->
 - Update minimum ruby version to 2.7 [#213](https://github.com/chef/chef-cli/pull/213) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.4 -->
 - Added ruby 3.1 testing  [#209](https://github.com/chef/chef-cli/pull/209) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.3 -->

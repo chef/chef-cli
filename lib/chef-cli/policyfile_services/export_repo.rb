@@ -117,9 +117,10 @@ module ChefCLI
       private
 
       def with_staging_dir
-        p = Process.pid
-        t = Time.new.utc.strftime("%Y%m%d%H%M%S")
-        Dir.mktmpdir("chefcli-export-#{p}-#{t}") do |d|
+        require "securerandom" unless defined?(SecureRandom)
+        random_string = SecureRandom.hex(2)
+        path = "chef-export-#{random_string}"
+        Dir.mktmpdir(path) do |d|
           begin
             @staging_dir = d
             yield

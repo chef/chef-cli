@@ -37,7 +37,7 @@ module ChefCLI
       attr_reader :overwrite
       attr_reader :chef_config
 
-      def initialize(policyfile: nil, ui: nil, root_dir: nil, overwrite: false, config: nil, calling_request: "CLI")
+      def initialize(policyfile: nil, ui: nil, root_dir: nil, overwrite: false, config: nil)
         @ui = ui
         @overwrite = overwrite
         @chef_config = config
@@ -47,7 +47,6 @@ module ChefCLI
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
 
         @policyfile_content = nil
-        @calling_request = calling_request
         @policyfile_compiler = nil
       end
 
@@ -55,9 +54,9 @@ module ChefCLI
         # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
         # See card CC-232
         if @policyfile_rel_path.end_with?(".lock.json") && !File.exist?(policyfile_lock_expanded_path)
-          raise @calling_request == "CLI" ? PolicyfileNotFound : PolicyfileNotFoundAPI , "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
+          raise PolicyfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
         elsif @policyfile_rel_path.end_with?(".rb") && !File.exist?(policyfile_expanded_path)
-          raise @calling_request == "CLI" ? PolicyfileNotFound : PolicyfileNotFoundAPI , "Policyfile not found at path #{policyfile_expanded_path}"
+          raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
         end
 
         if installing_from_lock?
@@ -67,7 +66,6 @@ module ChefCLI
         else
           update_lock_and_install(cookbooks_to_update, exclude_deps)
         end
-        { "status" => 200, "message" => "Success" } if @calling_request != "CLI"
       end
 
       def policyfile_content

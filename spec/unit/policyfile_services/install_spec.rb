@@ -54,8 +54,6 @@ describe ChefCLI::PolicyfileServices::Install do
 
   let(:overwrite) { false }
 
-  let(:calling_request) { "API" }
-
   let(:cookbooks_to_update) { [] || [ "my_cookbook" ] }
 
   let(:cookbooks_to_update_empty) { false }
@@ -63,8 +61,6 @@ describe ChefCLI::PolicyfileServices::Install do
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: overwrite) }
-
-  let(:install_service_api) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: overwrite, calling_request: calling_request) }
 
   let(:storage_config) do
     ChefCLI::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
@@ -81,14 +77,6 @@ describe ChefCLI::PolicyfileServices::Install do
 
     it "errors out" do
       expect { install_service.run }.to raise_error(ChefCLI::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
-    end
-
-  end
-
-  context "when no Policyfile is present or specified call by API client" do
-
-    it "errors out" do
-      expect { install_service_api.run }.to raise_error(ChefCLI::PolicyfileNotFoundAPI, { message: "Policyfile not found at path #{policyfile_rb_path}", status: 422 }.to_json)
     end
 
   end
@@ -117,10 +105,6 @@ describe ChefCLI::PolicyfileServices::Install do
 
     before do
       with_file(policyfile_rb_path) { |f| f.print(policyfile_content) }
-    end
-
-    it "reads the policyfile from disk and create lock file, call by API client" do
-      expect(install_service_api.run).to eq({ "status" => 200, "message" => "Success" })
     end
 
     it "infers that the Policyfile.rb is located at $CWD/Policyfile.rb" do

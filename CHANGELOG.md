@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.7 -->
-## [v5.6.7](https://github.com/chef/chef-cli/tree/v5.6.7) (2022-09-05)
+<!-- latest_release 5.6.8 -->
+## [v5.6.8](https://github.com/chef/chef-cli/tree/v5.6.8) (2022-10-14)
 
 #### Merged Pull Requests
-- Revert &quot;Refactor chef install/update/push command for non-CLI use  [#216](https://github.com/chef/chef-cli/pull/216) ([sanjain-progress](https://github.com/sanjain-progress))
+- Resource not accessible by integration [#217](https://github.com/chef/chef-cli/pull/217) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.1 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Resource not accessible by integration [#217](https://github.com/chef/chef-cli/pull/217) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.8 -->
 - Revert &quot;Refactor chef install/update/push command for non-CLI use  [#216](https://github.com/chef/chef-cli/pull/216) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.7 -->
 - Fix chef-export when cookbook path is long in windows [#215](https://github.com/chef/chef-cli/pull/215) ([i5pranay93](https://github.com/i5pranay93)) <!-- 5.6.6 -->
 - Refactor chef install/update/push command for non-CLI use [#212](https://github.com/chef/chef-cli/pull/212) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 5.6.5 -->

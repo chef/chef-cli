@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.6.9 -->
+## [v5.6.9](https://github.com/chef/chef-cli/tree/v5.6.9) (2022-10-25)
+
+#### Merged Pull Requests
+- Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.6.8 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih)) <!-- 5.6.9 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

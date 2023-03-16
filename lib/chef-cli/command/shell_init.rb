@@ -122,7 +122,7 @@ module ChefCLI
         return "" unless (completion_template_basename = completion_template_for(shell))
 
         completion_template_path = expand_completion_template_path(completion_template_basename)
-        erb = ERB.new(File.read(completion_template_path), nil, "-")
+        erb = ERB.new(File.read(completion_template_path), trim_mode: "-")
         context_binding = shell_completion_template_context.get_binding
         erb.result(context_binding)
       end

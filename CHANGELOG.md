@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.9 -->
-## [v5.6.9](https://github.com/chef/chef-cli/tree/v5.6.9) (2022-10-25)
+<!-- latest_release 5.6.10 -->
+## [v5.6.10](https://github.com/chef/chef-cli/tree/v5.6.10) (2023-03-16)
 
 #### Merged Pull Requests
-- Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih))
+- remove deprecated arguments in erb.new [#220](https://github.com/chef/chef-cli/pull/220) ([Stromweld](https://github.com/Stromweld))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.8 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- remove deprecated arguments in erb.new [#220](https://github.com/chef/chef-cli/pull/220) ([Stromweld](https://github.com/Stromweld)) <!-- 5.6.10 -->
 - Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih)) <!-- 5.6.9 -->
 <!-- release_rollup -->
 

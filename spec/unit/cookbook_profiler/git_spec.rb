@@ -25,7 +25,8 @@ describe ChefCLI::CookbookProfiler::Git do
 
   include ChefCLI::Helpers
 
-  let(:git_profiler) do
+  let!(:git_profiler) do
+    ChefCLI::CookbookProfiler::Git.uncache
     ChefCLI::CookbookProfiler::Git.new(cookbook_path)
   end
 

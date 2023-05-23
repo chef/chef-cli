@@ -18,6 +18,8 @@
 
 require "chef-licensing"
 require_relative "config"
+require "faraday_middleware"
+
 
 module ChefCLI
   module Licensing

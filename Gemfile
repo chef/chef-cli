@@ -10,6 +10,7 @@ group :test do
   gem "cookstyle", "=7.7.2" # this forces dependabot PRs to open which triggers cookstyle CI on the chef generate command
   gem "chefstyle", "=1.6.2"
   gem "test-kitchen", ">= 2.11.1"
+  gem 'faraday_middleware'
 
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
     gem "chef-zero", "~> 14"

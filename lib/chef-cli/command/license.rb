@@ -39,7 +39,7 @@ module ChefCLI
 
       SUB_COMMANDS = [
         { name: "list", description: "List the currently active license" },
-        { name: "add", description: "Create a new Free/Trial license or activate the commercial license" }
+        { name: "add", description: "Create a new Free/Trial license or activate the commercial license" },
       ]
 
       attr_accessor :ui
@@ -49,8 +49,8 @@ module ChefCLI
           #{MAIN_COMMAND_HELP}
           Subcommands:
           #{SUB_COMMANDS.map do |c|
-          "  #{c[:name].ljust(7)}#{c[:description]}"
-        end.join("\n") }
+            "  #{c[:name].ljust(7)}#{c[:description]}"
+          end.join("\n") }
 
           Options:
         BANNER

@@ -28,7 +28,7 @@ module ChefCLI
 
         def validate
           ChefLicensing.fetch_and_persist.each do |license_key|
-            ui.msg "License Key: #{license_key}"
+            puts "License Key: #{license_key}"
           end
         end
 

@@ -19,7 +19,7 @@
 require "chef-licensing"
 
 ChefLicensing.configure do |config|
-  config.chef_product_name = "chef"
-  config.chef_entitlement_id = "a5213d76-181f-4924-adba-4b7ed2b098b5"
+  config.chef_product_name = "workstation"
+  config.chef_entitlement_id = "x6f3bc76-a94f-4b6c-bc97-4b7ed2b045c0"
   config.chef_executable_name = "chef"
 end

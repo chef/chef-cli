@@ -38,9 +38,13 @@ module ChefCLI
       HELP
 
       SUB_COMMANDS = [
-        { name: "list", description: "List the currently active license" },
-        { name: "add", description: "Create a new Free/Trial license or activate the commercial license" },
+        { name: "list", description: "List details of the license(s) installed on the system." },
+        { name: "add", description: "Create & install a Free/ Trial license or install a Commercial license on the system." },
       ]
+
+      option :chef_license_key,
+        long: "--chef-license-key LICENSE",
+        description: "New license key to accept and store in the system"
 
       attr_accessor :ui
 

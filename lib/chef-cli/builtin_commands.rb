@@ -58,5 +58,5 @@ ChefCLI.commands do |c|
   c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-cli/command/describe_cookbook",
                                                     desc: "Prints cookbook checksum information used for cookbook identifier"
   c.builtin "license", :License, require_path: "chef-cli/command/license",
-            desc: "View the active license or generate the free/trial licenses for the chef workstation"
+            desc: "Create & install a new license on the system or view installed license(s)."
 end

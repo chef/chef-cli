@@ -18,7 +18,6 @@
 
 require_relative "base"
 require "chef-cli/licensing/base"
-require "byebug"
 require_relative "../configurable"
 
 module ChefCLI

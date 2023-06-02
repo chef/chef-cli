@@ -24,6 +24,9 @@ module ChefCLI
   module Licensing
     class Base
       class << self
+        def feature_enabled?
+          File.exists?(File.join(Dir.home, ".chef/license_feature.json"))
+        end
 
         def validate
           ChefLicensing.fetch_and_persist.each do |license_key|

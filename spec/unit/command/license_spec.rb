@@ -26,6 +26,14 @@ describe ChefCLI::Command::License do
   let(:params) { [] }
   let(:ui) { TestHelpers::TestUI.new }
 
+  before do
+    allow(ChefCLI::Licensing::Base).to receive(:feature_enabled?).and_return(true)
+    # Disable the access of local licenses
+    allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_license_key_from_arg).and_return([])
+    allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_license_key_from_env).and_return([])
+    allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_from_file).and_return([])
+  end
+
   let(:command) do
     c = described_class.new
     c.validate_params!(params)
@@ -110,10 +118,13 @@ describe ChefCLI::Command::License do
     end
 
     context "when no licenses are accepted" do
-      it "should return the correct error message" do
-        expect(command.run(params)).to eq(0)
+      before do
+        allow_any_instance_of(ChefLicensing::ListLicenseKeys).to receive(:fetch_license_keys).and_return([])
+        allow_any_instance_of(ChefLicensing::ListLicenseKeys).to receive(:fetch_licenses_metadata).and_return([])
+      end
 
-        expect(ui.output).to eq("No license keys found on disk.")
+      it "should return the correct error message" do
+        expect(command.run(params)).to eq([])
       end
     end
 

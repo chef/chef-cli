@@ -152,6 +152,12 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
       expect(stderr_io.string).to include(message)
     end
 
+    it "errors if cookbook parent folder is same as generator parent folder" do
+      expect(with_argv(%w{ my_cookbook -g my_generator }).run).to eq(1)
+      message = "The generator and the cookbook cannot be in the same directory. Please specify a cookbook directory that is different from the generator's parent."
+      expect(stderr_io.string).to include(message)
+    end
+
     it "warns if a hyphenated cookbook name is passed" do
       expect(with_argv(%w{my-cookbook}).run).to eq(0)
       message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook for more information."

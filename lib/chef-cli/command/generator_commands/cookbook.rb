@@ -180,7 +180,11 @@ module ChefCLI
         end
 
         def cookbook_full_path
-          File.expand_path(cookbook_name_or_path, Dir.pwd)
+          if !cookbook_name_or_path.nil? && !cookbook_name_or_path.empty?
+            File.expand_path(cookbook_name_or_path, Dir.pwd)
+          else
+            ""
+          end
         end
 
         def policy_mode?
@@ -203,6 +207,11 @@ module ChefCLI
             @params_valid = false
           elsif File.basename(@cookbook_name_or_path).include?("-")
             msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook for more information.")
+          end
+
+          if File.identical?(Pathname.new(cookbook_full_path).parent, generator_cookbook_path)
+            err("The generator and the cookbook cannot be in the same directory. Please specify a cookbook directory that is different from the generator's parent.")
+            @params_valid = false
           end
 
           if config[:berks] && config[:policy]

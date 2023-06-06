@@ -26,13 +26,14 @@ shared_examples_for "custom generator cookbook" do
 
     before do
       reset_tempdir
+      FileUtils.mkdir_p("#{tempdir}/nested")
       code_generator.read_and_validate_params
       allow(code_generator.config_loader).to receive(:load)
     end
 
     it "configures the generator context" do
       code_generator.setup_context
-      expect(generator_context.cookbook_name).to eq(generator_arg)
+      expect(generator_context.cookbook_name).to eq(File.basename(generator_arg))
       expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
       expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
     end
@@ -60,23 +61,29 @@ shared_examples_for "custom generator cookbook" do
 
       it "configures the generator context" do
         code_generator.setup_context
-        expect(generator_context.cookbook_name).to eq(generator_arg)
-        expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
-        expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
+        expect(generator_context.cookbook_name).to eq(File.basename(generator_arg))
+        expect(code_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-cli/skeletons", project_root))
+        expect(code_generator.chef_runner.run_list).to eq(["recipe[code_generator::#{generator_name}]"])
       end
     end
 
     context "with an invalid generator-cookbook path" do
 
+      let(:argv) { ["new_cookbook", "--generator-cookbook", "#{tempdir}/nested2"] }
+
+      before do
+        FileUtils.mkdir_p("#{tempdir}/nested2")
+        FileUtils.cp_r(default_generator_cookbook_path, "#{tempdir}/nested2/")
+      end
+
       it "fails with an informative error" do
-        Dir.chdir(tempdir) do
+        Dir.chdir("#{tempdir}/nested2") do
           allow(code_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           allow(code_generator).to receive(:stderr).and_return(stderr_io)
           expect(code_generator.run).to eq(1)
         end
 
-        cookbook_path = File.dirname(generator_cookbook_path)
-        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::#{generator_name}]"] in #{cookbook_path}}
+        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[nested2::#{generator_name}]"] in #{tempdir}}
 
         expect(stderr_io.string).to include(expected_msg)
       end
@@ -95,7 +102,7 @@ shared_examples_for "custom generator cookbook" do
       end
 
       it "creates the new files" do
-        expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
+        expect(code_generator.chef_runner.cookbook_path).to eq("#{tempdir}")
         expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
 
         Dir.chdir(tempdir) do
@@ -108,10 +115,12 @@ shared_examples_for "custom generator cookbook" do
 
     context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
 
+      let(:argv) { [generator_name, "--generator-cookbook", generator_cookbook_path] }
+
       before do
         FileUtils.mkdir_p(generator_cookbook_path)
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
-
+        FileUtils.mkdir_p("#{tempdir}/nested")
         allow(code_generator).to receive(:stderr).and_return(stderr_io)
       end
 
@@ -121,7 +130,7 @@ shared_examples_for "custom generator cookbook" do
         Dir.chdir(tempdir) do
           code_generator.run
         end
-        generated_files = Dir.glob("#{tempdir}/#{generator_arg}/**/*", File::FNM_DOTMATCH)
+        generated_files = Dir.glob("#{tempdir}/nested/new_cookbook/**/*", File::FNM_DOTMATCH)
         expected_cookbook_files.each do |expected_file|
           expect(generated_files).to include(expected_file)
         end

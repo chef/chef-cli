@@ -209,7 +209,9 @@ module ChefCLI
             msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/workstation/ctl_chef/#chef-generate-cookbook for more information.")
           end
 
-          if File.identical?(Pathname.new(cookbook_full_path).parent, generator_cookbook_path)
+          if !generator_cookbook_path.empty? &&
+             !cookbook_full_path.empty? &&
+             File.identical?(Pathname.new(cookbook_full_path).parent, generator_cookbook_path)
             err("The generator and the cookbook cannot be in the same directory. Please specify a cookbook directory that is different from the generator's parent.")
             @params_valid = false
           end

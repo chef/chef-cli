@@ -10,6 +10,7 @@ shared_examples_for "custom generator cookbook" do
     let(:default_generator_cookbook_path) { File.expand_path("lib/chef-cli/skeletons/code_generator", project_root) }
 
     let(:generator_cookbook_path) { File.join(tempdir, "a_generator_cookbook") }
+    let(:generator_cookbook_path2) { File.join(tempdir, "a_generator_cookbook2") }
     let(:generator_copyright_holder) { "Chef" }
     let(:generator_email) { "mail@chef.io" }
     let(:generator_license) { "Free as in Beer" }
@@ -26,7 +27,10 @@ shared_examples_for "custom generator cookbook" do
 
     before do
       reset_tempdir
+      allow(code_generator).to receive(:stderr).and_return(stderr_io)
       FileUtils.mkdir_p("#{tempdir}/nested")
+      FileUtils.mkdir_p(generator_cookbook_path2)
+      FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path2)
       code_generator.read_and_validate_params
       allow(code_generator.config_loader).to receive(:load)
     end
@@ -115,12 +119,9 @@ shared_examples_for "custom generator cookbook" do
 
     context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
 
-      let(:argv) { [generator_name, "--generator-cookbook", generator_cookbook_path] }
+      let(:argv) { ["#{tempdir}/new_cookbook", "--generator-cookbook", generator_cookbook_path2] }
 
       before do
-        FileUtils.mkdir_p(generator_cookbook_path)
-        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
-        FileUtils.mkdir_p("#{tempdir}/nested")
         allow(code_generator).to receive(:stderr).and_return(stderr_io)
       end
 
@@ -130,12 +131,12 @@ shared_examples_for "custom generator cookbook" do
         Dir.chdir(tempdir) do
           code_generator.run
         end
-        generated_files = Dir.glob("#{tempdir}/nested/new_cookbook/**/*", File::FNM_DOTMATCH)
+        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
         expected_cookbook_files.each do |expected_file|
           expect(generated_files).to include(expected_file)
         end
 
-        code_generator_path = File.join(generator_cookbook_path, "code_generator")
+        code_generator_path = File.join(generator_cookbook_path2, "code_generator")
         warning_message = "WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_path}')"
 
         expect(stderr_io.string).to include(warning_message)

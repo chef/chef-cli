@@ -41,7 +41,7 @@ module ChefCLI
     def converge
       configure
       Chef::Runner.new(run_context).converge
-    rescue Chef::Exceptions::CookbookNotFoundInRepo => e
+    rescue Chef::Exceptions::CookbookNotFound => e
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e

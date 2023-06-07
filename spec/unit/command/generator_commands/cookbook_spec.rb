@@ -117,7 +117,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
 
   include_examples "custom generator cookbook" do
 
-    let(:generator_arg) { "nested/new_cookbook" }
+    let(:generator_arg) { "new_cookbook" }
 
     let(:generator_name) { "cookbook" }
 

@@ -10,7 +10,6 @@ shared_examples_for "custom generator cookbook" do
     let(:default_generator_cookbook_path) { File.expand_path("lib/chef-cli/skeletons/code_generator", project_root) }
 
     let(:generator_cookbook_path) { File.join(tempdir, "a_generator_cookbook") }
-    let(:generator_cookbook_path2) { File.join(tempdir, "a_generator_cookbook2") }
     let(:generator_copyright_holder) { "Chef" }
     let(:generator_email) { "mail@chef.io" }
     let(:generator_license) { "Free as in Beer" }
@@ -25,17 +24,11 @@ shared_examples_for "custom generator cookbook" do
       end
     end
 
-    before do
+    it "configures the generator context" do
       reset_tempdir
-      allow(code_generator).to receive(:stderr).and_return(stderr_io)
-      FileUtils.mkdir_p("#{tempdir}/nested")
-      FileUtils.mkdir_p(generator_cookbook_path2)
-      FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path2)
       code_generator.read_and_validate_params
       allow(code_generator.config_loader).to receive(:load)
-    end
 
-    it "configures the generator context" do
       code_generator.setup_context
       expect(generator_context.cookbook_name).to eq(File.basename(generator_arg))
       expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
@@ -60,6 +53,9 @@ shared_examples_for "custom generator cookbook" do
       end
 
       before do
+        reset_tempdir
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
         allow(code_generator).to receive(:chefcli_config).and_return(chefcli_config)
       end
 
@@ -73,21 +69,26 @@ shared_examples_for "custom generator cookbook" do
 
     context "with an invalid generator-cookbook path" do
 
-      let(:argv) { ["new_cookbook", "--generator-cookbook", "#{tempdir}/nested2"] }
+      let(:argv) { ["new_cookbook", "--generator-cookbook", "#{tempdir}/nested/a_generator_cookbook"] }
 
       before do
-        FileUtils.mkdir_p("#{tempdir}/nested2")
-        FileUtils.cp_r(default_generator_cookbook_path, "#{tempdir}/nested2/")
+        reset_tempdir
+        FileUtils.mkdir_p("#{tempdir}/nested")
+        FileUtils.cp_r(default_generator_cookbook_path, "#{tempdir}/nested/")
+
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
       end
 
       it "fails with an informative error" do
-        Dir.chdir("#{tempdir}/nested2") do
+        Dir.chdir(tempdir) do
           allow(code_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           allow(code_generator).to receive(:stderr).and_return(stderr_io)
           expect(code_generator.run).to eq(1)
         end
 
-        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[nested2::#{generator_name}]"] in #{tempdir}}
+        cookbook_path = File.dirname(generator_cookbook_path)
+        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::#{generator_name}]"] in #{cookbook_path}}
 
         expect(stderr_io.string).to include(expected_msg)
       end
@@ -99,6 +100,10 @@ shared_examples_for "custom generator cookbook" do
       let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
 
       before do
+        reset_tempdir
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
+
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
 
         # have to update metadata with the correct name
@@ -119,10 +124,16 @@ shared_examples_for "custom generator cookbook" do
 
     context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
 
-      let(:argv) { ["#{tempdir}/new_cookbook", "--generator-cookbook", generator_cookbook_path2] }
+      let(:argv) { ["#{tempdir}/new_cookbook", "--generator-cookbook", generator_cookbook_path] }
 
       before do
+        reset_tempdir
+        FileUtils.mkdir_p(generator_cookbook_path)
+        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
+
         allow(code_generator).to receive(:stderr).and_return(stderr_io)
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
       end
 
       it "creates the new_files (and warns about deprecated usage)" do
@@ -136,7 +147,7 @@ shared_examples_for "custom generator cookbook" do
           expect(generated_files).to include(expected_file)
         end
 
-        code_generator_path = File.join(generator_cookbook_path2, "code_generator")
+        code_generator_path = File.join(generator_cookbook_path, "code_generator")
         warning_message = "WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_path}')"
 
         expect(stderr_io.string).to include(warning_message)

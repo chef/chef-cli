@@ -210,8 +210,8 @@ module ChefCLI
           end
 
           if !generator_cookbook_path.empty? &&
-             !cookbook_full_path.empty? &&
-             File.identical?(Pathname.new(cookbook_full_path).parent, generator_cookbook_path)
+              !cookbook_full_path.empty? &&
+              File.identical?(Pathname.new(cookbook_full_path).parent, generator_cookbook_path)
             err("The generator and the cookbook cannot be in the same directory. Please specify a cookbook directory that is different from the generator's parent.")
             @params_valid = false
           end

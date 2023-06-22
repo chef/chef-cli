@@ -88,4 +88,3 @@ The following generators are built-in:
 
 *To run the test cases use rspec :*
 ```bundle exec rspec```
-

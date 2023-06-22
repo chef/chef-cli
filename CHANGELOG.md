@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.6.12 -->
+## [v5.6.12](https://github.com/chef/chef-cli/tree/v5.6.12) (2023-06-22)
+
+#### Merged Pull Requests
+- Dummy merge commit [#227](https://github.com/chef/chef-cli/pull/227) ([vkarve-chef](https://github.com/vkarve-chef))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.6.11 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Dummy merge commit [#227](https://github.com/chef/chef-cli/pull/227) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 5.6.12 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

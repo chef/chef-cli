@@ -108,7 +108,7 @@ module ChefCLI
       def validate_feature!
         return if ChefCLI::Licensing::Base.feature_enabled?
 
-        ui.err("This feature is not enabled! Run `<command>` to enable this feature and try again.")
+        ui.err("This feature is not enabled! Run `chef license enable true` to enable this feature and try again.")
         exit 0
       end
     end

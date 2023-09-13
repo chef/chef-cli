@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.13 -->
-## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-11)
-
-#### Merged Pull Requests
-- Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.12 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr)) <!-- 5.6.13 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-13)
+
+#### Merged Pull Requests
+- Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr))
+<!-- latest_stable_release -->
+
 ## [v5.6.12](https://github.com/chef/chef-cli/tree/v5.6.12) (2023-06-22)
 
 #### Merged Pull Requests
 - Dummy merge commit [#227](https://github.com/chef/chef-cli/pull/227) ([vkarve-chef](https://github.com/vkarve-chef))
-<!-- latest_stable_release -->
 
 ## [v5.6.11](https://github.com/chef/chef-cli/tree/v5.6.11) (2023-04-25)
 

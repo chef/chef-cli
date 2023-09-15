@@ -1,24 +1,21 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.14 -->
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## [v5.6.14](https://github.com/chef/chef-cli/tree/v5.6.14) (2023-09-15)
 
 #### Merged Pull Requests
 - Updated ffi-yajl dependency limit [#228](https://github.com/chef/chef-cli/pull/228) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_release -->
-
-<!-- release_rollup since=5.6.13 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Updated ffi-yajl dependency limit [#228](https://github.com/chef/chef-cli/pull/228) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.14 -->
-<!-- release_rollup -->
-
 <!-- latest_stable_release -->
+
 ## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-13)
 
 #### Merged Pull Requests
 - Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr))
-<!-- latest_stable_release -->
 
 ## [v5.6.12](https://github.com/chef/chef-cli/tree/v5.6.12) (2023-06-22)
 

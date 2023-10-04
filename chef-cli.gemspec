@@ -45,8 +45,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "minitar", "~> 0.6"
   if RUBY_VERSION.match?(/3.1/)
     gem.add_dependency "chef", "~> 18.0"
-  elsif
-    gem.add_dependency "chef", ">= 16.0" # Needed to load cookbooks
+  elsif gem.add_dependency "chef", ">= 16.0"
   end
   gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.9"

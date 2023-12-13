@@ -144,7 +144,7 @@ module ChefCLI
 
     def default_package_home
       if Chef::Platform.windows?
-        File.join(ENV["LOCALAPPDATA"], ChefCLI::Dist::PRODUCT_PKG_HOME)
+        File.join(ENV["LOCALAPPDATA"], ChefCLI::Dist::PRODUCT_PKG_HOME).gsub('\\','/')
       else
         File.expand_path("~/.#{ChefCLI::Dist::PRODUCT_PKG_HOME}")
       end

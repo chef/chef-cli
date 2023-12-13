@@ -69,11 +69,11 @@ describe ChefCLI::PolicyfileServices::RmPolicy do
     end
 
     let(:http_exception) do
-      begin
-        response.error!
-      rescue => e
-        e
-      end
+
+      response.error!
+    rescue => e
+      e
+
     end
 
     before do
@@ -108,11 +108,11 @@ describe ChefCLI::PolicyfileServices::RmPolicy do
     end
 
     let(:http_exception) do
-      begin
-        response.error!
-      rescue => e
-        e
-      end
+
+      response.error!
+    rescue => e
+      e
+
     end
 
     before do

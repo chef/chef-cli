@@ -215,7 +215,7 @@ describe ChefCLI::PolicyfileServices::CleanPolicies do
             # this will continue to print that out until they remove HTTPServerException
             expected_message = <<~ERROR
               Failed to delete some policy revisions:
-              - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
+              - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPClientException 403 \"Unauthorized\"
             ERROR
 
             expect { clean_policies_service.run }.to raise_error do |error|

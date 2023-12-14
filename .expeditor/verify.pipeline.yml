@@ -28,6 +28,10 @@ steps:
         host_os: windows
         shell: ["powershell", "-Command"]
         image: rubydistros/windows-2019:3.1
+        environment:
+          - FORCE_FFI_YAJL=ext
+          - EXPIRE_CACHE=true
+          - CHEF_LICENSE=accept-no-persist
 
 - label: cookstyle-generator-cb-tests-ruby-3.1
   command:

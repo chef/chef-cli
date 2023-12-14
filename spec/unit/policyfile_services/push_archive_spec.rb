@@ -129,13 +129,13 @@ describe ChefCLI::PolicyfileServices::PushArchive do
   context "with an invalid archive" do
 
     let(:exception) do
-      begin
-        push_archive_service.run
-      rescue ChefCLI::PolicyfilePushArchiveError => e
-        e
-      else
-        nil
-      end
+
+      push_archive_service.run
+    rescue ChefCLI::PolicyfilePushArchiveError => e
+      e
+    else
+      nil
+
     end
 
     let(:exception_cause) { exception.cause }

@@ -60,10 +60,10 @@ describe Kitchen::Provisioner::ChefZeroCapture do
     end
 
     after do
-      begin
-        subject.cleanup_sandbox
-      rescue # rubocop:disable Lint/HandleExceptions
-      end
+
+      subject.cleanup_sandbox
+    rescue # rubocop:disable Lint/HandleExceptions
+
     end
   end
 

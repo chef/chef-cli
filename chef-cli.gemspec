@@ -46,7 +46,7 @@ Gem::Specification.new do |gem|
   if RUBY_VERSION.match?(/3.1/)
     gem.add_dependency "chef", "~> 18.0"
   else
-    gem.add_dependency "chef", ">= 16.0"
+    gem.add_dependency "chef", "~> 17.0"
   end
   gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.9"

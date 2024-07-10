@@ -1,20 +1,34 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.10 -->
-## [v5.6.10](https://github.com/chef/chef-cli/tree/v5.6.10) (2023-03-16)
-
-#### Merged Pull Requests
-- remove deprecated arguments in erb.new [#220](https://github.com/chef/chef-cli/pull/220) ([Stromweld](https://github.com/Stromweld))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.8 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- remove deprecated arguments in erb.new [#220](https://github.com/chef/chef-cli/pull/220) ([Stromweld](https://github.com/Stromweld)) <!-- 5.6.10 -->
-- Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih)) <!-- 5.6.9 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.14](https://github.com/chef/chef-cli/tree/v5.6.14) (2023-09-15)
+
+#### Merged Pull Requests
+- Updated ffi-yajl dependency limit [#228](https://github.com/chef/chef-cli/pull/228) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
+## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-13)
+
+#### Merged Pull Requests
+- Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr))
+
+## [v5.6.12](https://github.com/chef/chef-cli/tree/v5.6.12) (2023-06-22)
+
+#### Merged Pull Requests
+- Dummy merge commit [#227](https://github.com/chef/chef-cli/pull/227) ([vkarve-chef](https://github.com/vkarve-chef))
+
+## [v5.6.11](https://github.com/chef/chef-cli/tree/v5.6.11) (2023-04-25)
+
+#### Merged Pull Requests
+- Use computed lock revision in policy installer output [#211](https://github.com/chef/chef-cli/pull/211) ([Annih](https://github.com/Annih))
+- remove deprecated arguments in erb.new [#220](https://github.com/chef/chef-cli/pull/220) ([Stromweld](https://github.com/Stromweld))
+- Integrating with sonarQube [#221](https://github.com/chef/chef-cli/pull/221) ([nikhil2611](https://github.com/nikhil2611))
+
 ## [v5.6.8](https://github.com/chef/chef-cli/tree/v5.6.8) (2022-10-20)
 
 #### Merged Pull Requests
@@ -24,7 +38,6 @@
 - Fix chef-export when cookbook path is long in windows [#215](https://github.com/chef/chef-cli/pull/215) ([i5pranay93](https://github.com/i5pranay93))
 - Revert &quot;Refactor chef install/update/push command for non-CLI use  [#216](https://github.com/chef/chef-cli/pull/216) ([sanjain-progress](https://github.com/sanjain-progress))
 - Resource not accessible by integration [#217](https://github.com/chef/chef-cli/pull/217) ([sanjain-progress](https://github.com/sanjain-progress))
-<!-- latest_stable_release -->
 
 ## [v5.6.2](https://github.com/chef/chef-cli/tree/v5.6.2) (2022-04-18)
 

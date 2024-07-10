@@ -24,15 +24,13 @@ shared_examples_for "custom generator cookbook" do
       end
     end
 
-    before do
+    it "configures the generator context" do
       reset_tempdir
       code_generator.read_and_validate_params
       allow(code_generator.config_loader).to receive(:load)
-    end
 
-    it "configures the generator context" do
       code_generator.setup_context
-      expect(generator_context.cookbook_name).to eq(generator_arg)
+      expect(generator_context.cookbook_name).to eq(File.basename(generator_arg))
       expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
       expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
     end
@@ -55,18 +53,32 @@ shared_examples_for "custom generator cookbook" do
       end
 
       before do
+        reset_tempdir
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
         allow(code_generator).to receive(:chefcli_config).and_return(chefcli_config)
       end
 
       it "configures the generator context" do
         code_generator.setup_context
-        expect(generator_context.cookbook_name).to eq(generator_arg)
-        expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
-        expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
+        expect(generator_context.cookbook_name).to eq(File.basename(generator_arg))
+        expect(code_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-cli/skeletons", project_root))
+        expect(code_generator.chef_runner.run_list).to eq(["recipe[code_generator::#{generator_name}]"])
       end
     end
 
     context "with an invalid generator-cookbook path" do
+
+      let(:argv) { ["new_cookbook", "--generator-cookbook", "#{tempdir}/nested/a_generator_cookbook"] }
+
+      before do
+        reset_tempdir
+        FileUtils.mkdir_p("#{tempdir}/nested")
+        FileUtils.cp_r(default_generator_cookbook_path, "#{tempdir}/nested/")
+
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
+      end
 
       it "fails with an informative error" do
         Dir.chdir(tempdir) do
@@ -88,6 +100,10 @@ shared_examples_for "custom generator cookbook" do
       let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
 
       before do
+        reset_tempdir
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
+
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
 
         # have to update metadata with the correct name
@@ -95,7 +111,7 @@ shared_examples_for "custom generator cookbook" do
       end
 
       it "creates the new files" do
-        expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
+        expect(code_generator.chef_runner.cookbook_path).to eq("#{tempdir}")
         expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
 
         Dir.chdir(tempdir) do
@@ -108,11 +124,16 @@ shared_examples_for "custom generator cookbook" do
 
     context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
 
+      let(:argv) { ["#{tempdir}/new_cookbook", "--generator-cookbook", generator_cookbook_path] }
+
       before do
+        reset_tempdir
         FileUtils.mkdir_p(generator_cookbook_path)
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
 
         allow(code_generator).to receive(:stderr).and_return(stderr_io)
+        code_generator.read_and_validate_params
+        allow(code_generator.config_loader).to receive(:load)
       end
 
       it "creates the new_files (and warns about deprecated usage)" do
@@ -121,7 +142,7 @@ shared_examples_for "custom generator cookbook" do
         Dir.chdir(tempdir) do
           code_generator.run
         end
-        generated_files = Dir.glob("#{tempdir}/#{generator_arg}/**/*", File::FNM_DOTMATCH)
+        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
         expected_cookbook_files.each do |expected_file|
           expect(generated_files).to include(expected_file)
         end

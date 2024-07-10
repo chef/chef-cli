@@ -23,10 +23,17 @@ module ChefCLI
 
       include Helpers
 
+      @@git_memo = {}
+
       attr_reader :cookbook_path
+
+      def self.uncache
+        @@git_memo = {}
+      end
 
       def initialize(cookbook_path)
         @cookbook_path = cookbook_path
+        @repo_path = nil
         @unborn_branch = nil
         @unborn_branch_ref = nil
       end
@@ -111,8 +118,24 @@ module ChefCLI
       end
 
       def git(subcommand, options = {})
-        options = { cwd: cookbook_path }.merge(options)
-        system_command("git #{subcommand}", options)
+        # memoize commands per-repo
+        repo_path = get_repo_path
+        memo_key = [repo_path, subcommand, options]
+        if @@git_memo.key?(memo_key)
+          rv = @@git_memo[memo_key]
+        else
+          options = { cwd: cookbook_path }.merge(options)
+          rv = system_command("git #{subcommand}", options)
+          @@git_memo[memo_key] = rv
+        end
+        rv
+      end
+
+      def get_repo_path
+        unless @repo_path
+          @repo_path = system_command("git rev-parse --show-toplevel", { cwd: cookbook_path }).stdout.strip
+        end
+        @repo_path
       end
 
       def detect_current_branch

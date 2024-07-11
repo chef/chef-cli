@@ -11,10 +11,13 @@ group :test do
   gem "chefstyle", "=2.2.3"
   gem "test-kitchen", "=3.5.1" # pinning test-kitchen to 3.5.1 which supports ruby < 3.1 . Need to update this to latest once we update the ruby to 3.1 and chef to 18.x in chef-cli
 
-  if RUBY_VERSION.match?(/3.1/)
-    gem.add_dependency "chef", "~> 18.0"
-  else
-    gem.add_dependency "chef", ">= 16.0"
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
+    gem "chef-zero", "~> 14"
+    gem "chef", "~> 15"
+    gem "chef-utils", "=16.6.14"
+  end
+  if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7")
+    gem "ohai", "~> 16"
   end
 
   gem "simplecov", require: false

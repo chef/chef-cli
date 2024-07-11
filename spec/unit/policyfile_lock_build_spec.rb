@@ -50,6 +50,10 @@ describe ChefCLI::PolicyfileLock, "building a lockfile", :skip_on_windows do
     ChefCLI::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: relative_paths_root )
   end
 
+  let!(:git_memo) do
+    ChefCLI::CookbookProfiler::Git.uncache
+  end
+
   context "when a cached cookbook omits the cache key" do
 
     let(:policyfile_lock) do

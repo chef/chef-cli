@@ -6,11 +6,21 @@
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.14](https://github.com/chef/chef-cli/tree/v5.6.14) (2023-09-15)
+
+#### Merged Pull Requests
+- Updated ffi-yajl dependency limit [#228](https://github.com/chef/chef-cli/pull/228) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
+## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-13)
+
+#### Merged Pull Requests
+- Memoize git shell commands [#223](https://github.com/chef/chef-cli/pull/223) ([adsr](https://github.com/adsr))
+
 ## [v5.6.12](https://github.com/chef/chef-cli/tree/v5.6.12) (2023-06-22)
 
 #### Merged Pull Requests
 - Dummy merge commit [#227](https://github.com/chef/chef-cli/pull/227) ([vkarve-chef](https://github.com/vkarve-chef))
-<!-- latest_stable_release -->
 
 ## [v5.6.11](https://github.com/chef/chef-cli/tree/v5.6.11) (2023-04-25)
 

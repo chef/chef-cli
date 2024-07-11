@@ -19,7 +19,7 @@ steps:
       docker:
         image: ruby:3.3
 
-- label: run-specs-windows-ruby-3.0
+- label: run-specs-windows-ruby-3.3
   command:
     - powershell .expeditor/run_windows_tests.ps1 rspec
   expeditor:
@@ -27,7 +27,7 @@ steps:
       docker:
         host_os: windows
         shell: ["powershell", "-Command"]
-        image: rubydistros/windows-2019:3.0
+        image: rubydistros/windows-2019:3.3
 
 - label: cookstyle-generator-cb-tests-ruby-3.3
   command:

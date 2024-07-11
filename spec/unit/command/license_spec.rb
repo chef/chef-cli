@@ -27,11 +27,10 @@ describe ChefCLI::Command::License do
   let(:ui) { TestHelpers::TestUI.new }
 
   before do
-    allow(ChefCLI::Licensing::Base).to receive(:feature_enabled?).and_return(true)
     # Disable the access of local licenses
     allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_license_key_from_arg).and_return([])
     allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_license_key_from_env).and_return([])
-    allow_any_instance_of(ChefLicensing::LicenseKeyFetcher).to receive(:fetch_from_file).and_return([])
+    allow_any_instance_of(ChefLicensing::LicensingService::Local).to receive(:detected?).and_return(false)
   end
 
   let(:command) do
@@ -80,7 +79,6 @@ describe ChefCLI::Command::License do
       before(:each) do
         ChefLicensing.configure do |config|
           config.license_server_url = "https://license.test"
-          config.license_server_api_key = "token-123"
           config.chef_product_name = "chef"
           config.chef_entitlement_id = "chef-entitled-id"
           config.chef_executable_name = "chef"
@@ -104,7 +102,7 @@ describe ChefCLI::Command::License do
       end
 
       it "should be same as the user entered license" do
-        expect(command.run(params)).to eq(new_key)
+        expect(command.run(params)).to include(new_key.first)
       end
     end
   end
@@ -157,7 +155,7 @@ describe ChefCLI::Command::License do
     end
 
     it "should create and store the new license" do
-      expect(command.run(params)).to eq(license_key)
+      expect(command.run(params)).to include(license_key.first)
     end
   end
 end

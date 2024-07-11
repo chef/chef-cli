@@ -66,7 +66,6 @@ module ChefCLI
       end
 
       def run(params)
-        validate_feature!
         config_license_debug if debug?
         remaining_args = parse_options(params)
         return 1 unless validate_params!(remaining_args)
@@ -103,13 +102,6 @@ module ChefCLI
 
       def config_license_debug
         ChefLicensing.output = ui
-      end
-
-      def validate_feature!
-        return if ChefCLI::Licensing::Base.feature_enabled?
-
-        ui.err("This feature is not enabled! Run `chef license enable true` to enable this feature and try again.")
-        exit 0
       end
     end
   end

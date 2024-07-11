@@ -18,16 +18,11 @@
 
 require "chef-licensing"
 require_relative "config"
-require "faraday_middleware"
 
 module ChefCLI
   module Licensing
     class Base
       class << self
-        def feature_enabled?
-          File.exists?(File.join(Dir.home, ".chef/fbffb2ea48910514676e1b7a51c7248290ea958c"))
-        end
-
         def validate
           ChefLicensing.fetch_and_persist.each do |license_key|
             puts "License Key: #{license_key}"

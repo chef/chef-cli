@@ -43,7 +43,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
   gem.add_dependency "minitar", "~> 0.6"
-  if RUBY_VERSION.match?(/3.1/)
+  if RUBY_VERSION.match?(/3.3/)
     gem.add_dependency "chef", "~> 18.0"
   else
     gem.add_dependency "chef", "~> 17.0"

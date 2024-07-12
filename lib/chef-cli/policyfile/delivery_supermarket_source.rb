@@ -66,15 +66,13 @@ module ChefCLI
       end
 
       def universe_graph
-        @universe_graph ||= begin
-          @community_source.universe_graph.inject({}) do |truncated, (cookbook_name, version_and_deps_list)|
-            sorted_versions = version_and_deps_list.keys.sort_by do |version_string|
-              Semverse::Version.new(version_string)
-            end
-            greatest_version = sorted_versions.last
-            truncated[cookbook_name] = { greatest_version => version_and_deps_list[greatest_version] }
-            truncated
+        @universe_graph ||= @community_source.universe_graph.inject({}) do |truncated, (cookbook_name, version_and_deps_list)|
+          sorted_versions = version_and_deps_list.keys.sort_by do |version_string|
+            Semverse::Version.new(version_string)
           end
+          greatest_version = sorted_versions.last
+          truncated[cookbook_name] = { greatest_version => version_and_deps_list[greatest_version] }
+          truncated
         end
       end
 

@@ -65,11 +65,11 @@ describe ChefCLI::PolicyfileServices::ShowPolicy do
       end
 
       let(:http_exception) do
-        begin
-          response.error!
-        rescue => e
-          e
-        end
+
+        response.error!
+      rescue => e
+        e
+
       end
 
       let(:policies_url) { "/policies" }
@@ -823,11 +823,11 @@ describe ChefCLI::PolicyfileServices::ShowPolicy do
       end
 
       let(:http_exception) do
-        begin
-          response.error!
-        rescue => e
-          e
-        end
+
+        response.error!
+      rescue => e
+        e
+
       end
 
       before do

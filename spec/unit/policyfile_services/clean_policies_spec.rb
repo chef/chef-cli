@@ -46,11 +46,11 @@ describe ChefCLI::PolicyfileServices::CleanPolicies do
     end
 
     let(:http_exception) do
-      begin
-        response.error!
-      rescue => e
-        e
-      end
+
+      response.error!
+    rescue => e
+      e
+
     end
 
     before do
@@ -196,12 +196,13 @@ describe ChefCLI::PolicyfileServices::CleanPolicies do
           end
 
           let(:http_exception) do
-            begin
-              response.error!
-            rescue => e
-              e
-            end
+
+            response.error!
+          rescue => e
+            e
+
           end
+
 
           before do
             expect(http_client).to receive(:delete)

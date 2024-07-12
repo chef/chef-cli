@@ -203,7 +203,6 @@ describe ChefCLI::PolicyfileServices::CleanPolicies do
 
           end
 
-
           before do
             expect(http_client).to receive(:delete)
               .with("/policies/appserver/revisions/4444444444444444444444444444444444444444444444444444444444444444")

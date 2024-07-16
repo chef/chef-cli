@@ -15,17 +15,46 @@ verifier:
 platforms:
   # @see https://github.com/chef-cookbooks/testing_examples/blob/main/kitchen.dokken.yml
   # @see https://hub.docker.com/u/dokken
-  - name: ubuntu-20.04
+  - name: almalinux-9
     driver:
-      image: dokken/ubuntu-20.04
+      image: dokken/almalinux-9
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: amazonlinux-2023
+    driver:
+      image: dokken/amazonlinux-2023
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: centos-stream-9
+    driver:
+      image: dokken/centos-stream-9
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: debian-12
+    driver:
+      image: dokken/debian-12
       pid_one_command: /bin/systemd
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
-
-  - name: centos-8
+  - name: fedora-latest
     driver:
-      image: dokken/centos-8
+      image: dokken/fedora-latest
       pid_one_command: /usr/lib/systemd/systemd
+  - name: opensuse-leap-15
+    driver:
+      image: dokken/opensuse-leap-15
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: oraclelinux-9
+    driver:
+      image: dokken/oraclelinux-9
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: rockylinux-9
+    driver:
+      image: dokken/rockylinux-9
+      pid_one_command: /usr/lib/systemd/systemd
+  - name: ubuntu-24.04
+    driver:
+      image: dokken/ubuntu-24.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
 suites:
   - name: default

@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.license       = "Apache-2.0"
   gem.homepage      = "https://www.chef.io/"
 
-  gem.required_ruby_version = ">= 3.1"
+  gem.required_ruby_version = ">= 3.3"
 
   gem.files = %w{Rakefile LICENSE} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks

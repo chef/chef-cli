@@ -52,14 +52,12 @@ module ChefCLI
       end
 
       def universe_graph
-        @universe_graph ||= begin
-          full_chef_server_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
-            normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
-              deps_by_version[version] = metadata["dependencies"]
-              deps_by_version
-            end
-            normalized_graph
+        @universe_graph ||= full_chef_server_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
+          normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
+            deps_by_version[version] = metadata["dependencies"]
+            deps_by_version
           end
+          normalized_graph
         end
       end
 
@@ -90,9 +88,7 @@ module ChefCLI
 
       def full_chef_server_graph
         @full_chef_server_graph ||=
-          begin
-            http_connection_for(uri.to_s).get("/universe")
-          end
+        http_connection_for(uri.to_s).get("/universe")
       end
     end
   end

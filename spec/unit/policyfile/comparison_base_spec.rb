@@ -251,11 +251,11 @@ describe "Policyfile Comparison Bases" do
       end
 
       let(:http_exception) do
-        begin
-          response.error!
-        rescue => e
-          e
-        end
+
+        response.error!
+      rescue => e
+        e
+
       end
 
       before do
@@ -285,11 +285,11 @@ describe "Policyfile Comparison Bases" do
       end
 
       let(:http_exception) do
-        begin
-          response.error!
-        rescue => e
-          e
-        end
+
+        response.error!
+      rescue => e
+        e
+
       end
 
       before do

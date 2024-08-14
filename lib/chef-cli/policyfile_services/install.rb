@@ -73,7 +73,7 @@ module ChefCLI
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefCLI::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
+        @policyfile_compiler ||= ChefCLI::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui:, chef_config:)
       end
 
       def expanded_run_list
@@ -89,7 +89,7 @@ module ChefCLI
 
         @policyfile_lock ||= begin
           lock_data = FFI_Yajl::Parser.new.parse(policyfile_lock_content)
-          PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(lock_data)
+          PolicyfileLock.new(storage_config, ui:).build_from_lock_data(lock_data)
         end
       end
 

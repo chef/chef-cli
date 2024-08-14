@@ -69,8 +69,8 @@ module ChefCLI
       def rm_policy_service
         @rm_policy_service ||=
           PolicyfileServices::RmPolicy.new(config: chef_config,
-                                           ui: ui,
-                                           policy_name: policy_name)
+                                           ui:,
+                                           policy_name:)
       end
 
       def debug?

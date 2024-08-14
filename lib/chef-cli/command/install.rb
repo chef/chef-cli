@@ -74,7 +74,7 @@ module ChefCLI
       end
 
       def installer
-        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, config: chef_config)
+        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui:, root_dir: Dir.pwd, config: chef_config)
       end
 
       def debug?

@@ -6,7 +6,7 @@ AllCops:
   TargetRubyVersion: 3.1
   Include:
       - "**/*.rb"
-    Exclude:
+  Exclude:
       - "vendor/**/*"
       - "spec/**/*"
 Style/StringLiterals:

@@ -100,12 +100,12 @@ module ChefCLI
       end
 
       def installer
-        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, config: chef_config, overwrite: true)
+        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui:, root_dir: Dir.pwd, config: chef_config, overwrite: true)
       end
 
       def attributes_updater
         @attributes_updater ||=
-          PolicyfileServices::UpdateAttributes.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, chef_config: chef_config)
+          PolicyfileServices::UpdateAttributes.new(policyfile: policyfile_relative_path, ui:, root_dir: Dir.pwd, chef_config:)
       end
 
       def debug?

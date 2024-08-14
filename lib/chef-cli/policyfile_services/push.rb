@@ -64,8 +64,8 @@ module ChefCLI
 
       def uploader
         ChefCLI::Policyfile::Uploader.new(policyfile_lock, policy_group,
-          ui: ui,
-          http_client: http_client,
+          ui:,
+          http_client:,
           policy_document_native_api: config.policy_document_native_api)
       end
 

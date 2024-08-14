@@ -62,20 +62,18 @@ module ChefCLI
 
       # @return A policyfile lock fetcher compatible with the given source_options
       def fetcher
-        @fetcher ||= begin
-                       if source_options[:path] && !source_options[:git]
-                         Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
-                       elsif source_options[:remote]
-                         Policyfile::RemoteLockFetcher.new(name, source_options)
-                       elsif source_options[:server]
-                         Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
-                       elsif source_options[:git]
-                         Policyfile::GitLockFetcher.new(name, source_options, storage_config)
-                       else
-                         raise ChefCLI::InvalidPolicyfileLocation.new(
-                           "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}"
-                         )
-                       end
+        @fetcher ||= if source_options[:path] && !source_options[:git]
+                       Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
+                     elsif source_options[:remote]
+                       Policyfile::RemoteLockFetcher.new(name, source_options)
+                     elsif source_options[:server]
+                       Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
+                     elsif source_options[:git]
+                       Policyfile::GitLockFetcher.new(name, source_options, storage_config)
+                     else
+                       raise ChefCLI::InvalidPolicyfileLocation.new(
+                         "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}"
+                       )
                      end
       end
 
@@ -106,9 +104,7 @@ module ChefCLI
       #
       # @return [PolicyfileLock] the loaded policyfile lock
       def policyfile_lock
-        @policyfile_lock ||= begin
-                               PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(fetcher.lock_data)
-                             end
+        @policyfile_lock ||= PolicyfileLock.new(storage_config, ui:).build_from_lock_data(fetcher.lock_data)
       end
 
       # @return [Hash] The source_options that describe how to fetch this exact lock again

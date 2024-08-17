@@ -87,7 +87,7 @@ module ChefCLI
       # @return [Hash] The source_options that describe how to fetch this exact lock again
       def source_options_for_lock
         source_options.merge({
-                               revision: revision,
+                               revision:,
                              })
       end
 

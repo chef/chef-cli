@@ -54,14 +54,12 @@ module ChefCLI
       end
 
       def universe_graph
-        @universe_graph ||= begin
-          full_community_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
-            normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
-              deps_by_version[version] = metadata["dependencies"]
-              deps_by_version
-            end
-            normalized_graph
+        @universe_graph ||= full_community_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
+          normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
+            deps_by_version[version] = metadata["dependencies"]
+            deps_by_version
           end
+          normalized_graph
         end
       end
 
@@ -90,7 +88,7 @@ module ChefCLI
 
       def http_connection_for(base_url)
         headers = { "X-Jfrog-Art-API" => artifactory_api_key }
-        @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url, headers: headers)
+        @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url, headers:)
       end
 
       def full_community_graph

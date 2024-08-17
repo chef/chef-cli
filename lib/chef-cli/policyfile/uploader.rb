@@ -207,7 +207,7 @@ module ChefCLI
           remote_already_has_cookbook?(cb_with_lock.cookbook)
         end
 
-        Reports::Upload.new(reused_cbs: reused_cbs, uploaded_cbs: uploaded_cbs, ui: ui).show
+        Reports::Upload.new(reused_cbs:, uploaded_cbs:, ui:).show
 
         true
       end

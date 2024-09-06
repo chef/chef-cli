@@ -15,44 +15,40 @@
 # limitations under the License.
 #
 
-lib = File.expand_path('lib', __dir__)
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'chef-cli/version'
+require "chef-cli/version"
 
 Gem::Specification.new do |gem|
-  gem.name          = 'chef-cli'
+  gem.name          = "chef-cli"
   gem.version       = ChefCLI::VERSION
-  gem.authors       = ['Chef Software, Inc.']
-  gem.email         = ['info@chef.io']
-  gem.description   = 'A streamlined development and deployment workflow for Chef platform.'
+  gem.authors       = ["Chef Software, Inc."]
+  gem.email         = ["info@chef.io"]
+  gem.description   = "A streamlined development and deployment workflow for Chef platform."
   gem.summary       = gem.description
-  gem.license       = 'Apache-2.0'
-  gem.homepage      = 'https://www.chef.io/'
+  gem.license       = "Apache-2.0"
+  gem.homepage      = "https://www.chef.io/"
 
-  gem.required_ruby_version = '>= 2.7'
+  gem.required_ruby_version = ">= 3.1"
 
-  gem.files = %w[Rakefile LICENSE] +
-              Dir.glob('Gemfile*') + # Includes Gemfile and locks
-              Dir.glob('*.gemspec') +
-              Dir.glob('{lib,spec}/**/*', File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
-  gem.executables   = %w[chef-cli]
+  gem.files = %w{Rakefile LICENSE} +
+    Dir.glob("Gemfile*") + # Includes Gemfile and locks
+    Dir.glob("*.gemspec") +
+    Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+  gem.executables   = %w{ chef-cli }
   gem.test_files    = gem.files.grep(%r{^spec/})
-  gem.require_paths = ['lib']
+  gem.require_paths = ["lib"]
 
-  gem.add_dependency 'ffi-yajl', '>= 1.0', '< 3.0'
-  gem.add_dependency 'minitar', '~> 0.6'
-  gem.add_dependency 'mixlib-cli', '>= 1.7', '< 3.0'
-  gem.add_dependency 'mixlib-shellout', '>= 2.0', '< 4.0'
-  if RUBY_VERSION.match?(/3.1/)
-    gem.add_dependency 'chef', '~> 18.0'
-  else
-    gem.add_dependency 'chef', '~> 17.0'
-  end
-  gem.add_dependency 'addressable', '>= 2.3.5', '< 2.9'
-  gem.add_dependency 'appbundler'
-  gem.add_dependency 'cookbook-omnifetch', '~> 0.5'
-  gem.add_dependency 'diff-lcs', '>= 1.0', '< 1.4' # 1.4 changes the output
-  gem.add_dependency 'license-acceptance', '>= 1.0.11', '< 3'
-  gem.add_dependency 'pastel', '~> 0.7' # used for policyfile differ
-  gem.add_dependency 'solve', '< 5.0', '> 2.0'
+  gem.add_dependency "mixlib-cli", ">= 1.7", "< 3.0"
+  gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
+  gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
+  gem.add_dependency "minitar", "~> 0.6"
+  gem.add_dependency "chef", "~> 18.0"
+  gem.add_dependency "solve", "< 5.0", "> 2.0"
+  gem.add_dependency "addressable", ">= 2.3.5", "< 2.9"
+  gem.add_dependency "cookbook-omnifetch", "~> 0.5"
+  gem.add_dependency "diff-lcs", ">= 1.0", "< 1.4" # 1.4 changes the output
+  gem.add_dependency "pastel", "~> 0.7" # used for policyfile differ
+  gem.add_dependency "license-acceptance", ">= 1.0.11", "< 3"
+  gem.add_dependency "appbundler"
 end

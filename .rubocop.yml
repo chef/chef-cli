@@ -1,3 +1,14 @@
+---
+require:
+  - chefstyle
+
+AllCops:
+  TargetRubyVersion: 3.1
+  Include:
+      - "**/*.rb"
+  Exclude:
+      - "vendor/**/*"
+      - "spec/**/*"
 Style/StringLiterals:
   Exclude:
     - "spec/unit/fixtures/**/*"

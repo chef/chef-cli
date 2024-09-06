@@ -1,6 +1,5 @@
 pkg_name=chef-cli
 pkg_origin=chef
-pkg_version="5.6.14"
 ruby_pkg="core/ruby31"
 pkg_deps=(${ruby_pkg} core/coreutils)
 pkg_build_deps=(
@@ -16,6 +15,13 @@ do_setup_environment() {
 
   build_line "Setting GEM_PATH=$GEM_HOME"
   export GEM_PATH="$GEM_HOME"
+}
+
+pkg_version() {
+  cat "$SRC_PATH/VERSION"
+}
+do_before() {
+  update_pkg_version
 }
 do_unpack() {
   mkdir -pv "$HAB_CACHE_SRC_PATH/$pkg_dirname"

@@ -4,7 +4,6 @@ $PSDefaultParameterValues['*:ErrorAction']='Stop'
 $pkg_name="chef-cli"
 $pkg_origin="chef"
 $pkg_version=$(Get-Content "$PLAN_CONTEXT/../VERSION")
-$pkg_revision="1"
 $pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 
 $pkg_deps=@(
@@ -15,6 +14,13 @@ $pkg_bin_dirs=@("bin"
                 "vendor/bin")
 $project_root= (Resolve-Path "$PLAN_CONTEXT/../").Path
 
+function pkg_version {
+    Get-Content "$SRC_PATH/VERSION"
+}
+
+function Invoke-Before {
+    Set-PkgVersion
+}
 function Invoke-SetupEnvironment {
     Push-RuntimeEnv -IsPath GEM_PATH "$pkg_prefix/vendor"
 

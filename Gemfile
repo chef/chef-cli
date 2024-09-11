@@ -23,7 +23,9 @@ group :development do
 end
 
 group :profile do
-  gem "stackprof"
-  gem "stackprof-webnav"
-  gem "memory_profiler"
+  unless RUBY_PLATFORM.match?(/mswin|mingw|windows/)
+    gem "stackprof"
+    gem "stackprof-webnav"
+    gem "memory_profiler"
+  end
 end

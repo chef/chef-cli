@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.6.15 -->
+## [v5.6.15](https://github.com/chef/chef-cli/tree/v5.6.15) (2024-08-17)
+
+#### Merged Pull Requests
+- Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.6.14 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld)) <!-- 5.6.15 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

@@ -137,7 +137,7 @@ describe ChefCLI::PolicyfileLock, "when reading a Policyfile.lock" do
 
     it "requires the values in named_run_lists to be valid run lists" do
       bad_named_run_lists = valid_lock_data.dup
-      bad_named_run_lists["named_run_lists"] = { "bad" => [ 42 ] }
+      bad_named_run_lists["named_run_lists"] = { "bad" => [ "42" ] }
 
       expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefCLI::InvalidLockfile)
     end

@@ -10,7 +10,7 @@ driver:
 #    - ["forwarded_port", {guest: 80, host: 8080}]
 
 provisioner:
-  name: chef_zero
+  name: chef_infra
   # You may wish to disable always updating cookbooks in CI or other testing environments.
   # For example:
   #   always_update_cookbooks: <%%= !ENV['CI'] %>
@@ -19,14 +19,22 @@ provisioner:
   ## product_name and product_version specifies a specific Chef product and version to install.
   ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
   #  product_name: chef
-  #  product_version: 17
+  #  product_version: 18
 
 verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-20.04
-  - name: centos-8
+  - name: almalinux-9
+  - name: amazonlinux-2023
+  - name: centos-stream-9
+  - name: debian-12
+  - name: fedora-latest
+  - name: freebsd-14
+  - name: opensuse-leap-15
+  - name: oraclelinux-9
+  - name: rockylinux-9
+  - name: ubuntu-24.04
 
 suites:
   - name: default

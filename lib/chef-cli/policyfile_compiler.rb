@@ -42,7 +42,7 @@ module ChefCLI
     SOURCE_TYPES_WITH_FIXED_VERSIONS = %i{git path}.freeze
 
     def self.evaluate(policyfile_string, policyfile_filename, ui: nil, chef_config: nil)
-      compiler = new(ui: ui, chef_config: chef_config)
+      compiler = new(ui:, chef_config:)
       compiler.evaluate_policyfile(policyfile_string, policyfile_filename)
       compiler
     end
@@ -61,7 +61,7 @@ module ChefCLI
 
     def initialize(ui: nil, chef_config: nil)
       @storage_config = Policyfile::StorageConfig.new
-      @dsl = Policyfile::DSL.new(storage_config, chef_config: chef_config)
+      @dsl = Policyfile::DSL.new(storage_config, chef_config:)
       @artifact_server_cookbook_location_specs = {}
 
       @merged_graph = nil

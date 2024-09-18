@@ -121,12 +121,12 @@ module ChefCLI
         random_string = SecureRandom.hex(2)
         path = "chef-export-#{random_string}"
         Dir.mktmpdir(path) do |d|
-          begin
-            @staging_dir = d
-            yield
-          ensure
-            @staging_dir = nil
-          end
+
+          @staging_dir = d
+          yield
+        ensure
+          @staging_dir = nil
+
         end
       end
 

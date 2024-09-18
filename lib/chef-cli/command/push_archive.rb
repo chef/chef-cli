@@ -83,9 +83,9 @@ module ChefCLI
       def push_archive_service
         @push_archive_service ||=
           ChefCLI::PolicyfileServices::PushArchive.new(
-            archive_file: archive_file,
-            policy_group: policy_group,
-            ui: ui,
+            archive_file:,
+            policy_group:,
+            ui:,
             config: chef_config
           )
       end

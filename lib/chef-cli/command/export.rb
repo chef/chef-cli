@@ -127,7 +127,7 @@ module ChefCLI
       def export_service
         @export_service ||= PolicyfileServices::ExportRepo.new(
           policyfile: policyfile_relative_path,
-          export_dir: export_dir,
+          export_dir:,
           root_dir: Dir.pwd,
           archive: archive?,
           force: config[:force],

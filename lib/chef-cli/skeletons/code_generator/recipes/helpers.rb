@@ -15,5 +15,5 @@ helper_class_name = "#{camelize(context.new_file_basename)}Helpers"
 template helpers_path do
   source 'helpers.rb.erb'
   helpers(ChefCLI::Generator::TemplateHelper)
-  variables(cookbook_class_name: cookbook_class_name, helper_class_name: helper_class_name)
+  variables(cookbook_class_name:, helper_class_name:)
 end

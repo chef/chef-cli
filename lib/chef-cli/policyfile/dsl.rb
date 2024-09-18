@@ -27,7 +27,7 @@ module ChefCLI
   module Policyfile
     class DSL
 
-      RUN_LIST_ITEM_COMPONENT = /^[.[:alnum:]_-]+$/.freeze
+      RUN_LIST_ITEM_COMPONENT = /^[.[:alnum:]_-]+$/
 
       include StorageConfigDelegation
 
@@ -203,7 +203,7 @@ module ChefCLI
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
-          set_default_source(ChefServerCookbookSource.new(source_uri, chef_config: chef_config, &block))
+          set_default_source(ChefServerCookbookSource.new(source_uri, chef_config:, &block))
         end
       end
 
@@ -211,7 +211,7 @@ module ChefCLI
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :artifactory"
         else
-          set_default_source(ArtifactoryCookbookSource.new(source_uri, chef_config: chef_config, &block))
+          set_default_source(ArtifactoryCookbookSource.new(source_uri, chef_config:, &block))
         end
       end
 

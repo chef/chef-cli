@@ -70,7 +70,7 @@ module ChefCLI
 
       def clean_policy_cookbooks_service
         @clean_policy_cookbooks_service ||=
-          PolicyfileServices::CleanPolicyCookbooks.new(config: chef_config, ui: ui)
+          PolicyfileServices::CleanPolicyCookbooks.new(config: chef_config, ui:)
       end
 
       def debug?

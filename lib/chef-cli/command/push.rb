@@ -84,8 +84,8 @@ module ChefCLI
 
       def push
         @push ||= PolicyfileServices::Push.new(policyfile: policyfile_relative_path,
-                                               ui: ui,
-                                               policy_group: policy_group,
+                                               ui:,
+                                               policy_group:,
                                                config: chef_config,
                                                root_dir: Dir.pwd)
       end

@@ -67,7 +67,7 @@ module ChefCLI
 
       def clean_policies_service
         @policy_list_service ||=
-          PolicyfileServices::CleanPolicies.new(config: chef_config, ui: ui)
+          PolicyfileServices::CleanPolicies.new(config: chef_config, ui:)
       end
 
       def debug?

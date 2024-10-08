@@ -1,6 +1,6 @@
 _chef_client_ruby="core/ruby31"
 pkg_name="chef-cli"
-pkg_origin="chef"
+pkg_origin="ngupta26"
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_description="The Chef CLI"
 pkg_license=('Apache-2.0')
@@ -37,7 +37,7 @@ do_download() {
   # appropriate path within the repo and place the generated tarball in the
   # location expected by do_unpack
   ( cd "${SRC_PATH}" || exit_with "unable to enter hab-src directory" 1
-    git archive --prefix="${pkg_name}-${pkg_version}/" --output="${HAB_CACHE_SRC_PATH}/${pkg_filename}" HEAD
+    # git archive --prefix="${pkg_name}-${pkg_version}/" --output="${HAB_CACHE_SRC_PATH}/${pkg_filename}" HEAD
   )
 }
 

@@ -113,18 +113,20 @@ module ChefCLI
     #
     # environment vars for omnibus
     #
-    def omnibus_env
-      @omnibus_env ||=
+    def habitat_env
+      @habitat_env ||=
         begin
-          user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
-          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"].split(File::PATH_SEPARATOR) ]
-          path << git_bin_dir if Dir.exist?(git_bin_dir)
-          path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
+          # Define the necessary paths for the Habitat environment
+          path = [
+            File.join(@pkg_prefix, "bin"),  # Path to binaries in your Habitat package
+            ENV["PATH"].split(File::PATH_SEPARATOR)  # Preserve existing PATH
+          ]
+
           {
             "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
-            "GEM_ROOT" => Gem.default_dir,
-            "GEM_HOME" => Gem.user_dir,
-            "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
+            "GEM_ROOT" => Gem.default_dir,  # Default directory for gems
+            "GEM_HOME" => File.join(@pkg_prefix, "vendor"),  # Custom GEM_HOME within Habitat
+            "GEM_PATH" => File.join(@pkg_prefix, "vendor")  # GEM_PATH pointing to the vendor directory
           }
         end
     end

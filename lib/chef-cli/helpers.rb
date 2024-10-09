@@ -53,24 +53,24 @@ module ChefCLI
     #
     # Locates the omnibus directories
     #
-    def omnibus_install?
-      # We also check if the location we're running from (omnibus_root is relative to currently-running ruby)
-      # includes the version manifest that omnibus packages ship with. If it doesn't, then we're running locally
-      # or out of a gem - so not as an 'omnibus install'
-      File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
-    end
+    # def omnibus_install?
+    #   # We also check if the location we're running from (omnibus_root is relative to currently-running ruby)
+    #   # includes the version manifest that omnibus packages ship with. If it doesn't, then we're running locally
+    #   # or out of a gem - so not as an 'omnibus install'
+    #   File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
+    # end
 
-    def omnibus_root
-      @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
-    end
+    # def omnibus_root
+    #   @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
+    # end
 
-    def omnibus_bin_dir
-      @omnibus_bin_dir ||= omnibus_expand_path(omnibus_root, "bin")
-    end
+    # def omnibus_bin_dir
+    #   @omnibus_bin_dir ||= omnibus_expand_path(omnibus_root, "bin")
+    # end
 
-    def omnibus_embedded_bin_dir
-      @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
-    end
+    # def omnibus_embedded_bin_dir
+    #   @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
+    # end
 
     def package_home
       @package_home ||= begin
@@ -110,39 +110,56 @@ module ChefCLI
       @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))
     end
 
+    def initialize
+      @pkg_prefix = get_pkg_prefix
+    end
+
     #
-    # environment vars for omnibus
+    # environment vars for habitat
     #
     def habitat_env
       @habitat_env ||=
-        begin
-          # Define the necessary paths for the Habitat environment
-          path = [
-            File.join(@pkg_prefix, "bin"),  # Path to binaries in your Habitat package
-            ENV["PATH"].split(File::PATH_SEPARATOR)  # Preserve existing PATH
-          ]
+      begin
+        # Define the necessary paths for the Habitat environment
+        # Custom GEM_HOME within Habitat
+        vendor_dir = File.join(@pkg_prefix, "vendor")
+        path = [
+          File.join(@pkg_prefix, "bin"),
+          ENV["PATH"].split(File::PATH_SEPARATOR) # Preserve existing PATH
+        ].flatten.uniq
 
-          {
-            "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
-            "GEM_ROOT" => Gem.default_dir,  # Default directory for gems
-            "GEM_HOME" => File.join(@pkg_prefix, "vendor"),  # Custom GEM_HOME within Habitat
-            "GEM_PATH" => File.join(@pkg_prefix, "vendor")  # GEM_PATH pointing to the vendor directory
-          }
-        end
+        {
+        "PATH" => path.join(File::PATH_SEPARATOR),
+        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+        "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
+        "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
+        }
+      end
     end
 
-    def omnibus_expand_path(*paths)
-      dir = File.expand_path(File.join(paths))
-      raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
+    def get_pkg_prefix
+      pkg_name = "ngupta26/chef-cli" # Your origin and package name
+      path = `hab pkg path #{pkg_name}`.strip
 
-      dir
+      if $?.success? && !path.empty?
+        path
+      else
+        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
+      end
     end
+
+    # def omnibus_expand_path(*paths)
+    #   dir = File.expand_path(File.join(paths))
+    #   raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
+
+    #   dir
+    # end
 
     private
 
-    def expected_omnibus_root
-      File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
-    end
+    # def expected_omnibus_root
+    #   File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
+    # end
 
     def default_package_home
       if Chef::Platform.windows?

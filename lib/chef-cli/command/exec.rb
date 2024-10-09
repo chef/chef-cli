@@ -28,10 +28,6 @@ module ChefCLI
       banner "Usage: #{ChefCLI::Dist::EXEC} exec SYSTEM_COMMAND"
 
       def run(params)
-        # puts "GEM_ROOT: #{Gem.default_dir}"
-        # puts "GEM_HOME: #{Gem.user_dir}"
-        # puts "GEM_PATH: #{Gem.path.inspect}"
-        # puts "Current PATH: #{ENV['PATH']}"
         # Set ENV directly on the "parent" process (us) before running #exec to
         # ensure the custom PATH is honored when finding the command to exec
         habitat_env.each { |var, value| ENV[var] = value }

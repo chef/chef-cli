@@ -110,10 +110,6 @@ module ChefCLI
       @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))
     end
 
-    def initialize
-      @pkg_prefix = get_pkg_prefix
-    end
-
     #
     # environment vars for habitat
     #
@@ -122,9 +118,10 @@ module ChefCLI
       begin
         # Define the necessary paths for the Habitat environment
         # Custom GEM_HOME within Habitat
-        vendor_dir = File.join(@pkg_prefix, "vendor")
+        pkg_prefix = get_pkg_prefix
+        vendor_dir = File.join(pkg_prefix, "vendor")
         path = [
-          File.join(@pkg_prefix, "bin"),
+          File.join(pkg_prefix, "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR) # Preserve existing PATH
         ].flatten.uniq
 

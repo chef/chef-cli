@@ -53,24 +53,24 @@ module ChefCLI
     #
     # Locates the omnibus directories
     #
-    # def omnibus_install?
-    #   # We also check if the location we're running from (omnibus_root is relative to currently-running ruby)
-    #   # includes the version manifest that omnibus packages ship with. If it doesn't, then we're running locally
-    #   # or out of a gem - so not as an 'omnibus install'
-    #   File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
-    # end
+    def omnibus_install?
+      # We also check if the location we're running from (omnibus_root is relative to currently-running ruby)
+      # includes the version manifest that omnibus packages ship with. If it doesn't, then we're running locally
+      # or out of a gem - so not as an 'omnibus install'
+      File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
+    end
 
-    # def omnibus_root
-    #   @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
-    # end
+    def omnibus_root
+      @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
+    end
 
-    # def omnibus_bin_dir
-    #   @omnibus_bin_dir ||= omnibus_expand_path(omnibus_root, "bin")
-    # end
+    def omnibus_bin_dir
+      @omnibus_bin_dir ||= omnibus_expand_path(omnibus_root, "bin")
+    end
 
-    # def omnibus_embedded_bin_dir
-    #   @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
-    # end
+    def omnibus_embedded_bin_dir
+      @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
+    end
 
     def package_home
       @package_home ||= begin
@@ -148,18 +148,18 @@ module ChefCLI
       end
     end
 
-    # def omnibus_expand_path(*paths)
-    #   dir = File.expand_path(File.join(paths))
-    #   raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
+    def omnibus_expand_path(*paths)
+      dir = File.expand_path(File.join(paths))
+      raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
 
-    #   dir
-    # end
+      dir
+    end
 
     private
 
-    # def expected_omnibus_root
-    #   File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
-    # end
+    def expected_omnibus_root
+      File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
+    end
 
     def default_package_home
       if Chef::Platform.windows?

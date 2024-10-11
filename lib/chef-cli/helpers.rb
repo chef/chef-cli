@@ -111,22 +111,39 @@ module ChefCLI
     end
 
     #
-    # environment vars for omnibus
+    # environment vars for habitat
     #
-    def omnibus_env
-      @omnibus_env ||=
-        begin
-          user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
-          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"].split(File::PATH_SEPARATOR) ]
-          path << git_bin_dir if Dir.exist?(git_bin_dir)
-          path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
-          {
-            "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
-            "GEM_ROOT" => Gem.default_dir,
-            "GEM_HOME" => Gem.user_dir,
-            "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
-          }
-        end
+    def habitat_env
+      @habitat_env ||=
+      begin
+        # Define the necessary paths for the Habitat environment
+        # Custom GEM_HOME within Habitat
+        pkg_prefix = get_pkg_prefix
+        vendor_dir = File.join(pkg_prefix, "vendor")
+        path = [
+          File.join(pkg_prefix, "bin"),
+          ENV["PATH"].split(File::PATH_SEPARATOR) # Preserve existing PATH
+        ].flatten.uniq
+
+        {
+        "PATH" => path.join(File::PATH_SEPARATOR),
+        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+        "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
+        "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
+        }
+      end
+    end
+
+    def get_pkg_prefix
+      pkg_origin = "chef"
+      pkg_name = "#{pkg_origin}/chef-cli" # Your origin and package name
+      path = `hab pkg path #{pkg_name}`.strip
+
+      if $?.success? && !path.empty?
+        path
+      else
+        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
+      end
     end
 
     def omnibus_expand_path(*paths)

@@ -87,7 +87,7 @@ module ChefCLI
       private
 
       def http_connection_for(base_url)
-        headers = { "X-Jfrog-Art-API" => artifactory_api_key }
+        headers = { "Authorization" => "Bearer #{artifactory_api_key}" }
         @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url, headers:)
       end
 

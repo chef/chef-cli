@@ -28,7 +28,7 @@ module ChefCLI
 
       include Configurable
 
-      MAIN_COMMAND_HELP = <<~HELP
+      MAIN_COMMAND_HELP = <<~HELP.freeze
         Usage: #{ChefCLI::Dist::EXEC} license [SUBCOMMAND]
 
         `#{ChefCLI::Dist::EXEC} license` command will validate the existing license
@@ -39,7 +39,7 @@ module ChefCLI
       SUB_COMMANDS = [
         { name: "list", description: "List details of the license(s) installed on the system." },
         { name: "add", description: "Create & install a Free/ Trial license or install a Commercial license on the system." },
-      ]
+      ].freeze
 
       option :chef_license_key,
         long: "--chef-license-key LICENSE",

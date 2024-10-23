@@ -95,6 +95,7 @@ describe ChefCLI::Command::License do
 
         # Mocks the user prompt to enter the license
         allow_any_instance_of(ChefLicensing::LicenseKeyFetcher::Prompt).to receive(:fetch).and_return(new_key)
+        allow(ChefLicensing).to receive(:fetch_and_persist).and_return(new_key)
       end
 
       it "should create and stores the new license" do

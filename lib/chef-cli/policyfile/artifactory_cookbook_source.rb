@@ -84,15 +84,15 @@ module ChefCLI
         chef_config&.artifactory_api_key || (ENV["ARTIFACTORY_API_KEY"] unless ENV["ARTIFACTORY_API_KEY"].to_s.strip.empty?)
       end
 
-      def artifactory_identity_key
-        chef_config&.artifactory_identity_key || (ENV["ARTIFACTORY_IDENTITY_KEY"] unless ENV["ARTIFACTORY_IDENTITY_KEY"].to_s.strip.empty?)
+      def artifactory_identity_token
+        chef_config&.artifactory_identity_token || (ENV["ARTIFACTORY_IDENTITY_TOKEN"] unless ENV["ARTIFACTORY_IDENTITY_TOKEN"].to_s.strip.empty?)
       end
 
       private
 
       def auth_headers
-        if artifactory_identity_key
-          { "Authorization" => "Bearer #{artifactory_identity_key}" }
+        if artifactory_identity_token
+          { "Authorization" => "Bearer #{artifactory_identity_token}" }
         else
           { "X-Jfrog-Art-API" => artifactory_api_key }
         end

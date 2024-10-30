@@ -83,27 +83,27 @@ describe ChefCLI::Policyfile::ArtifactoryCookbookSource do
     end
   end
 
-  describe "#artifactory_identity_key" do
+  describe "#artifactory_identity_token" do
     before do
-      ENV["ARTIFACTORY_IDENTITY_KEY"] = "test"
+      ENV["ARTIFACTORY_IDENTITY_TOKEN"] = "test"
     end
 
     context "when config is not present" do
       let(:config) { nil }
       it "should get artifactory key from the env" do
-        expect(subject.artifactory_identity_key).to eq("test")
+        expect(subject.artifactory_identity_token).to eq("test")
       end
     end
 
     context "when config is present" do
       let(:config) { double("Chef::Config") }
       it "should get artifactory key from config when key is present" do
-        expect(config).to receive(:artifactory_identity_key).and_return "test1"
-        expect(subject.artifactory_identity_key).to eq("test1")
+        expect(config).to receive(:artifactory_identity_token).and_return "test1"
+        expect(subject.artifactory_identity_token).to eq("test1")
       end
       it "should get artifactory key from env when config is present but has a nil key" do
-        expect(config).to receive(:artifactory_identity_key).and_return nil
-        expect(subject.artifactory_identity_key).to eq("test")
+        expect(config).to receive(:artifactory_identity_token).and_return nil
+        expect(subject.artifactory_identity_token).to eq("test")
       end
     end
   end

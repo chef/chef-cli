@@ -94,6 +94,8 @@ do_install() {
       appbundler $CACHE_PATH $pkg_prefix/bin $gem
     done
   )
+    sed -i '1s|^.*|#!'$(pkg_path_for $_chef_client_ruby)/bin/ruby'|' ${pkg_prefix}/vendor/bin/rspec
+
 }
 
 do_after() {

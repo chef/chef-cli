@@ -1,3 +1,4 @@
+export HAB_BLDR_CHANNEL="LTS-2024"
 pkg_name=chef-cli
 pkg_origin=chef
 ruby_pkg="core/ruby3_1"
@@ -64,7 +65,7 @@ export PATH="/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:\$PATH
   export GEM_HOME="$pkg_prefix/vendor"
   export GEM_PATH="$GEM_PATH"
 
-exec $(pkg_path_for core/ruby31)/bin/ruby $real_bin \$@
+exec $(pkg_path_for ${ruby_pkg})/bin/ruby $real_bin \$@
 EOF
   chmod -v 755 "$bin"
 }

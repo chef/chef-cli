@@ -135,7 +135,7 @@ module ChefCLI
     end
 
     def get_pkg_prefix
-      pkg_origin = "ngupta26"
+      pkg_origin = "chef"
       pkg_name = "#{pkg_origin}/chef-cli" # Your origin and package name
       path = `hab pkg path #{pkg_name}`.strip
 

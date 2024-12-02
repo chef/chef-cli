@@ -4,7 +4,7 @@ param (
 )
 
 
-Write-Host "--- :fire: Smokish Pestering"
+Write-Host "--- :fire: Smokish test"
 # Pester the Package
 $version=hab pkg exec "${pkg_ident}" chef-cli -v
 $actual_version=[Regex]::Match($version,"([0-9]+.[0-9]+.[0-9]+)").Value

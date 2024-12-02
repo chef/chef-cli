@@ -88,10 +88,10 @@ jobs:
           export HAB_LICENSE="accept-no-persist"
           export HAB_NONINTERACTIVE="true"
           sudo hab pkg install ./results/$hartfile
-          
-          hab pkg list --all
+          . ./results/last_build.env
+          export pkg_ident
           chmod +x habitat/tests/test.sh
-          habitat/tests/test.sh $hartfile
+          habitat/tests/test.sh
       - name: Install Habitat on Windows
         if: ${{ matrix.os == 'windows-latest' }}
         shell: pwsh

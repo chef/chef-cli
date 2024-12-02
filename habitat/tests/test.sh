@@ -3,7 +3,6 @@ set -euo pipefail
 
 
 project_root="$(git rev-parse --show-toplevel)"
-pkg_ident="$1"
 
 # print error message followed by usage and exit
 error () {
@@ -16,7 +15,7 @@ error () {
 
 [[ -n "$pkg_ident" ]] || error 'no hab package identity provided'
 
-package_version=$(awk -F - '{print $4}' <<<"$pkg_ident")
+package_version=$(awk -F  '{print $4}' <<<"$pkg_ident")
 
 cd "${project_root}"
 

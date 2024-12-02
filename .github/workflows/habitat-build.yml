@@ -72,6 +72,8 @@ jobs:
           export HAB_FALLBACK_CHANNEL="${{vars.HAB_FALLBACK_CHANNEL}}"
           HABITAT_VERSION="${HABITAT_VERSION:?HABITAT_VERSION must be set}"
           HABITAT_TARGET="${HABITAT_TARGET:-x86_64-linux}"
+          CHEF_LICENSE="accept-no-persist"
+          HAB_LICENSE="accept-no-persist"
           curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash -s -- -v "$HABITAT_VERSION" -t "$HABITAT_TARGET"
       - name: run Habitat packaging (linux)
         if: ${{ matrix.os == 'ubuntu-latest' }}

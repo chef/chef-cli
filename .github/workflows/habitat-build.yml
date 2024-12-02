@@ -105,11 +105,12 @@ jobs:
         shell: pwsh
         run: |
           $env:Path += ";C:\ProgramData\Habitat"
-
           hab license accept
           hab origin key download ${{ env.HAB_ORIGIN }}
           hab origin key download --auth ${{ secrets.HAB_AUTH_TOKEN }} --secret ${{ env.HAB_ORIGIN }}
           write-output "--- running windows hab build"
           hab pkg build .
-          hab pkg list --all
+          hartfile=$(ls ./results | grep "chef-cli" | tail -n 1)
+          hab pkg install ./results/$hartfile
+          . ./results/last_build.env
           habitat/tests/test.ps1 

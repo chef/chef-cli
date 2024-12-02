@@ -83,7 +83,7 @@ jobs:
           echo "--- running linux hab build"
           hab pkg build .
           chmod +x habitat/tests/test.sh
-          habitat/tests/test.sh
+          habitat/tests/test.sh "${{vars.PKG_IDENT}}"
       - name: Install Habitat on Windows
         if: ${{ matrix.os == 'windows-latest' }}
         shell: pwsh
@@ -103,4 +103,4 @@ jobs:
           hab origin key download --auth ${{ secrets.HAB_AUTH_TOKEN }} --secret ${{ env.HAB_ORIGIN }}
           write-output "--- running windows hab build"
           hab pkg build .
-          habitat/tests/test.ps1
+          habitat/tests/test.ps1 "${{vars.PKG_IDENT}}"

@@ -82,7 +82,7 @@ jobs:
           hab origin key download --auth $HAB_AUTH_TOKEN --secret $HAB_ORIGIN
           echo "--- running linux hab build"
           hab pkg build .
-          hartfile=$(ls /src/results *.hart | grep "chef-cli" | tail -n 1)
+          hartfile=$(ls /hab/cache/artifacts/ *.hart | grep "chef-cli" | tail -n 1)
           hab pkg install $hartfile
           hab pkg list --all
           chmod +x habitat/tests/test.sh

@@ -111,7 +111,7 @@ jobs:
           hab origin key download --auth ${{ secrets.HAB_AUTH_TOKEN }} --secret ${{ env.HAB_ORIGIN }}
           write-output "--- running windows hab build"
           hab pkg build .
-          hartfile=$(ls ./results | findstr "chef-cli")
+          $hartfile=(ls ./results | findstr "chef-cli")
           hab pkg install ./results/$hartfile
           . ./results/last_build.ps1
           habitat/tests/test.ps1 $pkg_ident

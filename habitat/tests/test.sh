@@ -21,7 +21,7 @@ package_version=$(awk -F / '{print $3}' <<<"$pkg_ident")
 cd "${project_root}"
 
 echo "--- :mag_right: Testing ${pkg_ident} executables"
-actual_version=$(hab pkg exec "${pkg_ident}" chef-cli -- -v | sed -E 's/.*Version ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+actual_version=$(hab pkg exec "${pkg_ident}" chef-cli -v | sed -E 's/.*Version ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 [[ "$package_version" = "$actual_version" ]] || error "chef-cli is not the expected version. Expected '$package_version', got '$actual_version'"
 
 echo "--- :Running rake"

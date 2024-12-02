@@ -91,7 +91,7 @@ jobs:
           
           hab pkg list --all
           chmod +x habitat/tests/test.sh
-          habitat/tests/test.sh "${{vars.PKG_IDENT}}"
+          habitat/tests/test.sh $hartfile
       - name: Install Habitat on Windows
         if: ${{ matrix.os == 'windows-latest' }}
         shell: pwsh
@@ -112,4 +112,4 @@ jobs:
           write-output "--- running windows hab build"
           hab pkg build .
           hab pkg list --all
-          habitat/tests/test.ps1 "${{vars.PKG_IDENT}}"
+          habitat/tests/test.ps1 

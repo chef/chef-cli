@@ -110,4 +110,3 @@ jobs:
           . results\last_build.ps1
           hab pkg upload results\$pkg_artifact --auth ${{ secrets.HAB_AUTH_TOKEN }}
           write-output "--- push complete!!"
-          outreach

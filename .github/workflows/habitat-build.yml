@@ -72,8 +72,6 @@ jobs:
           export HAB_FALLBACK_CHANNEL="${{vars.HAB_FALLBACK_CHANNEL}}"
           HABITAT_VERSION="${HABITAT_VERSION:?HABITAT_VERSION must be set}"
           HABITAT_TARGET="${HABITAT_TARGET:-x86_64-linux}"
-          CHEF_LICENSE="accept-no-persist"
-          HAB_LICENSE="accept-no-persist"
           curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash -s -- -v "$HABITAT_VERSION" -t "$HABITAT_TARGET"
       - name: run Habitat packaging (linux)
         if: ${{ matrix.os == 'ubuntu-latest' }}
@@ -85,7 +83,12 @@ jobs:
           echo "--- running linux hab build"
           hab pkg build .
           hartfile=$(ls ./results | grep "chef-cli" | tail -n 1)
+          sudo hab license accept
+          export CHEF_LICENSE="accept-no-persist"
+          export HAB_LICENSE="accept-no-persist"
+          export HAB_NONINTERACTIVE="true"
           sudo hab pkg install ./results/$hartfile
+          
           hab pkg list --all
           chmod +x habitat/tests/test.sh
           habitat/tests/test.sh "${{vars.PKG_IDENT}}"

@@ -103,4 +103,5 @@ jobs:
           hab origin key download --auth ${{ secrets.HAB_AUTH_TOKEN }} --secret ${{ env.HAB_ORIGIN }}
           write-output "--- running windows hab build"
           hab pkg build .
+          hab pkg list --all
           habitat/tests/test.ps1 "${{vars.PKG_IDENT}}"

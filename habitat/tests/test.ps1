@@ -13,7 +13,7 @@ Write-Host "--- :fire: Smokish Pestering"
 # Pester the Package
 $__dir=(Get-Item $PSScriptRoot)
 $test_result = Invoke-Pester -Strict -PassThru -Script @{
-    Path = "$__dir/test.pester.ps1";
+    Path = "habitat/tests/test.pester.ps1";
     Parameters = @{PackageIdentifier=$PackageIdentifier}
 }
 if ($test_result.FailedCount -ne 0) { Exit $test_result.FailedCount }

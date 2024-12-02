@@ -9,7 +9,8 @@ Write-Host "--- :fire: Smokish test"
 $version=hab pkg exec "${pkg_ident}" chef-cli -v
 $actual_version=[Regex]::Match($version,"([0-9]+.[0-9]+.[0-9]+)").Value
 $package_version=$PackageIdentifier.split("/",4)[2]
-Write-BuildLine "package_version  $package_version actual version $actual_version"
+
+Write-Host "package_version  $package_version actual version $actual_version"
 if ($package_version -eq $actual_version)
 {
     Write "Chef-cli working fine"

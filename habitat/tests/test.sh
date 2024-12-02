@@ -15,7 +15,7 @@ error () {
 
 [[ -n "$pkg_ident" ]] || error 'no hab package identity provided'
 
-package_version=$(awk -F  '{print $4}' <<<"$pkg_ident")
+package_version=$(awk -F / '{print $3}' <<<"$pkg_ident")
 
 cd "${project_root}"
 

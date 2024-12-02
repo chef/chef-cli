@@ -83,7 +83,7 @@ jobs:
           echo "--- running linux hab build"
           hab pkg build .
           hartfile=$(ls ./results | grep "chef-cli" | tail -n 1)
-          hab pkg install ./results/$hartfile
+          sudo hab pkg install ./results/$hartfile
           hab pkg list --all
           chmod +x habitat/tests/test.sh
           habitat/tests/test.sh "${{vars.PKG_IDENT}}"

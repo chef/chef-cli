@@ -54,7 +54,7 @@ if [ -f ./results/last_build.env ]; then
     . ./results/last_build.env
     export pkg_artifact
 fi
-sudo apt install locales-all
+dnf --assumeyes install glibc-all-langpacks 
 
 echo "+++ Installing ${pkg_ident:?is undefined}"
 echo "++++"

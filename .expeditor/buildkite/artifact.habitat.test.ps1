@@ -78,7 +78,7 @@ Push-Location $project_root
 
 try {
     Write-Host "Running unit tests..."
-    /habitat/tests/test.ps1 $pkg_ident
+    habitat/tests/test.ps1 $pkg_ident
 }
 finally {
     # Ensure we always return to the original directory

@@ -18,9 +18,8 @@ error () {
 package_version=$(awk -F / '{print $3}' <<<"$pkg_ident")
 
 cd "${project_root}"
-dpkg-reconfigure locales
 echo "--- :mag_right: Testing ${pkg_ident} executables"
 actual_version=$(hab pkg exec "${pkg_ident}" chef-cli -v | sed -E 's/.*version: ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
-[[ "$package_version" = "$actual_version" ]] || error "chef-cli version is not the expected version ${pkg_ident}. Expected '$package_version', got '$actual_version'"
+[[ "$package_version" = "$actual_version" ]] || error "chef-cli version is not the expected version. Expected '$package_version', got '$actual_version'"
 
 

@@ -16,6 +16,7 @@ error () {
 [[ -n "$pkg_ident" ]] || error 'no hab package identity provided'
 
 package_version=$(awk -F / '{print $3}' <<<"$pkg_ident")
+echo en_US.UTF-8 UTF-8 >> /var/lib/locales/supported.d/local
 
 cd "${project_root}"
 echo "--- :mag_right: Testing ${pkg_ident} executables"

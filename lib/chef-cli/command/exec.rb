@@ -30,7 +30,7 @@ module ChefCLI
       def run(params)
         # Set ENV directly on the "parent" process (us) before running #exec to
         # ensure the custom PATH is honored when finding the command to exec
-        omnibus_env.each { |var, value| ENV[var] = value }
+        habitat_env.each { |var, value| ENV[var] = value }
         exec(*params)
         raise "Exec failed without an exception, your ruby is buggy" # should never get here
       end

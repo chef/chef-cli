@@ -21,7 +21,7 @@ cd "${project_root}"
 echo "Testing ${pkg_ident} executables"
 version=$(hab pkg exec "${pkg_ident}" chef-cli -v)
 echo $version
-actual_version=$(echo "$version" | grep -Po ([0-9]+\.[0-9]+\.[0-9]+))
+actual_version=$(echo "$version" | sed -E 's/.*version: ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 echo $actual_version
 
 if [[ "$actual_version" != *"$package_version"* ]]; then

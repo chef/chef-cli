@@ -20,7 +20,8 @@ package_version=$(awk -F / '{print $3}' <<<"$pkg_ident")
 cd "${project_root}"
 echo "Testing ${pkg_ident} executables"
 version=$(hab pkg exec "${pkg_ident}" chef-cli -v)
-actual_version= $(echo $version | sed -E 's/.*version: ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+echo $version
+actual_version= $(echo "$version" | sed -E 's/.*version: ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 [[ "$package_version" = "$actual_version" ]] || error "chef-cli version is not the expected version. Expected '$package_version', got '$actual_version'"
 
 

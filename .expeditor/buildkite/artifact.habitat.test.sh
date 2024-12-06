@@ -54,7 +54,6 @@ if [ -f ./results/last_build.env ]; then
     . ./results/last_build.env
     export pkg_artifact
 fi
-
 echo "+++ Installing ${pkg_ident:?is undefined}"
 echo "++++"
 echo $project_root

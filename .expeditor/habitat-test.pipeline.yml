@@ -7,11 +7,12 @@ expeditor:
         automatic:
           limit: 1
 
+
 steps:
 
   - label: ":linux: Validate Habitat Builds of Chef-cli"
     commands:
-      - habitat/tests/test.sh
+      - .expeditor/buildkite/artifact.habitat.test.sh
     expeditor:
       executor:
         docker:

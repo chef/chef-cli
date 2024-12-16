@@ -28,7 +28,8 @@ github:
 
 changelog:
   rollup_header: Changes not yet released to rubygems.org
-
+artifact_channels:
+  - dev
 pipelines:
   - verify:
       description: Pull Request validation tests

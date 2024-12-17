@@ -5,7 +5,7 @@
 slack:
   notify_channel: chef-ws-notify
 
-# This publish is triggered by the `built_in:publish_rubygems` artifact_action.
+# This publish is triggered by the `built_in:publish_rubygems` artifact_action!
 rubygems:
   - chef-cli
 

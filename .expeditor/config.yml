@@ -84,4 +84,5 @@ subscriptions:
     actions:
       # when all of the hab package publish to the unstable channel, test and promote them
       - trigger_pipeline:habitat/test
+      - built_in:promote_habitat_packages
     

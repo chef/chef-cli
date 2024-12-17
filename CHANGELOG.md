@@ -1,24 +1,22 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.15 -->
-## [v5.6.15](https://github.com/chef/chef-cli/tree/v5.6.15) (2024-08-17)
-
-#### Merged Pull Requests
-- Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.14 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld)) <!-- 5.6.15 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.16](https://github.com/chef/chef-cli/tree/v5.6.16) (2024-11-08)
+
+#### Merged Pull Requests
+- Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld))
+- Support for bearer token [#239](https://github.com/chef/chef-cli/pull/239) ([sanjain-progress](https://github.com/sanjain-progress))
+<!-- latest_stable_release -->
+
 ## [v5.6.14](https://github.com/chef/chef-cli/tree/v5.6.14) (2023-09-15)
 
 #### Merged Pull Requests
 - Updated ffi-yajl dependency limit [#228](https://github.com/chef/chef-cli/pull/228) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v5.6.13](https://github.com/chef/chef-cli/tree/v5.6.13) (2023-09-13)
 

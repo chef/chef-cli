@@ -89,6 +89,8 @@ describe ChefCLI::CLI do
 
     commands_map.builtin "example", :TestCommand, require_path: "unit/fixtures/command/cli_test_command",
                                                   desc: "Example subcommand for testing"
+
+    allow(ChefCLI::Licensing::Base).to receive(:validate).and_return(true)
   end
 
   context "given no arguments or options" do

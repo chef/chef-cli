@@ -11,7 +11,7 @@ rubygems:
 
 release_branches:
   - workstation-LTS:
-      version_constraint: 5.*
+      version_constraint: 1.*
   - main:
       version_constraint: 5.*
 github:
@@ -83,6 +83,6 @@ subscriptions:
   - workload: buildkite_hab_build_group_published:{{agent_id}}:*
     actions:
       # when all of the hab package publish to the unstable channel, test and promote them
-      - trigger_pipeline:habitat/test
       - built_in:promote_habitat_packages
+      - trigger_pipeline:habitat/test
     

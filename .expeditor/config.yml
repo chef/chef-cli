@@ -30,6 +30,7 @@ changelog:
   rollup_header: Changes not yet released to rubygems.org
 artifact_channels:
   - dev
+  - stable
 pipelines:
   - verify:
       description: Pull Request validation tests
@@ -84,5 +85,4 @@ subscriptions:
     actions:
       # when all of the hab package publish to the unstable channel, test and promote them
       - built_in:promote_habitat_packages
-      - trigger_pipeline:habitat/test
     

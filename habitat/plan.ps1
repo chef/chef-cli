@@ -46,9 +46,9 @@ function Invoke-Build {
         bundle install
 
         gem build chef-cli.gemspec
-	    Write-BuildLine " ** Using gem to  install"
-	    gem install chef-cli-*.gem --no-document
-        
+        Write-BuildLine " ** Using gem to  install"
+        gem install chef-cli-*.gem --no-document
+        ruby ./post-bundle-install.rb
 
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
     } finally {

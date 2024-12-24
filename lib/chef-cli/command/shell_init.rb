@@ -103,7 +103,7 @@ module ChefCLI
           return 1
         end
 
-        env = omnibus_env.dup
+        env = habitat_env.dup
         path = env.delete("PATH")
         export(shell_name, "PATH", path)
         env.each do |var_name, value|

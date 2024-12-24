@@ -9,6 +9,7 @@ pkg_build_deps=(
     core/sed
     core/gcc
     core/libarchive
+    core/git
     )
 pkg_bin_dirs=(bin)
 

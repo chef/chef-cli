@@ -11,7 +11,7 @@ rubygems:
 
 release_branches:
   - workstation-LTS:
-      version_constraint: 5.*
+      version_constraint: 0.*
   - main:
       version_constraint: 5.*
 github:
@@ -30,7 +30,9 @@ changelog:
   rollup_header: Changes not yet released to rubygems.org
 artifact_channels:
   - dev
-  - stable
+  - workstation-build
+  - LTS-2024
+
 pipelines:
   - verify:
       description: Pull Request validation tests
@@ -59,12 +61,6 @@ subscriptions:
             - "Expeditor: Skip All"
       - bash:.expeditor/update_version.sh:
           only_if: built_in:bump_version
-      - built_in:update_changelog:
-          ignore_labels:
-            - "Expeditor: Skip Changelog"
-            - "Expeditor: Skip All"
-      - built_in:build_gem:
-          only_if: built_in:bump_version
       - trigger_pipeline:habitat/test:
           only_if: built_in:bump_version
           ignore_labels:
@@ -76,13 +72,14 @@ subscriptions:
             - "Expeditor: Skip Habitat"
             - "Expeditor: Skip All"
 
-  - workload: project_promoted:{{agent_id}}:*
-    actions:
-      - built_in:rollover_changelog
-      - built_in:publish_rubygems
-    # the habitat chain
   - workload: buildkite_hab_build_group_published:{{agent_id}}:*
     actions:
       # when all of the hab package publish to the unstable channel, test and promote them
       - built_in:promote_habitat_packages
-    
+  # Subscribe to the promotion of the dev channel to acceptance
+  - workload: project_promoted:{{agent_id}}:dev:*
+    actions:
+      - built_in:promote_habitat_packages
+  - workload: project_promoted:{{agent_id}}:workstation-build:*
+    actions:
+      - built_in:promote_habitat_packages

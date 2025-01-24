@@ -1,0 +1,51 @@
+{
+  "revision_id": "b2e90a4c0aed791a325a018539b8d2b8e3e674a84d4d65bc0e5141a74db18cc0",
+  "name": "test12",
+  "run_list": [
+    "recipe[test12::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "test12": {
+      "version": "0.1.1",
+      "identifier": "498af7ea053a45029ea9da30f2de099eaa91a813",
+      "dotted_decimal_identifier": "20700470687644229.737402300723934.10577071155219",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "7b5ecff07114db83fd66f20aed155b355bddaa13",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/nikhil/test_branch"
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "test12",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "test12 (0.1.1)": [
+
+      ]
+    }
+  }
+}

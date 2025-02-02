@@ -122,7 +122,7 @@ module ChefCLI
         vendor_dir = File.join(pkg_prefix, "vendor")
         path = [
           File.join(pkg_prefix, "bin"),
-          ENV["PATH"].split(File::PATH_SEPARATOR) # Preserve existing PATH
+          ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
 
         {

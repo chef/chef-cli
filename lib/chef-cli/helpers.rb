@@ -153,17 +153,17 @@ module ChefCLI
         end
     end
 
-    def get_pkg_prefix
-      pkg_origin = "chef"
-      pkg_name = "#{pkg_origin}/chef-cli" # Your origin and package name
-      path = `hab pkg path #{pkg_name}`.strip
+    # def get_pkg_prefix
+    #   pkg_origin = "chef"
+    #   pkg_name = "#{pkg_origin}/chef-cli" # Your origin and package name
+    #   path = `hab pkg path #{pkg_name}`.strip
 
-      if $?.success? && !path.empty?
-        path
-      else
-        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
-      end
-    end
+    #   if $?.success? && !path.empty?
+    #     path
+    #   else
+    #     raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
+    #   end
+    # end
 
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))

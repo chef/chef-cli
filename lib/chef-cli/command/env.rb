@@ -73,19 +73,19 @@ module ChefCLI
 
       def gem_environment
         h = {}
-        # h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
-        # h["GEM HOME"] = omnibus_env["GEM_HOME"]
-        # h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
-        # rescue OmnibusInstallNotFound
+        h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
+        h["GEM HOME"] = omnibus_env["GEM_HOME"]
+        h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
+      rescue OmnibusInstallNotFound
         h["GEM_ROOT"] = ENV["GEM_ROOT"] if ENV.key?("GEM_ROOT")
         h["GEM_HOME"] = ENV["GEM_HOME"] if ENV.key?("GEM_HOME")
         h["GEM PATHS"] = ENV["GEM_PATH"].split(File::PATH_SEPARATOR) if ENV.key?("GEM_PATH") && !ENV.key?("GEM_PATH").nil?
-        # ensure
-        #   h
+      ensure
+        h
       end
 
       def paths
-        habitat_env["PATH"].split(File::PATH_SEPARATOR)
+        omnibus_env["PATH"].split(File::PATH_SEPARATOR)
       rescue OmnibusInstallNotFound
         ENV["PATH"].split(File::PATH_SEPARATOR)
       end

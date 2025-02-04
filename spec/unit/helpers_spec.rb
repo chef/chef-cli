@@ -19,6 +19,7 @@ require "chef-cli/helpers"
 
 describe ChefCLI::Helpers do
   context "path_check!" do
+    let(:ruby_path) { "/opt/chef-workstation/embedded/bin/ruby" }
 
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
@@ -38,7 +39,7 @@ describe ChefCLI::Helpers do
         let(:expected_GEM_ROOT) { Gem.default_dir }
         let(:expected_GEM_HOME) { Gem.user_dir }
         let(:expected_GEM_PATH) { Gem.path.join(File::PATH_SEPARATOR) }
-        let(:ruby_path) { "/opt/chef-workstation/embedded/bin/ruby" }
+
 
         it "#omnibus_env path" do
           allow(ChefCLI::Helpers).to receive(:omnibus_bin_dir).and_return("/opt/chef-workstation/bin")
@@ -106,6 +107,33 @@ describe ChefCLI::Helpers do
 
       end
 
+    end
+
+    context "when installed with habitat" do
+      let(:chef_dke_path) { "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/123" }
+      let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
+      let(:expected_gem_root) { Gem.default_dir }
+      let(:expected_env) do
+        {
+          "PATH" => "#{chef_dke_path}/bin:/usr/bin:/bin",
+          "GEM_ROOT" => expected_gem_root,
+          "GEM_HOME" => "#{cli_hab_path}/vendor",
+          "GEM_PATH" => "#{cli_hab_path}/vendor",
+        }
+      end
+
+      before do
+        allow(ChefCLI::Helpers).to receive(:habitat_chef_dke?).and_return true
+        allow(ChefCLI::Helpers).to receive(:habitat_standalone?).and_return false
+        allow(ENV).to receive(:[]).with("PATH").and_return("/usr/bin:/bin")
+      end
+
+      it "should return the habitat env" do
+        expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-development-kit-enterprise").and_return(chef_dke_path)
+        expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
+
+        expect(ChefCLI::Helpers.habitat_env).to eq(expected_env)
+      end
     end
   end
 end

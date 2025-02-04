@@ -113,9 +113,10 @@ describe ChefCLI::Helpers do
       let(:chef_dke_path) { "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/123" }
       let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
       let(:expected_gem_root) { Gem.default_dir }
+      let(:expected_path) { %W{#{chef_dke_path}/bin /usr/bin:/bin} }
       let(:expected_env) do
         {
-          "PATH" => "#{chef_dke_path}/bin:/usr/bin:/bin",
+          "PATH" =>  expected_path.join(File::PATH_SEPARATOR) ,
           "GEM_ROOT" => expected_gem_root,
           "GEM_HOME" => "#{cli_hab_path}/vendor",
           "GEM_PATH" => "#{cli_hab_path}/vendor",

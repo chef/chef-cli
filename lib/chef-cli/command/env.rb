@@ -85,7 +85,8 @@ module ChefCLI
       end
 
       def paths
-        omnibus_env["PATH"].split(File::PATH_SEPARATOR)
+        env = habitat_install? ? habitat_env : omnibus_env
+        env["PATH"].split(File::PATH_SEPARATOR)
       rescue OmnibusInstallNotFound
         ENV["PATH"].split(File::PATH_SEPARATOR)
       end

@@ -75,6 +75,8 @@ module ChefCLI
         else
           ChefCLI::Licensing::Base.send(remaining_args[0])
         end
+      rescue ChefLicensing::LicenseKeyFetcher::LicenseKeyNotFetchedError
+        ui.msg("License key not fetched. Please try again.")
       end
 
       def debug?

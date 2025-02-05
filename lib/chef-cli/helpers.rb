@@ -60,6 +60,21 @@ module ChefCLI
       File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
     end
 
+    # The habitat version of the chef-cli can be installed with standalone or chef-development-kit-enterprise
+    # This method checks if the habitat version of chef-cli is installed as standalone
+    def habitat_standalone?
+      @hab_standalone ||= (hab_pkg_installed?(ChefCLI::Dist::HAB_PKG_NAME) && !habitat_chef_dke?)
+    end
+
+    # This method checks if the habitat version of chef-cli is installed with chef-development-kit-enterprise
+    def habitat_chef_dke?
+      @hab_dke ||= hab_pkg_installed?(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+    end
+
+    def habitat_install?
+      habitat_chef_dke? || habitat_standalone?
+    end
+
     def omnibus_root
       @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
     end
@@ -110,29 +125,30 @@ module ChefCLI
       @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))
     end
 
-    # #
-    # # environment vars for habitat
-    # #
-    # def habitat_env
-    #   @habitat_env ||=
-    #   begin
-    #     # Define the necessary paths for the Habitat environment
-    #     # Custom GEM_HOME within Habitat
-    #     pkg_prefix = get_pkg_prefix
-    #     vendor_dir = File.join(pkg_prefix, "vendor")
-    #     path = [
-    #       File.join(pkg_prefix, "bin"),
-    #       ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
-    #     ].flatten.uniq
+    #
+    # environment vars for habitat
+    #
+    def habitat_env
+      @habitat_env ||=
+      begin
+        # Define the necessary paths for the Habitat environment
+        # If it is a chef-dke installation, we will use the chef-dke bin path.
+        # Otherwise, we will use the chef-cli bin path.
+        bin_pkg_prefix = get_pkg_prefix(habitat_chef_dke? ? ChefCLI::Dist::CHEF_DKE_PKG_NAME : ChefCLI::Dist::HAB_PKG_NAME)
+        vendor_dir = File.join(get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME), "vendor")
+        path = [
+          File.join(bin_pkg_prefix, "bin"),
+          ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
+        ].flatten.uniq
 
-    #     {
-    #     "PATH" => path.join(File::PATH_SEPARATOR),
-    #     "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-    #     "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
-    #     "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
-    #     }
-    #   end
-    # end
+        {
+        "PATH" => path.join(File::PATH_SEPARATOR),
+        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+        "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
+        "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
+        }
+      end
+    end
 
     #
     # environment vars for omnibus
@@ -153,17 +169,15 @@ module ChefCLI
         end
     end
 
-    # def get_pkg_prefix
-    #   pkg_origin = "chef"
-    #   pkg_name = "#{pkg_origin}/chef-cli" # Your origin and package name
-    #   path = `hab pkg path #{pkg_name}`.strip
+    def get_pkg_prefix(pkg_name)
+      path = `hab pkg path #{pkg_name}`.strip
 
-    #   if $?.success? && !path.empty?
-    #     path
-    #   else
-    #     raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
-    #   end
-    # end
+      if $?.success? && !path.empty?
+        path
+      else
+        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
+      end
+    end
 
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))
@@ -208,6 +222,15 @@ module ChefCLI
     #
     def macos?
       !!(RUBY_PLATFORM =~ /darwin/)
+    end
+
+    # @return [Boolean] Checks if a habitat package is installed.
+    # If habitat itself is not installed, this method will return false.
+    #
+    # @api private
+    #
+    def hab_pkg_installed?(pkg_name)
+      `hab pkg list #{pkg_name} 2>/dev/null`.include?(pkg_name) rescue false
     end
   end
 end

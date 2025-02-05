@@ -9,6 +9,7 @@ pkg_build_deps=(
     core/sed
     core/gcc
     core/libarchive
+    core/git
     )
 pkg_bin_dirs=(bin)
 
@@ -42,6 +43,7 @@ do_build() {
     bundle config --local silence_root_warning 1
     bundle install
     gem build chef-cli.gemspec
+    ruby ./post-bundle-install.rb
 }
 do_install() {
    export GEM_HOME="$pkg_prefix/vendor"

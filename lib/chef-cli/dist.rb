@@ -10,6 +10,9 @@ module ChefCLI
     CLI_PRODUCT = "Chef CLI".freeze
     CLI_GEM = "chef-cli".freeze
 
+    CHEF_DKE_PKG_NAME = "chef/chef-development-kit-enterprise".freeze
+    HAB_PKG_NAME = "chef/chef-cli".freeze
+
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze
 

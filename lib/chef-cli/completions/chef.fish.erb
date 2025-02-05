@@ -5,5 +5,5 @@
 set -l chef_commands <%= commands.keys.join(' ') %>;
 
 <% commands.each do |command, desc| -%>
-complete -c chef -f -n "not __fish_seen_subcommand_from $chef_commands" -a <%= command %> -d "<%= desc %>";
+complete -c <%= habitat? ? "chef-cli" : "chef" %> -f -n "not __fish_seen_subcommand_from $chef_commands" -a <%= command %> -d "<%= desc %>";
 <% end -%>

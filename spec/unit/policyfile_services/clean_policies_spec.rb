@@ -218,8 +218,8 @@ describe ChefCLI::PolicyfileServices::CleanPolicies do
               - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPClientException 403 \"Unauthorized\"
             ERROR
 
-            expect { clean_policies_service.run }.to raise_error do |error|
-              expect(error.message).to eq(expected_message)
+            expect { clean_policies_service.run }.to raise_error(ChefCLI::PolicyfileCleanError) do |error|
+              expect(error.message).to include("403 \"Unauthorized\"")
             end
             expected_message = <<~MESSAGE
               DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444

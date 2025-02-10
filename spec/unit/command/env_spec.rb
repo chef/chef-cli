@@ -39,6 +39,7 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:omnibus_install?).and_return true
       allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
       allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::PRODUCT)
       command_instance.ui = ui
     end
 
@@ -81,6 +82,75 @@ describe ChefCLI::Command::Env do
       end
     end
   end
+
+  describe "when running from a Habitat install (Chef DKE)" do
+    before do
+      allow(command_instance).to receive(:habitat_chef_dke?).and_return true
+      allow(command_instance).to receive(:omnibus_install?).and_return false
+      allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
+      allow(command_instance).to receive(:workstation_info).and_return({
+        "Version" => ChefCLI::VERSION,
+        "Home" => "/hab/pkgs/chef/chef-dke",
+        "Install Directory" => "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}",
+        "Policyfile Config" => "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}/config/policyfile.rb"
+      })
+      command_instance.ui = ui
+    end
+
+    describe "and the env command is run" do
+      let(:yaml) { YAML.load(ui.output) }
+      before :each do
+        run_command
+      end
+
+      it "output should be valid yaml" do
+        expect { yaml }.not_to raise_error
+      end
+
+      it "should include correct Habitat Chef-DKE version info" do
+        expect(yaml).to have_key ChefCLI::Dist::CHEF_DK_CLI_PACKAGE
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Version"]).to eql ChefCLI::VERSION
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Home"]).to eql "/hab/pkgs/chef/chef-dke"
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}"
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Policyfile Config"]).to eql "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}/config/policyfile.rb"
+      end
+    end
+  end
+
+  describe "when running from a Habitat install (Standalone)" do
+    before do
+      allow(command_instance).to receive(:habitat_standalone?).and_return true
+      allow(command_instance).to receive(:omnibus_install?).and_return false
+      allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_CLI_PACKAGE)
+      allow(command_instance).to receive(:workstation_info).and_return({
+        "Version" => ChefCLI::VERSION,
+        "Home" => "/hab/pkgs/chef/chef-cli",
+        "Install Directory" => "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}",
+        "Policyfile Config" => "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}/config/policyfile.rb"
+      })
+      command_instance.ui = ui
+    end
+
+    describe "and the env command is run" do
+      let(:yaml) { YAML.load(ui.output) }
+      before :each do
+        run_command
+      end
+
+      it "output should be valid yaml" do
+        expect { yaml }.not_to raise_error
+      end
+
+      it "should include correct Habitat Standalone version info" do
+        expect(yaml).to have_key ChefCLI::Dist::CHEF_CLI_PACKAGE
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Version"]).to eql ChefCLI::VERSION
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Home"]).to eql "/hab/pkgs/chef/chef-cli"
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}"
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Policyfile Config"]).to eql "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}/config/policyfile.rb"
+      end
+    end
+  end
+
   def run_command
     command_instance.run_with_default_options(false, command_options)
   end

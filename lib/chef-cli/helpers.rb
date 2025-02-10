@@ -98,6 +98,19 @@ module ChefCLI
                        end
     end
 
+    # Function to return the Chef CLI path based on standalone or Chef-DK-enabled package
+    def get_chef_cli_path
+      # Check Chef-DK package path
+      chef_dk_path = get_hab_package_path(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+      return chef_dk_path if chef_dk_path && File.exist?(chef_dk_path)
+
+      # Check Standalone Chef-CLI package path
+      chef_cli_path = get_hab_package_path(ChefCLI::Dist::HAB_PKG_NAME)
+      return chef_cli_path if chef_cli_path && File.exist?(chef_cli_path)
+    rescue
+      nil
+    end
+
     # Returns the directory that contains our main symlinks.
     # On Mac we place all of our symlinks under /usr/local/bin on other
     # platforms they are under /usr/bin
@@ -232,5 +245,13 @@ module ChefCLI
     def hab_pkg_installed?(pkg_name)
       `hab pkg list #{pkg_name} 2>/dev/null`.include?(pkg_name) rescue false
     end
+
+    # Helper function to get the path of the given hab package
+    def get_hab_package_path(pkg_name)
+      `hab pkg path #{pkg_name} 2>/dev/null`.strip || nil
+    rescue
+      nil
+    end
+
   end
 end

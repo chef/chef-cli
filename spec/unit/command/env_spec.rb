@@ -83,44 +83,20 @@ describe ChefCLI::Command::Env do
     end
   end
 
-  describe "when running from a Habitat install (Chef DKE)" do
+  describe "when running from a Habitat standalone install" do
+    let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
+
     before do
-      allow(command_instance).to receive(:habitat_chef_dke?).and_return true
-      allow(command_instance).to receive(:omnibus_install?).and_return false
-      allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
+      allow(command_instance).to receive(:habitat_install?).and_return true
+      allow(command_instance).to receive(:habitat_chef_dke?).and_return(false)
+      allow(command_instance).to receive(:habitat_standalone?).and_return(true)
+      allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
       command_instance.ui = ui
     end
 
     describe "and the env command is run" do
       let(:yaml) { YAML.load(ui.output) }
-      before :each do
-        run_command
-      end
 
-      it "output should be valid yaml" do
-        expect { yaml }.not_to raise_error
-      end
-
-      it "should include correct Habitat Chef-DKE version info" do
-        expect(yaml).to have_key ChefCLI::Dist::CHEF_DK_CLI_PACKAGE
-        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Version"]).to eql ChefCLI::VERSION
-        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Home"]).to eql "/hab/pkgs/chef/chef-dke"
-        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}"
-        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Policyfile Config"]).to eql "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}/config/policyfile.rb"
-      end
-    end
-  end
-
-  describe "when running from a Habitat install (Standalone)" do
-    before do
-      allow(command_instance).to receive(:habitat_standalone?).and_return true
-      allow(command_instance).to receive(:omnibus_install?).and_return false
-      allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_CLI_PACKAGE)
-      command_instance.ui = ui
-    end
-
-    describe "and the env command is run" do
-      let(:yaml) { YAML.load(ui.output) }
       before :each do
         run_command
       end
@@ -131,10 +107,50 @@ describe ChefCLI::Command::Env do
 
       it "should include correct Habitat Standalone version info" do
         expect(yaml).to have_key ChefCLI::Dist::CHEF_CLI_PACKAGE
-        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Version"]).to eql ChefCLI::VERSION
-        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Home"]).to eql "/hab/pkgs/chef/chef-cli"
-        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}"
-        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Policyfile Config"]).to eql "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}/config/policyfile.rb"
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Version"]).to eql "1.0.0"
+      end
+
+      it "should include correct PATH, GEM_HOME, and GEM_PATH" do
+        expect(ui.output).to include("export PATH=\"#{cli_hab_path}/bin")
+        expect(ui.output).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
+        expect(ui.output).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
+      end
+    end
+  end
+
+  describe "when running from a Habitat chef-dke install" do
+    let(:chef_dke_path) { "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/123" }
+    let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
+
+    before do
+      allow(command_instance).to receive(:habitat_install?).and_return true
+      allow(command_instance).to receive(:habitat_chef_dke?).and_return(true)
+      allow(command_instance).to receive(:habitat_standalone?).and_return(false)
+      allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-development-kit-enterprise").and_return(chef_dke_path)
+      allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
+      command_instance.ui = ui
+    end
+
+    describe "and the env command is run" do
+      let(:yaml) { YAML.load(ui.output) }
+
+      before :each do
+        run_command
+      end
+
+      it "output should be valid yaml" do
+        expect { yaml }.not_to raise_error
+      end
+
+      it "should include correct Habitat chef-dke version info" do
+        expect(yaml).to have_key ChefCLI::Dist::CHEF_DK_CLI_PACKAGE
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Version"]).to eql "1.0.0"
+      end
+
+      it "should include correct PATH, GEM_HOME, and GEM_PATH" do
+        expect(ui.output).to include("export PATH=\"#{chef_dke_path}/bin")
+        expect(ui.output).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
+        expect(ui.output).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
       end
     end
   end

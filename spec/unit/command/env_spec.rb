@@ -88,12 +88,6 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:habitat_chef_dke?).and_return true
       allow(command_instance).to receive(:omnibus_install?).and_return false
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
-      allow(command_instance).to receive(:workstation_info).and_return({
-        "Version" => ChefCLI::VERSION,
-        "Home" => "/hab/pkgs/chef/chef-dke",
-        "Install Directory" => "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}",
-        "Policyfile Config" => "/hab/pkgs/chef/chef-dke/#{ChefCLI::VERSION}/config/policyfile.rb"
-      })
       command_instance.ui = ui
     end
 
@@ -122,12 +116,6 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:habitat_standalone?).and_return true
       allow(command_instance).to receive(:omnibus_install?).and_return false
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_CLI_PACKAGE)
-      allow(command_instance).to receive(:workstation_info).and_return({
-        "Version" => ChefCLI::VERSION,
-        "Home" => "/hab/pkgs/chef/chef-cli",
-        "Install Directory" => "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}",
-        "Policyfile Config" => "/hab/pkgs/chef/chef-cli/#{ChefCLI::VERSION}/config/policyfile.rb"
-      })
       command_instance.ui = ui
     end
 

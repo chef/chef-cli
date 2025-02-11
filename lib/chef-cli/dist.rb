@@ -14,7 +14,7 @@ module ChefCLI
     CLI_GEM = "chef-cli".freeze
 
     CHEF_DKE_PKG_NAME = "chef/chef-development-kit-enterprise".freeze
-    HAB_PKG_NAME = "ngupta26/chef-cli".freeze
+    HAB_PKG_NAME = "chef/chef-cli".freeze
 
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze

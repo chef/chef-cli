@@ -84,25 +84,31 @@ describe ChefCLI::Command::Env do
   end
 
   describe "when running in a Chef-cli Habitat Standalone package" do
+    let(:standalone_pkg_base) { "/hab/pkgs/chef/chef-cli" }
+    let(:standalone_pkg_version) { "1.0.0" }
+    let(:standalone_pkg_build) { "20240210120000" }
+    let(:standalone_pkg_path) { "#{standalone_pkg_base}/#{standalone_pkg_version}/#{standalone_pkg_build}" }
+
+    let(:ruby_version) { "3.1.0" }
+    let(:ruby_base) { "/hab/pkgs/core/ruby/#{ruby_version}/20240101000000/lib/ruby/gems" }
+    let(:cli_gem_home) { "/hab/pkgs/chef/chef-cli/#{standalone_pkg_version}/20240210121000/vendor/bundle/ruby/#{ruby_version}" }
+
     before do
       allow(command_instance).to receive(:habitat_install?).and_return(true)
       allow(command_instance).to receive(:habitat_standalone?).and_return(true)
       allow(command_instance).to receive(:habitat_chef_dke?).and_return(false)
-      allow(command_instance).to receive(:omnibus_install?).and_return(false) # Ensure Omnibus is NOT detected
+      allow(command_instance).to receive(:omnibus_install?).and_return(false)
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_CLI_PACKAGE)
   
-      # Habitat package paths
-      hab_pkg_path = "/hab/pkgs/chef/chef-cli/1.0.0/20240210120000"
-      allow(command_instance).to receive(:get_chef_cli_path).and_return("#{hab_pkg_path}")
+      allow(command_instance).to receive(:get_chef_cli_path).and_return(standalone_pkg_path)
 
-      # Mock habitat_env to reflect correct GEM paths
       allow(command_instance).to receive(:habitat_env).and_return({
-        "GEM_ROOT" => "/hab/pkgs/core/ruby/3.1.0/20240101000000/lib/ruby/gems",
-        "GEM_HOME" => "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0",
-        "GEM_PATH" => "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0",
-        "PATH" => "/hab/pkgs/chef/chef-cli/1.0.0/20240210120000/bin:/usr/local/bin:/usr/bin"
+        "GEM_ROOT" => ruby_base,
+        "GEM_HOME" => cli_gem_home,
+        "GEM_PATH" => cli_gem_home,
+        "PATH" => "#{standalone_pkg_path}/bin:/usr/local/bin:/usr/bin"
       })
-  
+
       command_instance.ui = ui
     end
   
@@ -122,24 +128,33 @@ describe ChefCLI::Command::Env do
       end
   
       it "should include correct Habitat installation path" do
-        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-cli/1.0.0/20240210120000"
+        expect(yaml[ChefCLI::Dist::CHEF_CLI_PACKAGE]["Install Directory"]).to eql standalone_pkg_path
       end
 
       it "should include correct GEM_ROOT path" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM ROOT"]).to eql "/hab/pkgs/core/ruby/3.1.0/20240101000000/lib/ruby/gems"
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM ROOT"]).to eql ruby_base
       end
   
       it "should include correct GEM_HOME path" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM HOME"]).to eql "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0"
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM HOME"]).to eql cli_gem_home
       end
   
       it "should include correct GEM_PATH paths" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM PATHS"]).to eql ["/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0"]
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM PATHS"]).to eql [cli_gem_home]
       end
     end
   end
-    
-  describe "when running chef-cli coming with Habitat Chef-DKE package" do
+
+  describe "when running chef-cli coming with Chef-DKE Habitat package" do
+    let(:hab_pkg_base) { "/hab/pkgs/chef/chef-development-kit-enterprise" }
+    let(:hab_pkg_version) { "1.0.0" }
+    let(:hab_pkg_build) { "20240210120000" }
+    let(:hab_pkg_path) { "#{hab_pkg_base}/#{hab_pkg_version}/#{hab_pkg_build}" }
+
+    let(:ruby_version) { "3.1.0" }
+    let(:ruby_base) { "/hab/pkgs/core/ruby/#{ruby_version}/20240101000000/lib/ruby/gems" }
+    let(:cli_gem_home) { "/hab/pkgs/chef/chef-cli/#{hab_pkg_version}/20240210121000/vendor/bundle/ruby/#{ruby_version}" }
+
     before do
       # Mock all Habitat-related methods
       allow(command_instance).to receive(:habitat_install?).and_return true
@@ -148,28 +163,27 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:omnibus_install?).and_return false
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
 
-      # Habitat package paths
-      hab_pkg_path = "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/20240210120000"
-      allow(command_instance).to receive(:get_chef_cli_path).and_return("#{hab_pkg_path}")
+      # Mock Habitat package paths
+      allow(command_instance).to receive(:get_chef_cli_path).and_return(hab_pkg_path)
 
       # Mock habitat_env to reflect correct GEM paths
       allow(command_instance).to receive(:habitat_env).and_return({
-        "GEM_ROOT" => "/hab/pkgs/core/ruby/3.1.0/20240101000000/lib/ruby/gems",
-        "GEM_HOME" => "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0",
-        "GEM_PATH" => "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0",
-        "PATH" => "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/20240210120000/bin:/usr/local/bin:/usr/bin"
+        "GEM_ROOT" => ruby_base,
+        "GEM_HOME" => cli_gem_home,
+        "GEM_PATH" => cli_gem_home,
+        "PATH" => "#{hab_pkg_path}/bin:/usr/local/bin:/usr/bin"
       })
-      
+
       command_instance.ui = ui
-      end
-  
+    end
+
     describe "and the env command is run" do
       let(:yaml) { YAML.load(ui.output) }
   
       before :each do
         run_command
       end
-  
+
       it "should include correct product name for Chef-DKE Habitat package" do
         expect(yaml).to have_key(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
       end
@@ -177,23 +191,22 @@ describe ChefCLI::Command::Env do
       it "should include correct version" do
         expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Version"]).to eql ChefCLI::VERSION
       end
-  
+
       it "should include correct Habitat installation path" do
-        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Install Directory"]).to eql "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/20240210120000"
+        expect(yaml[ChefCLI::Dist::CHEF_DK_CLI_PACKAGE]["Install Directory"]).to eql hab_pkg_path
       end
 
       it "should include correct GEM_ROOT path" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM ROOT"]).to eql "/hab/pkgs/core/ruby/3.1.0/20240101000000/lib/ruby/gems"
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM ROOT"]).to eql ruby_base
       end
   
       it "should include correct GEM_HOME path" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM HOME"]).to eql "/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0"
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM HOME"]).to eql cli_gem_home
       end
   
       it "should include correct GEM_PATH paths" do
-        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM PATHS"]).to eql ["/hab/pkgs/chef/chef-cli/1.0.0/20240210121000/vendor/bundle/ruby/3.1.0"]
+        expect(yaml["Ruby"]["RubyGems"]["Gem Environment"]["GEM PATHS"]).to eql [cli_gem_home]
       end
-
     end
   end
 

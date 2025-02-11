@@ -100,11 +100,13 @@ module ChefCLI
 
     # Function to return the Chef CLI path based on standalone or Chef-DK-enabled package
     def get_chef_cli_path
-      [ChefCLI::Dist::CHEF_DKE_PKG_NAME, ChefCLI::Dist::HAB_PKG_NAME].each do |pkg_name|
-        path = get_pkg_prefix(pkg_name)
-        return path if File.exist?(path)
-      end
-      nil
+      # Check Chef-DK package path
+      chef_dk_path = get_hab_package_path(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+      return chef_dk_path if chef_dk_path && File.exist?(chef_dk_path)
+
+      # Check Standalone Chef-CLI package path
+      chef_cli_path = get_hab_package_path(ChefCLI::Dist::HAB_PKG_NAME)
+      return chef_cli_path if chef_cli_path && File.exist?(chef_cli_path)
     rescue
       nil
     end
@@ -245,12 +247,12 @@ module ChefCLI
     end
 
     # Helper function to get the path of the given hab package
-    # def get_hab_package_path(pkg_name)
-    #   path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
-    #   $?.success? && !path.empty? ? path : nil
-    # rescue
-    #   nil
-    # end
+    def get_hab_package_path(pkg_name)
+      path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
+      $?.success? && !path.empty? ? path : nil
+    rescue
+      nil
+    end
 
   end
 end

@@ -195,7 +195,7 @@ describe ChefCLI::Command::Env do
       end
 
     end
-  end  
+  end
 
   def run_command
     command_instance.run_with_default_options(false, command_options)

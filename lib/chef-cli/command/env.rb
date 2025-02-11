@@ -48,28 +48,24 @@ module ChefCLI
       end
 
       def get_product_info
-        return ChefCLI::Dist::PRODUCT if omnibus_install?
-        return ChefCLI::Dist::CHEF_DK_CLI_PACKAGE if habitat_chef_dke?
-        return ChefCLI::Dist::CHEF_CLI_PACKAGE if habitat_standalone?
-
-        # Default case when no conditions match
-        ChefCLI::Dist::PRODUCT
+        if omnibus_install?
+          ChefCLI::Dist::PRODUCT
+        elsif habitat_chef_dke?
+          ChefCLI::Dist::CHEF_DK_CLI_PACKAGE
+        elsif habitat_standalone?
+          ChefCLI::Dist::CHEF_CLI_PACKAGE
+        else
+          ChefCLI::Dist::PRODUCT
+        end
       end
 
       def workstation_info
-        info = {}
+        info = { "Version" => ChefCLI::VERSION }
         if omnibus_install?
-          info["Version"] = ChefCLI::VERSION
           info["Home"] = package_home
           info["Install Directory"] = omnibus_root
           info["Policyfile Config"] = policyfile_config
-        elsif habitat_chef_dke?
-          info["Version"] = ChefCLI::VERSION
-          info["Home"] = package_home
-          info["Install Directory"] = get_chef_cli_path
-          info["Policyfile Config"] = policyfile_config
-        elsif habitat_standalone?
-          info["Version"] = ChefCLI::VERSION
+        elsif habitat_chef_dke? || habitat_standalone?
           info["Home"] = package_home
           info["Install Directory"] = get_chef_cli_path
           info["Policyfile Config"] = policyfile_config

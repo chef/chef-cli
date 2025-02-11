@@ -7,14 +7,14 @@ module ChefCLI
     PRODUCT_PKG_HOME = "chef-workstation".freeze
 
     CHEF_DK_CLI_PACKAGE = "Chef Development Kit Enterprise".freeze
-    CHEF_CLI_PACKAGE = "Chef-Cli Package".freeze
+    CHEF_CLI_PACKAGE = "Chef-Cli".freeze
 
     # the name of the chef-cli gem
     CLI_PRODUCT = "Chef CLI".freeze
     CLI_GEM = "chef-cli".freeze
 
     CHEF_DKE_PKG_NAME = "chef/chef-development-kit-enterprise".freeze
-    HAB_PKG_NAME = "chef/chef-cli".freeze
+    HAB_PKG_NAME = "ngupta26/chef-cli".freeze
 
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze

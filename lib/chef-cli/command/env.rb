@@ -67,7 +67,7 @@ module ChefCLI
           info["Policyfile Config"] = policyfile_config
         elsif habitat_chef_dke? || habitat_standalone?
           info["Home"] = package_home
-          info["Install Directory"] = get_chef_cli_path
+          info["Install Directory"] = get_pkg_install_path
           info["Policyfile Config"] = policyfile_config
         else
           info["Version"] = "Not running from within Workstation"

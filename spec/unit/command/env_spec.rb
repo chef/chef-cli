@@ -100,7 +100,7 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:omnibus_install?).and_return(false)
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_CLI_PACKAGE)
   
-      allow(command_instance).to receive(:get_chef_cli_path).and_return(standalone_pkg_path)
+      allow(command_instance).to receive(:get_pkg_install_path).and_return(standalone_pkg_path)
 
       allow(command_instance).to receive(:habitat_env).and_return({
         "GEM_ROOT" => ruby_base,
@@ -164,7 +164,7 @@ describe ChefCLI::Command::Env do
       allow(command_instance).to receive(:get_product_info).and_return(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
 
       # Mock Habitat package paths
-      allow(command_instance).to receive(:get_chef_cli_path).and_return(hab_pkg_path)
+      allow(command_instance).to receive(:get_pkg_install_path).and_return(hab_pkg_path)
 
       # Mock habitat_env to reflect correct GEM paths
       allow(command_instance).to receive(:habitat_env).and_return({

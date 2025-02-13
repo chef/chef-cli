@@ -99,7 +99,7 @@ module ChefCLI
     end
 
     # Function to return the Chef CLI path based on standalone or Chef-DK-enabled package
-    def get_chef_cli_path
+    def get_pkg_install_path
       # Check Chef-DK package path
       chef_dk_path = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
       return chef_dk_path if chef_dk_path
@@ -200,10 +200,10 @@ module ChefCLI
           path << git_bin_dir if Dir.exist?(git_bin_dir)
           path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
           {
-            "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
-            "GEM_ROOT" => Gem.default_dir,
-            "GEM_HOME" => Gem.user_dir,
-            "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
+          "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
+          "GEM_ROOT" => Gem.default_dir,
+          "GEM_HOME" => Gem.user_dir,
+          "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
           }
         end
     end
@@ -266,6 +266,5 @@ module ChefCLI
     def hab_pkg_installed?(pkg_name)
       `hab pkg list #{pkg_name} 2>/dev/null`.include?(pkg_name) rescue false
     end
-
   end
 end

@@ -3,13 +3,12 @@ export HAB_REFRESH_CHANNEL="LTS-2024"
 pkg_name=chef-cli
 pkg_origin=chef
 ruby_pkg="core/ruby3_1"
-pkg_deps=(${ruby_pkg} core/coreutils)
+pkg_deps=(${ruby_pkg} core/coreutils core/git)
 pkg_build_deps=(
     core/make
     core/sed
     core/gcc
     core/libarchive
-    core/git
     )
 pkg_bin_dirs=(bin)
 
@@ -22,7 +21,6 @@ do_setup_environment() {
 }
 do_prepare() {
   ln -sf "$(pkg_interpreter_for core/ruby3_1 bin/ruby)" "$(pkg_interpreter_for core/coreutils bin/env)"
-  echo "$(pkg_interpreter_for core/ruby3_1 bin/ruby)"
 }
 pkg_version() {
   cat "$SRC_PATH/VERSION"
@@ -46,7 +44,7 @@ do_build() {
     bundle config --local silence_root_warning 1
     bundle install
     gem build chef-cli.gemspec
-    gem install rspec-core 
+    gem install rspec-core -v '~> 3.12.3'
     ruby ./post-bundle-install.rb
 }
 do_install() {

@@ -138,6 +138,7 @@ module ChefCLI
         vendor_dir = File.join(get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME), "vendor")
         path = [
           File.join(bin_pkg_prefix, "bin"),
+          File.join(bin_pkg_prefix, "vendor", "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
 

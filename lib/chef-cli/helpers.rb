@@ -101,14 +101,27 @@ module ChefCLI
     # Function to return the Chef CLI path based on standalone or Chef-DK-enabled package
     def get_chef_cli_path
       # Check Chef-DK package path
-      chef_dk_path = get_hab_package_path(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
-      return chef_dk_path if chef_dk_path && File.exist?(chef_dk_path)
+      chef_dk_path = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+      return chef_dk_path if chef_dk_path
 
       # Check Standalone Chef-CLI package path
-      chef_cli_path = get_hab_package_path(ChefCLI::Dist::HAB_PKG_NAME)
-      return chef_cli_path if chef_cli_path && File.exist?(chef_cli_path)
-    rescue
+      chef_cli_path = fetch_chef_cli_version_pkg || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+      return chef_cli_path if chef_cli_path
+
+    rescue => e
+      ChefCLI::UI.new.err("Error fetching Chef-CLI path: #{e.message}")
       nil
+    end
+
+    # Check Standalone Chef-cli environment variable for version
+    def fetch_chef_cli_version_pkg
+      chef_cli_version = ENV["CHEF_CLI_VERSION"]
+      return unless chef_cli_version # Return nil if env variable is not set
+
+      pkg_path = get_pkg_prefix("#{ChefCLI::Dist::HAB_PKG_NAME}/#{chef_cli_version}")
+
+      # Return the package path (without printing the warning)
+      pkg_path
     end
 
     # Returns the directory that contains our main symlinks.
@@ -142,13 +155,25 @@ module ChefCLI
     # environment vars for habitat
     #
     def habitat_env
-      @habitat_env ||=
-      begin
-        # Define the necessary paths for the Habitat environment
-        # If it is a chef-dke installation, we will use the chef-dke bin path.
-        # Otherwise, we will use the chef-cli bin path.
-        bin_pkg_prefix = get_pkg_prefix(habitat_chef_dke? ? ChefCLI::Dist::CHEF_DKE_PKG_NAME : ChefCLI::Dist::HAB_PKG_NAME)
-        vendor_dir = File.join(get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME), "vendor")
+      @habitat_env ||= begin
+        # Determine package name based on habitat_chef_dke?
+        bin_pkg_name = habitat_chef_dke? ? ChefCLI::Dist::CHEF_DKE_PKG_NAME : ChefCLI::Dist::HAB_PKG_NAME
+
+        # Get versioned package if CHEF_CLI_VERSION is set, otherwise fallback to default package
+        versioned_pkg_prefix = fetch_chef_cli_version_pkg
+        bin_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(bin_pkg_name)
+
+        # Get vendor package path, falling back to base package if needed
+        vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+        # Print warning only if CHEF_CLI_VERSION is set but package isn't found
+        if ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
+          ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
+        end
+
+        # Set vendor_dir only if it exists
+        vendor_dir = File.join(vendor_pkg_prefix, "vendor") if vendor_pkg_prefix && Dir.exist?(File.join(vendor_pkg_prefix, "vendor"))
+
+        # Construct PATH environment variable
         path = [
           File.join(bin_pkg_prefix, "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
@@ -183,13 +208,8 @@ module ChefCLI
     end
 
     def get_pkg_prefix(pkg_name)
-      path = `hab pkg path #{pkg_name}`.strip
-
-      if $?.success? && !path.empty?
-        path
-      else
-        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
-      end
+      path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
+      path if $?.success? && Dir.exist?(path)
     end
 
     def omnibus_expand_path(*paths)
@@ -244,14 +264,6 @@ module ChefCLI
     #
     def hab_pkg_installed?(pkg_name)
       `hab pkg list #{pkg_name} 2>/dev/null`.include?(pkg_name) rescue false
-    end
-
-    # Helper function to get the path of the given hab package
-    def get_hab_package_path(pkg_name)
-      path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
-      $?.success? && !path.empty? ? path : nil
-    rescue
-      nil
     end
 
   end

@@ -155,20 +155,27 @@ module ChefCLI
     # environment vars for habitat
     #
     def habitat_env
-      @habitat_env ||= begin
-        # Determine package name based on habitat_chef_dke?
-        bin_pkg_name = habitat_chef_dke? ? ChefCLI::Dist::CHEF_DKE_PKG_NAME : ChefCLI::Dist::HAB_PKG_NAME
+      @habitat_env ||=
+      begin
+        # Check if the Chef DKE package exists
+        dke_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
 
-        # Get versioned package if CHEF_CLI_VERSION is set, otherwise fallback to default package
+        # Check for a versioned package if the environment variable is set
         versioned_pkg_prefix = fetch_chef_cli_version_pkg
-        bin_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(bin_pkg_name)
 
-        # Get vendor package path, falling back to base package if needed
-        vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-        # Print warning only if CHEF_CLI_VERSION is set but package isn't found
+        # Print warning **only if CHEF_CLI_VERSION is set but package isn't found**
         if ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
           ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
         end
+
+        # Determine the correct bin_pkg_prefix:
+        # - If DKE package exists, use it.
+        # - Otherwise, if versioned package exists, use that.
+        # - Otherwise, fall back to HAB_PKG_NAME.
+        bin_pkg_prefix = dke_pkg_prefix || versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+
+        # Get vendor package path, falling back to base package if needed
+        vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
 
         # Set vendor_dir only if it exists
         vendor_dir = File.join(vendor_pkg_prefix, "vendor") if vendor_pkg_prefix && Dir.exist?(File.join(vendor_pkg_prefix, "vendor"))
@@ -209,7 +216,9 @@ module ChefCLI
 
     def get_pkg_prefix(pkg_name)
       path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
-      path if $?.success? && Dir.exist?(path)
+      return nil if path.empty? || !Dir.exist?(path)
+
+      path
     end
 
     def omnibus_expand_path(*paths)

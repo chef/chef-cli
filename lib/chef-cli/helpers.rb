@@ -116,12 +116,12 @@ module ChefCLI
     # Check Standalone Chef-cli environment variable for version
     def fetch_chef_cli_version_pkg
       chef_cli_version = ENV["CHEF_CLI_VERSION"]
-      return unless chef_cli_version # Return nil if env variable is not set
+      return unless chef_cli_version
 
       pkg_path = get_pkg_prefix("#{ChefCLI::Dist::HAB_PKG_NAME}/#{chef_cli_version}")
+      return pkg_path if pkg_path && Dir.exist?(pkg_path)
 
-      # Return the package path (without printing the warning)
-      pkg_path
+      nil
     end
 
     # Returns the directory that contains our main symlinks.
@@ -157,40 +157,34 @@ module ChefCLI
     def habitat_env
       @habitat_env ||=
       begin
-        # Check if the Chef DKE package exists
-        dke_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+        if habitat_chef_dke?
+          bin_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+        end
+        versioned_pkg_prefix = fetch_chef_cli_version_pkg if ENV["CHEF_CLI_VERSION"]
 
-        # Check for a versioned package if the environment variable is set
-        versioned_pkg_prefix = fetch_chef_cli_version_pkg
-
-        # Print warning **only if CHEF_CLI_VERSION is set but package isn't found**
         if ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
           ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
         end
+        # Use the first available package for bin_pkg_prefix
+        bin_pkg_prefix ||= versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+        raise "Error: bin_pkg_prefix is nil!" unless bin_pkg_prefix
 
-        # Determine the correct bin_pkg_prefix:
-        # - If DKE package exists, use it.
-        # - Otherwise, if versioned package exists, use that.
-        # - Otherwise, fall back to HAB_PKG_NAME.
-        bin_pkg_prefix = dke_pkg_prefix || versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-
-        # Get vendor package path, falling back to base package if needed
+        # Determine vendor_dir by prioritizing the versioned package first
         vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+        raise "Error: vendor_pkg_prefix is nil!" unless vendor_pkg_prefix
 
-        # Set vendor_dir only if it exists
-        vendor_dir = File.join(vendor_pkg_prefix, "vendor") if vendor_pkg_prefix && Dir.exist?(File.join(vendor_pkg_prefix, "vendor"))
-
-        # Construct PATH environment variable
+        vendor_dir = File.join(vendor_pkg_prefix, "vendor")
+        # Construct PATH
         path = [
           File.join(bin_pkg_prefix, "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
 
         {
-        "PATH" => path.join(File::PATH_SEPARATOR),
-        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-        "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
-        "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
+          "PATH" => path.join(File::PATH_SEPARATOR),
+          "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+          "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
+          "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
         }
       end
     end
@@ -216,9 +210,7 @@ module ChefCLI
 
     def get_pkg_prefix(pkg_name)
       path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
-      return nil if path.empty? || !Dir.exist?(path)
-
-      path
+      path if !path.empty? && Dir.exist?(path) # Return path only if it exists
     end
 
     def omnibus_expand_path(*paths)

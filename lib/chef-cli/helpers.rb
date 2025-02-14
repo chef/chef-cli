@@ -154,7 +154,7 @@ module ChefCLI
     #
     # environment vars for habitat
     #
-    def habitat_env
+    def habitat_env(show_warning: false)
       @habitat_env ||=
       begin
         if habitat_chef_dke?
@@ -162,7 +162,7 @@ module ChefCLI
         end
         versioned_pkg_prefix = fetch_chef_cli_version_pkg if ENV["CHEF_CLI_VERSION"]
 
-        if ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
+        if show_warning && ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
           ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
         end
         # Use the first available package for bin_pkg_prefix

@@ -91,9 +91,9 @@ module ChefCLI
         h = {}
         if habitat_install?
           # Habitat-specific environment variables
-          h["GEM ROOT"] = habitat_env["GEM_ROOT"]
-          h["GEM HOME"] = habitat_env["GEM_HOME"]
-          h["GEM PATHS"] = habitat_env["GEM_PATH"].split(File::PATH_SEPARATOR)
+          h["GEM ROOT"] = habitat_env(show_warning: true)["GEM_ROOT"]
+          h["GEM HOME"] = habitat_env(show_warning: true)["GEM_HOME"]
+          h["GEM PATHS"] = habitat_env(show_warning: true)["GEM_PATH"].split(File::PATH_SEPARATOR)
         elsif omnibus_install?
           # Omnibus-specific environment variables
           h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
@@ -109,7 +109,7 @@ module ChefCLI
       end
 
       def paths
-        env = habitat_install? ? habitat_env : omnibus_env
+        env = habitat_install? ? habitat_env(show_warning: true) : omnibus_env
         env["PATH"].split(File::PATH_SEPARATOR)
       rescue OmnibusInstallNotFound
         ENV["PATH"].split(File::PATH_SEPARATOR)

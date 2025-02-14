@@ -106,7 +106,7 @@ module ChefCLI
 
       # Check Standalone Chef-CLI package path
       chef_cli_path = fetch_chef_cli_version_pkg || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-      return chef_cli_path if chef_cli_path
+      chef_cli_path
 
     rescue => e
       ChefCLI::UI.new.err("Error fetching Chef-CLI path: #{e.message}")
@@ -167,11 +167,11 @@ module ChefCLI
         end
         # Use the first available package for bin_pkg_prefix
         bin_pkg_prefix ||= versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-        raise "Error: bin_pkg_prefix is nil!" unless bin_pkg_prefix
+        raise "Error: Could not determine the Habitat package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless bin_pkg_prefix
 
         # Determine vendor_dir by prioritizing the versioned package first
         vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-        raise "Error: vendor_pkg_prefix is nil!" unless vendor_pkg_prefix
+        raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
 
         vendor_dir = File.join(vendor_pkg_prefix, "vendor")
         # Construct PATH
@@ -181,10 +181,10 @@ module ChefCLI
         ].flatten.uniq
 
         {
-          "PATH" => path.join(File::PATH_SEPARATOR),
-          "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-          "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
-          "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
+        "PATH" => path.join(File::PATH_SEPARATOR),
+        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+        "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
+        "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
         }
       end
     end

@@ -177,6 +177,7 @@ module ChefCLI
         # Construct PATH
         path = [
           File.join(bin_pkg_prefix, "bin"),
+          File.join(bin_pkg_prefix, "vendor", "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
 

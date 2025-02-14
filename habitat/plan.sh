@@ -3,13 +3,12 @@ export HAB_REFRESH_CHANNEL="LTS-2024"
 pkg_name=chef-cli
 pkg_origin=chef
 ruby_pkg="core/ruby3_1"
-pkg_deps=(${ruby_pkg} core/coreutils)
+pkg_deps=(${ruby_pkg} core/coreutils core/git)
 pkg_build_deps=(
     core/make
     core/sed
     core/gcc
     core/libarchive
-    core/git
     )
 pkg_bin_dirs=(bin)
 
@@ -20,7 +19,9 @@ do_setup_environment() {
   build_line "Setting GEM_PATH=$GEM_HOME"
   export GEM_PATH="$GEM_HOME"
 }
-
+do_prepare() {
+  ln -sf "$(pkg_interpreter_for core/ruby3_1 bin/ruby)" "$(pkg_interpreter_for core/coreutils bin/env)"
+}
 pkg_version() {
   cat "$SRC_PATH/VERSION"
 }
@@ -43,6 +44,7 @@ do_build() {
     bundle config --local silence_root_warning 1
     bundle install
     gem build chef-cli.gemspec
+    gem install rspec-core -v '~> 3.12.3'
     ruby ./post-bundle-install.rb
 }
 do_install() {
@@ -53,6 +55,9 @@ do_install() {
   gem install chef-cli-*.gem --no-document
   set_runtime_env "GEM_PATH" "${pkg_prefix}/vendor"
   wrap_ruby_bin
+  rm -rf $GEM_PATH/cache/
+  rm -rf $GEM_PATH/bundler
+  rm -rf $GEM_PATH/doc
 }
 wrap_ruby_bin() {
   local bin="$pkg_prefix/bin/$pkg_name"
@@ -63,7 +68,7 @@ wrap_ruby_bin() {
 set -e
 
 # Set binary path that allows InSpec to use non-Hab pkg binaries
-export PATH="/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:\$PATH"
+export PATH="/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
 
 # Set Ruby paths defined from 'do_setup_environment()'
   export GEM_HOME="$pkg_prefix/vendor"

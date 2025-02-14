@@ -98,9 +98,9 @@ module ChefCLI
                        end
     end
 
-    # Function to return the Chef CLI path based on standalone or Chef-DK-enabled package
+    # Function to return the Chef CLI path based on standalone or Chef-DKE-enabled package
     def get_pkg_install_path
-      # Check Chef-DK package path
+      # Check Chef-DKE package path
       chef_dk_path = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
       return chef_dk_path if chef_dk_path
 

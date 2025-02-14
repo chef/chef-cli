@@ -98,6 +98,32 @@ module ChefCLI
                        end
     end
 
+    # Function to return the Chef CLI path based on standalone or Chef-DKE-enabled package
+    def get_pkg_install_path
+      # Check Chef-DKE package path
+      chef_dk_path = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+      return chef_dk_path if chef_dk_path
+
+      # Check Standalone Chef-CLI package path
+      chef_cli_path = fetch_chef_cli_version_pkg || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+      chef_cli_path
+
+    rescue => e
+      ChefCLI::UI.new.err("Error fetching Chef-CLI path: #{e.message}")
+      nil
+    end
+
+    # Check Standalone Chef-cli environment variable for version
+    def fetch_chef_cli_version_pkg
+      chef_cli_version = ENV["CHEF_CLI_VERSION"]
+      return unless chef_cli_version
+
+      pkg_path = get_pkg_prefix("#{ChefCLI::Dist::HAB_PKG_NAME}/#{chef_cli_version}")
+      return pkg_path if pkg_path && Dir.exist?(pkg_path)
+
+      nil
+    end
+
     # Returns the directory that contains our main symlinks.
     # On Mac we place all of our symlinks under /usr/local/bin on other
     # platforms they are under /usr/bin
@@ -128,14 +154,27 @@ module ChefCLI
     #
     # environment vars for habitat
     #
-    def habitat_env
+    def habitat_env(show_warning: false)
       @habitat_env ||=
       begin
-        # Define the necessary paths for the Habitat environment
-        # If it is a chef-dke installation, we will use the chef-dke bin path.
-        # Otherwise, we will use the chef-cli bin path.
-        bin_pkg_prefix = get_pkg_prefix(habitat_chef_dke? ? ChefCLI::Dist::CHEF_DKE_PKG_NAME : ChefCLI::Dist::HAB_PKG_NAME)
-        vendor_dir = File.join(get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME), "vendor")
+        if habitat_chef_dke?
+          bin_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+        end
+        versioned_pkg_prefix = fetch_chef_cli_version_pkg if ENV["CHEF_CLI_VERSION"]
+
+        if show_warning && ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
+          ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
+        end
+        # Use the first available package for bin_pkg_prefix
+        bin_pkg_prefix ||= versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+        raise "Error: Could not determine the Habitat package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless bin_pkg_prefix
+
+        # Determine vendor_dir by prioritizing the versioned package first
+        vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+        raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
+
+        vendor_dir = File.join(vendor_pkg_prefix, "vendor")
+        # Construct PATH
         path = [
           File.join(bin_pkg_prefix, "bin"),
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
@@ -144,8 +183,8 @@ module ChefCLI
         {
         "PATH" => path.join(File::PATH_SEPARATOR),
         "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-        "GEM_HOME" => vendor_dir,  # GEM_HOME pointing to the vendor directory
-        "GEM_PATH" => vendor_dir,  # GEM_PATH also pointing to the vendor directory
+        "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
+        "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
         }
       end
     end
@@ -161,22 +200,17 @@ module ChefCLI
           path << git_bin_dir if Dir.exist?(git_bin_dir)
           path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
           {
-            "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
-            "GEM_ROOT" => Gem.default_dir,
-            "GEM_HOME" => Gem.user_dir,
-            "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
+          "PATH" => path.flatten.uniq.join(File::PATH_SEPARATOR),
+          "GEM_ROOT" => Gem.default_dir,
+          "GEM_HOME" => Gem.user_dir,
+          "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
           }
         end
     end
 
     def get_pkg_prefix(pkg_name)
-      path = `hab pkg path #{pkg_name}`.strip
-
-      if $?.success? && !path.empty?
-        path
-      else
-        raise "Failed to get pkg_prefix for #{pkg_name}: #{path}"
-      end
+      path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
+      path if !path.empty? && Dir.exist?(path) # Return path only if it exists
     end
 
     def omnibus_expand_path(*paths)

@@ -40,18 +40,34 @@ module ChefCLI
 
       def run(params)
         info = {}
-        info[ChefCLI::Dist::PRODUCT] = workstation_info
+        product_name = get_product_info
+        info[product_name] = workstation_info
         info["Ruby"] = ruby_info
         info["Path"] = paths
         ui.msg YAML.dump(info)
       end
 
-      def workstation_info
-        info = {}
+      def get_product_info
         if omnibus_install?
-          info["Version"] = ChefCLI::VERSION
+          ChefCLI::Dist::PRODUCT
+        elsif habitat_chef_dke?
+          ChefCLI::Dist::CHEF_DK_CLI_PACKAGE
+        elsif habitat_standalone?
+          ChefCLI::Dist::CHEF_CLI_PACKAGE
+        else
+          ChefCLI::Dist::PRODUCT
+        end
+      end
+
+      def workstation_info
+        info = { "Version" => ChefCLI::VERSION }
+        if omnibus_install?
           info["Home"] = package_home
           info["Install Directory"] = omnibus_root
+          info["Policyfile Config"] = policyfile_config
+        elsif habitat_chef_dke? || habitat_standalone?
+          info["Home"] = package_home
+          info["Install Directory"] = get_pkg_install_path
           info["Policyfile Config"] = policyfile_config
         else
           info["Version"] = "Not running from within Workstation"
@@ -73,19 +89,27 @@ module ChefCLI
 
       def gem_environment
         h = {}
-        h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
-        h["GEM HOME"] = omnibus_env["GEM_HOME"]
-        h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
-      rescue OmnibusInstallNotFound
-        h["GEM_ROOT"] = ENV["GEM_ROOT"] if ENV.key?("GEM_ROOT")
-        h["GEM_HOME"] = ENV["GEM_HOME"] if ENV.key?("GEM_HOME")
-        h["GEM PATHS"] = ENV["GEM_PATH"].split(File::PATH_SEPARATOR) if ENV.key?("GEM_PATH") && !ENV.key?("GEM_PATH").nil?
-      ensure
+        if habitat_install?
+          # Habitat-specific environment variables
+          h["GEM ROOT"] = habitat_env(show_warning: true)["GEM_ROOT"]
+          h["GEM HOME"] = habitat_env(show_warning: true)["GEM_HOME"]
+          h["GEM PATHS"] = habitat_env(show_warning: true)["GEM_PATH"].split(File::PATH_SEPARATOR)
+        elsif omnibus_install?
+          # Omnibus-specific environment variables
+          h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
+          h["GEM HOME"] = omnibus_env["GEM_HOME"]
+          h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
+        else
+          # Fallback to system environment variables if neither Omnibus nor Habitat
+          h["GEM_ROOT"] = ENV["GEM_ROOT"] if ENV.key?("GEM_ROOT")
+          h["GEM_HOME"] = ENV["GEM_HOME"] if ENV.key?("GEM_HOME")
+          h["GEM PATHS"] = ENV["GEM_PATH"].split(File::PATH_SEPARATOR) if ENV.key?("GEM_PATH") && !ENV["GEM_PATH"].nil?
+        end
         h
       end
 
       def paths
-        env = habitat_install? ? habitat_env : omnibus_env
+        env = habitat_install? ? habitat_env(show_warning: true) : omnibus_env
         env["PATH"].split(File::PATH_SEPARATOR)
       rescue OmnibusInstallNotFound
         ENV["PATH"].split(File::PATH_SEPARATOR)

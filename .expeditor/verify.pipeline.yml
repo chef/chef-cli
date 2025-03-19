@@ -46,6 +46,16 @@ steps:
         shell: ["powershell", "-Command"]
         image: rubydistros/windows-2019:3.3
 
+- label: run-specs-windows-ruby-3.4
+  command:
+    - powershell .expeditor/run_windows_tests.ps1 rspec
+  expeditor:
+    executor:
+      docker:
+        host_os: windows
+        shell: ["powershell", "-Command"]
+        image: rubydistros/windows-2019:3.4
+
 - label: cookstyle-generator-cb-tests-ruby-3.1
   command:
     - .expeditor/run_linux_tests.sh "rake style:cookstyle"

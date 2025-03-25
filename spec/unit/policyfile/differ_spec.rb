@@ -511,7 +511,7 @@ describe ChefCLI::Policyfile::Differ do
         bluepill
         --------
 
-        @@ -1 +1,12 @@
+        @@ -1,11 +1,22 @@
         +{
         +  "version": "2.3.2",
         +  "identifier": "9c6990944d9a347dec8bd375e707ba0aecdc17cd",

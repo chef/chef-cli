@@ -318,7 +318,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -369,7 +369,7 @@ describe ChefCLI::Policyfile::Differ do
           REVISION ID CHANGED
           ===================
 
-          @@ -1,2 +1,2 @@
+          @@ -1 +1 @@
           -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
           +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -428,7 +428,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -501,7 +501,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -563,7 +563,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -616,7 +616,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
@@ -662,7 +662,7 @@ describe ChefCLI::Policyfile::Differ do
         REVISION ID CHANGED
         ===================
 
-        @@ -1,2 +1,2 @@
+        @@ -1 +1 @@
         -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
         +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 

@@ -60,13 +60,13 @@ module ChefCLI
       File.exist?(expected_omnibus_root) && File.exist?(File.join(expected_omnibus_root, "version-manifest.json"))
     end
 
-    # The habitat version of the chef-cli can be installed with standalone or chef-workstation
+    # The habitat version of the chef-cli can be installed with standalone or chef-development-kit-enterprise
     # This method checks if the habitat version of chef-cli is installed as standalone
     def habitat_standalone?
       @hab_standalone ||= (hab_pkg_installed?(ChefCLI::Dist::HAB_PKG_NAME) && !habitat_chef_dke?)
     end
 
-    # This method checks if the habitat version of chef-cli is installed with chef-workstation
+    # This method checks if the habitat version of chef-cli is installed with chef-development-kit-enterprise
     def habitat_chef_dke?
       @hab_dke ||= hab_pkg_installed?(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
     end

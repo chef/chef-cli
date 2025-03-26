@@ -18,7 +18,6 @@
 require "spec_helper"
 autoload :YAML, "yaml"
 require "chef-cli/command/env"
-
 describe ChefCLI::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }
   let(:command_instance) { ChefCLI::Command::Env.new }
@@ -145,8 +144,8 @@ describe ChefCLI::Command::Env do
     end
   end
 
-  describe "when running chef-cli coming with Chef-DKE Habitat package" do
-    let(:hab_pkg_base) { "/hab/pkgs/chef/chef-development-kit-enterprise" }
+  describe "when running chef-cli coming with chef-workstation Habitat package" do
+    let(:hab_pkg_base) { "/hab/pkgs/chef/chef-workstation" }
     let(:hab_pkg_version) { "1.0.0" }
     let(:hab_pkg_build) { "20240210120000" }
     let(:hab_pkg_path) { "#{hab_pkg_base}/#{hab_pkg_version}/#{hab_pkg_build}" }
@@ -184,7 +183,7 @@ describe ChefCLI::Command::Env do
         run_command
       end
 
-      it "should include correct product name for Chef-DKE Habitat package" do
+      it "should include correct product name for chef-workstation Habitat package" do
         expect(yaml).to have_key(ChefCLI::Dist::CHEF_DK_CLI_PACKAGE)
       end
 

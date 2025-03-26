@@ -110,7 +110,7 @@ describe ChefCLI::Helpers do
     end
 
     context "when installed with habitat" do
-      let(:chef_dke_path) { "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/123" }
+      let(:chef_dke_path) { "/hab/pkgs/chef/chef-workstation/1.0.0/123" }
       let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
       let(:expected_gem_root) { Gem.default_dir }
       let(:expected_path) { [File.join(chef_dke_path, "bin"), File.join(cli_hab_path, "vendor", "bin"), "/usr/bin:/bin"].flatten }
@@ -133,7 +133,7 @@ describe ChefCLI::Helpers do
 
       it "should return the habitat env" do
         allow(ChefCLI::Helpers).to receive(:fetch_chef_cli_version_pkg).and_return(nil) # Ensure no version override
-        expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-development-kit-enterprise").and_return(chef_dke_path)
+        expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
         expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
 
         expect(ChefCLI::Helpers.habitat_env).to eq(expected_env)

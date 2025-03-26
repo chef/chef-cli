@@ -364,9 +364,9 @@ describe ChefCLI::Command::ShellInit do
     end
   end
 
-  context "with chef-development-kit-enterprise habitat pkg shell-init on bash" do
+  context "with chef-workstation habitat pkg shell-init on bash" do
 
-    let(:chef_dke_path) { "/hab/pkgs/chef/chef-development-kit-enterprise/1.0.0/123" }
+    let(:chef_dke_path) { "/hab/pkgs/chef/chef-workstation/1.0.0/123" }
     let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
 
     let(:argv) { ["bash"] }
@@ -377,7 +377,7 @@ describe ChefCLI::Command::ShellInit do
     end
 
     it "should return the correct paths" do
-      expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-development-kit-enterprise").and_return(chef_dke_path)
+      expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
       expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
 
       command_instance.run(argv)
@@ -414,7 +414,7 @@ describe ChefCLI::Command::ShellInit do
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-development-kit-enterprise").and_return(chef_dke_path)
+        allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
         allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
         allow(command_instance.shell_completion_template_context).to receive(:commands)
           .and_return(command_descriptions)

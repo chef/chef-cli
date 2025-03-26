@@ -6,9 +6,6 @@ module ChefCLI
     PRODUCT = "Chef Workstation".freeze
     PRODUCT_PKG_HOME = "chef-workstation".freeze
 
-    CHEF_DK_CLI_PACKAGE = "Chef Development Kit Enterprise".freeze
-    CHEF_CLI_PACKAGE = "Chef-Cli".freeze
-
     # the name of the chef-cli gem
     CLI_PRODUCT = "Chef CLI".freeze
     CLI_GEM = "chef-cli".freeze

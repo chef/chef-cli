@@ -35,7 +35,6 @@ describe ChefCLI::Command::Env do
 
   describe "when running from within an omnibus install" do
     before do
-      allow(command_instance).to receive(:habitat_install?).and_return false
       allow(command_instance).to receive(:omnibus_install?).and_return true
       allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
       allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
@@ -58,7 +57,6 @@ describe ChefCLI::Command::Env do
   end
   describe "when running locally" do
     before do
-      allow(command_instance).to receive(:habitat_install?).and_return false
       allow(command_instance).to receive(:omnibus_install?).and_return false
       command_instance.ui = ui
     end

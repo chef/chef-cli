@@ -1,16 +1,8 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 0.1.0 -->
-## [v0.1.0](https://github.com/chef/chef-cli/tree/v0.1.0) (2025-01-06)
-
-#### Merged Pull Requests
-- Add hab promote pipeline [#254](https://github.com/chef/chef-cli/pull/254) ([sanghinitin](https://github.com/sanghinitin))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.16 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add hab promote pipeline [#254](https://github.com/chef/chef-cli/pull/254) ([sanghinitin](https://github.com/sanghinitin)) <!-- 0.1.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

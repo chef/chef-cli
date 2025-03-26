@@ -14,8 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
-require "bundler/gem_tasks"
 
 namespace :style do
   begin
@@ -54,4 +52,3 @@ namespace :style do
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 end
-

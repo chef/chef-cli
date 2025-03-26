@@ -1,4 +1,5 @@
-#
+# frozen_string_literal: true
+
 # Copyright:: Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
@@ -15,6 +16,27 @@
 # limitations under the License.
 #
 
+require "chef-licensing"
+require_relative "config"
+
 module ChefCLI
-  VERSION = "5.6.18".freeze
+  module Licensing
+    class Base
+      class << self
+        def validate
+          ChefLicensing.fetch_and_persist.each do |license_key|
+            puts "License Key: #{license_key}"
+          end
+        end
+
+        def list
+          ChefLicensing.list_license_keys_info
+        end
+
+        def add
+          ChefLicensing.add_license
+        end
+      end
+    end
+  end
 end

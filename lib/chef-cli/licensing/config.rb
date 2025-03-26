@@ -1,4 +1,5 @@
-#
+# frozen_string_literal: true
+
 # Copyright:: Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
@@ -15,6 +16,11 @@
 # limitations under the License.
 #
 
-module ChefCLI
-  VERSION = "5.6.18".freeze
+require "chef-licensing"
+
+ChefLicensing.configure do |config|
+  config.chef_product_name = "workstation"
+  config.chef_entitlement_id = "x6f3bc76-a94f-4b6c-bc97-4b7ed2b045c0"
+  config.chef_executable_name = "chef"
+  config.license_server_url = "https://services.chef.io/licensing"
 end

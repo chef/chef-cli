@@ -10,8 +10,6 @@ rubygems:
   - chef-cli
 
 release_branches:
-  - workstation-LTS:
-      version_constraint: 1.*
   - main:
       version_constraint: 5.*
 
@@ -30,10 +28,27 @@ github:
 changelog:
   rollup_header: Changes not yet released to rubygems.org
 
+artifact_channels:
+  - unstable
+  - chef-dke-lts2024
+
 pipelines:
   - verify:
       description: Pull Request validation tests
       public: true
+  - habitat/build:
+      env:
+        - HAB_NONINTERACTIVE: "true"
+        - HAB_NOCOLORING: "true"
+        - HAB_STUDIO_SECRET_HAB_NONINTERACTIVE: "true"
+  - habitat/test:
+      description: Execute tests against the habitat artifact
+      definition: .expeditor/habitat-test.pipeline.yml
+      env:
+        - HAB_NONINTERACTIVE: "true"
+        - HAB_NOCOLORING: "true"
+        - HAB_STUDIO_SECRET_HAB_NONINTERACTIVE: "true"
+      trigger: pull_request
 
 subscriptions:
   # These actions are taken, in order they are specified, anytime a Pull Request is merged.
@@ -51,7 +66,15 @@ subscriptions:
             - "Expeditor: Skip All"
       - built_in:build_gem:
           only_if: built_in:bump_version
+      - trigger_pipeline:habitat/build:
+          only_if: built_in:bump_version
+          ignore_labels:
+            - "Expeditor: Skip Habitat"
+            - "Expeditor: Skip All"
+
+  # this works for symantec version promote
   - workload: project_promoted:{{agent_id}}:*
     actions:
       - built_in:rollover_changelog
+      - built_in:promote_habitat_packages
       - built_in:publish_rubygems

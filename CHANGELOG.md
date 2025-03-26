@@ -1,18 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.18 -->
-## [v5.6.18](https://github.com/chef/chef-cli/tree/v5.6.18) (2025-02-18)
+<!-- latest_release 5.6.17 -->
+## [v5.6.17](https://github.com/chef/chef-cli/tree/v5.6.17) (2025-03-26)
 
 #### Merged Pull Requests
-- Linking of ruby and bin path change in hab: [#265](https://github.com/chef/chef-cli/pull/265) ([sanghinitin](https://github.com/sanghinitin))
+- Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
-- Linking of ruby and bin path change in hab: [#265](https://github.com/chef/chef-cli/pull/265) ([sanghinitin](https://github.com/sanghinitin)) <!-- 5.6.18 -->
-- Habitat Package for Chef-CLI [#260](https://github.com/chef/chef-cli/pull/260) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->
-- Add hab promote pipeline [#254](https://github.com/chef/chef-cli/pull/254) ([sanghinitin](https://github.com/sanghinitin)) <!-- 0.1.0 -->
+- Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

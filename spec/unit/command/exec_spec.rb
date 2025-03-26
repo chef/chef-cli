@@ -57,7 +57,6 @@ describe ChefCLI::Command::Exec do
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     before do
-      allow(command_instance).to receive(:habitat_install?).and_return(false)
       allow(Gem).to receive(:ruby).and_return(ruby_path)
 
       # Using a fake path separator to keep to prevent people from accidentally

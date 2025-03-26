@@ -18,7 +18,6 @@
 require "spec_helper"
 autoload :YAML, "yaml"
 require "chef-cli/command/env"
- 
 describe ChefCLI::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }
   let(:command_instance) { ChefCLI::Command::Env.new }

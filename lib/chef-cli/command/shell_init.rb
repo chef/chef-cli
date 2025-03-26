@@ -29,7 +29,6 @@ end
 module ChefCLI
 
   class ShellCompletionTemplateContext
-    include ChefCLI::Helpers
 
     def commands
       ChefCLI.commands_map.command_specs.inject({}) do |cmd_info, (_key, cmd_spec)|
@@ -40,10 +39,6 @@ module ChefCLI
 
     def get_binding
       binding
-    end
-
-    def habitat?
-      habitat_install?
     end
   end
 
@@ -108,7 +103,7 @@ module ChefCLI
           return 1
         end
 
-        env = (habitat_install? ? habitat_env : omnibus_env).dup
+        env = omnibus_env.dup
         path = env.delete("PATH")
         export(shell_name, "PATH", path)
         env.each do |var_name, value|

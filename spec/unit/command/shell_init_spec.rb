@@ -39,7 +39,6 @@ describe ChefCLI::Command::ShellInit do
 
     before do
       allow(::Dir).to receive(:exist?).and_call_original
-      allow(command_instance).to receive(:habitat_install?).and_return(false)
     end
 
     context "with no explicit omnibus directory" do
@@ -99,7 +98,6 @@ describe ChefCLI::Command::ShellInit do
   shared_examples "a posix shell script" do |shell|
     before do
       stub_const("File::PATH_SEPARATOR", ":")
-      allow(command_instance).to receive(:habitat_install?).and_return(false)
     end
 
     let(:expected_environment_commands) do
@@ -116,7 +114,6 @@ describe ChefCLI::Command::ShellInit do
   shared_examples "a powershell script" do |shell|
     before do
       stub_const("File::PATH_SEPARATOR", ";")
-      allow(command_instance).to receive(:habitat_install?).and_return(false)
     end
 
     let(:expected_environment_commands) do
@@ -166,10 +163,8 @@ describe ChefCLI::Command::ShellInit do
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance).to receive(:habitat_install?).and_return(false)
         allow(command_instance.shell_completion_template_context).to receive(:commands)
           .and_return(command_descriptions)
-        allow(command_instance.shell_completion_template_context).to receive(:habitat?).and_return(false)
 
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
@@ -233,7 +228,6 @@ describe ChefCLI::Command::ShellInit do
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance).to receive(:habitat_install?).and_return(false)
         allow(command_instance.shell_completion_template_context).to receive(:commands)
           .and_return(command_descriptions)
 
@@ -250,10 +244,8 @@ describe ChefCLI::Command::ShellInit do
 
   context "for fish" do
     before do
-      allow(command_instance).to receive(:habitat_install?).and_return(false)
       stub_const("File::PATH_SEPARATOR", ":")
     end
-
     let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"], git_bin_dir].join(":").split(":").join('" "') }
     let(:expected_environment_commands) do
       <<~EOH
@@ -344,94 +336,4 @@ describe ChefCLI::Command::ShellInit do
 
   end
 
-  context "habitat standalone shell-init on bash" do
-    let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
-
-    let(:argv) { ["bash"] }
-
-    before do
-      allow(command_instance).to receive(:habitat_chef_dke?).and_return(false)
-      allow(command_instance).to receive(:habitat_standalone?).and_return(true)
-    end
-
-    it "should return the correct paths" do
-      expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").twice.and_return(cli_hab_path)
-
-      command_instance.run(argv)
-      expect(stdout_io.string).to include("export PATH=\"#{cli_hab_path}/bin")
-      expect(stdout_io.string).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
-      expect(stdout_io.string).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
-    end
-  end
-
-  context "with chef-workstation habitat pkg shell-init on bash" do
-
-    let(:chef_dke_path) { "/hab/pkgs/chef/chef-workstation/1.0.0/123" }
-    let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
-
-    let(:argv) { ["bash"] }
-
-    before do
-      allow(command_instance).to receive(:habitat_chef_dke?).and_return(true)
-      allow(command_instance).to receive(:habitat_standalone?).and_return(false)
-    end
-
-    it "should return the correct paths" do
-      expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
-      expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
-
-      command_instance.run(argv)
-      expect(stdout_io.string).to include("export PATH=\"#{chef_dke_path}/bin")
-      expect(stdout_io.string).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
-      expect(stdout_io.string).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
-    end
-
-    describe "autocompletion" do
-      let(:command_descriptions) do
-        {
-          "exec" => "Runs the command in context of the embedded ruby",
-          "env" => "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}",
-          "gem" => "Runs the `gem` command in context of the embedded ruby",
-          "generate" => "Generate a new app, cookbook, or component",
-        }
-      end
-
-      let(:omnibus_bin_dir) { "/foo/bin" }
-      let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
-
-      let(:argv) { [ "bash" ] }
-
-      let(:expected_completion_function) do
-        <<~END_COMPLETION
-          _chef_comp() {
-              local COMMANDS="exec env gem generate"
-              COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
-          }
-          complete -F _chef_comp chef-cli
-        END_COMPLETION
-      end
-
-      before do
-        # Stub this or else we'd have to update the test every time a new command
-        # is added.
-        allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
-        allow(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
-        allow(command_instance.shell_completion_template_context).to receive(:commands)
-          .and_return(command_descriptions)
-        allow(command_instance.shell_completion_template_context).to receive(:habitat?).and_return(true)
-
-        allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
-        allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
-      end
-
-      it "generates a completion function for the chef command" do
-        command_instance.run(argv)
-        expect(stdout_io.string).to include(expected_completion_function)
-      end
-
-      it "should generate the autocompletion" do
-
-      end
-    end
-  end
 end

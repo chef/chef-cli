@@ -41,6 +41,3 @@ Vagrantfile
 my-cookbook
 results/
 Gemfile.lock
-
-
-.idea/

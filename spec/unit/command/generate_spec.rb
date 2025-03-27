@@ -75,7 +75,7 @@ describe ChefCLI::Command::Generate do
   context "with a generator defined" do
     let(:expected_help_message) do
       <<~E
-        Usage: chef generate GENERATOR [options]
+        Usage: chef-cli generate GENERATOR [options]
 
         Available generators:
           example  this is a test

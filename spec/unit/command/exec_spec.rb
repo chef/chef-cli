@@ -28,7 +28,7 @@ describe ChefCLI::Command::Exec do
   end
 
   it "has a usage banner" do
-    expect(command_instance.banner).to eq("Usage: chef exec SYSTEM_COMMAND")
+    expect(command_instance.banner).to eq("Usage: chef-cli exec SYSTEM_COMMAND")
   end
 
   describe "when locating omnibus directory" do

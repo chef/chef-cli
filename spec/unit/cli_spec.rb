@@ -46,9 +46,9 @@ describe ChefCLI::CLI do
       Patents: #{ChefCLI::Dist::PATENTS}
 
       Usage:
-          chef -h/--help
-          chef -v/--version
-          chef command [arguments...] [options...]
+          chef-cli -h/--help
+          chef-cli -v/--version
+          chef-cli command [arguments...] [options...]
 
       Available Commands:
           gem      Runs the `gem` command in context of the embedded ruby

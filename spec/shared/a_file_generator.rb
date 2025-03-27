@@ -40,7 +40,7 @@ shared_examples_for "a file generator" do
     let(:argv) { [] }
 
     it "emits an error message and exits" do
-      expected_stdout = "Usage: chef generate #{generator_name} [path/to/cookbook] NAME [options]"
+      expected_stdout = "Usage: chef-cli generate #{generator_name} [path/to/cookbook] NAME [options]"
 
       expect(recipe_generator.run).to eq(1)
       expect(stdout).to include(expected_stdout)
@@ -85,7 +85,7 @@ shared_examples_for "a file generator" do
       let(:argv) { [ new_file_name ] }
 
       it "emits an error message and exits" do
-        expected_stdout = "Usage: chef generate #{generator_name} [path/to/cookbook] NAME [options]"
+        expected_stdout = "Usage: chef-cli generate #{generator_name} [path/to/cookbook] NAME [options]"
         expected_stderr = "Error: Directory #{Dir.pwd} is not a cookbook\n"
 
         expect(recipe_generator.run).to eq(1)

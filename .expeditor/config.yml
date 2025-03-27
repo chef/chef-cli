@@ -36,7 +36,7 @@ pipelines:
       public: true
 
 subscriptions:
-  # These actions are taken, in order they are specified, anytime a Pull Request is merged.
+  # These actions are taken, in order they are specified, anytime a Pull Request is been merged.
   - workload: pull_request_merged:{{github_repo}}:{{release_branch}}:*
     actions:
       - built_in:bump_version:

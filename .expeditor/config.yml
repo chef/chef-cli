@@ -30,10 +30,10 @@ github:
 changelog:
   rollup_header: Changes not yet released to rubygems.org
 
-# pipelines:
-#   - verify:
-#       description: Pull Request validation tests
-#       public: true
+pipelines:
+  - verify:
+      description: Pull Request validation tests
+      public: true
 
 subscriptions:
   # These actions are taken, in order they are specified, anytime a Pull Request is merged.

@@ -212,7 +212,7 @@ describe ChefCLI::Command::GeneratorCommands::Policyfile do
     let(:argv) { %w{ foo bar baz } }
 
     it "shows usage and exits" do
-      expected_stdout = "Usage: chef generate policyfile [NAME] [options]"
+      expected_stdout = "Usage: chef-cli generate policyfile [NAME] [options]"
 
       expect(generator.run).to eq(1)
       expect(stderr).to include(expected_stdout)

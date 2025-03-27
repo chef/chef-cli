@@ -159,7 +159,7 @@ echo 'eval (chef-cli shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 
 For information on contributing to this project see <https://github.com/chef/chef/blob/main/CONTRIBUTING.md>
 
-# For Chef-CLI Developers
+## For Chef-CLI Developers
 
 See the [Development Guide](CONTRIBUTING.md) for how to get started with
 development on Chef Workstation itself, as well as details on how dependencies,

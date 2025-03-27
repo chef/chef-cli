@@ -404,7 +404,6 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               - name: centos-stream-9
               - name: debian-12
               - name: fedora-latest
-              - name: freebsd-14
               - name: opensuse-leap-15
               - name: oraclelinux-9
               - name: rockylinux-9
@@ -548,7 +547,6 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
               - name: centos-stream-9
               - name: debian-12
               - name: fedora-latest
-              - name: freebsd-14
               - name: opensuse-leap-15
               - name: oraclelinux-9
               - name: rockylinux-9

@@ -17,5 +17,5 @@ function _chef() {
   fi
 }
 
-compdef _chef chef
+compdef _chef <%= habitat? ? "chef-cli" : "chef" %>
 

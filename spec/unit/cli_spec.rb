@@ -290,7 +290,7 @@ describe ChefCLI::CLI do
           run_cli_with_sanity_check(0)
           expect(stdout).to eq(base_help_message)
           expect(stderr).to include("please reverse that order")
-          expect(stderr).to include("chef shell-init")
+          expect(stderr).to include("chef-cli shell-init")
         end
 
         it "complains if only embedded is present" do
@@ -300,7 +300,7 @@ describe ChefCLI::CLI do
           run_cli_with_sanity_check(0)
           expect(stdout).to eq(base_help_message)
           expect(stderr).to include("you must add")
-          expect(stderr).to include("chef shell-init")
+          expect(stderr).to include("chef-cli shell-init")
         end
 
         it "passes when both are present in the correct order" do
@@ -349,7 +349,7 @@ describe ChefCLI::CLI do
           run_cli_with_sanity_check(0)
           expect(stdout).to eq(base_help_message)
           expect(stderr).to include("please reverse that order")
-          expect(stderr).to include("chef shell-init")
+          expect(stderr).to include("chef-cli shell-init")
         end
 
         it "complains if only embedded is present" do
@@ -359,7 +359,7 @@ describe ChefCLI::CLI do
           run_cli_with_sanity_check(0)
           expect(stdout).to eq(base_help_message)
           expect(stderr).to include("you must add")
-          expect(stderr).to include("chef shell-init")
+          expect(stderr).to include("chef-cli shell-init")
         end
 
         it "passes when both are present in the correct order" do

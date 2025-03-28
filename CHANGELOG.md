@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.17 -->
-## [v5.6.17](https://github.com/chef/chef-cli/tree/v5.6.17) (2025-03-26)
+<!-- latest_release 5.6.18 -->
+## [v5.6.18](https://github.com/chef/chef-cli/tree/v5.6.18) (2025-03-28)
 
 #### Merged Pull Requests
-- Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611))
+- Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.18 -->
 - Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->
 <!-- release_rollup -->
 

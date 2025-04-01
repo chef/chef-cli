@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.18 -->
-## [v5.6.18](https://github.com/chef/chef-cli/tree/v5.6.18) (2025-03-28)
-
-#### Merged Pull Requests
-- Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.16 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.18 -->
-- Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.18](https://github.com/chef/chef-cli/tree/v5.6.18) (2025-04-01)
+
+#### Merged Pull Requests
+- Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611))
+- Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
 ## [v5.6.16](https://github.com/chef/chef-cli/tree/v5.6.16) (2024-11-08)
 
 #### Merged Pull Requests
 - Update generator kitchen templates for modern platforms [#234](https://github.com/chef/chef-cli/pull/234) ([Stromweld](https://github.com/Stromweld))
 - Support for bearer token [#239](https://github.com/chef/chef-cli/pull/239) ([sanjain-progress](https://github.com/sanjain-progress))
-<!-- latest_stable_release -->
 
 ## [v5.6.14](https://github.com/chef/chef-cli/tree/v5.6.14) (2023-09-15)
 

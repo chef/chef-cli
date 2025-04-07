@@ -72,7 +72,7 @@ describe ChefCLI::PolicyfileCompiler do
                 1: raise 'oops'
 
               Backtrace:
-                TestPolicyfile.rb:1:in `eval_policyfile'
+                TestPolicyfile.rb:1:in 'ChefCLI::Policyfile::DSL#eval_policyfile'
           E
           expect(policyfile.errors.first).to eq(expected_message)
         end
@@ -213,7 +213,7 @@ describe ChefCLI::PolicyfileCompiler do
 
         it "has an invalid source error" do
           expect(policyfile.errors.size).to eq(1)
-          message = "Cookbook `foo' has invalid source options `{:herp=>\"derp\"}'"
+          message = "Cookbook `foo' has invalid source options `{herp: \"derp\"}'"
           expect(policyfile.errors.first).to eq(message)
         end
       end
@@ -546,8 +546,8 @@ describe ChefCLI::PolicyfileCompiler do
         expected = <<~EOH
           Cookbook 'foo' assigned to conflicting sources
 
-          Previous source: {:path=>"local_cookbooks/foo"}
-          Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
+          Previous source: {path: "local_cookbooks/foo"}
+          Conflicts with: {chef_server: "https://mychefserver.example.com"}
         EOH
         expect(policyfile.errors.size).to eq(1)
         expect(policyfile.errors.first).to eq(expected)
@@ -586,7 +586,7 @@ describe ChefCLI::PolicyfileCompiler do
              2: metadata
 
            Backtrace:
-             TestPolicyfile.rb:2:in `eval_policyfile'
+             TestPolicyfile.rb:2:in 'ChefCLI::Policyfile::DSL#eval_policyfile'
         EOH
         expect(File).to receive(:exist?).with("./metadata.rb").and_return(false)
         expect(File).to receive(:exist?).with("./metadata.json").and_return(false)
@@ -612,7 +612,7 @@ describe ChefCLI::PolicyfileCompiler do
              2: metadata
 
            Backtrace:
-             TestPolicyfile.rb:2:in `eval_policyfile'
+             TestPolicyfile.rb:2:in 'ChefCLI::Policyfile::DSL#eval_policyfile'
         EOH
         expect(File).to receive(:exist?).with("./metadata.rb").and_return(true)
         expect(File).to receive(:exist?).with("./metadata.json").and_return(true)

@@ -292,7 +292,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
           let(:file) { File.join(tempdir, "new_cookbook", "kitchen.yml") }
 
           it "creates a kitchen.yml with the expected content" do
-            expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+            expect(File.read(file)).to eq(expected_kitchen_yml_content)
           end
 
         end
@@ -323,7 +323,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         let(:file) { File.join(tempdir, "new_cookbook", "spec", "spec_helper.rb") }
 
         it "creates a spec/spec_helper.rb for ChefSpec with the expected content" do
-          expect(IO.read(file)).to eq(expected_chefspec_spec_helper_content)
+          expect(File.read(file)).to eq(expected_chefspec_spec_helper_content)
         end
 
       end
@@ -367,7 +367,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         end
 
         it "has a run_list and cookbook path that will work out of the box" do
-          expect(IO.read(file)).to eq(expected_content)
+          expect(File.read(file)).to eq(expected_content)
         end
 
       end
@@ -475,8 +475,8 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         end
 
         it "has a default.yml file with template contents" do
-          expect(IO.read(file)).to match(expected_content_header)
-          expect(IO.read(file)).to match(expected_content)
+          expect(File.read(file)).to match(expected_content_header)
+          expect(File.read(file)).to match(expected_content)
         end
 
       end
@@ -507,7 +507,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
         end
 
         it "pulls deps from metadata" do
-          expect(IO.read(file)).to eq(expected_content)
+          expect(File.read(file)).to eq(expected_content)
         end
 
       end

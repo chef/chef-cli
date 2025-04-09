@@ -78,7 +78,7 @@ module ChefCLI
       end
 
       def policy_data
-        @policy_data ||= FFI_Yajl::Parser.parse(IO.read(policyfile_lock_expanded_path))
+        @policy_data ||= FFI_Yajl::Parser.parse(File.read(policyfile_lock_expanded_path))
       rescue => error
         raise PolicyfileExportRepoError.new("Error reading lockfile #{policyfile_lock_expanded_path}", error)
       end

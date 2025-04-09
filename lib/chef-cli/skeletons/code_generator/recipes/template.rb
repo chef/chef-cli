@@ -18,7 +18,7 @@ end
 if context.content_source
 
   file template_path do
-    content(IO.read(context.content_source))
+    content(File.read(context.content_source))
   end
 
 else

@@ -239,19 +239,19 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
           # shell out to git for the version number, etc.
           it "writes metadata.json in the exported cookbook, removing metadata.rb" do
             metadata_json_path = File.join(exported_cookbook_root, "metadata.json")
-            metadata_json = FFI_Yajl::Parser.parse(IO.read(metadata_json_path))
+            metadata_json = FFI_Yajl::Parser.parse(File.read(metadata_json_path))
             expect(metadata_json["version"]).to eq("2.3.4")
           end
 
           it "copies the policyfile lock to policies/POLICY_NAME.json" do
             exported_policy_path = File.join(export_dir, "policies", "install-example-#{revision_id}.json")
-            exported_policy_json = IO.read(exported_policy_path)
+            exported_policy_json = File.read(exported_policy_path)
             expect(exported_policy_json).to eq(FFI_Yajl::Encoder.encode(export_service.policyfile_lock.to_lock, pretty: true))
           end
 
           it "creates a policy_group file for the local policy group with the revision id of the exported policy" do
             exported_policy_group_path = File.join(export_dir, "policy_groups", "local.json")
-            exported_policy_group_data = FFI_Yajl::Parser.parse(IO.read(exported_policy_group_path))
+            exported_policy_group_data = FFI_Yajl::Parser.parse(File.read(exported_policy_group_path))
 
             expected_data = { "policies" => { "install-example" => { "revision_id" => revision_id } } }
 
@@ -260,7 +260,7 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
 
           it "copies the policyfile lock in standard format to Policyfile.lock.json" do
             policyfile_lock_path = File.join(export_dir, "Policyfile.lock.json")
-            policyfile_lock_data = FFI_Yajl::Parser.parse(IO.read(policyfile_lock_path))
+            policyfile_lock_data = FFI_Yajl::Parser.parse(File.read(policyfile_lock_path))
             expected_lock_data = export_service.policyfile_lock.to_lock
 
             # stringify keys in source_options
@@ -301,7 +301,7 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
             CONFIG
             config_path = File.join(export_dir, ".chef", "config.rb")
             expect(File).to exist(config_path)
-            expect(IO.read(config_path)).to eq(expected_config_text)
+            expect(File.read(config_path)).to eq(expected_config_text)
           end
 
           it "generates a README.md in the exported repo" do
@@ -313,7 +313,7 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
             let(:policy_group) { "production" }
             it "creates a policy_group file for a specified policy group with the revision id of the exported policy" do
               exported_policy_group_path = File.join(export_dir, "policy_groups", "production.json")
-              exported_policy_group_data = FFI_Yajl::Parser.parse(IO.read(exported_policy_group_path))
+              exported_policy_group_data = FFI_Yajl::Parser.parse(File.read(exported_policy_group_path))
 
               expected_data = { "policies" => { "install-example" => { "revision_id" => revision_id } } }
 
@@ -351,7 +351,7 @@ describe ChefCLI::PolicyfileServices::ExportRepo do
               CONFIG
               config_path = File.join(export_dir, ".chef", "config.rb")
               expect(File).to exist(config_path)
-              expect(IO.read(config_path)).to eq(expected_config_text)
+              expect(File.read(config_path)).to eq(expected_config_text)
             end
           end
 

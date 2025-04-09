@@ -120,7 +120,7 @@ module ChefCLI
       end
 
       def load_policy_data(policyfile_lock_path)
-        FFI_Yajl::Parser.parse(IO.read(policyfile_lock_path))
+        FFI_Yajl::Parser.parse(File.read(policyfile_lock_path))
       end
 
       def stage_unpacked_archive

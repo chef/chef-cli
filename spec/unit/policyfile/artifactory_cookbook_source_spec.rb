@@ -27,9 +27,9 @@ describe ChefCLI::Policyfile::ArtifactoryCookbookSource do
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
 
-  let(:universe_response_encoded) { IO.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
+  let(:universe_response_encoded) { File.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
 
-  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
+  let(:pruned_universe) { JSON.parse(File.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
 
   describe "fetching the Universe graph" do
 

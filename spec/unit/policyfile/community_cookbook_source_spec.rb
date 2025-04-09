@@ -26,9 +26,9 @@ describe ChefCLI::Policyfile::CommunityCookbookSource do
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
 
-  let(:universe_response_encoded) { IO.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
+  let(:universe_response_encoded) { File.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
 
-  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
+  let(:pruned_universe) { JSON.parse(File.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
 
   it "defaults to using the public supermarket over HTTPS" do
     expect(cookbook_source.uri).to eq(default_community_uri)

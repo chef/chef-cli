@@ -97,7 +97,7 @@ describe ChefCLI::Policyfile::UndoStack do
       it "creates the undo record" do
         expect(undo_stack_files.size).to eq(1)
 
-        undo_record_json = IO.read(undo_stack_files.first)
+        undo_record_json = File.read(undo_stack_files.first)
         undo_record_data = FFI_Yajl::Parser.parse(undo_record_json)
         expect(undo_record_data).to eq(undo_record.for_serialization)
       end

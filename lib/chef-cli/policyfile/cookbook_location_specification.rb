@@ -89,8 +89,8 @@ module ChefCLI
       def errors
         error_messages = []
         if source_options_invalid?
-          formatted_opts = source_options.inspect.gsub(/(\w+): /, ':\1=>')
-          error_messages << "Cookbook `#{name}' has invalid source options `#{formatted_opts}'"
+          formatted_opts = source_options.map { |k, v| "#{k.inspect}=>#{v.inspect}" }.join(", ")
+          error_messages << "Cookbook `#{name}' has invalid source options `{#{formatted_opts}}'"
         end
         error_messages
       end

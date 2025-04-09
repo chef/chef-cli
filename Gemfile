@@ -5,8 +5,6 @@ gemspec
 gem "logger", "< 1.6" # 1.6 causes errors with mixlib-log < 3.1.1
 gem "chefspec"
 gem "syslog"
-gem "benchmark"
-gem "ostruct"
 
 group :test do
   gem "rake"

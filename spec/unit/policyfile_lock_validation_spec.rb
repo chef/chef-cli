@@ -124,7 +124,7 @@ describe ChefCLI::PolicyfileLock, "validating locked cookbooks" do
         version          '2.3.4'
 
       E
-      expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
+      expect(File.read(metadata_path)).to eq(expected_metadata_rb)
     end
 
     context "when the cookbook is missing" do
@@ -551,7 +551,7 @@ describe ChefCLI::PolicyfileLock, "validating locked cookbooks" do
         version          '1.0.0'
 
       E
-      expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
+      expect(File.read(metadata_path)).to eq(expected_metadata_rb)
     end
 
     context "when the cookbook missing" do

@@ -26,7 +26,7 @@ describe ChefCLI::Policyfile::DeliverySupermarketSource do
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
 
-  let(:universe_response_encoded) { IO.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
+  let(:universe_response_encoded) { File.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
 
   let(:truncated_universe) do
     {

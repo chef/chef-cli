@@ -19,6 +19,7 @@ require "bundler/gem_tasks"
 
 namespace :style do
   begin
+    require "cookstyle/chefstyle"
     require "rubocop/rake_task"
 
     desc "Run Cookbook Ruby style checks"

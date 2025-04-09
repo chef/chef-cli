@@ -209,6 +209,8 @@ describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph dema
 
       instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
         name: "remote-cb",
+        version: "1.1.1",
+        source_options: remote_cb_source_opts,
         version_constraint: Semverse::Constraint.new("= 1.1.1"),
         ensure_cached: nil,
         to_s: s)
@@ -301,7 +303,7 @@ describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph dema
         it "emits an error" do
           message = <<~MESSAGE
             The installed cookbooks do not contain all the recipes required by your run list(s):
-            Cookbook 'remote-cb' = 1.1.1 {artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1"}
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
             is missing the following required recipes:
             * this_recipe_doesnt_exist
 
@@ -332,7 +334,7 @@ describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph dema
         it "emits an error" do
           message = <<~MESSAGE
             The installed cookbooks do not contain all the recipes required by your run list(s):
-            Cookbook 'remote-cb' = 1.1.1 {artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1"}
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
             is missing the following required recipes:
             * this_recipe_doesnt_exist
 
@@ -364,7 +366,7 @@ describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph dema
         it "emits an error" do
           message = <<~MESSAGE
             The installed cookbooks do not contain all the recipes required by your run list(s):
-            Cookbook 'remote-cb' = 1.1.1 {artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1"}
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
             is missing the following required recipes:
             * this_recipe_doesnt_exist
             * this_also_doesnt_exist

@@ -182,7 +182,7 @@ describe ChefCLI::Policyfile::CookbookLocationSpecification do
       expect(cookbook_location_spec).to_not be_valid
       expect(cookbook_location_spec.errors.size).to eq(1)
       error = cookbook_location_spec.errors.first
-      expect(error).to eq("Cookbook `my_cookbook' has invalid source options `{herp: \"derp\"}'")
+      expect(error).to eq("Cookbook `my_cookbook' has invalid source options `{:herp=>\"derp\"}'")
     end
 
   end

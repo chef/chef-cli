@@ -194,13 +194,16 @@ module ChefCLI
       unless missing_recipes_by_cb_spec.empty?
         message = "The installed cookbooks do not contain all the recipes required by your run list(s):\n"
         missing_recipes_by_cb_spec.each do |spec, missing_items|
-          message << "#{spec}\nis missing the following required recipes:\n"
+          formatted_opts = '{' + spec.source_options.map { |k, v| "#{k.inspect}=>#{v.inspect}" }.join(", ") + '}'
+          message << "Cookbook '#{spec.name}' = #{spec.version} #{formatted_opts}\n"
+          message << "is missing the following required recipes:\n"
+    
           missing_items.each { |_cb, recipe| message << "* #{recipe}\n" }
         end
-
+    
         message << "\n"
         message << "You may have specified an incorrect recipe in your run list,\nor this recipe may not be available in that version of the cookbook\n"
-
+    
         raise CookbookDoesNotContainRequiredRecipe, message
       end
     end

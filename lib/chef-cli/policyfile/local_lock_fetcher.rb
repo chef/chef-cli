@@ -102,7 +102,7 @@ module ChefCLI
       end
 
       def content
-        IO.read(path)
+        File.read(path)
       end
 
       def path

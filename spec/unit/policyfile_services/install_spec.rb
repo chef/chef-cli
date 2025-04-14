@@ -68,7 +68,7 @@ describe ChefCLI::PolicyfileServices::Install do
 
   def result_policyfile_lock
     expect(File).to exist(policyfile_lock_path)
-    content = IO.read(policyfile_lock_path)
+    content = File.read(policyfile_lock_path)
     lock_data = FFI_Yajl::Parser.parse(content)
     ChefCLI::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end

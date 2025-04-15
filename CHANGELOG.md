@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.0.1 -->
-## [v6.0.1](https://github.com/chef/chef-cli/tree/v6.0.1) (2025-04-14)
+<!-- latest_release 6.0.2 -->
+## [v6.0.2](https://github.com/chef/chef-cli/tree/v6.0.2) (2025-04-15)
 
 #### Merged Pull Requests
-- Replaced the IO.read with File.read to fix the security warnings [#281](https://github.com/chef/chef-cli/pull/281) ([ashiqueps](https://github.com/ashiqueps))
+- make pipelines public: habitat/test [#279](https://github.com/chef/chef-cli/pull/279) ([jaymzh](https://github.com/jaymzh))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- make pipelines public: habitat/test [#279](https://github.com/chef/chef-cli/pull/279) ([jaymzh](https://github.com/jaymzh)) <!-- 6.0.2 -->
 - Replaced the IO.read with File.read to fix the security warnings [#281](https://github.com/chef/chef-cli/pull/281) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.0.1 -->
 - Adding back the habitat packaging and license changes and releasing to major version [#272](https://github.com/chef/chef-cli/pull/272) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.0.0 -->
 - Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->

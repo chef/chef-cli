@@ -209,6 +209,8 @@ describe ChefCLI::PolicyfileCompiler, "when expressing the Policyfile graph dema
 
       instance_double("ChefCLI::Policyfile::CookbookLocationSpecification",
         name: "remote-cb",
+        version: "1.1.1",
+        source_options: remote_cb_source_opts,
         version_constraint: Semverse::Constraint.new("= 1.1.1"),
         ensure_cached: nil,
         to_s: s)

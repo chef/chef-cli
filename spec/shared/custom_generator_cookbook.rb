@@ -107,7 +107,7 @@ shared_examples_for "custom generator cookbook" do
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
 
         # have to update metadata with the correct name
-        IO.binwrite(metadata_file, "name 'a_generator_cookbook'")
+        File.binwrite(metadata_file, "name 'a_generator_cookbook'")
       end
 
       it "creates the new files" do

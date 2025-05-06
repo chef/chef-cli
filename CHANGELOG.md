@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.1 -->
-## [v6.1.1](https://github.com/chef/chef-cli/tree/v6.1.1) (2025-05-06)
+<!-- latest_release 6.1.2 -->
+## [v6.1.2](https://github.com/chef/chef-cli/tree/v6.1.2) (2025-05-06)
 
 #### Merged Pull Requests
-- Upgrading diff-lcs dependency [#284](https://github.com/chef/chef-cli/pull/284) ([nikhil2611](https://github.com/nikhil2611))
+- ffi-libarchive could not be loaded fix the warning by add dep in pkg_… [#283](https://github.com/chef/chef-cli/pull/283) ([sanghinitin](https://github.com/sanghinitin))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- ffi-libarchive could not be loaded fix the warning by add dep in pkg_… [#283](https://github.com/chef/chef-cli/pull/283) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.2 -->
 - Upgrading diff-lcs dependency [#284](https://github.com/chef/chef-cli/pull/284) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.1 -->
 - Ruby upgrade 3.4 changes [#280](https://github.com/chef/chef-cli/pull/280) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.0 -->
 - make pipelines public: habitat/test [#279](https://github.com/chef/chef-cli/pull/279) ([jaymzh](https://github.com/jaymzh)) <!-- 6.0.2 -->

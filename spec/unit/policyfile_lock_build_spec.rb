@@ -867,6 +867,24 @@ describe ChefCLI::PolicyfileLock, "building a lockfile", :skip_on_windows do
 
   end
 
+  context "with invalid run list items" do
+    it "detects invalid format in run list items with extra colons" do
+      expect("recipe[cookbook:default::invalid]").not_to match(ChefCLI::PolicyfileLock::RUN_LIST_ITEM_FORMAT)
+    end
+
+    it "detects invalid format when a run list item has no cookbook name" do
+      expect("recipe[::recipe_name]").not_to match(ChefCLI::PolicyfileLock::RUN_LIST_ITEM_FORMAT)
+    end
+
+    it "detects invalid format when a run list item has no recipe name" do
+      expect("recipe[cookbook::]").not_to match(ChefCLI::PolicyfileLock::RUN_LIST_ITEM_FORMAT)
+    end
+
+    it "validates proper recipe format correctly" do
+      expect("recipe[cookbook::recipe_name]").to match(ChefCLI::PolicyfileLock::RUN_LIST_ITEM_FORMAT)
+    end
+  end
+
   describe "building a policyfile lock from a policyfile compiler" do
 
     include_context "setup git cookbooks"

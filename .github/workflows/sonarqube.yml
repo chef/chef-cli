@@ -1,4 +1,6 @@
 name: SonarQube scan
+permissions:
+  contents: read
 on:
   # Trigger analysis when pushing to your main branches, and when creating a pull request.
   push:

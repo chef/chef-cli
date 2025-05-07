@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.3 -->
-## [v6.1.3](https://github.com/chef/chef-cli/tree/v6.1.3) (2025-05-07)
+<!-- latest_release 6.1.4 -->
+## [v6.1.4](https://github.com/chef/chef-cli/tree/v6.1.4) (2025-05-07)
 
 #### Merged Pull Requests
-- Securiy fix - Polynomial regular expression used [#285](https://github.com/chef/chef-cli/pull/285) ([ashiqueps](https://github.com/ashiqueps))
+- Potential fix for code scanning alert no. 30: Workflow does not contain permissions [#287](https://github.com/chef/chef-cli/pull/287) ([ashiqueps](https://github.com/ashiqueps))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Potential fix for code scanning alert no. 30: Workflow does not contain permissions [#287](https://github.com/chef/chef-cli/pull/287) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.4 -->
 - Securiy fix - Polynomial regular expression used [#285](https://github.com/chef/chef-cli/pull/285) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.3 -->
 - ffi-libarchive could not be loaded fix the warning by add dep in pkg_… [#283](https://github.com/chef/chef-cli/pull/283) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.2 -->
 - Upgrading diff-lcs dependency [#284](https://github.com/chef/chef-cli/pull/284) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.1 -->

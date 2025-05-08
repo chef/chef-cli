@@ -74,7 +74,7 @@ module ChefCLI
       end
 
       def policyfile_content
-        @policyfile_content ||= IO.read(policyfile_expanded_path)
+        @policyfile_content ||= File.read(policyfile_expanded_path)
       end
 
       def policyfile_compiler
@@ -82,7 +82,7 @@ module ChefCLI
       end
 
       def policyfile_lock_content
-        @policyfile_lock_content ||= IO.read(policyfile_lock_expanded_path)
+        @policyfile_lock_content ||= File.read(policyfile_lock_expanded_path)
       end
 
       def policyfile_lock

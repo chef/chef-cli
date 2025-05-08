@@ -25,9 +25,9 @@ describe ChefCLI::Policyfile::ChefServerCookbookSource do
 
   let(:http_connection) { double("Chef::ServerAPI") }
 
-  let(:universe_response_encoded) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/chef_server_universe.json"))) }
+  let(:universe_response_encoded) { JSON.parse(File.read(File.join(fixtures_path, "cookbooks_api/chef_server_universe.json"))) }
 
-  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_chef_server_universe.json"))) }
+  let(:pruned_universe) { JSON.parse(File.read(File.join(fixtures_path, "cookbooks_api/pruned_chef_server_universe.json"))) }
 
   describe "fetching the Universe graph" do
 

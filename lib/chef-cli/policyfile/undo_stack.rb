@@ -109,7 +109,7 @@ module ChefCLI
       end
 
       def load_undo_record(file)
-        data = FFI_Yajl::Parser.parse(IO.read(file))
+        data = FFI_Yajl::Parser.parse(File.read(file))
         UndoRecord.new.load(data)
       end
 

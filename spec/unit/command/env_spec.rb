@@ -29,7 +29,7 @@ describe ChefCLI::Command::Env do
   let(:omnibus_bin_dir) { "/foo/bin" }
 
   it "has a usage banner" do
-    expect(command_instance.banner).to eq("Usage: chef env")
+    expect(command_instance.banner).to eq("Usage: chef-cli env")
   end
 
   describe "when running from within an omnibus install" do

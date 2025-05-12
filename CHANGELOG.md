@@ -1,26 +1,23 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.20 -->
-## [v5.6.20](https://github.com/chef/chef-cli/tree/v5.6.20) (2025-05-09)
-
-#### Merged Pull Requests
-- Removing freebsd from kitchen.yml generator template [#288](https://github.com/chef/chef-cli/pull/288) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=5.6.18 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Removing freebsd from kitchen.yml generator template [#288](https://github.com/chef/chef-cli/pull/288) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.20 -->
-- Security fixes [#286](https://github.com/chef/chef-cli/pull/286) ([ashiqueps](https://github.com/ashiqueps)) <!-- 5.6.19 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v5.6.20](https://github.com/chef/chef-cli/tree/v5.6.20) (2025-05-12)
+
+#### Merged Pull Requests
+- Security fixes [#286](https://github.com/chef/chef-cli/pull/286) ([ashiqueps](https://github.com/ashiqueps))
+- Removing freebsd from kitchen.yml generator template [#288](https://github.com/chef/chef-cli/pull/288) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
 ## [v5.6.18](https://github.com/chef/chef-cli/tree/v5.6.18) (2025-04-01)
 
 #### Merged Pull Requests
 - Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611))
 - Upgrading diff-lcs dependency [#277](https://github.com/chef/chef-cli/pull/277) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v5.6.16](https://github.com/chef/chef-cli/tree/v5.6.16) (2024-11-08)
 

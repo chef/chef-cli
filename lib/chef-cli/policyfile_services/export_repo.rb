@@ -20,7 +20,7 @@ require "fileutils" unless defined?(FileUtils)
 require "tmpdir" unless defined?(Dir.mktmpdir)
 require "zlib" unless defined?(Zlib)
 
-require "archive/tar/minitar"
+require 'minitar'
 
 require "chef/cookbook/chefignore"
 

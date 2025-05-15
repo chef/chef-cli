@@ -16,7 +16,7 @@
 #
 
 require "zlib" unless defined?(Zlib)
-require 'minitar'
+require "minitar"
 
 require_relative "../service_exceptions"
 require_relative "../policyfile_lock"

@@ -24,7 +24,7 @@ describe ChefCLI::PolicyfileServices::PushArchive do
 
   def create_archive
     Zlib::GzipWriter.open(archive_file_path) do |gz_file|
-      Archive::Tar::Minitar::Writer.open(gz_file) do |tar|
+      Minitar::Writer.open(gz_file) do |tar|
 
         archive_dirs.each do |dir|
           tar.mkdir(dir, mode: 0755)

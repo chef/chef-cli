@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.6.21 -->
+## [v5.6.21](https://github.com/chef/chef-cli/tree/v5.6.21) (2025-05-19)
+
+#### Merged Pull Requests
+- Updating the minitar dependency in chef-cli-5 [#290](https://github.com/chef/chef-cli/pull/290) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.6.20 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Updating the minitar dependency in chef-cli-5 [#290](https://github.com/chef/chef-cli/pull/290) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.21 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

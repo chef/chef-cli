@@ -36,7 +36,7 @@ module ChefCLI
     WORKFLOW = "Chef Workflow (Delivery)".freeze
 
     # The chef executable, as in `chef gem install` or `chef generate cookbook`
-    EXEC = "chef".freeze
+    EXEC = "chef-cli".freeze
 
     # Chef-Zero's product name
     ZERO_PRODUCT = "Chef Infra Zero".freeze

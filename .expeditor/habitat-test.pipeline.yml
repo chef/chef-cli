@@ -16,7 +16,7 @@ steps:
     expeditor:
       executor:
         docker:
-          image: ruby:3.1
+          image: ruby:3.4
           privileged: true
 
   - label: ":windows: Validate Habitat Builds of Test Kitchen"

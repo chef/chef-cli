@@ -16,95 +16,95 @@
 # limitations under the License.
 #
 
-require_relative "base"
-require "chef-cli/licensing/base"
-require_relative "../configurable"
+# require_relative "base"
+# require "chef-cli/licensing/base"
+# require_relative "../configurable"
 
-module ChefCLI
-  module Command
+# module ChefCLI
+#   module Command
 
-    # This class will manage the license command in the chef-cli
-    class License < Base
+#     # This class will manage the license command in the chef-cli
+#     class License < Base
 
-      include Configurable
+#       include Configurable
 
-      MAIN_COMMAND_HELP = <<~HELP.freeze
-        Usage: #{ChefCLI::Dist::EXEC} license [SUBCOMMAND]
+#       MAIN_COMMAND_HELP = <<~HELP.freeze
+#         Usage: #{ChefCLI::Dist::EXEC} license [SUBCOMMAND]
 
-        `#{ChefCLI::Dist::EXEC} license` command will validate the existing license
-        or will help you interactively generate new free/trial license and activate the
-        commercial license the chef team has sent you through email.
-      HELP
+#         `#{ChefCLI::Dist::EXEC} license` command will validate the existing license
+#         or will help you interactively generate new free/trial license and activate the
+#         commercial license the chef team has sent you through email.
+#       HELP
 
-      SUB_COMMANDS = [
-        { name: "list", description: "List details of the license(s) installed on the system." },
-        { name: "add", description: "Create & install a Free/ Trial license or install a Commercial license on the system." },
-      ].freeze
+#       SUB_COMMANDS = [
+#         { name: "list", description: "List details of the license(s) installed on the system." },
+#         { name: "add", description: "Create & install a Free/ Trial license or install a Commercial license on the system." },
+#       ].freeze
 
-      option :chef_license_key,
-        long: "--chef-license-key LICENSE",
-        description: "New license key to accept and store in the system"
+#       option :chef_license_key,
+#         long: "--chef-license-key LICENSE",
+#         description: "New license key to accept and store in the system"
 
-      attr_accessor :ui
+#       attr_accessor :ui
 
-      def self.banner
-        <<~BANNER
-          #{MAIN_COMMAND_HELP}
-          Subcommands:
-          #{SUB_COMMANDS.map do |c|
-            "  #{c[:name].ljust(7)}#{c[:description]}"
-          end.join("\n") }
+#       def self.banner
+#         <<~BANNER
+#           #{MAIN_COMMAND_HELP}
+#           Subcommands:
+#           #{SUB_COMMANDS.map do |c|
+#             "  #{c[:name].ljust(7)}#{c[:description]}"
+#           end.join("\n") }
 
-          Options:
-        BANNER
-      end
+#           Options:
+#         BANNER
+#       end
 
-      def initialize
-        super
+#       def initialize
+#         super
 
-        @ui = UI.new
-      end
+#         @ui = UI.new
+#       end
 
-      def run(params)
-        config_license_debug if debug?
-        remaining_args = parse_options(params)
-        return 1 unless validate_params!(remaining_args)
+#       def run(params)
+#         config_license_debug if debug?
+#         remaining_args = parse_options(params)
+#         return 1 unless validate_params!(remaining_args)
 
-        if remaining_args.blank?
-          ChefCLI::Licensing::Base.validate
-        else
-          ChefCLI::Licensing::Base.send(remaining_args[0])
-        end
-      rescue ChefLicensing::LicenseKeyFetcher::LicenseKeyNotFetchedError
-        ui.msg("License key not fetched. Please try again.")
-      end
+#         if remaining_args.blank?
+#           ChefCLI::Licensing::Base.validate
+#         else
+#           ChefCLI::Licensing::Base.send(remaining_args[0])
+#         end
+#       rescue ChefLicensing::LicenseKeyFetcher::LicenseKeyNotFetchedError
+#         ui.msg("License key not fetched. Please try again.")
+#       end
 
-      def debug?
-        !!config[:debug]
-      end
+#       def debug?
+#         !!config[:debug]
+#       end
 
-      def validate_params!(args)
-        if args.length > 1
-          ui.err("Too many arguments")
-          return false
-        end
+#       def validate_params!(args)
+#         if args.length > 1
+#           ui.err("Too many arguments")
+#           return false
+#         end
 
-        valid_subcommands = SUB_COMMANDS.collect { |c| c[:name] }
-        args.each do |arg|
-          next if valid_subcommands.include?(arg)
+#         valid_subcommands = SUB_COMMANDS.collect { |c| c[:name] }
+#         args.each do |arg|
+#           next if valid_subcommands.include?(arg)
 
-          ui.err("Invalid option: #{arg}")
-          return false
-        end
+#           ui.err("Invalid option: #{arg}")
+#           return false
+#         end
 
-        true
-      end
+#         true
+#       end
 
-      private
+#       private
 
-      def config_license_debug
-        ChefLicensing.output = ui
-      end
-    end
-  end
-end
+#       def config_license_debug
+#         ChefLicensing.output = ui
+#       end
+#     end
+#   end
+# end

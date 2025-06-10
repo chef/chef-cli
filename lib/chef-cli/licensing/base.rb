@@ -16,27 +16,27 @@
 # limitations under the License.
 #
 
-require "chef-licensing"
-require_relative "config"
+# require "chef-licensing"
+# require_relative "config"
 
-module ChefCLI
-  module Licensing
-    class Base
-      class << self
-        def validate
-          ChefLicensing.fetch_and_persist.each do |license_key|
-            puts "License Key: #{license_key}"
-          end
-        end
+# module ChefCLI
+#   module Licensing
+#     class Base
+#       class << self
+#         def validate
+#           ChefLicensing.fetch_and_persist.each do |license_key|
+#             puts "License Key: #{license_key}"
+#           end
+#         end
 
-        def list
-          ChefLicensing.list_license_keys_info
-        end
+#         def list
+#           ChefLicensing.list_license_keys_info
+#         end
 
-        def add
-          ChefLicensing.add_license
-        end
-      end
-    end
-  end
-end
+#         def add
+#           ChefLicensing.add_license
+#         end
+#       end
+#     end
+#   end
+# end

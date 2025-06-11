@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.6 -->
-## [v6.1.6](https://github.com/chef/chef-cli/tree/v6.1.6) (2025-05-30)
+<!-- latest_release 6.1.7 -->
+## [v6.1.7](https://github.com/chef/chef-cli/tree/v6.1.7) (2025-06-11)
 
 #### Merged Pull Requests
-- Updating the minitar dependency in main [#289](https://github.com/chef/chef-cli/pull/289) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-21123 - Ruby 3.4 update in chef-cli hab package [#291](https://github.com/chef/chef-cli/pull/291) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- CHEF-21123 - Ruby 3.4 update in chef-cli hab package [#291](https://github.com/chef/chef-cli/pull/291) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.7 -->
 - Updating the minitar dependency in main [#289](https://github.com/chef/chef-cli/pull/289) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.6 -->
 - removing freebsd from kitchen.yml generator template [#236](https://github.com/chef/chef-cli/pull/236) ([Stromweld](https://github.com/Stromweld)) <!-- 6.1.5 -->
 - Potential fix for code scanning alert no. 30: Workflow does not contain permissions [#287](https://github.com/chef/chef-cli/pull/287) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.4 -->

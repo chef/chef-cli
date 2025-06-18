@@ -1,3 +1,4 @@
+export HAB_BLDR_CHANNEL="base-2025"
 export HAB_REFRESH_CHANNEL="base-2025"
 pkg_name=chef-cli
 pkg_origin=chef

@@ -131,7 +131,7 @@ describe ChefCLI::Command::GeneratorCommands::Cookbook do
   context "when given invalid/incomplete arguments" do
 
     let(:expected_help_message) do
-      "Usage: chef generate cookbook NAME [options]\n"
+      "Usage: chef-cli generate cookbook NAME [options]\n"
     end
 
     def with_argv(argv)

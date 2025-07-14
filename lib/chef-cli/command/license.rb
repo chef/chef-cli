@@ -70,7 +70,7 @@ module ChefCLI
         remaining_args = parse_options(params)
         return 1 unless validate_params!(remaining_args)
 
-        if remaining_args.blank?
+        if remaining_args.empty?
           ChefCLI::Licensing::Base.validate
         else
           ChefCLI::Licensing::Base.send(remaining_args[0])

@@ -51,5 +51,10 @@ Gem::Specification.new do |gem|
   gem.add_dependency "pastel", "~> 0.7" # used for policyfile differ
   gem.add_dependency "license-acceptance", ">= 1.0.11", "< 3"
   gem.add_dependency "chef-licensing", "~> 1.0"
-  gem.add_dependency "syslog", "~> 0.3"
+
+  # This gem was removed from the Ruby standard library starting with version 3.4
+  # See: https://stdgems.org/new-in/3.4
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4")
+    gem.add_dependency "syslog", "~> 0.3"
+  end
 end

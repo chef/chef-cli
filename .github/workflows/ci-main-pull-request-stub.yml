@@ -7,9 +7,9 @@ name: CI Pull Request on Main Branch
 
 on: 
   pull_request:
-    branches: [ main, develop, release/** ]
+    branches: [ main, chef-cli-5 ]
   push:
-    branches: [ main, develop, release/** ]
+    branches: [ main, chef-cli-5 ]
 
   workflow_dispatch:
 

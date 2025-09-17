@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.11 -->
-## [v6.1.11](https://github.com/chef/chef-cli/tree/v6.1.11) (2025-09-11)
+<!-- latest_release 6.1.12 -->
+## [v6.1.12](https://github.com/chef/chef-cli/tree/v6.1.12) (2025-09-17)
 
 #### Merged Pull Requests
-- Move syslog dependency from Gemfile to gemspec [#298](https://github.com/chef/chef-cli/pull/298) ([nikhil2611](https://github.com/nikhil2611))
+- Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.12 -->
 - Move syslog dependency from Gemfile to gemspec [#298](https://github.com/chef/chef-cli/pull/298) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.11 -->
 - build chef-cli against to base 2025 [#294](https://github.com/chef/chef-cli/pull/294) ([muthuja](https://github.com/muthuja)) <!-- 6.1.10 -->
 - Fixing habitat test builds by declaring HAB_ORIGIN after habitat install [#295](https://github.com/chef/chef-cli/pull/295) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.9 -->

@@ -3,12 +3,11 @@ export HAB_REFRESH_CHANNEL="base-2025"
 pkg_name=chef-cli
 pkg_origin=chef
 ruby_pkg="core/ruby3_4"
-pkg_deps=(${ruby_pkg} core/coreutils core/libarchive)
+pkg_deps=(${ruby_pkg} core/coreutils core/libarchive core/git)
 pkg_build_deps=(
     core/make
     core/sed
     core/gcc
-    core/git
     )
 pkg_bin_dirs=(bin)
 

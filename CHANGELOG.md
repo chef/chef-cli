@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.12 -->
-## [v6.1.12](https://github.com/chef/chef-cli/tree/v6.1.12) (2025-09-17)
+<!-- latest_release 6.1.13 -->
+## [v6.1.13](https://github.com/chef/chef-cli/tree/v6.1.13) (2025-10-10)
 
 #### Merged Pull Requests
-- Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611))
+- Moving git to pkg_deps [#304](https://github.com/chef/chef-cli/pull/304) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Moving git to pkg_deps [#304](https://github.com/chef/chef-cli/pull/304) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.13 -->
 - Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.12 -->
 - Move syslog dependency from Gemfile to gemspec [#298](https://github.com/chef/chef-cli/pull/298) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.11 -->
 - build chef-cli against to base 2025 [#294](https://github.com/chef/chef-cli/pull/294) ([muthuja](https://github.com/muthuja)) <!-- 6.1.10 -->

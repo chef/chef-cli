@@ -7,9 +7,9 @@ name: CI Pull Request on Main Branch
 
 on: 
   pull_request:
-    branches: [ main, chef-cli-5 ]
+    branches: [ main, release/** ]
   push:
-    branches: [ main, chef-cli-5 ]
+    branches: [ main, release/** ]
 
   workflow_dispatch:
 
@@ -40,7 +40,7 @@ jobs:
       # go-private-modules: GOPRIVATE for Go private modules, default is 'github.com/progress-platform-services/*
 
       # if version specified, it takes precedence; can be a semver like 1.0.2-xyz or a tag like "latest"
-      version: '6.1.11' # ${{ github.event.repository.version }}
+      version: '6.1.13' # ${{ github.event.repository.version }}
       detect-version-source-type: 'none' # options include "none" (do not detect), "file", "github-tag" or "github-release"
       detect-version-source-parameter: '' # use for file name
       language: 'ruby'  # Go, Ruby, Rust, JavaScript, TypeScript, Python, Java, C#, PHP, other - used for build and SonarQube language setting
@@ -72,12 +72,10 @@ jobs:
  
       # perform SonarQube scan, with or wihout unit test coverage data
       # requires secrets SONAR_TOKEN and SONAR_HOST_URL (progress.sonar.com)
-      perform-sonarqube-scan: true
+      perform-sonarqube-scan: false
       # perform-sonar-build: true
       # build-profile: 'default' 
       # report-unit-test-coverage: true
-
-      perform-docker-scan: false  # scan Dockerfile and built images with Docker Scout or Trivy; see repo custom properties matching "container"
 
       # report to central developer dashboard
       report-to-atlassian-dashboard: false
@@ -99,7 +97,7 @@ jobs:
       perform-blackduck-sca-scan: true # combined with generate sbom & generate github-sbom, also needs version above
       blackduck-project-group-name: 'Chef-Agents' # typically one of (Chef), Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Non-Product'
       blackduck-project-name: ${{ github.event.repository.name }} # BlackDuck project name, typically the repository name
-      generate-blackduck-sbom: false # obsolete, use perform-blackduck-sca-scan instead
+      generate-blackduck-sbom: true # obsolete, use perform-blackduck-sca-scan instead
         
       generate-msft-sbom: false
       license_scout: false      # Run license scout for license compliance (uses .license_scout.yml)

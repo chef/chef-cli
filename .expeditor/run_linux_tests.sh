@@ -7,6 +7,9 @@ set -ue
 export USER="root"
 export LANG=C.UTF-8 LANGUAGE=C.UTF-8
 
+echo "--- Removing Gemfile.lock to generate fresh lock file"
+rm -f Gemfile.lock
+
 echo "--- bundle install"
 
 bundle config --local path vendor/bundle

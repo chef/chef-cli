@@ -4,6 +4,9 @@ gemspec
 
 gem "logger", "< 1.6" # 1.6 causes errors with mixlib-log < 3.1.1
 
+# Avoid psych build issues on Windows Ruby 3.3 by using the default gem
+gem "psych", "< 5.2", platforms: [:mingw, :x64_mingw, :mswin]
+
 group :test do
   gem "rake"
   gem "rspec", "~> 3.8"
@@ -17,7 +20,7 @@ end
 
 group :development do
   gem "pry"
-  gem "pry-byebug"
+  gem "pry-byebug", platforms: :ruby  # byebug doesn't work on Windows
   gem "rb-readline"
 end
 

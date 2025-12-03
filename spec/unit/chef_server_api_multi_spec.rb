@@ -44,7 +44,7 @@ describe ChefCLI::ChefServerAPIMulti do
   before do
     # clean out thread local storage or else `chef_server_api` instance double
     # will get re-used across test examples and rspec will complain:
-    Thread.current[:chef_server_api_multi] = nil
+    Thread.current.thread_variable_set(:chef_server_api_multi, nil)
     allow(Chef::ServerAPI).to receive(:new).with(url, expected_server_api_opts).and_return(chef_server_api)
   end
 
@@ -57,8 +57,8 @@ describe ChefCLI::ChefServerAPIMulti do
   end
 
   it "creates a thread-local Chef::ServerAPI object for requests" do
-    server_api_multi.client_for_thread # force `||=` to run
-    expect(server_api_multi.client_for_thread).to eq(Thread.current[:chef_server_api_multi])
+    server_api_multi.client_for_thread # force lazy initialization to run
+    expect(server_api_multi.client_for_thread).to eq(Thread.current.thread_variable_get(:chef_server_api_multi))
   end
 
   describe "when keepalives are disabled" do

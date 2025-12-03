@@ -66,7 +66,10 @@ module ChefCLI
     end
 
     def client_for_thread
-      Thread.current[:chef_server_api_multi] ||= Chef::ServerAPI.new(@url, @opts)
+      # Use thread_variable_* methods instead of Thread.current[] to avoid
+      # fiber-local variable issues and provide better thread isolation
+      Thread.current.thread_variable_get(:chef_server_api_multi) ||
+        Thread.current.thread_variable_set(:chef_server_api_multi, Chef::ServerAPI.new(@url, @opts))
     end
 
   end

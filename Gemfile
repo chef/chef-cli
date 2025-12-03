@@ -4,8 +4,9 @@ gemspec
 
 gem "logger", "< 1.6" # 1.6 causes errors with mixlib-log < 3.1.1
 
-# Avoid psych build issues on Windows Ruby 3.3 by using the default gem
-gem "psych", "< 5.2", platforms: [:mingw, :x64_mingw, :mswin]
+# Pin psych < 5.2 to avoid build issues on Windows Ruby 3.3 where libyaml headers are unavailable
+# Ruby 3.3 ships with psych 5.1.2, Ruby 3.4+ will handle 5.2+ correctly
+gem "psych", "< 5.2" if RUBY_VERSION.start_with?("3.3")
 
 group :test do
   gem "rake"

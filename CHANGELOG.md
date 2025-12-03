@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 5.6.22 -->
+## [v5.6.22](https://github.com/chef/chef-cli/tree/v5.6.22) (2025-12-03)
+
+#### Merged Pull Requests
+- CHEF-28155 - Fixing code scanning alerts in chef-cli-5 [#306](https://github.com/chef/chef-cli/pull/306) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=5.6.21 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- CHEF-28155 - Fixing code scanning alerts in chef-cli-5 [#306](https://github.com/chef/chef-cli/pull/306) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.22 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

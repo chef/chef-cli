@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 5.6.22 -->
-## [v5.6.22](https://github.com/chef/chef-cli/tree/v5.6.22) (2025-12-03)
+<!-- latest_release 5.6.23 -->
+## [v5.6.23](https://github.com/chef/chef-cli/tree/v5.6.23) (2025-12-04)
 
 #### Merged Pull Requests
-- CHEF-28155 - Fixing code scanning alerts in chef-cli-5 [#306](https://github.com/chef/chef-cli/pull/306) ([nikhil2611](https://github.com/nikhil2611))
+- Fixing pipeline error - windows ruby 3.3 [#308](https://github.com/chef/chef-cli/pull/308) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.21 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Fixing pipeline error - windows ruby 3.3 [#308](https://github.com/chef/chef-cli/pull/308) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.23 -->
 - CHEF-28155 - Fixing code scanning alerts in chef-cli-5 [#306](https://github.com/chef/chef-cli/pull/306) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.22 -->
 <!-- release_rollup -->
 

@@ -40,7 +40,6 @@ Vagrantfile
 # some acceptance tests will leave this if they fail
 my-cookbook
 results/
-Gemfile.lock
 
 
 .idea/

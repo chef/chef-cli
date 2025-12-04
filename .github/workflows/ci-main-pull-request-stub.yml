@@ -7,9 +7,9 @@ name: CI Pull Request on Main Branch
 
 on: 
   pull_request:
-    branches: [ main, release/** ]
+    branches: [ nikhil/checking-scan-with-lock-file, release/** ]
   push:
-    branches: [ main, release/** ]
+    branches: [ nikhil/checking-scan-with-lock-file, release/** ]
 
   workflow_dispatch:
 

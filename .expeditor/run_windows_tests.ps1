@@ -1,5 +1,8 @@
 $ErrorActionPreference="stop"
 
+Write-Host "--- Removing Gemfile.lock to generate fresh lock file"
+Remove-Item -Path "Gemfile.lock" -Force -ErrorAction SilentlyContinue
+
 Write-Host "--- bundle install"
 
 bundle config --local path vendor/bundle

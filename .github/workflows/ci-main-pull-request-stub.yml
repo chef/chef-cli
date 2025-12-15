@@ -7,9 +7,9 @@ name: CI Pull Request on Main Branch
 
 on: 
   pull_request:
-    branches: [ main, release/** ]
+    branches: [ nikhil/generate-lock-runtime, release/** ]
   push:
-    branches: [ main, release/** ]
+    branches: [ nikhil/generate-lock-runtime, release/** ]
 
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
           echo "CI main pull request stub version $STUB_VERSION"
 
   call-ci-main-pr-check-pipeline:
-    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@main
+    uses: chef/common-github-actions/.github/workflows/ci-main-pull-request.yml@nikhil/create-lock-file-runtime
     secrets: inherit
     permissions: 
       id-token: write
@@ -98,7 +98,9 @@ jobs:
       blackduck-project-group-name: 'Chef-Agents' # typically one of (Chef), Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Non-Product'
       blackduck-project-name: ${{ github.event.repository.name }} # BlackDuck project name, typically the repository name
       generate-blackduck-sbom: true # obsolete, use perform-blackduck-sca-scan instead
-        
+
+      run-bundle-install: true
+
       generate-msft-sbom: false
       license_scout: false      # Run license scout for license compliance (uses .license_scout.yml)
 

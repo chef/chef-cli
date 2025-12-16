@@ -99,7 +99,7 @@ jobs:
       blackduck-project-name: ${{ github.event.repository.name }} # BlackDuck project name, typically the repository name
       generate-blackduck-sbom: true # obsolete, use perform-blackduck-sca-scan instead
 
-      run-bundle-install: true
+      run-bundle-install: false
 
       generate-msft-sbom: false
       license_scout: false      # Run license scout for license compliance (uses .license_scout.yml)

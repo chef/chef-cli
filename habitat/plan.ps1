@@ -43,6 +43,7 @@ function Invoke-Build {
         bundle config --local jobs 4
         bundle config --local retry 5
         bundle config --local silence_root_warning 1
+        bundle config set --local force_ruby_platform false
         Write-BuildLine " ** Using bundler to retrieve the Ruby dependencies"
         bundle install
 
@@ -67,7 +68,7 @@ function Invoke-Install {
         Push-Location $pkg_prefix
         bundle config --local gemfile $project_root/Gemfile
          Write-BuildLine "** generating binstubs for chef-cli with precise version pins"
-	 Write-BuildLine "** generating binstubs for chef-cli with precise version pins $project_root $pkg_prefix/bin " 
+	 Write-BuildLine "** generating binstubs for chef-cli with precise version pins $project_root $pkg_prefix/bin "
             Invoke-Expression -Command "appbundler.bat $project_root $pkg_prefix/bin chef-cli"
             If ($lastexitcode -ne 0) { Exit $lastexitcode }
 	Write-BuildLine " ** Running the chef-cli project's 'rake install' to install the path-based gems so they look like any other installed gem."

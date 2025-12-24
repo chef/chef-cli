@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.14 -->
-## [v6.1.14](https://github.com/chef/chef-cli/tree/v6.1.14) (2025-12-03)
+<!-- latest_release 6.1.15 -->
+## [v6.1.15](https://github.com/chef/chef-cli/tree/v6.1.15) (2025-12-24)
 
 #### Merged Pull Requests
-- CHEF-28155- fixing code scan alerts in main [#307](https://github.com/chef/chef-cli/pull/307) ([nikhil2611](https://github.com/nikhil2611))
+- Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.15 -->
 - CHEF-28155- fixing code scan alerts in main [#307](https://github.com/chef/chef-cli/pull/307) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.14 -->
 - Moving git to pkg_deps [#304](https://github.com/chef/chef-cli/pull/304) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.13 -->
 - Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.12 -->

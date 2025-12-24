@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.15 -->
-## [v6.1.15](https://github.com/chef/chef-cli/tree/v6.1.15) (2025-12-24)
+<!-- latest_release 6.1.16 -->
+## [v6.1.16](https://github.com/chef/chef-cli/tree/v6.1.16) (2025-12-24)
 
 #### Merged Pull Requests
-- Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress))
+- CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.16 -->
 - Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.15 -->
 - CHEF-28155- fixing code scan alerts in main [#307](https://github.com/chef/chef-cli/pull/307) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.14 -->
 - Moving git to pkg_deps [#304](https://github.com/chef/chef-cli/pull/304) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.13 -->

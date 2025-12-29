@@ -64,7 +64,7 @@ module ChefCLI
       end
     end
 
-    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/
+    RUN_LIST_ITEM_FORMAT = /\Arecipe\[([^:\s][^:\s]{0,254})::([^:\s][^:\s]{0,254})\]\Z/
 
     def self.build(storage_config)
       lock = new(storage_config)

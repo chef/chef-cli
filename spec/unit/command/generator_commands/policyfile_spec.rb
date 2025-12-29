@@ -174,7 +174,7 @@ describe ChefCLI::Command::GeneratorCommands::Policyfile do
       end
 
       it "adds chef_repo as a default source and uses argv for the policy name" do
-        expect(IO.read(expected_policyfile_path)).to eq(expected_policyfile_content)
+        expect(File.read(expected_policyfile_path)).to eq(expected_policyfile_content)
       end
 
     end
@@ -200,7 +200,7 @@ describe ChefCLI::Command::GeneratorCommands::Policyfile do
       end
 
       it "adds chef_repo as a default source" do
-        expect(IO.read(expected_policyfile_path)).to eq(expected_policyfile_content)
+        expect(File.read(expected_policyfile_path)).to eq(expected_policyfile_content)
       end
 
     end

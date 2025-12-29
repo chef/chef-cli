@@ -1,15 +1,13 @@
-export HAB_BLDR_CHANNEL="LTS-2024"
-export HAB_REFRESH_CHANNEL="LTS-2024"
+export HAB_BLDR_CHANNEL="base-2025"
+export HAB_REFRESH_CHANNEL="base-2025"
 pkg_name=chef-cli
 pkg_origin=chef
-ruby_pkg="core/ruby3_1"
-pkg_deps=(${ruby_pkg} core/coreutils)
+ruby_pkg="core/ruby3_4"
+pkg_deps=(${ruby_pkg} core/coreutils core/libarchive core/git)
 pkg_build_deps=(
     core/make
     core/sed
     core/gcc
-    core/libarchive
-    core/git
     )
 pkg_bin_dirs=(bin)
 
@@ -21,7 +19,7 @@ do_setup_environment() {
   export GEM_PATH="$GEM_HOME"
 }
 do_prepare() {
-  ln -sf "$(pkg_interpreter_for core/ruby3_1 bin/ruby)" "$(pkg_interpreter_for core/coreutils bin/env)"
+  ln -sf "$(pkg_interpreter_for core/ruby3_4 bin/ruby)" "$(pkg_interpreter_for core/coreutils bin/env)"
 }
 pkg_version() {
   cat "$SRC_PATH/VERSION"

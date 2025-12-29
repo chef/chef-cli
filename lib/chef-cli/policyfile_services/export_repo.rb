@@ -20,7 +20,7 @@ require "fileutils" unless defined?(FileUtils)
 require "tmpdir" unless defined?(Dir.mktmpdir)
 require "zlib" unless defined?(Zlib)
 
-require "archive/tar/minitar"
+require "minitar"
 
 require "chef/cookbook/chefignore"
 
@@ -78,7 +78,7 @@ module ChefCLI
       end
 
       def policy_data
-        @policy_data ||= FFI_Yajl::Parser.parse(IO.read(policyfile_lock_expanded_path))
+        @policy_data ||= FFI_Yajl::Parser.parse(File.read(policyfile_lock_expanded_path))
       rescue => error
         raise PolicyfileExportRepoError.new("Error reading lockfile #{policyfile_lock_expanded_path}", error)
       end

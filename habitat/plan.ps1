@@ -1,16 +1,17 @@
 $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
-$env:HAB_BLDR_CHANNEL = "LTS-2024"
-$env:HAB_REFRESH_CHANNEL = "LTS-2024"
+$env:HAB_BLDR_CHANNEL = "base-2025"
+$env:HAB_REFRESH_CHANNEL = "base-2025"
 $pkg_name="chef-cli"
 $pkg_origin="chef"
 $pkg_version=$(Get-Content "$PLAN_CONTEXT/../VERSION")
 $pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 
 $pkg_deps=@(
-  "chef/ruby31-plus-devkit"
+  "core/ruby3_4-plus-devkit"
   "core/git"
+  "core/libarchive"
 )
 $pkg_bin_dirs=@("bin"
                 "vendor/bin")
@@ -67,7 +68,7 @@ function Invoke-Install {
         Push-Location $pkg_prefix
         bundle config --local gemfile $project_root/Gemfile
          Write-BuildLine "** generating binstubs for chef-cli with precise version pins"
-	 Write-BuildLine "** generating binstubs for chef-cli with precise version pins $project_root $pkg_prefix/bin " 
+	 Write-BuildLine "** generating binstubs for chef-cli with precise version pins $project_root $pkg_prefix/bin "
             Invoke-Expression -Command "appbundler.bat $project_root $pkg_prefix/bin chef-cli"
             If ($lastexitcode -ne 0) { Exit $lastexitcode }
 	Write-BuildLine " ** Running the chef-cli project's 'rake install' to install the path-based gems so they look like any other installed gem."

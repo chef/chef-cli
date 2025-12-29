@@ -110,14 +110,13 @@ module ChefCLI
           else
             {}
           end
-
         constraint = version_and_source_opts.first || ">= 0.0.0"
         spec = CookbookLocationSpecification.new(name, constraint, source_options, storage_config)
 
         if ( existing_source = @cookbook_location_specs[name] )
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
-          err << "Previous source: #{existing_source.source_options.inspect}\n"
-          err << "Conflicts with: #{source_options.inspect}\n"
+          err << "Previous source: {" + existing_source.source_options.map { |k, v| "#{k.inspect}=>#{v.inspect}" }.join(", ") + "}\n"
+          err << "Conflicts with: {" + source_options.map { |k, v| "#{k.inspect}=>#{v.inspect}" }.join(", ") + "}\n"
           @errors << err
         else
           @cookbook_location_specs[name] = spec
@@ -179,8 +178,11 @@ module ChefCLI
         error_message << "    #{error_context(policyfile_string, policyfile_filename, e)}\n\n"
         unless trace.empty?
           error_message << "  Backtrace:\n"
+          normalized_trace = trace.map do |line|
+            line.gsub(/:in ['"]?(?:.*[#.]?)?(eval_policyfile)['"]?/, ":in `\\1'")
+          end
           # TODO: need a way to disable filtering
-          error_message << filtered_bt(policyfile_filename, e).inject("") { |formatted_trace, line| formatted_trace << "    #{line}\n" }
+          error_message << normalized_trace.inject("") { |formatted_trace, line| formatted_trace << "    #{line}\n" }
         end
         @errors << error_message
       end

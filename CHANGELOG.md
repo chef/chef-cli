@@ -1,15 +1,34 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.0.0 -->
-## [v6.0.0](https://github.com/chef/chef-cli/tree/v6.0.0) (2025-03-27)
+<!-- latest_release 6.1.16 -->
+## [v6.1.16](https://github.com/chef/chef-cli/tree/v6.1.16) (2025-12-24)
 
 #### Merged Pull Requests
-- Adding back the habitat packaging and license changes and releasing to major version [#272](https://github.com/chef/chef-cli/pull/272) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.16 -->
+- Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.15 -->
+- CHEF-28155- fixing code scan alerts in main [#307](https://github.com/chef/chef-cli/pull/307) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.14 -->
+- Moving git to pkg_deps [#304](https://github.com/chef/chef-cli/pull/304) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.13 -->
+- Remove Ruby version conditional logic for syslog from gemspec [#302](https://github.com/chef/chef-cli/pull/302) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.12 -->
+- Move syslog dependency from Gemfile to gemspec [#298](https://github.com/chef/chef-cli/pull/298) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.11 -->
+- build chef-cli against to base 2025 [#294](https://github.com/chef/chef-cli/pull/294) ([muthuja](https://github.com/muthuja)) <!-- 6.1.10 -->
+- Fixing habitat test builds by declaring HAB_ORIGIN after habitat install [#295](https://github.com/chef/chef-cli/pull/295) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.9 -->
+- Adding the HAB_BLDR_CHANNEL channel [#293](https://github.com/chef/chef-cli/pull/293) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.8 -->
+- CHEF-21123 - Ruby 3.4 update in chef-cli hab package [#291](https://github.com/chef/chef-cli/pull/291) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.7 -->
+- Updating the minitar dependency in main [#289](https://github.com/chef/chef-cli/pull/289) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.6 -->
+- removing freebsd from kitchen.yml generator template [#236](https://github.com/chef/chef-cli/pull/236) ([Stromweld](https://github.com/Stromweld)) <!-- 6.1.5 -->
+- Potential fix for code scanning alert no. 30: Workflow does not contain permissions [#287](https://github.com/chef/chef-cli/pull/287) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.4 -->
+- Securiy fix - Polynomial regular expression used [#285](https://github.com/chef/chef-cli/pull/285) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.3 -->
+- ffi-libarchive could not be loaded fix the warning by add dep in pkg_… [#283](https://github.com/chef/chef-cli/pull/283) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.2 -->
+- Upgrading diff-lcs dependency [#284](https://github.com/chef/chef-cli/pull/284) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.1 -->
+- Ruby upgrade 3.4 changes [#280](https://github.com/chef/chef-cli/pull/280) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.0 -->
+- make pipelines public: habitat/test [#279](https://github.com/chef/chef-cli/pull/279) ([jaymzh](https://github.com/jaymzh)) <!-- 6.0.2 -->
+- Replaced the IO.read with File.read to fix the security warnings [#281](https://github.com/chef/chef-cli/pull/281) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.0.1 -->
 - Adding back the habitat packaging and license changes and releasing to major version [#272](https://github.com/chef/chef-cli/pull/272) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.0.0 -->
 - Adding the release branch to release the omnibus builds of chef-cli [#270](https://github.com/chef/chef-cli/pull/270) ([nikhil2611](https://github.com/nikhil2611)) <!-- 5.6.17 -->
 <!-- release_rollup -->

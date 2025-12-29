@@ -42,13 +42,14 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-cli", ">= 1.7", "< 3.0"
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
-  gem.add_dependency "minitar", "~> 0.6"
+  gem.add_dependency "minitar", "~> 1.0"
   gem.add_dependency "chef", "~> 18.0"
   gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.9"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
-  gem.add_dependency "diff-lcs", ">= 1.0", "< 1.4" # 1.4 changes the output
+  gem.add_dependency "diff-lcs", ">= 1.2.4", "!= 1.4.0", "< 1.6.0" # 1.4 breaks output. Used in lib/chef/util/diff
   gem.add_dependency "pastel", "~> 0.7" # used for policyfile differ
   gem.add_dependency "license-acceptance", ">= 1.0.11", "< 3"
   gem.add_dependency "chef-licensing", "~> 1.0"
+  gem.add_dependency "syslog", "~> 0.3" # syslog was removed from Ruby's standard library in 3.4; see https://stdgems.org/new-in/3.4
 end

@@ -210,7 +210,8 @@ module ChefCLI
     end
 
     def get_pkg_prefix(pkg_name)
-      path = `hab pkg path #{pkg_name} 2>/dev/null`.strip
+      stderr_redirect = Chef::Platform.windows? ? "2>NUL" : "2>/dev/null"
+      path = `hab pkg path #{pkg_name} #{stderr_redirect}`.strip
       path if !path.empty? && Dir.exist?(path) # Return path only if it exists
     end
 
@@ -265,7 +266,8 @@ module ChefCLI
     # @api private
     #
     def hab_pkg_installed?(pkg_name)
-      `hab pkg list #{pkg_name} 2>/dev/null`.include?(pkg_name) rescue false
+      stderr_redirect = Chef::Platform.windows? ? "2>NUL" : "2>/dev/null"
+      `hab pkg list #{pkg_name} #{stderr_redirect}`.include?(pkg_name) rescue false
     end
   end
 end

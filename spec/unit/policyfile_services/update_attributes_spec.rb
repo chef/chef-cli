@@ -151,7 +151,7 @@ describe ChefCLI::PolicyfileServices::UpdateAttributes do
 
     def result_policyfile_lock_data
       expect(File).to exist(policyfile_lock_path)
-      content = IO.read(policyfile_lock_path)
+      content = File.read(policyfile_lock_path)
       FFI_Yajl::Parser.parse(content)
     end
 

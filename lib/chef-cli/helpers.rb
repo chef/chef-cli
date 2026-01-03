@@ -179,7 +179,7 @@ module ChefCLI
         path = [
           File.join(bin_pkg_prefix, "bin"),
           File.join(vendor_dir, "bin"),
-          ruby_bin_dir, # Add Ruby bin directory so exec can find gem, knife, etc.
+          ruby_bin_dir, # Add Ruby bin directory so exec can find gem etc.
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
 

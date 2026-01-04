@@ -32,7 +32,7 @@ module ChefCLI
         `#{ChefCLI::Dist::EXEC} delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
         the configured #{ChefCLI::Dist::SERVER_PRODUCT}. Policy Revisions associated to the policy group are
         not deleted. The state of the policy group will be backed up locally, allowing
-        you to undo this operation via the `chef undelete` command.
+        you to undo this operation via the `chef-cli undelete` command.
 
         See our detailed README for more information:
 

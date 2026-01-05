@@ -27,10 +27,6 @@ function Invoke-Before {
 function Invoke-SetupEnvironment {
     Push-RuntimeEnv -IsPath GEM_PATH "$pkg_prefix/vendor"
 
-    # Set binary path that allows chef-cli to use non-Hab pkg binaries
-    # Include Ruby bin directory so chef-cli exec can find gem, etc.
-    Push-RuntimeEnv -IsPath PATH "$(Get-HabPackagePath core/ruby3_4-plus-devkit)/bin"
-
     Set-RuntimeEnv APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
     Set-RuntimeEnv FORCE_FFI_YAJL "ext"
     Set-RuntimeEnv LANG "en_US.UTF-8"

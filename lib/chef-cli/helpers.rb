@@ -174,7 +174,7 @@ module ChefCLI
         raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
 
         vendor_dir = File.join(vendor_pkg_prefix, "vendor")
-        # Construct PATH including Ruby bin directory for chef-cli exec
+        # Construct PATH including Ruby bin directory for chef-cli exec command
         ruby_bin_dir = File.dirname(RbConfig.ruby)
         path = [
           File.join(bin_pkg_prefix, "bin"),

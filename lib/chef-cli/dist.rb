@@ -50,6 +50,6 @@ module ChefCLI
 
     # Workstation banner/help text
     WORKSTATION_DOCS = "https://docs.chef.io/workstation/".freeze
-    WORKSTATION_HEADER = "The Chef CLI command line tool for managing your infrastructure from your workstation.".freeze
+    WORKSTATION_HEADER = "This command line tool is used for managing your infrastructure from your workstation.".freeze
   end
 end

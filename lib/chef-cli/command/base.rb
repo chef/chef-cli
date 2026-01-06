@@ -39,7 +39,7 @@ module ChefCLI
       option :version,
         short: "-v",
         long: "--version",
-        description: "Show #{ChefCLI::Dist::PRODUCT} version",
+        description: "Show #{ChefCLI::Dist::CLI_PRODUCT} version",
         boolean: true
 
       option :debug,

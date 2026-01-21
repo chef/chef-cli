@@ -12,6 +12,7 @@ $pkg_deps=@(
   "core/ruby3_4-plus-devkit"
   "core/git"
   "core/libarchive"
+  "core/zlib"
 )
 $pkg_bin_dirs=@("bin"
                 "vendor/bin")
@@ -26,6 +27,8 @@ function Invoke-Before {
 }
 function Invoke-SetupEnvironment {
     Push-RuntimeEnv -IsPath GEM_PATH "$pkg_prefix/vendor"
+    Push-RuntimeEnv -IsPath RUBY_DLL_PATH "$(Get-HabPackagePath zlib)/bin"
+    Push-RuntimeEnv -IsPath RUBY_DLL_PATH "$(Get-HabPackagePath libarchive)/bin"
 
     Set-RuntimeEnv APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
     Set-RuntimeEnv FORCE_FFI_YAJL "ext"

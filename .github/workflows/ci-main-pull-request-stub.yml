@@ -95,7 +95,7 @@ jobs:
       export-github-sbom: true      # SPDX JSON artifact on job instance  
       perform-blackduck-sca-scan: true # combined with generate sbom & generate github-sbom, also needs version above
       blackduck-project-group-name: 'Chef-Agents' # typically one of (Chef), Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Non-Product'
-      blackduck-project-name: chef-chef-cli # BlackDuck project name, typically the repository name - using chef-chef-cli as using 'chef-cli' a name in sbominator fails to generate the notice file with invalid group error
+      blackduck-project-name: chef-cli # BlackDuck project name, typically the repository name - using chef-chef-cli as using 'chef-cli' a name in sbominator fails to generate the notice file with invalid group error
       generate-blackduck-sbom: true # obsolete, use perform-blackduck-sca-scan instead
 
       run-bundle-install: true

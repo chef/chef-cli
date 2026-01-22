@@ -60,7 +60,7 @@ jobs:
       # requires these secrets: POLARIS_SERVER_URL, POLARIS_ACCESS_TOKEN
       perform-blackduck-polaris: true
       polaris-application-name: "Chef-Agents"  # one of these: Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Other, Chef-Non-Product
-      polaris-project-name: 'chef-chef-cli'
+      polaris-project-name: 'chef-cli'
       # polaris-blackduck-executable: 'path/to/blackduck/binary'
       # polaris-executable-detect-path: 'path/to/detect'
  
@@ -79,7 +79,7 @@ jobs:
 
       # report to central developer dashboard
       report-to-atlassian-dashboard: false
-      quality-product-name: 'chef-chef-cli'   # product name for quality reporting, like Chef360, Courier, Inspec
+      quality-product-name: 'chef-cli'   # product name for quality reporting, like Chef360, Courier, Inspec
       # quality-sonar-app-name: 'YourSonarAppName'
       # quality-testing-type: 'Integration' like Unit, Integration, e2e, api, Performance, Security
       # quality-service-name: 'YourServiceOrRepoName'

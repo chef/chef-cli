@@ -36,7 +36,7 @@ module ChefCLI
     WORKFLOW = "Chef Workflow (Delivery)".freeze
 
     # The chef executable, as in `chef gem install` or `chef generate cookbook`
-    EXEC = "chef".freeze
+    EXEC = "chef-cli".freeze
 
     # Chef-Zero's product name
     ZERO_PRODUCT = "Chef Infra Zero".freeze
@@ -50,6 +50,6 @@ module ChefCLI
 
     # Workstation banner/help text
     WORKSTATION_DOCS = "https://docs.chef.io/workstation/".freeze
-    WORKSTATION_HEADER = "The Chef command line tool for managing your infrastructure from your workstation.".freeze
+    WORKSTATION_HEADER = "This command line tool is used for managing your infrastructure from your workstation.".freeze
   end
 end

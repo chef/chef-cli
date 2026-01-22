@@ -32,7 +32,7 @@ module ChefCLI
         Usage: #{ChefCLI::Dist::EXEC} push-archive POLICY_GROUP ARCHIVE_FILE [options]
 
         `#{ChefCLI::Dist::EXEC} push-archive` publishes a policy archive to a #{ChefCLI::Dist::SERVER_PRODUCT}. Policy
-        archives can be created with `chef export -a`. The policy will be applied to
+        archives can be created with `chef-cli export -a`. The policy will be applied to
         the given POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.
 

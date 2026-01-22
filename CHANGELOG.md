@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.17 -->
-## [v6.1.17](https://github.com/chef/chef-cli/tree/v6.1.17) (2026-01-21)
+<!-- latest_release 6.1.18 -->
+## [v6.1.18](https://github.com/chef/chef-cli/tree/v6.1.18) (2026-01-22)
 
 #### Merged Pull Requests
-- habitat: add core/zlib dependency to Windows plan [#314](https://github.com/chef/chef-cli/pull/314) ([sanjain-progress](https://github.com/sanjain-progress))
+- Remove Ruby 3.3 Windows pipeline [#315](https://github.com/chef/chef-cli/pull/315) ([sanjain-progress](https://github.com/sanjain-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove Ruby 3.3 Windows pipeline [#315](https://github.com/chef/chef-cli/pull/315) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.18 -->
 - habitat: add core/zlib dependency to Windows plan [#314](https://github.com/chef/chef-cli/pull/314) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.17 -->
 - CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.16 -->
 - Add core/libarchive dependency to windows plan [#311](https://github.com/chef/chef-cli/pull/311) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.15 -->

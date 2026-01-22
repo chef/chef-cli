@@ -40,7 +40,7 @@ jobs:
       # go-private-modules: GOPRIVATE for Go private modules, default is 'github.com/progress-platform-services/*
 
       # if version specified, it takes precedence; can be a semver like 1.0.2-xyz or a tag like "latest"
-      version: '6.1.16' # ${{ github.event.repository.version }}
+      version: '6.1.17' # ${{ github.event.repository.version }}
       detect-version-source-type: 'none' # options include "none" (do not detect), "file", "github-tag" or "github-release"
       detect-version-source-parameter: '' # use for file name
       language: 'ruby'  # Go, Ruby, Rust, JavaScript, TypeScript, Python, Java, C#, PHP, other - used for build and SonarQube language setting
@@ -60,9 +60,9 @@ jobs:
       # requires these secrets: POLARIS_SERVER_URL, POLARIS_ACCESS_TOKEN
       perform-blackduck-polaris: true
       polaris-application-name: "Chef-Agents"  # one of these: Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Other, Chef-Non-Product
-      polaris-project-name: ${{ github.event.repository.name }}
-      polaris-blackduck-executable: 'path/to/blackduck/binary'
-      polaris-executable-detect-path: 'path/to/detect'
+      polaris-project-name: 'chef-chef-cli'
+      # polaris-blackduck-executable: 'path/to/blackduck/binary'
+      # polaris-executable-detect-path: 'path/to/detect'
  
       # perform application build and unit testing, will use custom repository properties when implemented for chef-primary-application, chef-build-profile, and chef-build-language
       build: true
@@ -79,8 +79,7 @@ jobs:
 
       # report to central developer dashboard
       report-to-atlassian-dashboard: false
-      quality-product-name: 'Chef-Agents'   # product name for quality reporting, like Chef360, Courier, Inspec
-      # quality-product-name: ${{ github.event.repository.name }}   # like 'Chef-360' - the product name for quality reporting, like Chef360, Courier, Inspec
+      quality-product-name: 'chef-chef-cli'   # product name for quality reporting, like Chef360, Courier, Inspec
       # quality-sonar-app-name: 'YourSonarAppName'
       # quality-testing-type: 'Integration' like Unit, Integration, e2e, api, Performance, Security
       # quality-service-name: 'YourServiceOrRepoName'

@@ -36,7 +36,6 @@ Gem::Specification.new do |gem|
     Dir.glob("*.gemspec") +
     Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
   gem.executables   = %w{ chef-cli }
-  gem.test_files    = gem.files.grep(%r{^spec/})
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", ">= 1.7", "< 3.0"

@@ -19,13 +19,13 @@ require_relative "dist"
 
 ChefCLI.commands do |c|
   c.builtin "exec", :Exec, require_path: "chef-cli/command/exec",
-                           desc: "Runs the command in context of the embedded ruby"
+    desc: "Runs the command in context of the embedded ruby"
 
   c.builtin "env", :Env, require_path: "chef-cli/command/env",
-                         desc: "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}"
+    desc: "Prints environment variables used by #{ChefCLI::Dist::PRODUCT}"
 
   c.builtin "gem", :GemForwarder, require_path: "chef-cli/command/gem",
-                                  desc: "Runs the `gem` command in context of the embedded Ruby"
+    desc: "Runs the `gem` command in context of the embedded Ruby"
 
   c.builtin "generate", :Generate, desc: "Generate a new repository, cookbook, or other component"
 
@@ -56,7 +56,7 @@ ChefCLI.commands do |c|
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
 
   c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-cli/command/describe_cookbook",
-                                                    desc: "Prints cookbook checksum information used for cookbook identifier"
+    desc: "Prints cookbook checksum information used for cookbook identifier"
   c.builtin "license", :License, require_path: "chef-cli/command/license",
-            desc: "Create & install a new license on the system or view installed license(s)."
+    desc: "Create & install a new license on the system or view installed license(s)."
 end

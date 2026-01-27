@@ -93,8 +93,8 @@ module ChefCLI
       def undelete_service
         @undelete_service ||=
           PolicyfileServices::Undelete.new(config: chef_config,
-                                           ui:,
-                                           undo_record_id:)
+            ui:,
+            undo_record_id:)
       end
 
       def debug?

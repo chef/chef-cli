@@ -7,9 +7,9 @@ name: CI Pull Request on Main Branch
 
 on: 
   pull_request:
-    branches: [ nikhil/generate-lock-runtime, release/** ]
+    branches: [ main, release/** ]
   push:
-    branches: [ nikhil/generate-lock-runtime, release/** ]
+    branches: [ main, release/** ]
 
   workflow_dispatch:
 

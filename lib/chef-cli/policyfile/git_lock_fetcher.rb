@@ -116,7 +116,7 @@ module ChefCLI
                 opt["tag"]      = tag unless opt.key?("tag") || branch.nil?
                 opt["ref"]      = ref unless opt.key?("ref") || ref.nil?
 
-                path_keys = %w{path rel}.map { |path_key| path_key if opt.key?(path_key) }.compact
+                path_keys = %w{path rel}.select { |path_key| opt.key?(path_key) }
 
                 path_keys.each do |name|
                   # We can safely grab the entire cookbook when the Policyfile defines a cookbook path of itself (".")

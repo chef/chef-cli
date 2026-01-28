@@ -32,23 +32,18 @@ namespace :style do
   end
 
   begin
-    require "rubocop/rake_task"
-
-    ignore_dirs = Regexp.union(%w{
-      lib/chef-cli/skeletons/code_generator
-      spec/unit/fixtures/chef-runner-cookbooks
-      spec/unit/fixtures/cookbook_cache
-      spec/unit/fixtures/example_cookbook
-      spec/unit/fixtures/example_cookbook_metadata_json_only
-      spec/unit/fixtures/example_cookbook_no_metadata
-      spec/unit/fixtures/local_path_cookbooks
-    })
-
     desc "Run Chef Ruby style checks"
-    RuboCop::RakeTask.new(:chefstyle) do |t|
-      t.requires = ["chefstyle"]
-      t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ ignore_dirs }
-      t.options = ["--display-cop-names"]
+    task :chefstyle do
+      require "rubocop/rake_task"
+      require "cookstyle/chefstyle"
+
+      if RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/
+        # Windows-specific command, rubocop erroneously reports the CRLF in each file which is removed when your PR is uploaded to GitHub.
+        # This is a workaround to ignore the CRLF from the files before running cookstyle.
+        sh "cookstyle --chefstyle -c .rubocop.yml --except Layout/EndOfLine --display-cop-names"
+      else
+        sh "cookstyle --chefstyle -c .rubocop.yml --display-cop-names"
+      end
     end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]

@@ -1,18 +1,21 @@
 ---
 require:
-  - chefstyle
+  - cookstyle
 
 AllCops:
   TargetRubyVersion: 3.1
   Include:
-      - "**/*.rb"
+    - "**/*.rb"
   Exclude:
-      - "vendor/**/*"
-      - "spec/**/*"
+    - "vendor/**/*"
+    - "spec/**/*"
+
+# Disable string literal style check to reduce changes when migrating from chefstyle
 Style/StringLiterals:
-  Exclude:
-    - "spec/unit/fixtures/**/*"
-    - "lib/chef-cli/skeletons/**/*"
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
 Layout/TrailingWhitespace:
   Exclude:
     - "spec/unit/fixtures/**/*"

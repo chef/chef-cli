@@ -30,7 +30,7 @@ module ChefCLI
 
       def run(params)
         retval = Gem::GemRunner.new.run( params.clone )
-        retval.nil? ? true : retval
+        retval.nil? || retval
       rescue Gem::SystemExitException => e
         exit( e.exit_code )
       end

@@ -77,7 +77,7 @@ module Kitchen
       def default_config_rb
         cfg = super
         # Need to tell chef-zero about our additional config.
-        root = config[:root_path].gsub("$env:TEMP", "\#{ENV['TEMP']\}")
+        root = config[:root_path].gsub("$env:TEMP", "\#{ENV['TEMP']}")
         cfg[:policies_path] = remote_path_join(root, config[:policies_path])
         cfg[:policy_groups_path] = remote_path_join(root, config[:policy_groups_path])
         cfg[:cookbook_artifacts_path] = remote_path_join(root, config[:cookbook_artifacts_path])

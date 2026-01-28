@@ -1,6 +1,6 @@
 context = ChefCLI::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
-profile_dir = File.join(cookbook_dir, 'compliance', 'profiles', "#{context.new_file_basename}")
+profile_dir = File.join(cookbook_dir, 'compliance', 'profiles', context.new_file_basename.to_s)
 control_dir = File.join(profile_dir, 'controls')
 
 directory control_dir do

@@ -145,10 +145,10 @@ module ChefCLI
 
       def differ(ui = self.ui)
         Policyfile::Differ.new(old_name: old_base.name,
-                               old_lock:,
-                               new_name: new_base.name,
-                               new_lock:,
-                               ui:)
+          old_lock:,
+          new_name: new_base.name,
+          new_lock:,
+          ui:)
       end
 
       def http_client

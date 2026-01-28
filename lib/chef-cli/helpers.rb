@@ -156,38 +156,38 @@ module ChefCLI
     #
     def habitat_env(show_warning: false)
       @habitat_env ||=
-      begin
-        if habitat_chef_dke?
-          bin_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+        begin
+          if habitat_chef_dke?
+            bin_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
+          end
+          versioned_pkg_prefix = fetch_chef_cli_version_pkg if ENV["CHEF_CLI_VERSION"]
+
+          if show_warning && ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
+            ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
+          end
+          # Use the first available package for bin_pkg_prefix
+          bin_pkg_prefix ||= versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+          raise "Error: Could not determine the Habitat package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless bin_pkg_prefix
+
+          # Determine vendor_dir by prioritizing the versioned package first
+          vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
+          raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
+
+          vendor_dir = File.join(vendor_pkg_prefix, "vendor")
+          # Construct PATH
+          path = [
+            File.join(bin_pkg_prefix, "bin"),
+            File.join(vendor_dir, "bin"),
+            ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
+          ].flatten.uniq
+
+          {
+          "PATH" => path.join(File::PATH_SEPARATOR),
+          "GEM_ROOT" => Gem.default_dir, # Default directory for gems
+          "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
+          "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
+          }
         end
-        versioned_pkg_prefix = fetch_chef_cli_version_pkg if ENV["CHEF_CLI_VERSION"]
-
-        if show_warning && ENV["CHEF_CLI_VERSION"] && !versioned_pkg_prefix
-          ChefCLI::UI.new.msg("Warning: Habitat package '#{ChefCLI::Dist::HAB_PKG_NAME}' with version '#{ENV["CHEF_CLI_VERSION"]}' not found.")
-        end
-        # Use the first available package for bin_pkg_prefix
-        bin_pkg_prefix ||= versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-        raise "Error: Could not determine the Habitat package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless bin_pkg_prefix
-
-        # Determine vendor_dir by prioritizing the versioned package first
-        vendor_pkg_prefix = versioned_pkg_prefix || get_pkg_prefix(ChefCLI::Dist::HAB_PKG_NAME)
-        raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
-
-        vendor_dir = File.join(vendor_pkg_prefix, "vendor")
-        # Construct PATH
-        path = [
-          File.join(bin_pkg_prefix, "bin"),
-          File.join(vendor_dir, "bin"),
-          ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
-        ].flatten.uniq
-
-        {
-        "PATH" => path.join(File::PATH_SEPARATOR),
-        "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-        "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
-        "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
-        }
-      end
     end
 
     #

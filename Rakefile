@@ -19,39 +19,20 @@ require "bundler/gem_tasks"
 
 namespace :style do
   begin
-    require "rubocop/rake_task"
-
     desc "Run Cookbook Ruby style checks"
-    RuboCop::RakeTask.new(:cookstyle) do |t|
-      t.requires = ["cookstyle"]
-      t.patterns = ["lib/chef-cli/skeletons/code_generator"]
-      t.options = ["--display-cop-names"]
+    task :cookstyle do
+      sh "find lib/chef-cli/skeletons/code_generator -name '*.rb' -print0 | xargs -0 cookstyle --display-cop-names"
     end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 
   begin
-    require "rubocop/rake_task"
-
-    ignore_dirs = Regexp.union(%w{
-      lib/chef-cli/skeletons/code_generator
-      spec/unit/fixtures/chef-runner-cookbooks
-      spec/unit/fixtures/cookbook_cache
-      spec/unit/fixtures/example_cookbook
-      spec/unit/fixtures/example_cookbook_metadata_json_only
-      spec/unit/fixtures/example_cookbook_no_metadata
-      spec/unit/fixtures/local_path_cookbooks
-    })
-
     desc "Run Chef Ruby style checks"
-    RuboCop::RakeTask.new(:chefstyle) do |t|
-      t.requires = ["chefstyle"]
-      t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ ignore_dirs }
-      t.options = ["--display-cop-names"]
+    task :chefstyle do
+      sh "cookstyle --chefstyle --display-cop-names"
     end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 end
-

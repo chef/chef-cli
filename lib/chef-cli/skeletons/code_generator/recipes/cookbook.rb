@@ -166,11 +166,11 @@ if context.vscode_dir
 
   file "#{cookbook_dir}/.vscode/extensions.json" do
     content <<~CONTENT
-    {
-      "recommendations": [
-          "chef-software.chef"
-      ]
-    }
+      {
+        "recommendations": [
+            "chef-software.chef"
+        ]
+      }
     CONTENT
   end
 end

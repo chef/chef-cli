@@ -11,7 +11,6 @@ group :test do
   gem "rspec-expectations", "~> 3.8"
   gem "rspec-mocks", "~> 3.8"
   gem "cookstyle"
-  gem "chefstyle"
   gem "faraday_middleware"
   gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main"
   gem "simplecov", require: false

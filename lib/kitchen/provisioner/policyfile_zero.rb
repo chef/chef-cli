@@ -151,8 +151,8 @@ module Kitchen
         # Must force this because TK by default copies the current cookbook to the sandbox
         # See ChefCLI::PolicyfileServices::ExportRepo#assert_export_dir_clean!
         @policy_exporter ||= ChefCLI::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
-                                                                        export_dir: sandbox_path,
-                                                                        force: true)
+          export_dir: sandbox_path,
+          force: true)
       end
 
       # Writes a fake (but valid) validation.pem into the sandbox directory.

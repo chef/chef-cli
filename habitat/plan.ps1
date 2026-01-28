@@ -53,6 +53,9 @@ function Invoke-Build {
         gem build chef-cli.gemspec
         Write-BuildLine " ** Using gem to  install"
         gem install chef-cli-*.gem --no-document
+       
+        Write-BuildLine " ** Cleaning up lint_roller Gemfile.lock"
+        ruby ./cleanup_lint_roller.rb
         ruby ./post-bundle-install.rb
 
         If ($lastexitcode -ne 0) { Exit $lastexitcode }

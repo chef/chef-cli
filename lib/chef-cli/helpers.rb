@@ -155,8 +155,7 @@ module ChefCLI
     # environment vars for habitat
     #
     def habitat_env(show_warning: false)
-      @habitat_env ||=
-      begin
+      @habitat_env ||= begin
         if habitat_chef_dke?
           bin_pkg_prefix = get_pkg_prefix(ChefCLI::Dist::CHEF_DKE_PKG_NAME)
         end

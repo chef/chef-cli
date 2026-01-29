@@ -31,19 +31,17 @@ namespace :style do
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 
-  begin
-    desc "Run Chef Ruby style checks"
-    task :chefstyle do
-      require "rubocop/rake_task"
-      require "cookstyle/chefstyle"
+  desc "Run Chef Ruby style checks"
+  task :chefstyle do
+    require "rubocop/rake_task"
+    require "cookstyle/chefstyle"
 
-      if RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/
-        # Windows-specific command, rubocop erroneously reports the CRLF in each file which is removed when your PR is uploaded to GitHub.
-        # This is a workaround to ignore the CRLF from the files before running cookstyle.
-        sh "cookstyle --chefstyle -c .rubocop.yml --except Layout/EndOfLine --display-cop-names"
-      else
-        sh "cookstyle --chefstyle -c .rubocop.yml --display-cop-names"
-      end
+    if RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/
+      # Windows-specific command, rubocop erroneously reports the CRLF in each file which is removed when your PR is uploaded to GitHub.
+      # This is a workaround to ignore the CRLF from the files before running cookstyle.
+      sh "cookstyle --chefstyle -c .rubocop.yml --except Layout/EndOfLine --display-cop-names"
+    else
+      sh "cookstyle --chefstyle -c .rubocop.yml --display-cop-names"
     end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]

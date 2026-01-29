@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.18 -->
-## [v6.1.18](https://github.com/chef/chef-cli/tree/v6.1.18) (2026-01-22)
+<!-- latest_release 6.1.19 -->
+## [v6.1.19](https://github.com/chef/chef-cli/tree/v6.1.19) (2026-01-29)
 
 #### Merged Pull Requests
-- Remove Ruby 3.3 Windows pipeline [#315](https://github.com/chef/chef-cli/pull/315) ([sanjain-progress](https://github.com/sanjain-progress))
+- remove lint roller gemfile in hab pkg [#317](https://github.com/chef/chef-cli/pull/317) ([sanghinitin](https://github.com/sanghinitin))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- remove lint roller gemfile in hab pkg [#317](https://github.com/chef/chef-cli/pull/317) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.19 -->
 - Remove Ruby 3.3 Windows pipeline [#315](https://github.com/chef/chef-cli/pull/315) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.18 -->
 - habitat: add core/zlib dependency to Windows plan [#314](https://github.com/chef/chef-cli/pull/314) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.17 -->
 - CHEF-25203: Fix chef exec and env command not working in Windows [#312](https://github.com/chef/chef-cli/pull/312) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.16 -->

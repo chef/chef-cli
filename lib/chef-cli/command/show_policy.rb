@@ -87,12 +87,12 @@ module ChefCLI
       def show_policy_service
         @policy_list_service ||=
           PolicyfileServices::ShowPolicy.new(config: chef_config,
-                                             ui:,
-                                             policy_name:,
-                                             policy_group:,
-                                             show_orphans: show_orphans?,
-                                             summary_diff: show_summary_diff?,
-                                             pager: enable_pager?)
+            ui:,
+            policy_name:,
+            policy_group:,
+            show_orphans: show_orphans?,
+            summary_diff: show_summary_diff?,
+            pager: enable_pager?)
       end
 
       def debug?

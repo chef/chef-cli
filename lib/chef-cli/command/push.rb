@@ -84,10 +84,10 @@ module ChefCLI
 
       def push
         @push ||= PolicyfileServices::Push.new(policyfile: policyfile_relative_path,
-                                               ui:,
-                                               policy_group:,
-                                               config: chef_config,
-                                               root_dir: Dir.pwd)
+          ui:,
+          policy_group:,
+          config: chef_config,
+          root_dir: Dir.pwd)
       end
 
       def handle_error(error)

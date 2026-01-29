@@ -10,8 +10,7 @@ group :test do
   gem "rspec", "=3.12.0"
   gem "rspec-expectations", "~> 3.8"
   gem "rspec-mocks", "~> 3.8"
-  gem "cookstyle"
-  gem "chefstyle"
+  gem "cookstyle", ">= 7.32"
   gem "faraday_middleware"
   gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main"
   gem "simplecov", require: false

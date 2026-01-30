@@ -13,6 +13,7 @@ group :test do
   gem "cookstyle", ">= 7.32"
   gem "faraday_middleware"
   gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main"
+  gem "kitchen-chef-enterprise", git: "https://github.com/chef/kitchen-chef-enterprise", branch: "main"
   gem "simplecov", require: false
 end
 

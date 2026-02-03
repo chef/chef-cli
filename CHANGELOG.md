@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.20 -->
-## [v6.1.20](https://github.com/chef/chef-cli/tree/v6.1.20) (2026-01-29)
+<!-- latest_release 6.1.21 -->
+## [v6.1.21](https://github.com/chef/chef-cli/tree/v6.1.21) (2026-02-03)
 
 #### Merged Pull Requests
-- Upgrading chefstyle to cookstyle [#318](https://github.com/chef/chef-cli/pull/318) ([nikhil2611](https://github.com/nikhil2611))
+- Fixing lint errors and added kitchen-omnibus-chef gem to fix spec [#319](https://github.com/chef/chef-cli/pull/319) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Fixing lint errors and added kitchen-omnibus-chef gem to fix spec [#319](https://github.com/chef/chef-cli/pull/319) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.21 -->
 - Upgrading chefstyle to cookstyle [#318](https://github.com/chef/chef-cli/pull/318) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.20 -->
 - remove lint roller gemfile in hab pkg [#317](https://github.com/chef/chef-cli/pull/317) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.19 -->
 - Remove Ruby 3.3 Windows pipeline [#315](https://github.com/chef/chef-cli/pull/315) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.18 -->

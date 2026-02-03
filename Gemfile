@@ -13,6 +13,7 @@ group :test do
   gem "cookstyle", ">= 7.32"
   gem "faraday_middleware"
   gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main"
+  gem "test-kitchen", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main", glob: "test-kitchen.gemspec"
   # TODO: Replace kitchen-omnibus-chef with kitchen-chef-enterprise once private repo access is available for public runners
   # kitchen-omnibus-chef is deprecated and won't receive updates, but provides chef-zero provisioner functionality
   # gem "kitchen-chef-enterprise", git: "https://github.com/chef/kitchen-chef-enterprise", branch: "main"

@@ -156,3 +156,6 @@ For information on contributing to this project see <https://github.com/chef/che
 See the [Development Guide](CONTRIBUTING.md) for how to get started with
 development on Chef Workstation itself, as well as details on how dependencies,
 packaging, and building works.
+
+# Copyright
+See [COPYRIGHT.md](./COPYRIGHT.md).

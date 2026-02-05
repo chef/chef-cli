@@ -43,8 +43,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
   gem.add_dependency "minitar", "~> 1.0"
-  gem.add_dependency "chef", "~> 18.0"
-  gem.add_dependency "solve", "< 5.0", "> 2.0"
+  gem.add_dependency "chef", ">= 18.0", "< 20.0"
+  gem.add_dependency "solve", "> 2.0", "< 5.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.9"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
   gem.add_dependency "diff-lcs", ">= 1.2.4", "!= 1.4.0", "< 1.6.0" # 1.4 breaks output. Used in lib/chef/util/diff

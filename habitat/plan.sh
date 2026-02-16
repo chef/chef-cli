@@ -64,7 +64,6 @@ do_install() {
   gem install chef-cli-*.gem --no-document
   set_runtime_env "GEM_PATH" "${pkg_prefix}/vendor"
   wrap_ruby_bin
-
   rm -rf $GEM_PATH/cache/
   rm -rf $GEM_PATH/bundler
   rm -rf $GEM_PATH/doc

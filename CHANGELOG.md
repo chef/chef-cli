@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.23 -->
-## [v6.1.23](https://github.com/chef/chef-cli/tree/v6.1.23) (2026-02-17)
+<!-- latest_release 6.1.24 -->
+## [v6.1.24](https://github.com/chef/chef-cli/tree/v6.1.24) (2026-02-19)
 
 #### Merged Pull Requests
-- Update clean lint roller script for stackprof false positive [#324](https://github.com/chef/chef-cli/pull/324) ([sanghinitin](https://github.com/sanghinitin))
+- build deps change for hab pkg [#326](https://github.com/chef/chef-cli/pull/326) ([sanghinitin](https://github.com/sanghinitin))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- build deps change for hab pkg [#326](https://github.com/chef/chef-cli/pull/326) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.24 -->
 - Update clean lint roller script for stackprof false positive [#324](https://github.com/chef/chef-cli/pull/324) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.23 -->
 - CHEF-29685 - Added config to run bundle install to generate lock file at runtime [#309](https://github.com/chef/chef-cli/pull/309) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.22 -->
 - Fixing lint errors and added kitchen-omnibus-chef gem to fix spec [#319](https://github.com/chef/chef-cli/pull/319) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.21 -->

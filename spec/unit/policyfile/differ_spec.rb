@@ -325,7 +325,7 @@ describe ChefCLI::Policyfile::Differ do
         RUN LIST CHANGED
         ================
 
-        @@ -1,5 +1,7 @@
+        @@ -1,4 +1,6 @@
          recipe[java::default]
          recipe[jenkins::master]
         -recipe[policyfile_demo::whatever]
@@ -382,7 +382,7 @@ describe ChefCLI::Policyfile::Differ do
            recipe[c::default]
            recipe[d::default]
            recipe[e::default]
-          @@ -12,4 +11,8 @@
+          @@ -12,3 +11,7 @@
            recipe[l::default]
            recipe[m::default]
            recipe[n::default]
@@ -438,7 +438,7 @@ describe ChefCLI::Policyfile::Differ do
         apt
         ---
 
-        @@ -1,12 +1 @@
+        @@ -1,11 +0,0 @@
         -{
         -  "version": "2.7.0",
         -  "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
@@ -511,7 +511,7 @@ describe ChefCLI::Policyfile::Differ do
         bluepill
         --------
 
-        @@ -1,11 +1,22 @@
+        @@ -0,0 +1,11 @@
         +{
         +  "version": "2.3.2",
         +  "identifier": "9c6990944d9a347dec8bd375e707ba0aecdc17cd",
@@ -623,7 +623,7 @@ describe ChefCLI::Policyfile::Differ do
         DEFAULT ATTRIBUTES CHANGED
         ==========================
 
-        @@ -1,4 +1,5 @@
+        @@ -1,3 +1,4 @@
          {
         -  "greeting": "Attributes, f*** yeah"
         +  "greeting": "Attributes, f*** yeah",
@@ -669,7 +669,7 @@ describe ChefCLI::Policyfile::Differ do
         OVERRIDE ATTRIBUTES CHANGED
         ===========================
 
-        @@ -1,4 +1,5 @@
+        @@ -1,3 +1,4 @@
          {
         -  "attr_only_updating": "use -a"
         +  "attr_only_updating": "use -a",

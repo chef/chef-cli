@@ -78,12 +78,12 @@ describe ChefCLI::Command::Base do
 
   it "should print the version for -v" do
     run_command(["-v"])
-    expect(stdout).to eq("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}\n")
+    expect(stdout).to eq("#{ChefCLI::Dist::CLI_PRODUCT} version: #{ChefCLI::VERSION}\n")
   end
 
   it "should print the version for --version" do
     run_command(["--version"])
-    expect(stdout).to eq("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}\n")
+    expect(stdout).to eq("#{ChefCLI::Dist::CLI_PRODUCT} version: #{ChefCLI::VERSION}\n")
   end
 
   it "should run the command passing in the custom options for long custom options" do
@@ -131,7 +131,7 @@ describe ChefCLI::Command::Base do
             -D, --debug                      Enable stacktraces and other debug output
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version
+            -v, --version                    Show #{ChefCLI::Dist::CLI_PRODUCT} version
 
       E
       expect(stdout).to eq(expected)
@@ -154,7 +154,7 @@ describe ChefCLI::Command::Base do
             -D, --debug                      Enable stacktraces and other debug output
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show #{ChefCLI::Dist::PRODUCT} version
+            -v, --version                    Show #{ChefCLI::Dist::CLI_PRODUCT} version
 
       E
       expect(stdout).to eq(expected)

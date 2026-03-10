@@ -31,7 +31,7 @@ module ChefCLI
 
         `#{ChefCLI::Dist::EXEC} delete-policy POLICY_NAME` deletes all revisions of the policy
         `POLICY_NAME` on the configured #{ChefCLI::Dist::SERVER_PRODUCT}. All policy revisions will be
-        backed up locally, allowing you to undo this operation via the `chef undelete`
+        backed up locally, allowing you to undo this operation via the `chef-cli undelete`
         command.
 
         See our detailed README for more information:

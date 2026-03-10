@@ -32,7 +32,7 @@ module ChefCLI
         `#{ChefCLI::Dist::EXEC} clean-policy-cookbooks` deletes unused Policyfile cookbooks. Cookbooks
         are considered unused when they are not referenced by any Policyfile revision
         on the #{ChefCLI::Dist::SERVER_PRODUCT}. Note that cookbooks which are referenced by "orphaned" policy
-        revisions are not removed, so you may wish to run `chef clean-policy-revisions`
+        revisions are not removed, so you may wish to run `chef-cli clean-policy-revisions`
         to remove orphaned policies before running this command.
 
         See our detailed README for more information:

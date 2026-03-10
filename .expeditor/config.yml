@@ -31,8 +31,8 @@ changelog:
   rollup_header: Changes not yet released to rubygems.org
 
 artifact_channels:
-  - unstable
-  - chef-dke-lts2024
+  - current
+  - base-2025
 
 pipelines:
   - verify:
@@ -75,9 +75,16 @@ subscriptions:
             - "Expeditor: Skip Habitat"
             - "Expeditor: Skip All"
 
+  # Automatically promote the Habitat packages from unstable to current upon successful build of habitat/build
+  - workload: buildkite_hab_build_group_published:{{agent_id}}:*
+    actions:
+      - built_in:promote_habitat_packages
+
+  # Promoting current to base-2025 channel
   # this works for symantec version promote
   - workload: project_promoted:{{agent_id}}:*
     actions:
       - built_in:rollover_changelog
       - built_in:promote_habitat_packages
       - built_in:publish_rubygems
+      - built_in:notify_chefio_slack_channels

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.25 -->
-## [v6.1.25](https://github.com/chef/chef-cli/tree/v6.1.25) (2026-03-04)
+<!-- latest_release 6.1.26 -->
+## [v6.1.26](https://github.com/chef/chef-cli/tree/v6.1.26) (2026-03-11)
 
 #### Merged Pull Requests
-- bump chef dep version constraint to all 18 or 19 infra-client [#322](https://github.com/chef/chef-cli/pull/322) ([Stromweld](https://github.com/Stromweld))
+- Update Expeditor config to promote Habitat packages to current and base-2025 channels [#328](https://github.com/chef/chef-cli/pull/328) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=5.6.16 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update Expeditor config to promote Habitat packages to current and base-2025 channels [#328](https://github.com/chef/chef-cli/pull/328) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.26 -->
 - bump chef dep version constraint to all 18 or 19 infra-client [#322](https://github.com/chef/chef-cli/pull/322) ([Stromweld](https://github.com/Stromweld)) <!-- 6.1.25 -->
 - build deps change for hab pkg [#326](https://github.com/chef/chef-cli/pull/326) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.24 -->
 - Update clean lint roller script for stackprof false positive [#324](https://github.com/chef/chef-cli/pull/324) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.23 -->

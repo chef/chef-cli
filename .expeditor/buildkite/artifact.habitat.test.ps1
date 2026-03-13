@@ -16,6 +16,13 @@ Write-Host "--- system details"
 $Properties = 'Caption', 'CSName', 'Version', 'BuildType', 'OSArchitecture'
 Get-CimInstance Win32_OperatingSystem | Select-Object $Properties | Format-Table -AutoSize
 
+Write-Host "--- bundler version (build environment)"
+try {
+  bundle --version
+} catch {
+  Write-Host "bundler not found in build environment"
+}
+
 Write-Host "--- Installing the version of Habitat required"
 
 function Stop-HabProcess {
@@ -95,6 +102,13 @@ Write-Host "--- Installing $pkg_ident/$pkg_artifact"
 hab pkg install -b $project_root/results/$pkg_artifact
 
 Write-Host "+++ Testing $Plan"
+
+Write-Host "--- bundler version (habitat package)"
+try {
+  bundle --version
+} catch {
+  Write-Host "bundler not found in habitat package"
+}
 
 Push-Location $project_root
 

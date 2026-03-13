@@ -26,6 +26,9 @@ git status
 echo "--- ruby version"
 ruby -v
 
+echo "--- bundler version (build environment)"
+bundle --version || echo "bundler not found in build environment"
+
 export project_root="$(git rev-parse --show-toplevel)"
 echo "The value for project_root is: $project_root"
 
@@ -68,6 +71,9 @@ echo "+++ Testing $PLAN"
 PATH="$(hab pkg path ci/chef-cli)/bin:$PATH"
 export PATH
 echo "PATH is $PATH"
+
+echo "--- bundler version (habitat package)"
+bundle --version || echo "bundler not found in habitat package"
 
 echo "--- :mag_right: Testing $PLAN"
 ${project_root}/habitat/tests/test.sh "$pkg_ident" || error 'failures during test of executables'

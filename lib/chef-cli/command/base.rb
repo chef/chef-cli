@@ -39,7 +39,7 @@ module ChefCLI
       option :version,
         short: "-v",
         long: "--version",
-        description: "Show #{ChefCLI::Dist::PRODUCT} version",
+        description: "Show #{ChefCLI::Dist::CLI_PRODUCT} version",
         boolean: true
 
       option :debug,
@@ -67,7 +67,7 @@ module ChefCLI
           msg(opt_parser.to_s)
           0
         elsif needs_version?(params)
-          msg("#{ChefCLI::Dist::PRODUCT} version: #{ChefCLI::VERSION}")
+          msg("#{ChefCLI::Dist::CLI_PRODUCT} version: #{ChefCLI::VERSION}")
           0
         else
           check_license_acceptance if enforce_license

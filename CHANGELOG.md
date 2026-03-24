@@ -1,20 +1,18 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.29 -->
-## [v6.1.29](https://github.com/chef/chef-cli/tree/v6.1.29) (2026-03-24)
-
-#### Merged Pull Requests
-- Adding NOTICE file to the hab pkg [#325](https://github.com/chef/chef-cli/pull/325) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=6.1.27 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Adding NOTICE file to the hab pkg [#325](https://github.com/chef/chef-cli/pull/325) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.29 -->
-- Fixing chef-cli exec command failing when ruby not in path [#331](https://github.com/chef/chef-cli/pull/331) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.28 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v6.1.29](https://github.com/chef/chef-cli/tree/v6.1.29) (2026-03-24)
+
+#### Merged Pull Requests
+- Fixing chef-cli exec command failing when ruby not in path [#331](https://github.com/chef/chef-cli/pull/331) ([nikhil2611](https://github.com/nikhil2611))
+- Adding NOTICE file to the hab pkg [#325](https://github.com/chef/chef-cli/pull/325) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
 ## [v6.1.27](https://github.com/chef/chef-cli/tree/v6.1.27) (2026-03-16)
 
 #### Merged Pull Requests
@@ -50,7 +48,6 @@
 - bump chef dep version constraint to all 18 or 19 infra-client [#322](https://github.com/chef/chef-cli/pull/322) ([Stromweld](https://github.com/Stromweld))
 - Update Expeditor config to promote Habitat packages to current and base-2025 channels [#328](https://github.com/chef/chef-cli/pull/328) ([nikhil2611](https://github.com/nikhil2611))
 - Fixing windows pipeline for hab pkg by sticking to hab v1.6 [#329](https://github.com/chef/chef-cli/pull/329) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v5.6.16](https://github.com/chef/chef-cli/tree/v5.6.16) (2024-11-08)
 

@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 6.1.28 -->
+## [v6.1.28](https://github.com/chef/chef-cli/tree/v6.1.28) (2026-03-24)
+
+#### Merged Pull Requests
+- Fixing chef-cli exec command failing when ruby not in path [#331](https://github.com/chef/chef-cli/pull/331) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=6.1.27 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Fixing chef-cli exec command failing when ruby not in path [#331](https://github.com/chef/chef-cli/pull/331) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.28 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

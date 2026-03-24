@@ -81,6 +81,9 @@ set -e
 # Include Ruby bin directory so chef-cli exec can find gem, etc.
 export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
 
+# Set library path for FFI-based gems (ffi-libarchive) to find native libraries
+export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
+
 # Set Ruby paths defined from 'do_setup_environment()'
   export GEM_HOME="$pkg_prefix/vendor"
   export GEM_PATH="$GEM_PATH"

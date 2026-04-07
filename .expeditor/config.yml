@@ -43,6 +43,9 @@ pipelines:
         - HAB_NONINTERACTIVE: "true"
         - HAB_NOCOLORING: "true"
         - HAB_STUDIO_SECRET_HAB_NONINTERACTIVE: "true"
+  - hab_aarch64/build:
+      description: Build and upload aarch64-linux habitat package
+      definition: .expeditor/build.habitat.aarch64.pipeline.yml
   - habitat/test:
       public: true
       description: Execute tests against the habitat artifact
@@ -52,6 +55,9 @@ pipelines:
         - HAB_NOCOLORING: "true"
         - HAB_STUDIO_SECRET_HAB_NONINTERACTIVE: "true"
       trigger: pull_request
+  - promote_hab_aarch64:
+      description: Promote aarch64-linux habitat package between channels
+      definition: .expeditor/promote.habitat.aarch64.pipeline.yml
 
 subscriptions:
   # These actions are taken, in order they are specified, anytime a Pull Request is merged.
@@ -74,11 +80,17 @@ subscriptions:
           ignore_labels:
             - "Expeditor: Skip Habitat"
             - "Expeditor: Skip All"
+      - trigger_pipeline:hab_aarch64/build:
+          only_if: built_in:bump_version
+          ignore_labels:
+            - "Expeditor: Skip Habitat"
+            - "Expeditor: Skip All"
 
   # Automatically promote the Habitat packages from unstable to current upon successful build of habitat/build
   - workload: buildkite_hab_build_group_published:{{agent_id}}:*
     actions:
       - built_in:promote_habitat_packages
+      # - trigger_pipeline:promote_hab_aarch64
 
   # Promoting current to base-2025 channel
   # this works for symantec version promote
@@ -86,5 +98,6 @@ subscriptions:
     actions:
       - built_in:rollover_changelog
       - built_in:promote_habitat_packages
+      # - trigger_pipeline:promote_hab_aarch64
       - built_in:publish_rubygems
       - built_in:notify_chefio_slack_channels

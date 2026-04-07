@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 6.1.30 -->
+## [v6.1.30](https://github.com/chef/chef-cli/tree/v6.1.30) (2026-04-07)
+
+#### Merged Pull Requests
+- add arm build/upload and promotion pipeline [#333](https://github.com/chef/chef-cli/pull/333) ([rishichawda](https://github.com/rishichawda))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=6.1.29 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- add arm build/upload and promotion pipeline [#333](https://github.com/chef/chef-cli/pull/333) ([rishichawda](https://github.com/rishichawda)) <!-- 6.1.30 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

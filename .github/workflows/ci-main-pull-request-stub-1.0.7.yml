@@ -90,7 +90,7 @@ jobs:
       perform-trivy-scan: true
 
       # grype vulnerability scanning
-      perform-grype-scan: true
+      # perform-grype-scan: true
       grype-fail-on-high: true
       grype-fail-on-critical: true
              

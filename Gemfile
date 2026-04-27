@@ -13,6 +13,7 @@ group :test do
   gem "cookstyle"
   gem "chefstyle"
   gem "test-kitchen"
+  gem "kitchen-omnibus-chef", "~> 1.1"
   gem "simplecov", require: false
 end
 

@@ -8,7 +8,7 @@ pkg_build_deps=(
     core/make
     core/sed
     core/gcc
-     core/git
+    core/git
     )
 pkg_bin_dirs=(bin)
 
@@ -63,34 +63,54 @@ do_install() {
   build_line "Setting GEM_PATH=$GEM_HOME"
   export GEM_PATH="$GEM_HOME"
   gem install chef-cli-*.gem --no-document
-  set_runtime_env "GEM_PATH" "${pkg_prefix}/vendor"
-  wrap_ruby_bin
+  ruby ./cleanup_lint_roller.rb
+
+  build_line "** generating binstubs for chef-cli with precise version pins"
+  "$(pkg_path_for $ruby_pkg)/bin/ruby" "${pkg_prefix}/vendor/bin/appbundler" . "$pkg_prefix/bin" chef-cli
+
+  build_line "** generating binstub_patch.rb"
+  cat > binstub_patch.rb <<'PATCH'
+unless ENV["APPBUNDLER_ALLOW_RVM"]
+  ENV["APPBUNDLER_ALLOW_RVM"] = "true"
+  bin_path = __dir__
+  vendor_path = File.expand_path(File.join(bin_path, "..", "vendor"))
+  ENV["GEM_HOME"] = vendor_path
+  ENV["GEM_PATH"] = [vendor_path, ENV["GEM_PATH"]].compact.join(File::PATH_SEPARATOR)
+  ENV["PATH"] = [bin_path, File.join(vendor_path, "bin"), RbConfig::CONFIG["bindir"], ENV["PATH"]].compact.join(File::PATH_SEPARATOR)
+end
+PATCH
+
+  build_line "** patching binstubs to allow running directly"
+  for binstub in ${pkg_prefix}/bin/*; do
+    sed -i "/require \"rubygems\"/r binstub_patch.rb" "$binstub"
+  done
+
+  fix_interpreter "${pkg_prefix}/bin/*" "$ruby_pkg" bin/ruby
+
+  build_line "** creating wrapper for runtime environment"
+  mkdir -p "$pkg_prefix/libexec"
+  mv "$pkg_prefix/bin/chef-cli" "$pkg_prefix/libexec/chef-cli"
+  cat <<EOF > "$pkg_prefix/bin/chef-cli"
+#!$(pkg_path_for core/bash)/bin/bash
+set -e
+
+export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
+export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
+export GEM_HOME="$pkg_prefix/vendor"
+export GEM_PATH="$pkg_prefix/vendor"
+
+exec $(pkg_path_for ${ruby_pkg})/bin/ruby $pkg_prefix/libexec/chef-cli "\$@"
+EOF
+  chmod -v 755 "$pkg_prefix/bin/chef-cli"
+
   rm -rf $GEM_PATH/cache/
   rm -rf $GEM_PATH/bundler
   rm -rf $GEM_PATH/doc
 }
-wrap_ruby_bin() {
-  local bin="$pkg_prefix/bin/$pkg_name"
-  local real_bin="$GEM_HOME/gems/chef-cli-${pkg_version}/bin/chef-cli"
-  build_line "Adding wrapper $bin to $real_bin"
-  cat <<EOF > "$bin"
-#!$(pkg_path_for core/bash)/bin/bash
-set -e
-
-# Set binary path that allows InSpec to use non-Hab pkg binaries
-# Include Ruby bin directory so chef-cli exec can find gem, etc.
-export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
-
-# Set library path for FFI-based gems (ffi-libarchive) to find native libraries
-export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
-
-# Set Ruby paths defined from 'do_setup_environment()'
-  export GEM_HOME="$pkg_prefix/vendor"
-  export GEM_PATH="$GEM_PATH"
-
-exec $(pkg_path_for ${ruby_pkg})/bin/ruby $real_bin \$@
-EOF
-  chmod -v 755 "$bin"
+do_after() {
+  build_line "Removing .github directories from vendored gems..."
+  find "$pkg_prefix/vendor/gems" -type d -name ".github" \
+      | while read github_dir; do rm -rf "$github_dir"; done
 }
 
 do_after() {

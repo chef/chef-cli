@@ -93,6 +93,12 @@ EOF
   chmod -v 755 "$bin"
 }
 
+do_after() {
+  build_line "Removing .github directories from vendored gems..."
+  find "$pkg_prefix/vendor/gems" -type d -name ".github" \
+      | while read github_dir; do rm -rf "$github_dir"; done
+}
+
 
 do_strip() {
   return 0

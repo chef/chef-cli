@@ -45,7 +45,7 @@ do_build() {
     bundle install
     gem build chef-cli.gemspec
     gem install rspec-core -v '~> 3.12.3'
-    ruby ./cleanup_lint_roller.rb
+    ruby ./cleanup_gem_lockfiles.rb
     ruby ./post-bundle-install.rb
 }
 do_install() {

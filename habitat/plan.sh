@@ -69,7 +69,7 @@ do_install() {
   build_line "Setting GEM_PATH=$GEM_HOME"
   export GEM_PATH="$GEM_HOME"
   gem install chef-cli-*.gem --no-document
-  ruby ./cleanup_lint_roller.rb
+  ruby ./cleanup_gem_lockfiles.rb
 
   build_line "** fixing binstub shebangs"
   fix_interpreter "${pkg_prefix}/vendor/bin/*" "$ruby_pkg" bin/ruby

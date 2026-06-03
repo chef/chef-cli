@@ -6,7 +6,6 @@ ruby_pkg="core/ruby3_4"
 pkg_deps=(${ruby_pkg} core/coreutils core/libarchive)
 pkg_build_deps=(
   core/make
-  core/sed
   core/gcc
   core/git
 )

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.32 -->
-## [v6.1.32](https://github.com/chef/chef-cli/tree/v6.1.32) (2026-06-03)
+<!-- latest_release 6.1.33 -->
+## [v6.1.33](https://github.com/chef/chef-cli/tree/v6.1.33) (2026-06-03)
 
 #### Merged Pull Requests
-- CHEF-34831: Security scan packaging fixes and dependency updates [#342](https://github.com/chef/chef-cli/pull/342) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-35087 - Use appbundler in hab packaging and install latest Habitat in Windows test [#341](https://github.com/chef/chef-cli/pull/341) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=6.1.29 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- CHEF-35087 - Use appbundler in hab packaging and install latest Habitat in Windows test [#341](https://github.com/chef/chef-cli/pull/341) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.33 -->
 - CHEF-34831: Security scan packaging fixes and dependency updates [#342](https://github.com/chef/chef-cli/pull/342) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.32 -->
 - removed extra gem from hab pkg build [#340](https://github.com/chef/chef-cli/pull/340) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.31 -->
 - add arm build/upload and promotion pipeline [#333](https://github.com/chef/chef-cli/pull/333) ([rishichawda](https://github.com/rishichawda)) <!-- 6.1.30 -->

@@ -5,35 +5,40 @@ pkg_origin=chef
 ruby_pkg="core/ruby3_4"
 pkg_deps=(${ruby_pkg} core/coreutils core/libarchive)
 pkg_build_deps=(
-    core/make
-    core/sed
-    core/gcc
-     core/git
-    )
+  core/make
+  core/gcc
+  core/git
+)
 pkg_bin_dirs=(bin)
 
 do_setup_environment() {
-  build_line 'Setting GEM_HOME="$pkg_prefix/vendor"'
-  export GEM_HOME="$pkg_prefix/vendor"
+  push_runtime_env GEM_PATH "${pkg_prefix}/vendor"
 
-  build_line "Setting GEM_PATH=$GEM_HOME"
-  export GEM_PATH="$GEM_HOME"
+  set_runtime_env APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
+  set_runtime_env LANG "en_US.UTF-8"
+  set_runtime_env LC_CTYPE "en_US.UTF-8"
 }
+
 do_prepare() {
-  ln -sf "$(pkg_interpreter_for core/ruby3_4 bin/ruby)" "$(pkg_interpreter_for core/coreutils bin/env)"
+  if [[ ! -f /usr/bin/env ]]; then
+    ln -s "$(pkg_interpreter_for core/coreutils bin/env)" /usr/bin/env
+  fi
 }
+
 pkg_version() {
   cat "$SRC_PATH/VERSION"
 }
+
 do_before() {
   update_pkg_version
 }
+
 do_unpack() {
   mkdir -pv "$HAB_CACHE_SRC_PATH/$pkg_dirname"
   cp -RT "$PLAN_CONTEXT"/.. "$HAB_CACHE_SRC_PATH/$pkg_dirname/"
 }
-do_build() {
 
+do_build() {
     export GEM_HOME="$pkg_prefix/vendor"
 
     build_line "Setting GEM_PATH=$GEM_HOME"
@@ -48,9 +53,10 @@ do_build() {
     ruby ./cleanup_gem_lockfiles.rb
     ruby ./post-bundle-install.rb
 }
+
 do_install() {
 
-  # Copy NOTICE.TXT to the package directory
+  # Copy NOTICE to the package directory
   if [[ -f "$PLAN_CONTEXT/../NOTICE" ]]; then
     build_line "Copying NOTICE to package directory"
     cp "$PLAN_CONTEXT/../NOTICE" "$pkg_prefix/"
@@ -58,40 +64,45 @@ do_install() {
     build_line "Warning: NOTICE not found at $PLAN_CONTEXT/../NOTICE"
   fi
 
-   export GEM_HOME="$pkg_prefix/vendor"
+  export GEM_HOME="$pkg_prefix/vendor"
 
   build_line "Setting GEM_PATH=$GEM_HOME"
   export GEM_PATH="$GEM_HOME"
   gem install chef-cli-*.gem --no-document
-  set_runtime_env "GEM_PATH" "${pkg_prefix}/vendor"
-  wrap_ruby_bin
+  ruby ./cleanup_gem_lockfiles.rb
+
+  build_line "** fixing binstub shebangs"
+  fix_interpreter "${pkg_prefix}/vendor/bin/*" "$ruby_pkg" bin/ruby
+
+  build_line "** generating binstubs for chef-cli with precise version pins"
+  "${pkg_prefix}/vendor/bin/appbundler" . "$pkg_prefix/bin" chef-cli
+
+  build_line "** patching binstubs to allow running directly"
+  for binstub in ${pkg_prefix}/bin/*; do
+    sed -i "/require \"rubygems\"/r ${PLAN_CONTEXT}/../binstub_patch.rb" "$binstub"
+  done
+
+  build_line "** creating wrapper for runtime environment"
+  mkdir -p "$pkg_prefix/libexec"
+  mv "$pkg_prefix/bin/chef-cli" "$pkg_prefix/libexec/chef-cli"
+  cat <<EOF > "$pkg_prefix/bin/chef-cli"
+#!$(pkg_path_for core/bash)/bin/bash
+set -e
+
+export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
+export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
+export GEM_HOME="$pkg_prefix/vendor"
+export GEM_PATH="$pkg_prefix/vendor"
+
+exec $(pkg_path_for ${ruby_pkg})/bin/ruby $pkg_prefix/libexec/chef-cli "\$@"
+EOF
+  chmod -v 755 "$pkg_prefix/bin/chef-cli"
+
   rm -rf $GEM_PATH/cache/
   rm -rf $GEM_PATH/bundler
   rm -rf $GEM_PATH/doc
 }
-wrap_ruby_bin() {
-  local bin="$pkg_prefix/bin/$pkg_name"
-  local real_bin="$GEM_HOME/gems/chef-cli-${pkg_version}/bin/chef-cli"
-  build_line "Adding wrapper $bin to $real_bin"
-  cat <<EOF > "$bin"
-#!$(pkg_path_for core/bash)/bin/bash
-set -e
 
-# Set binary path that allows InSpec to use non-Hab pkg binaries
-# Include Ruby bin directory so chef-cli exec can find gem, etc.
-export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
-
-# Set library path for FFI-based gems (ffi-libarchive) to find native libraries
-export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
-
-# Set Ruby paths defined from 'do_setup_environment()'
-  export GEM_HOME="$pkg_prefix/vendor"
-  export GEM_PATH="$GEM_PATH"
-
-exec $(pkg_path_for ${ruby_pkg})/bin/ruby $real_bin \$@
-EOF
-  chmod -v 755 "$bin"
-}
 
 do_after() {
   build_line "Removing .github directories from vendored gems..."
@@ -102,4 +113,11 @@ do_after() {
 
 do_strip() {
   return 0
+}
+
+do_end() {
+  if [[ "$(readlink /usr/bin/env)" = "$(pkg_interpreter_for core/coreutils bin/env)" ]]; then
+    build_line "Removing the symlink we created for '/usr/bin/env'"
+    rm /usr/bin/env
+  fi
 }

@@ -45,7 +45,7 @@ do_build() {
     bundle install
     gem build chef-cli.gemspec
     gem install rspec-core -v '~> 3.12.3'
-    ruby ./cleanup_lint_roller.rb
+    ruby ./cleanup_gem_lockfiles.rb
     ruby ./post-bundle-install.rb
 }
 do_install() {
@@ -91,6 +91,12 @@ export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
 exec $(pkg_path_for ${ruby_pkg})/bin/ruby $real_bin \$@
 EOF
   chmod -v 755 "$bin"
+}
+
+do_after() {
+  build_line "Removing .github directories from vendored gems..."
+  find "$pkg_prefix/vendor/gems" -type d -name ".github" \
+      | while read github_dir; do rm -rf "$github_dir"; done
 }
 
 

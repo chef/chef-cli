@@ -57,7 +57,7 @@ function Invoke-Build {
         gem install chef-cli-*.gem --no-document
        
         Write-BuildLine " ** Cleaning up lint_roller Gemfile.lock"
-        ruby ./cleanup_lint_roller.rb
+        ruby ./cleanup_gem_lockfiles.rb
         ruby ./post-bundle-install.rb
 
         If ($lastexitcode -ne 0) { Exit $lastexitcode }
@@ -110,4 +110,7 @@ function Invoke-After {
     # Remove the byproducts of compiling gems with extensions
     Get-ChildItem $pkg_prefix/vendor/gems -Include @("gem_make.out", "mkmf.log", "Makefile") -File -Recurse `
         | Remove-Item -Force
+    # Remove .github directories from vendored gems to avoid CVE false positives
+    Get-ChildItem $pkg_prefix/vendor/gems -Filter ".github" -Directory -Recurse `
+        | Remove-Item -Recurse -Force
 }

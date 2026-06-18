@@ -1,29 +1,26 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.34 -->
-## [v6.1.34](https://github.com/chef/chef-cli/tree/v6.1.34) (2026-06-17)
-
-#### Merged Pull Requests
-- CHEF-34832 - Updated NOTICE for upcoming chef-cli v6.1.33 release [#344](https://github.com/chef/chef-cli/pull/344) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=6.1.29 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- CHEF-34832 - Updated NOTICE for upcoming chef-cli v6.1.33 release [#344](https://github.com/chef/chef-cli/pull/344) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.34 -->
-- CHEF-35087 - Use appbundler in hab packaging and install latest Habitat in Windows test [#341](https://github.com/chef/chef-cli/pull/341) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.33 -->
-- CHEF-34831: Security scan packaging fixes and dependency updates [#342](https://github.com/chef/chef-cli/pull/342) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.32 -->
-- removed extra gem from hab pkg build [#340](https://github.com/chef/chef-cli/pull/340) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.31 -->
-- add arm build/upload and promotion pipeline [#333](https://github.com/chef/chef-cli/pull/333) ([rishichawda](https://github.com/rishichawda)) <!-- 6.1.30 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v6.1.34](https://github.com/chef/chef-cli/tree/v6.1.34) (2026-06-18)
+
+#### Merged Pull Requests
+- add arm build/upload and promotion pipeline [#333](https://github.com/chef/chef-cli/pull/333) ([rishichawda](https://github.com/rishichawda))
+- removed extra gem from hab pkg build [#340](https://github.com/chef/chef-cli/pull/340) ([sanghinitin](https://github.com/sanghinitin))
+- CHEF-34831: Security scan packaging fixes and dependency updates [#342](https://github.com/chef/chef-cli/pull/342) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-35087 - Use appbundler in hab packaging and install latest Habitat in Windows test [#341](https://github.com/chef/chef-cli/pull/341) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-34832 - Updated NOTICE for upcoming chef-cli v6.1.33 release [#344](https://github.com/chef/chef-cli/pull/344) ([nikhil2611](https://github.com/nikhil2611))
+<!-- latest_stable_release -->
+
 ## [v6.1.29](https://github.com/chef/chef-cli/tree/v6.1.29) (2026-03-24)
 
 #### Merged Pull Requests
 - Fixing chef-cli exec command failing when ruby not in path [#331](https://github.com/chef/chef-cli/pull/331) ([nikhil2611](https://github.com/nikhil2611))
 - Adding NOTICE file to the hab pkg [#325](https://github.com/chef/chef-cli/pull/325) ([nikhil2611](https://github.com/nikhil2611))
-<!-- latest_stable_release -->
 
 ## [v6.1.27](https://github.com/chef/chef-cli/tree/v6.1.27) (2026-03-16)
 

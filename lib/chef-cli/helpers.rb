@@ -173,11 +173,16 @@ module ChefCLI
         raise "Error: Could not determine the vendor package prefix. Ensure #{ChefCLI::Dist::HAB_PKG_NAME} is installed and CHEF_CLI_VERSION is set correctly." unless vendor_pkg_prefix
 
         vendor_dir = File.join(vendor_pkg_prefix, "vendor")
+
+        # User gem directory for persistent gem storage across upgrades
+        user_gem_dir = habitat_user_gem_dir
+
         # Construct PATH including Ruby bin directory for chef-cli exec command
         ruby_bin_dir = File.dirname(RbConfig.ruby)
         path = [
           File.join(bin_pkg_prefix, "bin"),
           File.join(vendor_dir, "bin"),
+          File.join(user_gem_dir, "bin"),
           ruby_bin_dir, # Add Ruby bin directory so exec can find gem etc.
           ENV["PATH"].split(File::PATH_SEPARATOR), # Preserve existing PATH
         ].flatten.uniq
@@ -185,8 +190,8 @@ module ChefCLI
         {
         "PATH" => path.join(File::PATH_SEPARATOR),
         "GEM_ROOT" => Gem.default_dir, # Default directory for gems
-        "GEM_HOME" => vendor_dir,      # Set only if vendor_dir exists
-        "GEM_PATH" => vendor_dir,      # Set only if vendor_dir exists
+        "GEM_HOME" => user_gem_dir,    # User-local gem dir for persistence
+        "GEM_PATH" => [user_gem_dir, vendor_dir].join(File::PATH_SEPARATOR),
         }
       end
     end
@@ -214,6 +219,14 @@ module ChefCLI
       stderr_redirect = Chef::Platform.windows? ? "2>NUL" : "2>/dev/null"
       path = `hab pkg path #{pkg_name} #{stderr_redirect}`.strip
       path if !path.empty? && Dir.exist?(path) # Return path only if it exists
+    end
+
+    # Returns the user-local gem directory for the current Ruby version
+    # under ~/.chef/ruby/<MAJOR.MINOR.0>/gems
+    # This path persists across Habitat package upgrades.
+    def habitat_user_gem_dir
+      ruby_version = RbConfig::CONFIG["ruby_version"] # e.g., "3.1.0"
+      File.expand_path(File.join("~", ".chef", "ruby", ruby_version, "gems"))
     end
 
     def omnibus_expand_path(*paths)

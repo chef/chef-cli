@@ -17,6 +17,11 @@ do_setup_environment() {
   set_runtime_env APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
   set_runtime_env LANG "en_US.UTF-8"
   set_runtime_env LC_CTYPE "en_US.UTF-8"
+
+  # Allow user-installed gems to persist across package upgrades.
+  # The actual GEM_HOME/GEM_PATH will be resolved at runtime via the wrapper
+  # script to include ~/.chef/ruby/<ruby_version>/gems.
+  set_runtime_env CHEF_GEM_HOME_ENABLED "true"
 }
 
 do_prepare() {
@@ -43,6 +48,7 @@ do_build() {
 
     build_line "Setting GEM_PATH=$GEM_HOME"
     export GEM_PATH="$GEM_HOME"
+    bundle config unset with
     bundle config --local without integration deploy maintenance test development profile
     bundle config --local jobs 4
     bundle config --local retry 5
@@ -89,10 +95,17 @@ do_install() {
 #!$(pkg_path_for core/bash)/bin/bash
 set -e
 
-export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
+# Determine Ruby version for user gem path
+RUBY_ABI_VERSION=\$($(pkg_path_for ${ruby_pkg})/bin/ruby -e 'puts RbConfig::CONFIG["ruby_version"]')
+USER_GEM_HOME="\${HOME}/.chef/ruby/\${RUBY_ABI_VERSION}/gems"
+
+# Create user gem directory if it does not exist
+mkdir -p "\${USER_GEM_HOME}"
+
+export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:\${USER_GEM_HOME}/bin:$pkg_prefix/vendor/bin:\$PATH"
 export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
-export GEM_HOME="$pkg_prefix/vendor"
-export GEM_PATH="$pkg_prefix/vendor"
+export GEM_HOME="\${USER_GEM_HOME}"
+export GEM_PATH="\${USER_GEM_HOME}:$pkg_prefix/vendor"
 
 exec $(pkg_path_for ${ruby_pkg})/bin/ruby $pkg_prefix/libexec/chef-cli "\$@"
 EOF

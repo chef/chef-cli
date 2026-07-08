@@ -25,6 +25,7 @@ steps:
       - chef/habitat#main:
           build: .
     env:
+      HAB_ORIGIN: "chef"
       HAB_NONINTERACTIVE: "true"
       HAB_NOCOLORING: "true"
       HAB_STUDIO_SECRET_HAB_NONINTERACTIVE: "true"

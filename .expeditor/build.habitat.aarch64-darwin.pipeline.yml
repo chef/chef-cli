@@ -22,7 +22,7 @@ steps:
           always-pull: true
           wait-network: true
           inherit-environment-vars: true
-      - chef/habitat#main:
+      - chef/habitat#poorndm/CHEF-36805-remove-docker-flag-for-mac:
           build: .
     env:
       HAB_ORIGIN: "chef"

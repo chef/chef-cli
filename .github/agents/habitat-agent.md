@@ -55,6 +55,36 @@ $pkg_bin_dirs=@("bin", "vendor/bin")
 
 PowerShell callbacks follow `Invoke-*` naming (e.g., `Invoke-Build`, `Invoke-SetupEnvironment`).
 
+## Package Structure (including platform-specific)
+
+```
+habitat/
+├── plan.sh                   # Linux x86_64 Habitat plan
+├── plan.ps1                  # Windows Habitat plan (PowerShell)
+├── aarch64-darwin/
+│   └── plan.sh              # macOS ARM64 Habitat plan
+└── tests/
+    ├── test.sh              # Linux smoke tests
+    ├── test.darwin.sh       # macOS smoke tests
+    └── test.ps1             # Windows smoke tests
+```
+
+## CI/CD Pipeline Files
+
+```
+.expeditor/
+├── build.habitat.aarch64.pipeline.yml    # aarch64-linux build pipeline
+├── build.habitat.darwin.pipeline.yml     # aarch64-darwin build pipeline
+├── habitat-test.pipeline.yml            # Habitat test pipeline
+├── promote.habitat.aarch64.pipeline.yml # aarch64-linux promotion
+└── buildkite/
+    ├── build_hab_aarch64.sh             # Linux ARM build script
+    ├── build_hab_darwin.sh              # macOS ARM build script
+    ├── upload_hab_aarch64.sh            # Linux ARM upload
+    ├── upload_hab_darwin.sh             # macOS ARM upload
+    └── artifact.habitat.test.sh         # Habitat test runner
+```
+
 ## Validation Checklist
 
 Before finalizing:

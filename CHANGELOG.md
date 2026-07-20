@@ -1,8 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release -->
+<!-- latest_release 6.1.35 -->
+## [v6.1.35](https://github.com/chef/chef-cli/tree/v6.1.35) (2026-07-20)
+
+#### Merged Pull Requests
+- CHEF-34733: Add Habitat plan for macOS aarch64-darwin platform [#345](https://github.com/chef/chef-cli/pull/345) ([sanghinitin](https://github.com/sanghinitin))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=6.1.34 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- CHEF-34733: Add Habitat plan for macOS aarch64-darwin platform [#345](https://github.com/chef/chef-cli/pull/345) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.35 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->

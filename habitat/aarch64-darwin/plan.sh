@@ -35,6 +35,10 @@ do_setup_environment() {
   set_runtime_env APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
   set_runtime_env LANG "en_US.UTF-8"
   set_runtime_env LC_CTYPE "en_US.UTF-8"
+
+  # core/cacerts already exports SSL_CERT_FILE; -f forces our declaration to win
+  set_runtime_env -f SSL_CERT_FILE "$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+  set_runtime_env -f SSL_CERT_DIR "$(pkg_path_for core/cacerts)/ssl/certs"
 }
 
 do_prepare() {
@@ -61,8 +65,6 @@ do_build() {
   bundle config --local jobs 4
   bundle config --local retry 5
   bundle config --local silence_root_warning 1
-  export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-  export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
   bundle install
   gem build chef-cli.gemspec
   ruby ./cleanup_gem_lockfiles.rb

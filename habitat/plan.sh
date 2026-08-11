@@ -22,6 +22,10 @@ do_setup_environment() {
   # The actual GEM_HOME/GEM_PATH will be resolved at runtime via the wrapper
   # script to include ~/.chef/ruby/<ruby_version>/gems.
   set_runtime_env CHEF_GEM_HOME_ENABLED "true"
+
+  # core/cacerts already exports SSL_CERT_FILE; -f forces our declaration to win
+  set_runtime_env -f SSL_CERT_FILE "$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+  set_runtime_env -f SSL_CERT_DIR "$(pkg_path_for core/cacerts)/ssl/certs"
 }
 
 do_prepare() {
@@ -53,8 +57,6 @@ do_build() {
     bundle config --local jobs 4
     bundle config --local retry 5
     bundle config --local silence_root_warning 1
-    export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-    export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
     bundle install
     gem build chef-cli.gemspec
     gem install rspec-core -v '~> 3.12.3'

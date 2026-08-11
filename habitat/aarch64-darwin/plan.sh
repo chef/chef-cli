@@ -13,7 +13,7 @@ pkg_build_deps=(
   core/make
   core/cmake
 )
-pkg_deps=(${ruby_pkg} core/coreutils core/libarchive)
+pkg_deps=(${ruby_pkg} core/coreutils core/libarchive core/cacerts)
 
 pkg_svc_user=root
 
@@ -61,6 +61,8 @@ do_build() {
   bundle config --local jobs 4
   bundle config --local retry 5
   bundle config --local silence_root_warning 1
+  export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+  export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
   bundle install
   gem build chef-cli.gemspec
   ruby ./cleanup_gem_lockfiles.rb
@@ -109,6 +111,8 @@ set -e
 
 export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
 export DYLD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$DYLD_LIBRARY_PATH"
+export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
 export GEM_HOME="$pkg_prefix/vendor"
 export GEM_PATH="$pkg_prefix/vendor"
 export APPBUNDLER_ALLOW_RVM="true"

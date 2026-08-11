@@ -3,7 +3,7 @@ export HAB_REFRESH_CHANNEL="base-2025"
 pkg_name=chef-cli
 pkg_origin=chef
 ruby_pkg="core/ruby3_4"
-pkg_deps=(${ruby_pkg} core/coreutils core/libarchive)
+pkg_deps=(${ruby_pkg} core/coreutils core/libarchive core/cacerts)
 pkg_build_deps=(
   core/make
   core/gcc
@@ -53,6 +53,8 @@ do_build() {
     bundle config --local jobs 4
     bundle config --local retry 5
     bundle config --local silence_root_warning 1
+    export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+    export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
     bundle install
     gem build chef-cli.gemspec
     gem install rspec-core -v '~> 3.12.3'
@@ -104,6 +106,8 @@ mkdir -p "\${USER_GEM_HOME}"
 
 export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:\${USER_GEM_HOME}/bin:$pkg_prefix/vendor/bin:\$PATH"
 export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
+export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
+export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
 export GEM_HOME="\${USER_GEM_HOME}"
 export GEM_PATH="\${USER_GEM_HOME}:$pkg_prefix/vendor"
 

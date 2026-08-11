@@ -35,7 +35,6 @@ function Invoke-SetupEnvironment {
 
     Set-RuntimeEnv APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
     Set-RuntimeEnv FORCE_FFI_YAJL "ext"
-    Set-RuntimeEnv -Force SSL_CERT_FILE "$(Get-HabPackagePath 'core/cacerts')/ssl/certs/cacert.pem"
     Set-RuntimeEnv LANG "en_US.UTF-8"
     Set-RuntimeEnv LC_CTYPE "en_US.UTF-8"
 
@@ -56,7 +55,7 @@ function Invoke-Build {
         bundle config --local jobs 4
         bundle config --local retry 5
         bundle config --local silence_root_warning 1
-        $env:SSL_CERT_FILE = "$(Get-HabPackagePath 'core/cacerts')/ssl/certs/cacert.pem"
+        if (-not $env:SSL_CERT_FILE) { $env:SSL_CERT_FILE = "$(Get-HabPackagePath 'core/cacerts')/ssl/certs/cacert.pem" }
         Write-BuildLine " ** Using bundler to retrieve the Ruby dependencies"
         bundle install
 

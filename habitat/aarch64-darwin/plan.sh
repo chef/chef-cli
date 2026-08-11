@@ -35,10 +35,6 @@ do_setup_environment() {
   set_runtime_env APPBUNDLER_ALLOW_RVM "true" # prevent appbundler from clearing out the carefully constructed runtime GEM_PATH
   set_runtime_env LANG "en_US.UTF-8"
   set_runtime_env LC_CTYPE "en_US.UTF-8"
-
-  # core/cacerts already exports SSL_CERT_FILE; -f forces our declaration to win
-  set_runtime_env -f SSL_CERT_FILE "$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-  set_runtime_env -f SSL_CERT_DIR "$(pkg_path_for core/cacerts)/ssl/certs"
 }
 
 do_prepare() {
@@ -113,8 +109,8 @@ set -e
 
 export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$pkg_prefix/vendor/bin:\$PATH"
 export DYLD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$DYLD_LIBRARY_PATH"
-export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
+export SSL_CERT_FILE="\${SSL_CERT_FILE:-$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem}"
+export SSL_CERT_DIR="\${SSL_CERT_DIR:-$(pkg_path_for core/cacerts)/ssl/certs}"
 export GEM_HOME="$pkg_prefix/vendor"
 export GEM_PATH="$pkg_prefix/vendor"
 export APPBUNDLER_ALLOW_RVM="true"

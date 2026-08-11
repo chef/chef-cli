@@ -22,10 +22,6 @@ do_setup_environment() {
   # The actual GEM_HOME/GEM_PATH will be resolved at runtime via the wrapper
   # script to include ~/.chef/ruby/<ruby_version>/gems.
   set_runtime_env CHEF_GEM_HOME_ENABLED "true"
-
-  # core/cacerts already exports SSL_CERT_FILE; -f forces our declaration to win
-  set_runtime_env -f SSL_CERT_FILE "$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-  set_runtime_env -f SSL_CERT_DIR "$(pkg_path_for core/cacerts)/ssl/certs"
 }
 
 do_prepare() {
@@ -108,8 +104,8 @@ mkdir -p "\${USER_GEM_HOME}"
 
 export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:\${USER_GEM_HOME}/bin:$pkg_prefix/vendor/bin:\$PATH"
 export LD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$LD_LIBRARY_PATH"
-export SSL_CERT_FILE="$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem"
-export SSL_CERT_DIR="$(pkg_path_for core/cacerts)/ssl/certs"
+export SSL_CERT_FILE="\${SSL_CERT_FILE:-$(pkg_path_for core/cacerts)/ssl/certs/cacert.pem}"
+export SSL_CERT_DIR="\${SSL_CERT_DIR:-$(pkg_path_for core/cacerts)/ssl/certs}"
 export GEM_HOME="\${USER_GEM_HOME}"
 export GEM_PATH="\${USER_GEM_HOME}:$pkg_prefix/vendor"
 

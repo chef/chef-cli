@@ -36,6 +36,11 @@ function Invoke-SetupEnvironment {
     Set-RuntimeEnv FORCE_FFI_YAJL "ext"
     Set-RuntimeEnv LANG "en_US.UTF-8"
     Set-RuntimeEnv LC_CTYPE "en_US.UTF-8"
+
+    # Allow user-installed gems to persist across package upgrades.
+    # The actual GEM_HOME/GEM_PATH will be resolved at runtime to include
+    # ~/.chef/ruby/<ruby_version>/gems via the chef-cli Ruby code.
+    Set-RuntimeEnv CHEF_GEM_HOME_ENABLED "true"
 }
 
 function Invoke-Build {

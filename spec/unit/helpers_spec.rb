@@ -113,14 +113,16 @@ describe ChefCLI::Helpers do
       let(:chef_dke_path) { "/hab/pkgs/chef/chef-workstation/1.0.0/123" }
       let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
       let(:ruby_bin_dir) { File.dirname(RbConfig.ruby) }
+      let(:ruby_version) { RbConfig::CONFIG["ruby_version"] }
+      let(:user_gem_dir) { File.expand_path("~/.chef/ruby/#{ruby_version}/gems") }
       let(:expected_gem_root) { Gem.default_dir }
-      let(:expected_path) { [File.join(chef_dke_path, "bin"), File.join(cli_hab_path, "vendor", "bin"), ruby_bin_dir, "/usr/bin:/bin"].flatten }
+      let(:expected_path) { [File.join(chef_dke_path, "bin"), File.join(cli_hab_path, "vendor", "bin"), File.join(user_gem_dir, "bin"), ruby_bin_dir, "/usr/bin:/bin"].flatten }
       let(:expected_env) do
         {
           "PATH" => expected_path.join(File::PATH_SEPARATOR),
           "GEM_ROOT" => expected_gem_root,
-          "GEM_HOME" => "#{cli_hab_path}/vendor",
-          "GEM_PATH" => "#{cli_hab_path}/vendor",
+          "GEM_HOME" => user_gem_dir,
+          "GEM_PATH" => "#{user_gem_dir}#{File::PATH_SEPARATOR}#{cli_hab_path}/vendor",
         }
       end
 
@@ -129,15 +131,26 @@ describe ChefCLI::Helpers do
         allow(ChefCLI::Helpers).to receive(:habitat_standalone?).and_return false
         allow(ENV).to receive(:[]).with("PATH").and_return("/usr/bin:/bin")
         allow(ENV).to receive(:[]).with("CHEF_CLI_VERSION").and_return(nil)
-        allow(Dir).to receive(:exist?).with("#{cli_hab_path}/vendor").and_return(true) # <-- Add this line
+        allow(Dir).to receive(:exist?).with("#{cli_hab_path}/vendor").and_return(true)
       end
 
-      it "should return the habitat env" do
-        allow(ChefCLI::Helpers).to receive(:fetch_chef_cli_version_pkg).and_return(nil) # Ensure no version override
+      it "should return the habitat env with user gem dir" do
+        allow(ChefCLI::Helpers).to receive(:fetch_chef_cli_version_pkg).and_return(nil)
         expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
         expect(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
 
         expect(ChefCLI::Helpers.habitat_env).to eq(expected_env)
+      end
+
+      it "should set GEM_HOME to user gem dir for persistence" do
+        allow(ChefCLI::Helpers).to receive(:fetch_chef_cli_version_pkg).and_return(nil)
+        allow(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
+        allow(ChefCLI::Helpers).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
+
+        env = ChefCLI::Helpers.habitat_env
+        expect(env["GEM_HOME"]).to eq(user_gem_dir)
+        expect(env["GEM_PATH"]).to include(user_gem_dir)
+        expect(env["GEM_PATH"]).to include("#{cli_hab_path}/vendor")
       end
     end
 

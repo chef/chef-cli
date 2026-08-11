@@ -92,10 +92,10 @@ do_install() {
 
   build_line "** patching binstubs to allow running directly"
   for binstub in ${pkg_prefix}/bin/*; do
-    sed -i -e "/require ['\"]rubygems['\"]/r ${PLAN_CONTEXT}/../binstub_patch.rb" "$binstub"
+    sed -i -e "/require ['\"']rubygems['\"']/r ${PLAN_CONTEXT}/../../binstub_patch.rb" "$binstub"
   done
 
-  if ! grep -q 'APPBUNDLER_ALLOW_RVM' "${pkg_prefix}/bin/chef-cli"; then
+  if ! grep -q 'user_gem_home' "${pkg_prefix}/bin/chef-cli"; then
     build_line "ERROR: binstub patch injection failed for ${pkg_prefix}/bin/chef-cli"
     return 1
   fi
@@ -111,6 +111,7 @@ export PATH="$(pkg_path_for ${ruby_pkg})/bin:/sbin:/usr/sbin:/usr/local/sbin:/us
 export DYLD_LIBRARY_PATH="$(pkg_path_for core/libarchive)/lib:\$DYLD_LIBRARY_PATH"
 export GEM_HOME="$pkg_prefix/vendor"
 export GEM_PATH="$pkg_prefix/vendor"
+export APPBUNDLER_ALLOW_RVM="true"
 
 exec $(pkg_path_for ${ruby_pkg})/bin/ruby $pkg_prefix/libexec/chef-cli "\$@"
 EOF

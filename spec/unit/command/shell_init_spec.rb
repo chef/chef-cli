@@ -346,6 +346,8 @@ describe ChefCLI::Command::ShellInit do
 
   context "habitat standalone shell-init on bash" do
     let(:cli_hab_path) { "/hab/pkgs/chef/chef-cli/1.0.0/123" }
+    let(:ruby_version) { RbConfig::CONFIG["ruby_version"] }
+    let(:user_gem_dir) { File.expand_path("~/.chef/ruby/#{ruby_version}/gems") }
 
     let(:argv) { ["bash"] }
 
@@ -359,8 +361,8 @@ describe ChefCLI::Command::ShellInit do
 
       command_instance.run(argv)
       expect(stdout_io.string).to include("export PATH=\"#{cli_hab_path}/bin")
-      expect(stdout_io.string).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
-      expect(stdout_io.string).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
+      expect(stdout_io.string).to include("export GEM_HOME=\"#{user_gem_dir}")
+      expect(stdout_io.string).to include("export GEM_PATH=\"#{user_gem_dir}#{File::PATH_SEPARATOR}#{cli_hab_path}/vendor")
     end
   end
 
@@ -380,10 +382,13 @@ describe ChefCLI::Command::ShellInit do
       expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-workstation").and_return(chef_dke_path)
       expect(command_instance).to receive(:get_pkg_prefix).with("chef/chef-cli").and_return(cli_hab_path)
 
+      ruby_version = RbConfig::CONFIG["ruby_version"]
+      user_gem_dir = File.expand_path("~/.chef/ruby/#{ruby_version}/gems")
+
       command_instance.run(argv)
       expect(stdout_io.string).to include("export PATH=\"#{chef_dke_path}/bin")
-      expect(stdout_io.string).to include("export GEM_HOME=\"#{cli_hab_path}/vendor")
-      expect(stdout_io.string).to include("export GEM_PATH=\"#{cli_hab_path}/vendor")
+      expect(stdout_io.string).to include("export GEM_HOME=\"#{user_gem_dir}")
+      expect(stdout_io.string).to include("export GEM_PATH=\"#{user_gem_dir}#{File::PATH_SEPARATOR}#{cli_hab_path}/vendor")
     end
 
     describe "autocompletion" do

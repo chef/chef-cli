@@ -203,12 +203,25 @@ describe ChefCLI::Command::GemForwarder do
       end
     end
 
-    context "when the Chef Premium RubyGem source is already configured" do
+    context "when the Chef Premium RubyGem source is already configured with credentials" do
       before { stub_sources("https://rubygems.org/", "https://v1:abc@rubygems.chef.io") }
 
       it "does not attempt to add it again" do
         expect(ChefLicensing).not_to receive(:fetch_and_persist)
         expect(command_instance).not_to receive(:add_chef_gem_source)
+        command_instance.send(:ensure_chef_gem_source, %w{install knife})
+      end
+    end
+
+    # Bug fix: unauthenticated rubygems.chef.io must not be treated as configured
+    context "when rubygems.chef.io is present but without credentials" do
+      before do
+        stub_sources("https://rubygems.org/", "https://rubygems.chef.io")
+        allow(ChefLicensing).to receive(:fetch_and_persist).and_return([license_key])
+      end
+
+      it "treats it as not configured and adds the authenticated source" do
+        expect(command_instance).to receive(:add_chef_gem_source).with(license_key)
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
       end
     end
@@ -242,6 +255,24 @@ describe ChefCLI::Command::GemForwarder do
       before { stub_sources("https://airgap.internal/gems") }
 
       it "assumes air-gapped and does not add the Chef source" do
+        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(command_instance).not_to receive(:add_chef_gem_source)
+        allow(command_instance).to receive(:err)
+        command_instance.send(:ensure_chef_gem_source, %w{install plugin})
+      end
+
+      it "warns about air-gapped environment" do
+        allow(command_instance).to receive(:err)
+        expect(command_instance).to receive(:err).with(/air-gapped/)
+        command_instance.send(:ensure_chef_gem_source, %w{install plugin})
+      end
+    end
+
+    # Bug fix: file:// sources have host=="" and must not be silently dropped from airgap detection
+    context "when a file:// local source is configured" do
+      before { stub_sources("file:///var/cache/gems") }
+
+      it "treats it as non-standard and does not add the Chef source" do
         expect(ChefLicensing).not_to receive(:fetch_and_persist)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         allow(command_instance).to receive(:err)

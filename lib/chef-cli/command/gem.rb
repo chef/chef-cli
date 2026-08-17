@@ -56,18 +56,16 @@ module ChefCLI
 
       # Checks gem sources before any remote-fetching command and ensures the
       # Chef Premium RubyGem server is configured:
-      #   - Chef source already present → proceed.
-      #   - Custom non-rubygems.org source present → assume airgap, warn and skip.
-      #   - Only rubygems.org → obtain license key and run `gem sources --add`.
+      #   - Chef source present with valid v1 credentials → proceed.
+      #   - Non-standard source present (incl. file://) → assume airgap, warn and skip.
+      #   - Only rubygems.org (or unauthenticated chef source) → obtain license key and run `gem sources --add`.
       def ensure_chef_gem_source(params)
         return unless premium_source_command?(params)
+        return if chef_gem_source_configured?
 
-        hosts = configured_source_hosts
-        return if hosts.include?(CHEF_GEM_SOURCE_HOST)
-
-        custom_hosts = hosts.reject { |h| h == RUBYGEMS_ORG_HOST }
-        unless custom_hosts.empty?
-          err("WARN: A custom gem source (#{custom_hosts.join(", ")}) is already configured; assuming an air-gapped environment.")
+        custom = non_standard_sources
+        unless custom.empty?
+          err("WARN: A custom gem source (#{custom.join(", ")}) is already configured; assuming an air-gapped environment.")
           err("WARN: The Chef Premium RubyGem source was not added. Premium extensions may be unavailable.")
           return
         end
@@ -88,13 +86,27 @@ module ChefCLI
         PREMIUM_SOURCE_COMMANDS.include?(command)
       end
 
-      # Returns host names for all currently configured gem sources.
-      def configured_source_hosts
-        Gem.sources.map do |source|
-          URI.parse(source.to_s).host
+      # Returns true only when rubygems.chef.io is configured with valid v1 credentials.
+      # A bare https://rubygems.chef.io entry (no user/password) is not considered configured.
+      def chef_gem_source_configured?
+        Gem.sources.any? do |source|
+          uri = URI.parse(source.to_s)
+          uri.host == CHEF_GEM_SOURCE_HOST && uri.user == "v1" && !uri.password.to_s.empty?
         rescue URI::InvalidURIError
-          nil
-        end.compact
+          false
+        end
+      end
+
+      # Returns sources that are neither rubygems.org nor rubygems.chef.io.
+      # Sources whose URI has no host (e.g. file://) or cannot be parsed are
+      # treated as non-standard so the code errs on the side of not modifying sources.
+      def non_standard_sources
+        Gem.sources.reject do |source|
+          uri = URI.parse(source.to_s)
+          [RUBYGEMS_ORG_HOST, CHEF_GEM_SOURCE_HOST].include?(uri.host)
+        rescue URI::InvalidURIError
+          false
+        end
       end
 
       # Persists the Chef Premium RubyGem server via `gem sources --add` so the

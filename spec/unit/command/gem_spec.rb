@@ -204,7 +204,10 @@ describe ChefCLI::Command::GemForwarder do
     end
 
     context "when the Chef Premium RubyGem source is already configured with credentials" do
-      before { stub_sources("https://rubygems.org/", "https://v1:abc@rubygems.chef.io") }
+      before do
+        # Stub the method directly — URL construction with credentials is tested in #chef_gem_source_configured?
+        allow(command_instance).to receive(:chef_gem_source_configured?).and_return(true)
+      end
 
       it "does not attempt to add it again" do
         expect(ChefLicensing).not_to receive(:fetch_and_persist)
@@ -335,6 +338,29 @@ describe ChefCLI::Command::GemForwarder do
         allow(command_instance).to receive(:err)
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
       end
+    end
+  end
+
+  describe "#chef_gem_source_configured?" do
+    let(:license_key) { "tmns-00000000-0000-0000-0000-000000000000-0000" }
+
+    def stub_sources(*urls)
+      allow(Gem).to receive(:sources).and_return(urls)
+    end
+
+    it "returns true when the Chef source has v1 user and non-empty password" do
+      stub_sources("https://rubygems.org/", "https://v1:#{license_key}@rubygems.chef.io")
+      expect(command_instance.send(:chef_gem_source_configured?)).to be(true)
+    end
+
+    it "returns false when the Chef source has no credentials" do
+      stub_sources("https://rubygems.org/", "https://rubygems.chef.io")
+      expect(command_instance.send(:chef_gem_source_configured?)).to be(false)
+    end
+
+    it "returns false when no Chef source is present" do
+      stub_sources("https://rubygems.org/")
+      expect(command_instance.send(:chef_gem_source_configured?)).to be(false)
     end
   end
 

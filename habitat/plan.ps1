@@ -12,6 +12,7 @@ $pkg_deps=@(
   "core/ruby3_4-plus-devkit"
   "core/libarchive"
   "core/zlib"
+  "core/cacerts"
 )
 $pkg_build_deps=@(
   "core/git"
@@ -54,6 +55,7 @@ function Invoke-Build {
         bundle config --local jobs 4
         bundle config --local retry 5
         bundle config --local silence_root_warning 1
+        if (-not $env:SSL_CERT_FILE) { $env:SSL_CERT_FILE = "$(Get-HabPackagePath 'core/cacerts')/ssl/certs/cacert.pem" }
         Write-BuildLine " ** Using bundler to retrieve the Ruby dependencies"
         bundle install
 

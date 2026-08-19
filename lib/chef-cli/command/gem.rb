@@ -118,10 +118,11 @@ module ChefCLI
         err("WARN: Failed to add the Chef Premium RubyGem source (exit #{e.exit_code}).") unless e.exit_code == 0
       end
 
-      # Fetches the first Chef license key via chef-licensing (reads CHEF_LICENSE_KEY,
-      # --chef-license-key, persisted keys, or prompts the terminal).
+      # Fetches the first Chef license key from env, CLI args, or persisted storage.
+      # Does not prompt the terminal — if no key is found nil is returned and the
+      # caller warns the user to run `chef license add`.
       def chef_license_key
-        keys = ChefLicensing.fetch_and_persist
+        keys = ChefLicensing.license_keys
         keys.is_a?(Array) ? keys.first : nil
       rescue StandardError
         nil

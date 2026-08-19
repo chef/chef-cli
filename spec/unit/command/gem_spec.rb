@@ -197,7 +197,7 @@ describe ChefCLI::Command::GemForwarder do
       before { stub_sources("https://rubygems.org/") }
 
       it "does nothing for non-install/search commands" do
-        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(ChefLicensing).not_to receive(:license_keys)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         command_instance.send(:ensure_chef_gem_source, %w{list})
       end
@@ -210,7 +210,7 @@ describe ChefCLI::Command::GemForwarder do
       end
 
       it "does not attempt to add it again" do
-        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(ChefLicensing).not_to receive(:license_keys)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
       end
@@ -220,7 +220,7 @@ describe ChefCLI::Command::GemForwarder do
     context "when rubygems.chef.io is present but without credentials" do
       before do
         stub_sources("https://rubygems.org/", "https://rubygems.chef.io")
-        allow(ChefLicensing).to receive(:fetch_and_persist).and_return([license_key])
+        allow(ChefLicensing).to receive(:license_keys).and_return([license_key])
       end
 
       it "treats it as not configured and adds the authenticated source" do
@@ -232,7 +232,7 @@ describe ChefCLI::Command::GemForwarder do
     context "when only the default RubyGems.org source is configured" do
       before do
         stub_sources("https://rubygems.org/")
-        allow(ChefLicensing).to receive(:fetch_and_persist).and_return([license_key])
+        allow(ChefLicensing).to receive(:license_keys).and_return([license_key])
       end
 
       it "adds the Chef source built from the license key" do
@@ -240,9 +240,9 @@ describe ChefCLI::Command::GemForwarder do
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
       end
 
-      # TC-13: fetch_and_persist (not license_keys) is called so ENV→arg→terminal priority is honoured
-      it "uses fetch_and_persist to retrieve the license key" do
-        expect(ChefLicensing).to receive(:fetch_and_persist).and_return([license_key])
+      # TC-13: license_keys (not fetch_and_persist) is called so no interactive prompt blocks gem commands
+      it "uses license_keys to retrieve the license key without prompting" do
+        expect(ChefLicensing).to receive(:license_keys).and_return([license_key])
         allow(command_instance).to receive(:add_chef_gem_source)
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
       end
@@ -258,7 +258,7 @@ describe ChefCLI::Command::GemForwarder do
       before { stub_sources("https://airgap.internal/gems") }
 
       it "assumes air-gapped and does not add the Chef source" do
-        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(ChefLicensing).not_to receive(:license_keys)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         allow(command_instance).to receive(:err)
         command_instance.send(:ensure_chef_gem_source, %w{install plugin})
@@ -276,7 +276,7 @@ describe ChefCLI::Command::GemForwarder do
       before { stub_sources("file:///var/cache/gems") }
 
       it "treats it as non-standard and does not add the Chef source" do
-        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(ChefLicensing).not_to receive(:license_keys)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         allow(command_instance).to receive(:err)
         command_instance.send(:ensure_chef_gem_source, %w{install plugin})
@@ -294,7 +294,7 @@ describe ChefCLI::Command::GemForwarder do
       before { stub_sources("https://rubygems.org/", "https://airgap.internal/gems") }
 
       it "assumes an air-gapped mirror and does not add the Chef source" do
-        expect(ChefLicensing).not_to receive(:fetch_and_persist)
+        expect(ChefLicensing).not_to receive(:license_keys)
         expect(command_instance).not_to receive(:add_chef_gem_source)
         allow(command_instance).to receive(:err)
         command_instance.send(:ensure_chef_gem_source, %w{install knife})
@@ -311,7 +311,7 @@ describe ChefCLI::Command::GemForwarder do
     context "when no license key can be obtained" do
       before do
         stub_sources("https://rubygems.org/")
-        allow(ChefLicensing).to receive(:fetch_and_persist).and_return([])
+        allow(ChefLicensing).to receive(:license_keys).and_return([])
       end
 
       it "does not add a source and warns about premium extensions" do
@@ -330,7 +330,7 @@ describe ChefCLI::Command::GemForwarder do
     context "when fetching the license key raises an error" do
       before do
         stub_sources("https://rubygems.org/")
-        allow(ChefLicensing).to receive(:fetch_and_persist).and_raise(StandardError)
+        allow(ChefLicensing).to receive(:license_keys).and_raise(StandardError)
       end
 
       it "treats it as no license key and does not add a source" do

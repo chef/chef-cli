@@ -5,6 +5,11 @@ gemspec
 gem "logger", "< 1.6" # 1.6 causes errors with mixlib-log < 3.1.1
 gem "chefspec"
 gem "appbundler"
+# chef's Windows-only "universal-mingw-ucrt" build depends on chef-powershell, but
+# Bundler doesn't always resolve that platform-specific build (e.g. when another
+# Windows-native gem in the graph lacks a build for the current Ruby). Declaring it
+# directly here guarantees it's installed on Windows regardless of that resolution.
+gem "chef-powershell", platforms: [:mswin, :mingw, :x64_mingw]
 
 group :test do
   gem "rake"

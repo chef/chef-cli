@@ -43,7 +43,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
   gem.add_dependency "ffi-yajl", ">= 2.2", "< 4.0", "!= 3.0.0"
   gem.add_dependency "minitar", "~> 1.0"
-  gem.add_dependency "chef", ">= 18.0", "< 20.0"
   gem.add_dependency "solve", "> 2.0", "< 5.0"
   gem.add_dependency "addressable", ">= 2.9.0", "< 3.0"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"

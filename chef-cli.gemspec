@@ -47,7 +47,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "solve", "> 2.0", "< 5.0"
   gem.add_dependency "addressable", ">= 2.9.0", "< 3.0"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
-  gem.add_dependency "diff-lcs", "~> 1.6" # Newer verions of chef-client require diff-lcs ~> 1.6
+  gem.add_dependency "diff-lcs", ">= 1.6", "< 3.0" # Newer verions of chef-client require diff-lcs ~> 1.6
   gem.add_dependency "pastel", "~> 0.7" # used for policyfile differ
   gem.add_dependency "license-acceptance", ">= 1.0.11", "< 3"
   gem.add_dependency "chef-licensing", "~> 1.0"

@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.39 -->
-## [v6.1.39](https://github.com/chef/chef-cli/tree/v6.1.39) (2026-09-09)
+<!-- latest_release 6.1.40 -->
+## [v6.1.40](https://github.com/chef/chef-cli/tree/v6.1.40) (2026-09-22)
 
 #### Merged Pull Requests
-- Update rspec requirement from =3.12.0 to 3.13.2 [#352](https://github.com/chef/chef-cli/pull/352) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Update logger requirement from &lt; 1.6 to &lt; 1.8 [#353](https://github.com/chef/chef-cli/pull/353) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=6.1.34 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Update logger requirement from &lt; 1.6 to &lt; 1.8 [#353](https://github.com/chef/chef-cli/pull/353) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.40 -->
 - Update rspec requirement from =3.12.0 to 3.13.2 [#352](https://github.com/chef/chef-cli/pull/352) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.39 -->
 - CHEF-34005: Auto-configure Chef Premium RubyGem server as gem source [#349](https://github.com/chef/chef-cli/pull/349) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.38 -->
 - CHEF-37329: add Linux ARM Habitat validation in Expeditor pipeline [#347](https://github.com/chef/chef-cli/pull/347) ([sanjain-progress](https://github.com/sanjain-progress)) <!-- 6.1.37 -->

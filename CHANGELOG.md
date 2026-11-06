@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.40 -->
-## [v6.1.40](https://github.com/chef/chef-cli/tree/v6.1.40) (2026-09-22)
+<!-- latest_release 6.1.41 -->
+## [v6.1.41](https://github.com/chef/chef-cli/tree/v6.1.41) (2026-11-06)
 
 #### Merged Pull Requests
-- Update logger requirement from &lt; 1.6 to &lt; 1.8 [#353](https://github.com/chef/chef-cli/pull/353) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Fix Windows habitat test pipeline: install hab from stable channel [#355](https://github.com/chef/chef-cli/pull/355) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup since=6.1.34 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Fix Windows habitat test pipeline: install hab from stable channel [#355](https://github.com/chef/chef-cli/pull/355) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.41 -->
 - Update logger requirement from &lt; 1.6 to &lt; 1.8 [#353](https://github.com/chef/chef-cli/pull/353) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.40 -->
 - Update rspec requirement from =3.12.0 to 3.13.2 [#352](https://github.com/chef/chef-cli/pull/352) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.39 -->
 - CHEF-34005: Auto-configure Chef Premium RubyGem server as gem source [#349](https://github.com/chef/chef-cli/pull/349) ([sanghinitin](https://github.com/sanghinitin)) <!-- 6.1.38 -->

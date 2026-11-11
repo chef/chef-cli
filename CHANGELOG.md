@@ -1,15 +1,16 @@
 <!-- usage documentation: https://expeditor.chef.io/docs/reference/changelog/#common-changelog -->
-<!-- latest_release 6.1.41 -->
-## [v6.1.41](https://github.com/chef/chef-cli/tree/v6.1.41) (2026-11-06)
+<!-- latest_release 6.1.42 -->
+## [v6.1.42](https://github.com/chef/chef-cli/tree/v6.1.42) (2026-11-11)
 
 #### Merged Pull Requests
-- Fix Windows habitat test pipeline: install hab from stable channel [#355](https://github.com/chef/chef-cli/pull/355) ([nikhil2611](https://github.com/nikhil2611))
+- Updated the Notice file [#357](https://github.com/chef/chef-cli/pull/357) ([ashiqueps](https://github.com/ashiqueps))
 <!-- latest_release -->
 
 <!-- release_rollup since=6.1.34 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Updated the Notice file [#357](https://github.com/chef/chef-cli/pull/357) ([ashiqueps](https://github.com/ashiqueps)) <!-- 6.1.42 -->
 - Fix Windows habitat test pipeline: install hab from stable channel [#355](https://github.com/chef/chef-cli/pull/355) ([nikhil2611](https://github.com/nikhil2611)) <!-- 6.1.41 -->
 - Update logger requirement from &lt; 1.6 to &lt; 1.8 [#353](https://github.com/chef/chef-cli/pull/353) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.40 -->
 - Update rspec requirement from =3.12.0 to 3.13.2 [#352](https://github.com/chef/chef-cli/pull/352) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 6.1.39 -->
